@@ -14,6 +14,32 @@ navLinks.forEach((link) => {
   });
 });
 
+document.querySelectorAll(".service-card").forEach((card) => {
+  const destination = card.querySelector('a[href$=".html"]');
+  if (!destination) return;
+
+  card.classList.add("clickable-card");
+  card.setAttribute("role", "link");
+  card.setAttribute("tabindex", "0");
+  card.setAttribute("aria-label", `Open ${card.querySelector("h3")?.textContent || "service"} page`);
+
+  const openServicePage = () => {
+    window.location.href = destination.href;
+  };
+
+  card.addEventListener("click", (event) => {
+    if (event.target.closest("a")) return;
+    openServicePage();
+  });
+
+  card.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openServicePage();
+    }
+  });
+});
+
 const sections = [...document.querySelectorAll("main section[id], header[id]")];
 
 function updateActiveNav() {
