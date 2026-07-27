@@ -1365,5 +1365,6 @@ a {
 .trade-cta .container{display:flex;align-items:center;justify-content:space-between;gap:30px}
 .trade-cta h2{margin:4px 0 8px}
 .trade-cta p{margin:0;color:#c8ccd0}
+.trade-cta .btn{min-width:235px;white-space:nowrap;text-align:center}
 @media(max-width:1024px){.trade-bar-inner{justify-content:flex-start}.trade-overview-grid{grid-template-columns:1fr;gap:35px}.trade-gallery{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:760px){.trade-bar a{padding:9px 11px;font-size:.62rem}.trade-hero{min-height:520px}.trade-hero-copy{padding-block:70px}.trade-list,.trade-gallery{grid-template-columns:1fr}.trade-cta .container{align-items:flex-start;flex-direction:column}.gallery-slot,.gallery-slot img{min-height:250px}}
+@media(max-width:760px){.trade-bar a{padding:9px 11px;font-size:.62rem}.trade-hero{min-height:520px}.trade-hero-copy{padding-block:70px}.trade-list,.trade-gallery{grid-template-columns:1fr}.trade-cta .container{align-items:flex-start;flex-direction:column}.trade-cta .btn{width:100%;min-width:0}.gallery-slot,.gallery-slot img{min-height:250px}}
