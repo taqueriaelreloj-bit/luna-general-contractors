@@ -97,30 +97,26 @@ estimateForm?.addEventListener("submit", (event) => {
 
   const data = new FormData(estimateForm);
   const name = data.get("name");
+  const phone = data.get("phone");
+  const email = data.get("email");
   const service = data.get("service");
+  const address = data.get("address");
+  const subject = `Free Estimate Request — ${service}`;
+  const body = [
+    "New estimate request from the Luna General Contractors website",
+    "",
+    `Full Name: ${name}`,
+    `Phone Number: ${phone}`,
+    `Email Address: ${email}`,
+    `Service Needed: ${service}`,
+    `Project Address: ${address}`
+  ].join("\n");
 
   formMessage.textContent =
-    `Thank you, ${name}. Your ${service} request is ready to connect to your email or CRM.`;
+    "Your estimate request is ready. Please send the email that opens next.";
 
-  /*
-    TO RECEIVE REAL FORM SUBMISSIONS:
-    Replace this demo handler with one of these options:
-
-    1. Formspree:
-       - Add action="https://formspree.io/f/YOUR_ID" method="POST" to the form.
-       - Remove this JavaScript submit handler.
-
-    2. Your own API:
-       fetch("/api/estimate", {
-         method: "POST",
-         body: new FormData(estimateForm)
-       });
-
-    3. WordPress:
-       Connect the form to WPForms, Gravity Forms, Fluent Forms or Contact Form 7.
-  */
-
-  estimateForm.reset();
+  window.location.href =
+    `mailto:lunabestcontractors@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
 
 document.querySelector("#year").textContent = new Date().getFullYear();
