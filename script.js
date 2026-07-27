@@ -6,11 +6,6 @@ document.querySelectorAll('a[href="index.html#contact"]').forEach((link) => {
   link.setAttribute("href", "index.html#estimate-form");
 });
 
-document.querySelectorAll(".trade-cta a.btn-gold").forEach((link) => {
-  link.setAttribute("href", "index.html#estimate-form");
-  link.textContent = "Request Your Estimate";
-});
-
 menuToggle?.addEventListener("click", () => {
   const isOpen = mainNav.classList.toggle("open");
   menuToggle.setAttribute("aria-expanded", String(isOpen));
