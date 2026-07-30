@@ -48,16 +48,19 @@
     <section class="section gallery-section" id="gallery">
       <div class="container">
         <div class="section-heading"><p class="eyebrow gold">Real Projects Across DFW</p><h2>Bathroom Remodeling Before &amp; After Gallery</h2><p class="gallery-intro">Explore bathroom transformations, custom showers, tile work and finished renovations serving Dallas, Fort Worth, Arlington, Mansfield and Midlothian, Texas.</p></div>
-        <div class="trade-gallery">
-          <figure class="gallery-slot gallery-slot-wide">
+        <div class="project-showcase" data-gallery aria-label="Bathroom project gallery">
+          <div class="showcase-stage">
+            <button class="showcase-arrow showcase-prev" type="button" aria-label="Previous project">‹</button>
+            <div class="trade-gallery" aria-live="polite">
+          <figure class="gallery-slot is-active">
             <img src="bathroom-before-after-shower.jpg.webp" alt="Bathroom remodeling before and after with frameless glass shower in Dallas Texas" loading="lazy" />
             <figcaption><strong>Custom Shower Transformation</strong><span>Dallas, TX</span><small>Complete redesign featuring a spacious frameless-glass shower, custom tile and modern fixtures.</small></figcaption>
           </figure>
-          <figure class="gallery-slot gallery-slot-wide">
+          <figure class="gallery-slot">
             <img src="bathroom-before-after-vanity.jpg.webp" alt="Bathroom vanity remodeling before and after in Fort Worth Texas" loading="lazy" />
             <figcaption><strong>Vanity &amp; Accent Wall Remodel</strong><span>Fort Worth, TX</span><small>Updated vanity, marble-look countertop, new lighting and a full-height herringbone accent wall.</small></figcaption>
           </figure>
-          <figure class="gallery-slot gallery-slot-wide">
+          <figure class="gallery-slot">
             <img src="bathroom-before-after-tub-shower.jpg.webp" alt="Tub and walk-in shower bathroom remodeling before and after in Arlington Texas" loading="lazy" />
             <figcaption><strong>Tub &amp; Walk-In Shower Upgrade</strong><span>Arlington, TX</span><small>Old shower converted into an open tiled shower with glass enclosure and coordinated tub surround.</small></figcaption>
           </figure>
@@ -85,6 +88,11 @@
             <img src="bathroom-luxury-tub-enhanced.webp" alt="Luxury soaking tub with columns and arched window in Mansfield Texas" loading="lazy" />
             <figcaption><strong>Architectural Tub Surround</strong><span>Mansfield, TX</span><small>Custom columns, arched trim and tiled platform frame a bright centerpiece soaking tub.</small></figcaption>
           </figure>
+            </div>
+            <button class="showcase-arrow showcase-next" type="button" aria-label="Next project">›</button>
+            <div class="showcase-counter" aria-hidden="true"><span data-current>1</span> / <span data-total>9</span></div>
+          </div>
+          <div class="showcase-thumbnails" role="tablist" aria-label="Select a bathroom project"></div>
         </div>
       </div>
     </section>

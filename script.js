@@ -44,6 +44,73 @@ document.querySelectorAll(".service-card").forEach((card) => {
   });
 });
 
+document.querySelectorAll("[data-gallery]").forEach((gallery) => {
+  const slides = [...gallery.querySelectorAll(".gallery-slot")];
+  const previousButton = gallery.querySelector(".showcase-prev");
+  const nextButton = gallery.querySelector(".showcase-next");
+  const thumbnailRow = gallery.querySelector(".showcase-thumbnails");
+  const currentLabel = gallery.querySelector("[data-current]");
+  const totalLabel = gallery.querySelector("[data-total]");
+  let activeIndex = 0;
+  let autoplayTimer;
+
+  if (!slides.length || !thumbnailRow) return;
+  totalLabel.textContent = String(slides.length);
+
+  const thumbnails = slides.map((slide, index) => {
+    const sourceImage = slide.querySelector("img");
+    const button = document.createElement("button");
+    const image = document.createElement("img");
+    button.type = "button";
+    button.className = "showcase-thumbnail";
+    button.setAttribute("role", "tab");
+    button.setAttribute("aria-label", `View project ${index + 1}: ${sourceImage.alt}`);
+    image.src = sourceImage.src;
+    image.alt = "";
+    button.appendChild(image);
+    button.addEventListener("click", () => showSlide(index, true));
+    thumbnailRow.appendChild(button);
+    return button;
+  });
+
+  function showSlide(index, restartAutoplay = false) {
+    activeIndex = (index + slides.length) % slides.length;
+    slides.forEach((slide, slideIndex) => {
+      const isActive = slideIndex === activeIndex;
+      slide.classList.toggle("is-active", isActive);
+      slide.setAttribute("aria-hidden", String(!isActive));
+    });
+    thumbnails.forEach((thumbnail, thumbnailIndex) => {
+      const isActive = thumbnailIndex === activeIndex;
+      thumbnail.classList.toggle("is-active", isActive);
+      thumbnail.setAttribute("aria-selected", String(isActive));
+      thumbnail.tabIndex = isActive ? 0 : -1;
+    });
+    currentLabel.textContent = String(activeIndex + 1);
+    thumbnails[activeIndex].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    if (restartAutoplay) startAutoplay();
+  }
+
+  function startAutoplay() {
+    window.clearInterval(autoplayTimer);
+    autoplayTimer = window.setInterval(() => showSlide(activeIndex + 1), 6500);
+  }
+
+  previousButton?.addEventListener("click", () => showSlide(activeIndex - 1, true));
+  nextButton?.addEventListener("click", () => showSlide(activeIndex + 1, true));
+  gallery.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") showSlide(activeIndex - 1, true);
+    if (event.key === "ArrowRight") showSlide(activeIndex + 1, true);
+  });
+  gallery.addEventListener("mouseenter", () => window.clearInterval(autoplayTimer));
+  gallery.addEventListener("mouseleave", startAutoplay);
+  gallery.addEventListener("focusin", () => window.clearInterval(autoplayTimer));
+  gallery.addEventListener("focusout", startAutoplay);
+
+  showSlide(0);
+  startAutoplay();
+});
+
 const sections = [...document.querySelectorAll("main section[id], header[id]")];
 
 function updateActiveNav() {
