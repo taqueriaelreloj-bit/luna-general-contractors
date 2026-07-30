@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20260730-2" />
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -47,9 +47,17 @@
     </section>
     <section class="section gallery-section" id="gallery">
       <div class="container">
-        <div class="section-heading"><p class="eyebrow gold">Completed Work</p><h2>Water Damage Mitigation Project Photos</h2><p class="gallery-intro">This gallery is ready for Luna General Contractors' real before, during and after project photos.</p></div>
-        <div class="trade-gallery">
-          <figure class="gallery-slot"><img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1800&q=85&sig=1" alt="Water Damage Mitigation before project photo" loading="lazy" /><figcaption>Before</figcaption></figure><figure class="gallery-slot"><img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1800&q=85&sig=2" alt="Water Damage Mitigation work in progress project photo" loading="lazy" /><figcaption>Work in Progress</figcaption></figure><figure class="gallery-slot"><img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1800&q=85&sig=3" alt="Water Damage Mitigation after project photo" loading="lazy" /><figcaption>After</figcaption></figure><figure class="gallery-slot"><img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1800&q=85&sig=4" alt="Water Damage Mitigation project detail project photo" loading="lazy" /><figcaption>Project Detail</figcaption></figure><figure class="gallery-slot"><img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1800&q=85&sig=5" alt="Water Damage Mitigation finished work project photo" loading="lazy" /><figcaption>Finished Work</figcaption></figure><figure class="gallery-slot"><img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1800&q=85&sig=6" alt="Water Damage Mitigation more projects project photo" loading="lazy" /><figcaption>More Projects</figcaption></figure>
+        <div class="section-heading"><p class="eyebrow gold">Real Projects</p><h2>Water Damage Mitigation Project Photos</h2><p class="gallery-intro">Real demolition and damage-assessment work completed during property restoration projects.</p></div>
+        <div class="project-showcase" data-gallery aria-label="Project gallery">
+          <div class="showcase-stage">
+            <button class="showcase-arrow showcase-prev" type="button" aria-label="Previous project">‹</button>
+            <div class="trade-gallery" aria-live="polite">
+          <figure class="gallery-slot is-active"><img src="demolition-wall-opening.jpg" alt="Interior demolition with wall sheathing and framing exposed" loading="lazy" /><figcaption>Controlled Demolition</figcaption></figure><figure class="gallery-slot"><img src="demolition-framing-damage.jpg" alt="Damaged interior framing exposed during demolition" loading="lazy" /><figcaption>Damage Assessment</figcaption></figure>
+            </div>
+            <button class="showcase-arrow showcase-next" type="button" aria-label="Next project">›</button>
+            <div class="showcase-counter" aria-hidden="true"><span data-current>1</span> / <span data-total>2</span></div>
+          </div>
+          <div class="showcase-thumbnails" role="tablist" aria-label="Select a project"></div>
         </div>
       </div>
     </section>
@@ -57,6 +65,6 @@
   </main>
   <footer><div class="container"><div class="copyright"><span>© <span id="year"></span> Luna General Contractors. All rights reserved.</span><a href="index.html">Return to Home</a></div></div></footer>
   <a class="floating-call" href="tel:+18177845998" aria-label="Call Luna General Contractors">☎</a>
-  <script src="script.js"></script>
+  <script src="script.js?v=20260730-2"></script>
 </body>
 </html>
