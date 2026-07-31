@@ -1,0 +1,10 @@
+{
+  "name": "Kitchen Remodeling",
+  "slug": "kitchen-remodeling",
+  "summary": "Kitchen renovations with coordinated cabinets, countertops, backsplashes, flooring, lighting, plumbing fixtures and layout improvements.",
+  "features": ["Cabinet installation","Quartz countertops","Tile backsplashes","Kitchen islands","Lighting upgrades","Flooring and paint"],
+  "faqs": [
+    {"question":"What should be planned before a kitchen remodel begins?","answer":"The scope should address layout, cabinets, appliances, electrical, plumbing, countertops, flooring, lighting, permits and material lead times."},
+    {"question":"Can a kitchen remain usable during remodeling?","answer":"Limited use may be possible during some phases, but demolition, plumbing and countertop work often require a temporary kitchen arrangement."}
+  ]
+}
