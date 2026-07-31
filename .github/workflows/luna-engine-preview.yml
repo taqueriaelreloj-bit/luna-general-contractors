@@ -38,31 +38,51 @@ jobs:
           manifest_path = dist / "manifest.json"
           if not manifest_path.exists():
               raise SystemExit("Missing Luna Engine manifest")
+
           manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-          if len(manifest.get("pages", [])) != len(pages):
+          manifest_pages = manifest.get("pages", [])
+          if len(manifest_pages) != len(pages):
               raise SystemExit("Manifest page count does not match generated HTML")
+          if set(manifest_pages) != {page.name for page in pages}:
+              raise SystemExit("Manifest file list does not match generated HTML")
           if len(pages) < 4:
               raise SystemExit(f"Expected at least four generated pages, found {len(pages)}")
 
-          common = [
-              "<title>", 'name="description"', 'rel="canonical"', "<h1>",
-              "LocalBusiness", "GeneralContractor", "BreadcrumbList", "FAQPage",
-              "tel:+18177845998", 'name="robots"', 'property="og:title"'
+          required = [
+              "<title>",
+              'name="description"',
+              'rel="canonical"',
+              "<h1>",
+              "LocalBusiness",
+              "GeneralContractor",
+              '"@type":"Service"',
+              "Organization",
+              "WebPage",
+              "BreadcrumbList",
+              "FAQPage",
+              "tel:+18177845998",
+              'name="robots"',
+              'property="og:title"',
+              'property="og:description"',
+              'property="og:url"',
           ]
+
           for page in pages:
               html = page.read_text(encoding="utf-8")
-              missing = [token for token in common if token not in html]
+              missing = [token for token in required if token not in html]
               if missing:
                   raise SystemExit(f"{page}: missing {', '.join(missing)}")
-              if page.stem.count("-") >= 1 and page.stem != "midlothian":
-                  if '"@type":"Service"' not in html:
-                      raise SystemExit(f"{page}: missing Service schema")
+              if html.count("<h1>") != 1:
+                  raise SystemExit(f"{page}: expected exactly one H1")
+              if "noindex" in html.lower():
+                  raise SystemExit(f"{page}: unexpected noindex")
+
           print(f"Validated {len(pages)} Luna Engine page(s).")
           PY
 
       - name: Commit preview output
         run: |
-          git config user.name "github-actions[bot]"
+          git config user.name "github-actions[bot]]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add luna_engine/dist
           if git diff --cached --quiet; then
