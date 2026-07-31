@@ -1,0 +1,10 @@
+{
+  "name": "Flooring",
+  "slug": "flooring",
+  "summary": "Flooring installation and repair for luxury vinyl plank, engineered wood, laminate, tile, baseboards and transitions.",
+  "features": ["Luxury vinyl plank","Engineered wood","Laminate flooring","Tile installation","Baseboards and transitions","Subfloor evaluation"],
+  "faqs": [
+    {"question":"Which flooring works well for busy households?","answer":"Luxury vinyl plank and quality tile are popular because they provide durable surfaces and practical maintenance for active homes."},
+    {"question":"Do floors need leveling before installation?","answer":"Some properties require patching or leveling so the finished floor performs correctly. The condition must be evaluated before installation."}
+  ]
+}
