@@ -196,3 +196,93 @@ estimateForm?.addEventListener("submit", (event) => {
 });
 
 document.querySelector("#year").textContent = new Date().getFullYear();
+
+// Add the complete footer to every service page
+const isHomePage =
+  window.location.pathname.endsWith("/") ||
+  window.location.pathname.endsWith("/index.html");
+
+if (!isHomePage) {
+  const existingFooter = document.querySelector("footer");
+
+  if (existingFooter) {
+    existingFooter.outerHTML = `
+      <footer class="site-footer">
+        <div class="container footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="index.html#home">
+              <span class="brand-moon" aria-hidden="true"></span>
+              <span class="brand-copy">
+                <strong>LUNA</strong>
+                <small>GENERAL CONTRACTORS</small>
+                <em>Roofing • Remodeling • Restoration</em>
+              </span>
+            </a>
+
+            <p>
+              Quality construction and restoration for homes and
+              businesses across Dallas–Fort Worth.
+            </p>
+
+            <small>
+              © <span id="footer-year"></span> Luna General Contractors.
+              All rights reserved.
+            </small>
+          </div>
+
+          <div>
+            <h3>Services</h3>
+            <a href="roofing.html">Roofing</a>
+            <a href="kitchens.html">Kitchens</a>
+            <a href="bathrooms.html">Bathrooms</a>
+            <a href="flooring.html">Flooring</a>
+            <a href="mitigation.html">Mitigation</a>
+            <a href="insurance-claims.html">Insurance Claims</a>
+            <a href="painting.html">Painting</a>
+            <a href="drywall.html">Drywall</a>
+            <a href="siding.html">Siding</a>
+            <a href="carpentry.html">Carpentry</a>
+            <a href="fencing.html">Fencing</a>
+            <a href="commercial.html">Commercial</a>
+          </div>
+
+          <div>
+            <h3>Company</h3>
+            <a href="index.html#about">About Us</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#reviews">Reviews</a>
+            <a href="index.html#estimate-form">Contact</a>
+          </div>
+
+          <div>
+            <h3>Service Areas</h3>
+            <a href="index.html#estimate-form">Dallas, TX</a>
+            <a href="index.html#estimate-form">Fort Worth, TX</a>
+            <a href="index.html#estimate-form">Midlothian, TX</a>
+            <a href="index.html#estimate-form">Mansfield, TX</a>
+            <a href="index.html#estimate-form">Arlington, TX</a>
+            <a href="index.html#estimate-form">Grand Prairie, TX</a>
+            <a href="index.html#estimate-form">Keller, TX</a>
+            <a href="index.html#estimate-form">Irving, TX</a>
+            <a href="index.html#estimate-form">Lewisville, TX</a>
+          </div>
+
+          <div>
+            <h3>Contact</h3>
+            <a href="tel:+18177845998">☎ (817) 784-5998</a>
+            <a href="mailto:lunabestcontractors@gmail.com">
+              ✉ lunabestcontractors@gmail.com
+            </a>
+            <span>⌖ Dallas–Fort Worth, TX</span>
+            <span>English & Spanish</span>
+          </div>
+        </div>
+      </footer>
+    `;
+
+    const footerYear = document.querySelector("#footer-year");
+    if (footerYear) {
+      footerYear.textContent = new Date().getFullYear();
+    }
+  }
+}
