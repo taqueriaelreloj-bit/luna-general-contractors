@@ -1,0 +1,16 @@
+{
+  "name":"Fort Worth","slug":"fort-worth","state":"TX","county":"Tarrant County",
+  "title":"General Contractor in Fort Worth, TX | Luna General Contractors",
+  "meta_description":"Roofing, remodeling, restoration and commercial construction in Fort Worth, TX. Call Luna General Contractors at (817) 784-5998 for a free estimate.",
+  "hero":"Professional residential and commercial construction services throughout Fort Worth.",
+  "local_summary":"Fort Worth includes historic neighborhoods, established residential areas, new development, multifamily properties and major commercial districts. Construction projects may involve older building systems, storm-related exterior work, interior modernization and coordinated commercial improvements.",
+  "property_types":["Historic and established homes","Newer subdivision homes","Rental and investment properties","Multifamily properties","Retail, office and commercial buildings"],
+  "common_needs":["Roof and storm-damage repairs","Kitchen and bathroom remodeling","Drywall, painting and flooring","Water-damage restoration","Exterior repairs and carpentry","Commercial build-outs and remodeling"],
+  "nearby_cities":["Arlington","Bedford","Euless","Hurst","North Richland Hills","Mansfield","Grand Prairie"],
+  "faqs":[
+    {"question":"Do you provide construction services in Fort Worth?","answer":"Yes. We serve residential and commercial properties throughout Fort Worth and nearby Tarrant County communities."},
+    {"question":"Can you remodel older properties?","answer":"Yes. We inspect existing conditions and plan updates around the property's construction, finishes and building systems."},
+    {"question":"Do you repair storm and water damage?","answer":"Yes. We provide roofing, exterior and interior restoration based on the documented project scope."},
+    {"question":"Do you complete commercial tenant improvements?","answer":"Yes. We coordinate repairs, remodeling, interior build-outs and related commercial construction work."}
+  ]
+}
