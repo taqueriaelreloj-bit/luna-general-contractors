@@ -1,0 +1,16 @@
+{
+  "name":"Lancaster","slug":"lancaster","state":"TX","county":"Dallas County",
+  "title":"General Contractor in Lancaster, TX | Luna General Contractors",
+  "meta_description":"Roofing, remodeling, restoration and general construction in Lancaster, TX. Call Luna General Contractors at (817) 784-5998 for a free estimate.",
+  "hero":"Construction, remodeling, roofing and restoration services for Lancaster homeowners, investors and businesses.",
+  "local_summary":"Lancaster includes long-established neighborhoods, newer residential development, investment properties and commercial areas. Property projects often involve exterior storm repairs, interior updates, tenant improvements and restoration after water damage.",
+  "property_types":["Established single-family homes","Newer subdivision homes","Rental and investment properties","Retail spaces","Warehouse and commercial properties"],
+  "common_needs":["Roof and exterior storm repairs","Kitchen and bathroom remodeling","Drywall, texture and paint","Flooring replacement","Fence and siding work","Commercial repairs and build-outs"],
+  "nearby_cities":["DeSoto","Glenn Heights","Red Oak","Cedar Hill","Duncanville","Dallas","Grand Prairie"],
+  "faqs":[
+    {"question":"Does Luna General Contractors serve Lancaster?","answer":"Yes. We provide residential and commercial construction services throughout Lancaster and nearby DFW communities."},
+    {"question":"Can you repair water-damaged interiors?","answer":"Yes. After the moisture source is addressed, we can restore drywall, texture, paint, trim, flooring and related finishes."},
+    {"question":"Do you complete rental-property repairs?","answer":"Yes. We work with homeowners, landlords, investors and property managers on repairs and improvements."},
+    {"question":"Do you provide commercial construction services?","answer":"Yes. We coordinate repairs, tenant improvements and interior construction for commercial properties."}
+  ]
+}
