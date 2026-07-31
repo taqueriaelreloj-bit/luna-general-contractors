@@ -1,0 +1,1 @@
+Trigger local SEO generation through a pull request event.
