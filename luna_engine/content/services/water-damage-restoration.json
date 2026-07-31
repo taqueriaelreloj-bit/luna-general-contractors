@@ -1,0 +1,10 @@
+{
+  "name": "Water Damage Restoration",
+  "slug": "water-damage-restoration",
+  "summary": "Reconstruction after water losses, including damaged-material replacement, drywall, paint, trim, flooring and coordinated build-back work.",
+  "features": ["Water-damage reconstruction","Drywall and ceiling replacement","Texture and painting","Baseboard and trim replacement","Flooring restoration","Coordinated build-back"],
+  "faqs": [
+    {"question":"Do you provide emergency water extraction?","answer":"Our focus is reconstruction and build-back after the property has been stabilized and properly dried."},
+    {"question":"Can you restore multiple damaged finishes in one project?","answer":"Yes. We can coordinate drywall, texture, paint, trim, flooring and related approved repairs."}
+  ]
+}
