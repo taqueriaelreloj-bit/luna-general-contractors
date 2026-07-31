@@ -1,0 +1,16 @@
+{
+  "name":"Duncanville","slug":"duncanville","state":"TX","county":"Dallas County",
+  "title":"General Contractor in Duncanville, TX | Luna General Contractors",
+  "meta_description":"Roofing, remodeling, restoration and general construction in Duncanville, TX. Call Luna General Contractors at (817) 784-5998 for a free estimate.",
+  "hero":"Construction and remodeling services for Duncanville homes, rental properties and commercial spaces.",
+  "local_summary":"Duncanville has many established homes and active commercial areas where renovation, repair and maintenance can add useful life and value. Common projects include roofing, interior modernization, flooring, paint, exterior repairs and restoration after leaks.",
+  "property_types":["Established single-family homes","Older residential properties","Rental and investment homes","Retail spaces","Office and commercial buildings"],
+  "common_needs":["Roof repair and replacement","Bathroom and kitchen updates","Drywall and texture matching","Interior and exterior painting","Flooring replacement","Commercial tenant improvements"],
+  "nearby_cities":["Cedar Hill","DeSoto","Grand Prairie","Dallas","Lancaster","Arlington","Glenn Heights"],
+  "faqs":[
+    {"question":"Do you remodel older homes in Duncanville?","answer":"Yes. We evaluate existing conditions and coordinate upgrades while accounting for older finishes, framing and building systems."},
+    {"question":"Can you repair drywall and match texture?","answer":"Yes. We repair damaged areas, match common textures and repaint the affected surfaces."},
+    {"question":"Do you provide roofing estimates?","answer":"Yes. We inspect the roof and prepare an estimate based on the visible conditions and proposed scope."},
+    {"question":"Do you work with investors and landlords?","answer":"Yes. We complete repairs, turnovers and property improvements for owners, investors and property managers."}
+  ]
+}
