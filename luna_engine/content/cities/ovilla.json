@@ -1,0 +1,16 @@
+{
+  "name":"Ovilla","slug":"ovilla","state":"TX","county":"Ellis County",
+  "title":"General Contractor in Ovilla, TX | Luna General Contractors",
+  "meta_description":"Luna General Contractors provides roofing, remodeling, restoration and commercial construction in Ovilla, TX. Call (817) 784-5998 for a free estimate.",
+  "hero":"Professional construction, remodeling, roofing and restoration services for Ovilla homeowners and businesses.",
+  "local_summary":"Ovilla includes established homes, custom properties and growing residential areas. Projects often involve storm repairs, exterior maintenance, interior upgrades and coordinated remodeling planned around North Texas weather and site conditions.",
+  "property_types":["Established single-family homes","Custom homes on larger lots","Newer residential properties","Rental and investment properties","Small commercial properties"],
+  "common_needs":["Roof repairs after hail or wind","Kitchen and bathroom remodeling","Flooring and painting upgrades","Drywall repair after leaks","Fence and exterior trim repairs","General construction coordination"],
+  "nearby_cities":["Midlothian","Red Oak","Glenn Heights","Cedar Hill","DeSoto","Waxahachie","Lancaster"],
+  "faqs":[
+    {"question":"Do you provide free estimates in Ovilla?","answer":"Yes. We provide free estimates for most roofing, remodeling, restoration and construction projects in Ovilla."},
+    {"question":"Can you repair storm damage in Ovilla?","answer":"Yes. We inspect visible damage and complete roofing, exterior and interior repairs based on the approved project scope."},
+    {"question":"Do you remodel kitchens and bathrooms?","answer":"Yes. We coordinate kitchens, bathrooms, flooring, drywall, painting, carpentry and related trades."},
+    {"question":"Do you serve properties outside Ovilla?","answer":"Yes. We serve Ovilla and nearby Ellis County and southern DFW communities."}
+  ]
+}
