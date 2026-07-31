@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from html import escape
 from pathlib import Path
 
@@ -11,6 +12,7 @@ DIST = ROOT / "dist"
 DOMAIN = "https://lunageneralcontractors.com"
 PHONE = "(817) 784-5998"
 PHONE_LINK = "+18177845998"
+EMAIL = "lunabestcontractors@gmail.com"
 
 
 def load_json(path: Path) -> dict:
@@ -21,133 +23,125 @@ def schema_block(data: dict) -> str:
     return '<script type="application/ld+json">' + json.dumps(data, separators=(",", ":")) + "</script>"
 
 
-def render_city(city: dict, services: list[dict]) -> str:
-    city_name = city["name"]
-    slug = city["slug"]
-    url = f"{DOMAIN}/{slug}.html"
+def city_slug(name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
 
-    local_business = {
+
+def page_head(title: str, description: str, url: str, schemas: list[dict]) -> str:
+    schema_html = "\n".join(schema_block(item) for item in schemas)
+    return f'''<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{escape(title)}</title>
+  <meta name="description" content="{escape(description)}">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="{url}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{escape(title)}">
+  <meta property="og:description" content="{escape(description)}">
+  <meta property="og:url" content="{url}">
+  <meta property="og:site_name" content="Luna General Contractors">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../../styles.css">
+  {schema_html}
+</head>'''
+
+
+def header() -> str:
+    return f'''<header class="site-header"><div class="container header-inner">
+<a class="brand" href="../../index.html" aria-label="Luna General Contractors home"><span class="brand-moon"></span><span class="brand-copy"><strong>LUNA</strong><small>GENERAL CONTRACTORS</small><em>Roofing • Remodeling • Restoration</em></span></a>
+<nav class="main-nav"><a href="../../index.html">Home</a><a href="../../service-areas.html">Service Areas</a><a href="../../articles.html">Resources</a><a href="#estimate-form">Contact</a></nav>
+<div class="header-call"><small>Call Now for a Free Estimate</small><a href="tel:{PHONE_LINK}">☎ {PHONE}</a><span>English &amp; Spanish</span></div>
+</div></header>'''
+
+
+def estimate_form(city: str, service: str) -> str:
+    return f'''<section class="local-form" id="estimate-form"><div class="container"><h2>Request a Free {escape(service)} Estimate in {escape(city)}</h2>
+<form action="https://formspree.io/f/xzzvgpoy" method="POST" class="estimate-form">
+<input type="hidden" name="page" value="{escape(city)} - {escape(service)}">
+<label>Full Name<input name="name" required autocomplete="name"></label>
+<label>Phone Number<input name="phone" required autocomplete="tel"></label>
+<label>Email Address<input type="email" name="email" required autocomplete="email"></label>
+<label>Project Address<input name="address" required autocomplete="street-address"></label>
+<label>Project Details<textarea name="message" rows="5" required></textarea></label>
+<button class="btn btn-gold" type="submit">Request Your Estimate</button>
+</form></div></section>'''
+
+
+def base_business(url: str, city: str) -> dict:
+    return {
         "@context": "https://schema.org",
         "@type": ["LocalBusiness", "GeneralContractor"],
         "@id": f"{DOMAIN}/#business",
         "name": "Luna General Contractors",
         "url": url,
         "telephone": "+18177845998",
-        "email": "lunabestcontractors@gmail.com",
+        "email": EMAIL,
         "priceRange": "$$",
-        "areaServed": {"@type": "City", "name": f"{city_name}, Texas"},
-    }
-    breadcrumb = {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{DOMAIN}/"},
-            {"@type": "ListItem", "position": 2, "name": "Service Areas", "item": f"{DOMAIN}/service-areas.html"},
-            {"@type": "ListItem", "position": 3, "name": city_name, "item": url},
-        ],
-    }
-    faq = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": item["question"],
-                "acceptedAnswer": {"@type": "Answer", "text": item["answer"]},
-            }
-            for item in city["faqs"]
-        ],
+        "areaServed": {"@type": "City", "name": f"{city}, Texas"},
     }
 
-    service_links = "".join(
-        f'<a href="{slug}-{escape(service["slug"])}.html">{escape(service["name"])}</a>'
-        for service in services
-    )
+
+def render_city(city: dict, services: list[dict]) -> str:
+    name, slug = city["name"], city["slug"]
+    url = f"{DOMAIN}/{slug}.html"
+    breadcrumb = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":f"{DOMAIN}/"},
+        {"@type":"ListItem","position":2,"name":"Service Areas","item":f"{DOMAIN}/service-areas.html"},
+        {"@type":"ListItem","position":3,"name":name,"item":url}]}
+    faq = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+        {"@type":"Question","name":item["question"],"acceptedAnswer":{"@type":"Answer","text":item["answer"]}} for item in city["faqs"]]}
+    service_links = "".join(f'<a href="{slug}-{escape(s["slug"])}.html">{escape(s["name"])}</a>' for s in services)
     property_items = "".join(f"<li>{escape(item)}</li>" for item in city["property_types"])
     need_items = "".join(f"<li>{escape(item)}</li>" for item in city["common_needs"])
-    nearby_links = "".join(
-        f'<a href="{escape(name.lower().replace(" ", "-"))}.html">{escape(name)}</a>'
-        for name in city["nearby_cities"]
-    )
-    faq_html = "".join(
-        f'<details><summary>{escape(item["question"])}</summary><p>{escape(item["answer"])}</p></details>'
-        for item in city["faqs"]
-    )
+    nearby = "".join(f'<a href="{city_slug(n)}.html">{escape(n)}</a>' for n in city["nearby_cities"])
+    faq_html = "".join(f'<details><summary>{escape(x["question"])}</summary><p>{escape(x["answer"])}</p></details>' for x in city["faqs"])
+    return f'''<!DOCTYPE html><html lang="en">{page_head(city["title"], city["meta_description"], url, [base_business(url,name),breadcrumb,faq])}<body>{header()}<main>
+<section class="local-hero"><div class="container"><p class="eyebrow gold">Serving {escape(name)}, Texas</p><h1>General Contractor in {escape(name)}, TX</h1><p>{escape(city["hero"])}</p><div class="hero-actions"><a class="btn btn-gold" href="tel:{PHONE_LINK}">☎ Call for a Free Estimate</a><a class="btn btn-outline" href="#estimate-form">Request Online</a></div></div></section>
+<section class="local-content"><div class="container"><h2>Construction and Remodeling for {escape(name)} Properties</h2><p>{escape(city["local_summary"])}</p><div class="local-grid"><article><h2>Property Types We Serve</h2><ul>{property_items}</ul></article><article><h2>Common Project Needs</h2><ul>{need_items}</ul></article></div><h2>Services in {escape(name)}</h2><div class="local-services">{service_links}</div><h2>Nearby Service Areas</h2><div class="local-near">{nearby}</div><div class="faq"><h2>Frequently Asked Questions</h2>{faq_html}</div></div></section>{estimate_form(name,"General Contractor")}</main></body></html>'''
 
-    return f'''<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{escape(city["title"])}</title>
-  <meta name="description" content="{escape(city["meta_description"])}">
-  <meta name="robots" content="index, follow, max-image-preview:large">
-  <link rel="canonical" href="{url}">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="{escape(city["title"])}">
-  <meta property="og:description" content="{escape(city["meta_description"])}">
-  <meta property="og:url" content="{url}">
-  <meta property="og:site_name" content="Luna General Contractors">
-  <link rel="stylesheet" href="../../styles.css">
-  {schema_block(local_business)}
-  {schema_block(breadcrumb)}
-  {schema_block(faq)}
-</head>
-<body>
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="../../index.html"><span class="brand-moon"></span><span class="brand-copy"><strong>LUNA</strong><small>GENERAL CONTRACTORS</small><em>Roofing • Remodeling • Restoration</em></span></a>
-    <div class="header-call"><small>Call Now for a Free Estimate</small><a href="tel:{PHONE_LINK}">☎ {PHONE}</a><span>English &amp; Spanish</span></div>
-  </div>
-</header>
-<main>
-  <section class="local-hero"><div class="container">
-    <p class="eyebrow gold">Serving {escape(city_name)}, Texas</p>
-    <h1>General Contractor in {escape(city_name)}, TX</h1>
-    <p>{escape(city["hero"])}</p>
-    <div class="hero-actions"><a class="btn btn-gold" href="tel:{PHONE_LINK}">☎ Call for a Free Estimate</a><a class="btn btn-outline" href="#estimate-form">Request Online</a></div>
-  </div></section>
-  <section class="local-content"><div class="container">
-    <h2>Construction and Remodeling for {escape(city_name)} Properties</h2>
-    <p>{escape(city["local_summary"])}</p>
-    <div class="local-grid">
-      <article><h2>Property Types We Serve</h2><ul>{property_items}</ul></article>
-      <article><h2>Common Project Needs</h2><ul>{need_items}</ul></article>
-    </div>
-    <h2>Services in {escape(city_name)}</h2><div class="local-services">{service_links}</div>
-    <h2>Nearby Service Areas</h2><div class="local-near">{nearby_links}</div>
-    <div class="faq"><h2>Frequently Asked Questions</h2>{faq_html}</div>
-  </div></section>
-  <section class="local-form" id="estimate-form"><div class="container">
-    <h2>Request a Free Estimate in {escape(city_name)}</h2>
-    <form action="https://formspree.io/f/xzzvgpoy" method="POST" class="estimate-form">
-      <input type="hidden" name="page" value="{escape(city_name)} - Luna Engine Preview">
-      <label>Full Name<input name="name" required autocomplete="name"></label>
-      <label>Phone Number<input name="phone" required autocomplete="tel"></label>
-      <label>Email Address<input type="email" name="email" required autocomplete="email"></label>
-      <label>Project Address<input name="address" required autocomplete="street-address"></label>
-      <label>Project Details<textarea name="message" rows="5" required></textarea></label>
-      <button class="btn btn-gold" type="submit">Request Your Estimate</button>
-    </form>
-  </div></section>
-</main>
-</body>
-</html>'''
+
+def render_city_service(city: dict, service: dict, all_services: list[dict]) -> str:
+    name, cslug = city["name"], city["slug"]
+    sname, sslug = service["name"], service["slug"]
+    filename = f"{cslug}-{sslug}.html"
+    url = f"{DOMAIN}/{filename}"
+    title = f"{sname} in {name}, TX | Luna General Contractors"
+    description = f"Professional {sname.lower()} in {name}, TX. {service['summary']} Call {PHONE} for a free estimate."
+    service_schema = {"@context":"https://schema.org","@type":"Service","name":f"{sname} in {name}, TX","serviceType":sname,"url":url,"description":description,"provider":{"@id":f"{DOMAIN}/#business"},"areaServed":{"@type":"City","name":f"{name}, Texas"}}
+    breadcrumb = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":f"{DOMAIN}/"},
+        {"@type":"ListItem","position":2,"name":"Service Areas","item":f"{DOMAIN}/service-areas.html"},
+        {"@type":"ListItem","position":3,"name":name,"item":f"{DOMAIN}/{cslug}.html"},
+        {"@type":"ListItem","position":4,"name":sname,"item":url}]}
+    faq_items = service.get("faqs", []) + [{"question":f"Do you provide {sname.lower()} in {name}?","answer":f"Yes. Luna General Contractors serves homes and businesses throughout {name} and nearby communities."}]
+    faq_schema = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":x["question"],"acceptedAnswer":{"@type":"Answer","text":x["answer"]}} for x in faq_items]}
+    features = "".join(f"<li>{escape(x)}</li>" for x in service.get("features", []))
+    related = "".join(f'<a href="{cslug}-{escape(s["slug"])}.html">{escape(s["name"])}</a>' for s in all_services if s["slug"] != sslug)
+    nearby = "".join(f'<a href="{city_slug(n)}-{sslug}.html">{escape(n)}</a>' for n in city["nearby_cities"][:5])
+    faq_html = "".join(f'<details><summary>{escape(x["question"])}</summary><p>{escape(x["answer"])}</p></details>' for x in faq_items)
+    return f'''<!DOCTYPE html><html lang="en">{page_head(title,description,url,[base_business(url,name),service_schema,breadcrumb,faq_schema])}<body>{header()}<main>
+<section class="local-hero"><div class="container"><nav class="breadcrumbs"><a href="../../index.html">Home</a> / <a href="{cslug}.html">{escape(name)}</a> / {escape(sname)}</nav><p class="eyebrow gold">{escape(name)}, Texas</p><h1>{escape(sname)} in {escape(name)}, TX</h1><p>{escape(service["summary"])}</p><div class="hero-actions"><a class="btn btn-gold" href="tel:{PHONE_LINK}">☎ Call {PHONE}</a><a class="btn btn-outline" href="#estimate-form">Request an Estimate</a></div></div></section>
+<section class="local-content"><div class="container"><h2>Local {escape(sname)} Services</h2><p>{escape(city["local_summary"])}</p><p>We evaluate the property, discuss priorities, document the scope and coordinate the work so the project is based on actual site conditions rather than a generic online estimate.</p><div class="local-grid"><article><h2>What the Service May Include</h2><ul>{features}</ul></article><article><h2>Planning the Project</h2><p>Scheduling, access, protection, materials, trade coordination, cleanup and any hidden conditions are reviewed before work begins.</p></article></div><h2>Other Services in {escape(name)}</h2><div class="local-services">{related}</div><h2>{escape(sname)} Near {escape(name)}</h2><div class="local-near">{nearby}</div><div class="faq"><h2>{escape(sname)} FAQ</h2>{faq_html}</div></div></section>{estimate_form(name,sname)}</main></body></html>'''
 
 
 def main() -> None:
     DIST.mkdir(parents=True, exist_ok=True)
-    cities = [load_json(path) for path in sorted(CITY_DIR.glob("*.json"))]
-    services = [load_json(path) for path in sorted(SERVICE_DIR.glob("*.json"))]
-    if not cities:
-        raise SystemExit("No city data files found")
-    if not services:
-        raise SystemExit("No service data files found")
-
+    cities = [load_json(p) for p in sorted(CITY_DIR.glob("*.json"))]
+    services = [load_json(p) for p in sorted(SERVICE_DIR.glob("*.json"))]
+    if not cities or not services:
+        raise SystemExit("City and service data are required")
+    generated = []
     for city in cities:
-        output = DIST / f'{city["slug"]}.html'
-        output.write_text(render_city(city, services), encoding="utf-8")
-        print(f"Generated {output.relative_to(ROOT)}")
+        city_path = DIST / f'{city["slug"]}.html'
+        city_path.write_text(render_city(city, services), encoding="utf-8")
+        generated.append(city_path.name)
+        for service in services:
+            path = DIST / f'{city["slug"]}-{service["slug"]}.html'
+            path.write_text(render_city_service(city, service, services), encoding="utf-8")
+            generated.append(path.name)
+    (DIST / "manifest.json").write_text(json.dumps({"pages": generated}, indent=2), encoding="utf-8")
+    print(f"Generated {len(generated)} Luna Engine pages")
 
 
 if __name__ == "__main__":
