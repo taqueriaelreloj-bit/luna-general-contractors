@@ -1,0 +1,16 @@
+{
+  "name":"Cedar Hill","slug":"cedar-hill","state":"TX","county":"Dallas and Ellis Counties",
+  "title":"General Contractor in Cedar Hill, TX | Luna General Contractors",
+  "meta_description":"Luna General Contractors provides roofing, remodeling, restoration and commercial construction in Cedar Hill, TX. Call (817) 784-5998 for a free estimate.",
+  "hero":"Professional construction, remodeling, roofing and restoration services for Cedar Hill properties.",
+  "local_summary":"Cedar Hill includes established neighborhoods, custom homes, hillside properties, retail centers and growing residential areas. Projects may require careful planning for drainage, exterior exposure, storm damage, interior upgrades and commercial improvements.",
+  "property_types":["Established neighborhood homes","Custom and larger residential properties","Homes near sloped terrain","Rental and investment properties","Retail and office properties"],
+  "common_needs":["Roof and flashing repairs","Kitchen and bathroom remodeling","Exterior painting and siding","Drywall and flooring repairs","Fence and carpentry work","Commercial remodeling"],
+  "nearby_cities":["DeSoto","Duncanville","Grand Prairie","Midlothian","Ovilla","Glenn Heights","Mansfield"],
+  "faqs":[
+    {"question":"Do you provide roofing services in Cedar Hill?","answer":"Yes. We provide roof inspections, repairs, replacement and storm-related restoration in Cedar Hill."},
+    {"question":"Can you remodel kitchens and bathrooms?","answer":"Yes. We coordinate cabinets, countertops, tile, plumbing fixtures, flooring, drywall, painting and related trades."},
+    {"question":"Do you work on larger or custom homes?","answer":"Yes. We evaluate the property and prepare a project scope based on the actual construction and site conditions."},
+    {"question":"Do you provide commercial remodeling?","answer":"Yes. We complete repairs, tenant improvements and coordinated commercial construction projects."}
+  ]
+}
