@@ -1,0 +1,10 @@
+{
+  "name": "Insurance Claims",
+  "slug": "insurance-claims",
+  "summary": "Property repair and reconstruction for approved insurance scopes involving storm, roofing and water-related damage.",
+  "features": ["Damage documentation support","Scope review","Roofing repairs","Interior reconstruction","Exterior restoration","Project coordination"],
+  "faqs": [
+    {"question":"Do you act as a public adjuster?","answer":"No. We provide construction estimates and complete approved repairs; coverage decisions and policy interpretation remain with the insurer and policyholder."},
+    {"question":"Can you work from an insurance estimate?","answer":"Yes. We can review the approved construction scope, inspect site conditions and discuss the repair plan with the property owner."}
+  ]
+}
