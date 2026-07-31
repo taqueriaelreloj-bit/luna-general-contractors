@@ -1,0 +1,16 @@
+{
+  "name":"Grand Prairie","slug":"grand-prairie","state":"TX","county":"Dallas, Tarrant and Ellis Counties",
+  "title":"General Contractor in Grand Prairie, TX | Luna General Contractors",
+  "meta_description":"Luna General Contractors provides roofing, remodeling, restoration and commercial construction in Grand Prairie, TX. Call (817) 784-5998 for a free estimate.",
+  "hero":"Residential and commercial construction services for Grand Prairie, including roofing, remodeling and restoration.",
+  "local_summary":"Grand Prairie includes established neighborhoods, newer subdivisions, rental properties and major commercial corridors. Projects range from storm-related roofing and exterior work to full interior renovations, tenant improvements and water-damage repairs.",
+  "property_types":["Established single-family homes","Newer residential developments","Rental and investment properties","Retail and office spaces","Industrial and commercial buildings"],
+  "common_needs":["Roof and storm-damage repairs","Kitchen and bathroom remodeling","Drywall and painting","Flooring replacement","Siding, fencing and carpentry","Commercial build-outs and repairs"],
+  "nearby_cities":["Arlington","Dallas","Irving","Duncanville","Cedar Hill","Mansfield","Fort Worth"],
+  "faqs":[
+    {"question":"Does Luna General Contractors serve Grand Prairie?","answer":"Yes. We provide residential and commercial construction services throughout Grand Prairie."},
+    {"question":"Can you handle large remodeling projects?","answer":"Yes. We coordinate multiple trades, materials, schedules and inspections for larger residential and commercial projects."},
+    {"question":"Do you repair storm damage?","answer":"Yes. We inspect visible roofing and exterior damage and complete repairs based on the approved scope."},
+    {"question":"Do you work on commercial properties?","answer":"Yes. We provide tenant improvements, repairs, remodeling and coordinated construction for commercial spaces."}
+  ]
+}
