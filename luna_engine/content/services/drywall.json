@@ -1,0 +1,10 @@
+{
+  "name": "Drywall",
+  "slug": "drywall",
+  "summary": "Drywall installation, repairs, tape and float, texture matching and ceiling restoration for remodeling and property-damage projects.",
+  "features": ["Drywall installation","Hole and crack repairs","Tape, float and finishing","Texture matching","Ceiling repairs","Water-damage reconstruction"],
+  "faqs": [
+    {"question":"Can you match an existing wall texture?","answer":"Yes. We evaluate the existing finish and use the closest practical texture and paint process for a consistent repair."},
+    {"question":"Do you repair drywall after plumbing leaks?","answer":"Yes. After the moisture source is corrected and affected materials are dry, we can replace drywall, texture and repaint the area."}
+  ]
+}
