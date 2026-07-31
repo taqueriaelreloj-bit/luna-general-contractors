@@ -24,35 +24,40 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Build data-driven city preview
+      - name: Build city and city-service previews
         run: python luna_engine/build.py
 
-      - name: Validate preview output
+      - name: Validate Luna Engine output
         run: |
           python - <<'PY'
+          import json
           from pathlib import Path
 
-          pages = sorted(Path("luna_engine/dist").glob("*.html"))
-          if not pages:
-              raise SystemExit("Luna Engine generated no HTML pages")
+          dist = Path("luna_engine/dist")
+          pages = sorted(dist.glob("*.html"))
+          manifest_path = dist / "manifest.json"
+          if not manifest_path.exists():
+              raise SystemExit("Missing Luna Engine manifest")
+          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+          if len(manifest.get("pages", [])) != len(pages):
+              raise SystemExit("Manifest page count does not match generated HTML")
+          if len(pages) < 4:
+              raise SystemExit(f"Expected at least four generated pages, found {len(pages)}")
 
-          required = [
-              "<title>",
-              'name="description"',
-              'rel="canonical"',
-              "<h1>",
-              "LocalBusiness",
-              "GeneralContractor",
-              "BreadcrumbList",
-              "FAQPage",
-              "tel:+18177845998",
+          common = [
+              "<title>", 'name="description"', 'rel="canonical"', "<h1>",
+              "LocalBusiness", "GeneralContractor", "BreadcrumbList", "FAQPage",
+              "tel:+18177845998", 'name="robots"', 'property="og:title"'
           ]
           for page in pages:
               html = page.read_text(encoding="utf-8")
-              missing = [token for token in required if token not in html]
+              missing = [token for token in common if token not in html]
               if missing:
                   raise SystemExit(f"{page}: missing {', '.join(missing)}")
-          print(f"Validated {len(pages)} Luna Engine preview page(s).")
+              if page.stem.count("-") >= 1 and page.stem != "midlothian":
+                  if '"@type":"Service"' not in html:
+                      raise SystemExit(f"{page}: missing Service schema")
+          print(f"Validated {len(pages)} Luna Engine page(s).")
           PY
 
       - name: Commit preview output
@@ -63,6 +68,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No preview changes to commit."
           else
-            git commit -m "Build Luna Engine preview pages [skip ci]"
+            git commit -m "Build Luna Engine city and service previews [skip ci]"
             git push origin HEAD:main
           fi
