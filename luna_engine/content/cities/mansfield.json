@@ -1,0 +1,19 @@
+{
+  "name": "Mansfield",
+  "slug": "mansfield",
+  "state": "TX",
+  "county": "Tarrant and Johnson Counties",
+  "title": "General Contractor in Mansfield, TX | Luna General Contractors",
+  "meta_description": "Luna General Contractors provides roofing, remodeling, restoration and commercial construction in Mansfield, TX. Call (817) 784-5998.",
+  "hero": "Professional construction and remodeling services for Mansfield homeowners, property managers and businesses.",
+  "local_summary": "Mansfield includes established neighborhoods, newer master-planned communities, custom homes and active commercial districts. Owners often need projects that improve function, protect the exterior and update finishes while preserving day-to-day use of the property.",
+  "property_types": ["Established single-family homes","Newer planned-community homes","Custom residences","Retail and office spaces","Rental and managed properties"],
+  "common_needs": ["Storm-related roofing repairs","Kitchen and bathroom upgrades","Flooring replacement","Interior and exterior painting","Drywall and ceiling repairs","Commercial remodeling"],
+  "nearby_cities": ["Midlothian", "Arlington", "Grand Prairie", "Cedar Hill", "Waxahachie", "Fort Worth"],
+  "faqs": [
+    {"question":"Do you provide remodeling estimates in Mansfield?","answer":"Yes. We provide free estimates for many residential and commercial remodeling projects after reviewing the project scope and site conditions."},
+    {"question":"Can you replace flooring throughout an occupied home?","answer":"Yes. We can plan the work in sections and discuss furniture movement, protection and scheduling before construction begins."},
+    {"question":"Do you repair roofs damaged by wind or hail?","answer":"Yes. We inspect visible conditions and provide repair or replacement recommendations based on the extent of damage."},
+    {"question":"Do you complete commercial tenant improvements?","answer":"Yes. We coordinate interior construction, drywall, painting, flooring and related approved trades."}
+  ]
+}
