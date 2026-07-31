@@ -119,7 +119,99 @@ document.querySelectorAll("[data-gallery]").forEach((gallery) => {
   showSlide(0);
   startAutoplay();
 });
+const lightbox = document.createElement("div");
+lightbox.className = "gallery-lightbox";
+lightbox.setAttribute("aria-hidden", "true");
 
+lightbox.innerHTML = `
+  <button class="lightbox-close" type="button" aria-label="Close gallery">×</button>
+  <button class="lightbox-arrow lightbox-prev" type="button" aria-label="Previous photo">‹</button>
+
+  <div class="lightbox-content">
+    <img class="lightbox-image" src="" alt="" />
+    <p class="lightbox-caption"></p>
+  </div>
+
+  <button class="lightbox-arrow lightbox-next" type="button" aria-label="Next photo">›</button>
+`;
+
+document.body.appendChild(lightbox);
+
+const lightboxImage = lightbox.querySelector(".lightbox-image");
+const lightboxCaption = lightbox.querySelector(".lightbox-caption");
+const lightboxClose = lightbox.querySelector(".lightbox-close");
+const lightboxPrevious = lightbox.querySelector(".lightbox-prev");
+const lightboxNext = lightbox.querySelector(".lightbox-next");
+
+let lightboxImages = [];
+let lightboxIndex = 0;
+
+function showLightboxPhoto() {
+  const image = lightboxImages[lightboxIndex];
+  const figure = image.closest(".gallery-slot");
+
+  lightboxImage.src = image.src;
+  lightboxImage.alt = image.alt;
+  lightboxCaption.textContent =
+    figure?.querySelector("figcaption")?.innerText || image.alt;
+}
+
+function openLightbox(images, index) {
+  lightboxImages = images;
+  lightboxIndex = index;
+  showLightboxPhoto();
+
+  lightbox.classList.add("is-open");
+  lightbox.setAttribute("aria-hidden", "false");
+  document.body.classList.add("lightbox-open");
+  lightboxClose.focus();
+}
+
+function closeLightbox() {
+  lightbox.classList.remove("is-open");
+  lightbox.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("lightbox-open");
+}
+
+function changeLightboxPhoto(direction) {
+  lightboxIndex =
+    (lightboxIndex + direction + lightboxImages.length) %
+    lightboxImages.length;
+
+  showLightboxPhoto();
+}
+
+document.querySelectorAll("[data-gallery]").forEach((gallery) => {
+  const images = [...gallery.querySelectorAll(".gallery-slot img")];
+
+  images.forEach((image, index) => {
+    image.tabIndex = 0;
+    image.setAttribute("role", "button");
+    image.setAttribute("aria-label", `Enlarge photo: ${image.alt}`);
+
+    image.addEventListener("click", () => openLightbox(images, index));
+
+    image.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") openLightbox(images, index);
+    });
+  });
+});
+
+lightboxClose.addEventListener("click", closeLightbox);
+lightboxPrevious.addEventListener("click", () => changeLightboxPhoto(-1));
+lightboxNext.addEventListener("click", () => changeLightboxPhoto(1));
+
+lightbox.addEventListener("click", (event) => {
+  if (event.target === lightbox) closeLightbox();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (!lightbox.classList.contains("is-open")) return;
+
+  if (event.key === "Escape") closeLightbox();
+  if (event.key === "ArrowLeft") changeLightboxPhoto(-1);
+  if (event.key === "ArrowRight") changeLightboxPhoto(1);
+});
 const sections = [...document.querySelectorAll("main section[id], header[id]")];
 
 function updateActiveNav() {
