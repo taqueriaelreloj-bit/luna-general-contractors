@@ -51,7 +51,14 @@ jobs:
           expected = "d8e979a6f1f2eb4d2e36b99ff3195c7d4f95a7d6efa4dbe7ef0929b68ed6c424"
           if digest != expected:
               raise SystemExit(f"Generator checksum mismatch: {digest}")
-          Path("seo_generator.py").write_bytes(raw)
+
+          source = raw.decode("utf-8")
+          old = 'title=f"General Contractor in {name}, TX | Luna General Contractors"'
+          new = 'title=f"Construction & Remodeling Services in {name}, TX | Luna General Contractors"'
+          if old not in source:
+              raise SystemExit("City title patch target was not found")
+          source = source.replace(old, new, 1)
+          Path("seo_generator.py").write_text(source, encoding="utf-8")
           PY
 
       - name: Generate city, service and article pages
