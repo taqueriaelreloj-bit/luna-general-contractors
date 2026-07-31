@@ -1,0 +1,50 @@
+{
+  "name": "Plano",
+  "slug": "plano",
+  "state": "TX",
+  "county": "Collin County",
+  "title": "General Contractor in Plano, TX | Luna General Contractors",
+  "meta_description": "Luna General Contractors provides roofing, remodeling, restoration and commercial construction in Plano, TX. Call (817) 784-5998 for a free estimate.",
+  "hero": "Professional roofing, remodeling, restoration and construction services for homeowners, investors and businesses in Plano.",
+  "local_summary": "Plano includes established neighborhoods, newer development and active commercial corridors. Properties around West Plano, Legacy, Willow Bend may need coordinated roofing, remodeling, water-damage repair, exterior maintenance and interior improvements designed for North Texas heat, wind, hail and heavy rain.",
+  "property_types": [
+    "Homes in West Plano",
+    "Properties near Legacy",
+    "Established single-family homes",
+    "Newer residential construction",
+    "Retail, office and investment properties"
+  ],
+  "common_needs": [
+    "Roof inspections and storm repairs",
+    "Kitchen and bathroom remodeling",
+    "Flooring, drywall and painting",
+    "Water-damage restoration",
+    "Siding, carpentry and fencing",
+    "Commercial repairs and tenant improvements"
+  ],
+  "nearby_cities": [
+    "Richardson",
+    "Frisco",
+    "Allen",
+    "Carrollton",
+    "Garland"
+  ],
+  "faqs": [
+    {
+      "question": "Do you provide free estimates in Plano?",
+      "answer": "Yes. Luna General Contractors provides free estimates for most roofing, remodeling, restoration and commercial projects in Plano."
+    },
+    {
+      "question": "Can you repair storm damage in Plano?",
+      "answer": "Yes. We inspect visible hail, wind and water damage, prepare a written scope and complete approved repairs."
+    },
+    {
+      "question": "Do you remodel occupied homes in Plano?",
+      "answer": "Yes. We coordinate protection, access, scheduling and cleanup to reduce disruption while the property remains occupied."
+    },
+    {
+      "question": "Do you serve commercial properties in Plano?",
+      "answer": "Yes. We provide repairs, tenant improvements, interior build-outs and coordinated commercial construction services."
+    }
+  ]
+}

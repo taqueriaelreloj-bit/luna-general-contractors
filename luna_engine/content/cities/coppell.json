@@ -1,0 +1,50 @@
+{
+  "name": "Coppell",
+  "slug": "coppell",
+  "state": "TX",
+  "county": "Dallas and Denton Counties",
+  "title": "General Contractor in Coppell, TX | Luna General Contractors",
+  "meta_description": "Luna General Contractors provides roofing, remodeling, restoration and commercial construction in Coppell, TX. Call (817) 784-5998 for a free estimate.",
+  "hero": "Professional roofing, remodeling, restoration and construction services for homeowners, investors and businesses in Coppell.",
+  "local_summary": "Coppell includes established neighborhoods, newer development and active commercial corridors. Properties around Northlake Woodlands, Old Town Coppell, Cypress Waters may need coordinated roofing, remodeling, water-damage repair, exterior maintenance and interior improvements designed for North Texas heat, wind, hail and heavy rain.",
+  "property_types": [
+    "Homes in Northlake Woodlands",
+    "Properties near Old Town Coppell",
+    "Established single-family homes",
+    "Newer residential construction",
+    "Retail, office and investment properties"
+  ],
+  "common_needs": [
+    "Roof inspections and storm repairs",
+    "Kitchen and bathroom remodeling",
+    "Flooring, drywall and painting",
+    "Water-damage restoration",
+    "Siding, carpentry and fencing",
+    "Commercial repairs and tenant improvements"
+  ],
+  "nearby_cities": [
+    "Irving",
+    "Lewisville",
+    "Carrollton",
+    "Grapevine",
+    "Farmers Branch"
+  ],
+  "faqs": [
+    {
+      "question": "Do you provide free estimates in Coppell?",
+      "answer": "Yes. Luna General Contractors provides free estimates for most roofing, remodeling, restoration and commercial projects in Coppell."
+    },
+    {
+      "question": "Can you repair storm damage in Coppell?",
+      "answer": "Yes. We inspect visible hail, wind and water damage, prepare a written scope and complete approved repairs."
+    },
+    {
+      "question": "Do you remodel occupied homes in Coppell?",
+      "answer": "Yes. We coordinate protection, access, scheduling and cleanup to reduce disruption while the property remains occupied."
+    },
+    {
+      "question": "Do you serve commercial properties in Coppell?",
+      "answer": "Yes. We provide repairs, tenant improvements, interior build-outs and coordinated commercial construction services."
+    }
+  ]
+}

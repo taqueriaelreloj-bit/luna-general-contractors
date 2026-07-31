@@ -1,0 +1,50 @@
+{
+  "name": "Frisco",
+  "slug": "frisco",
+  "state": "TX",
+  "county": "Collin and Denton Counties",
+  "title": "General Contractor in Frisco, TX | Luna General Contractors",
+  "meta_description": "Luna General Contractors provides roofing, remodeling, restoration and commercial construction in Frisco, TX. Call (817) 784-5998 for a free estimate.",
+  "hero": "Professional roofing, remodeling, restoration and construction services for homeowners, investors and businesses in Frisco.",
+  "local_summary": "Frisco includes established neighborhoods, newer development and active commercial corridors. Properties around Starwood, Phillips Creek Ranch, Panther Creek may need coordinated roofing, remodeling, water-damage repair, exterior maintenance and interior improvements designed for North Texas heat, wind, hail and heavy rain.",
+  "property_types": [
+    "Homes in Starwood",
+    "Properties near Phillips Creek Ranch",
+    "Established single-family homes",
+    "Newer residential construction",
+    "Retail, office and investment properties"
+  ],
+  "common_needs": [
+    "Roof inspections and storm repairs",
+    "Kitchen and bathroom remodeling",
+    "Flooring, drywall and painting",
+    "Water-damage restoration",
+    "Siding, carpentry and fencing",
+    "Commercial repairs and tenant improvements"
+  ],
+  "nearby_cities": [
+    "Plano",
+    "McKinney",
+    "Allen",
+    "Lewisville",
+    "Carrollton"
+  ],
+  "faqs": [
+    {
+      "question": "Do you provide free estimates in Frisco?",
+      "answer": "Yes. Luna General Contractors provides free estimates for most roofing, remodeling, restoration and commercial projects in Frisco."
+    },
+    {
+      "question": "Can you repair storm damage in Frisco?",
+      "answer": "Yes. We inspect visible hail, wind and water damage, prepare a written scope and complete approved repairs."
+    },
+    {
+      "question": "Do you remodel occupied homes in Frisco?",
+      "answer": "Yes. We coordinate protection, access, scheduling and cleanup to reduce disruption while the property remains occupied."
+    },
+    {
+      "question": "Do you serve commercial properties in Frisco?",
+      "answer": "Yes. We provide repairs, tenant improvements, interior build-outs and coordinated commercial construction services."
+    }
+  ]
+}

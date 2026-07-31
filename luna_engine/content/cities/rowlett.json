@@ -1,0 +1,50 @@
+{
+  "name": "Rowlett",
+  "slug": "rowlett",
+  "state": "TX",
+  "county": "Dallas and Rockwall Counties",
+  "title": "General Contractor in Rowlett, TX | Luna General Contractors",
+  "meta_description": "Luna General Contractors provides roofing, remodeling, restoration and commercial construction in Rowlett, TX. Call (817) 784-5998 for a free estimate.",
+  "hero": "Professional roofing, remodeling, restoration and construction services for homeowners, investors and businesses in Rowlett.",
+  "local_summary": "Rowlett includes established neighborhoods, newer development and active commercial corridors. Properties around Waterview, Dalrock, Lakeview may need coordinated roofing, remodeling, water-damage repair, exterior maintenance and interior improvements designed for North Texas heat, wind, hail and heavy rain.",
+  "property_types": [
+    "Homes in Waterview",
+    "Properties near Dalrock",
+    "Established single-family homes",
+    "Newer residential construction",
+    "Retail, office and investment properties"
+  ],
+  "common_needs": [
+    "Roof inspections and storm repairs",
+    "Kitchen and bathroom remodeling",
+    "Flooring, drywall and painting",
+    "Water-damage restoration",
+    "Siding, carpentry and fencing",
+    "Commercial repairs and tenant improvements"
+  ],
+  "nearby_cities": [
+    "Rockwall",
+    "Garland",
+    "Mesquite",
+    "Dallas",
+    "Richardson"
+  ],
+  "faqs": [
+    {
+      "question": "Do you provide free estimates in Rowlett?",
+      "answer": "Yes. Luna General Contractors provides free estimates for most roofing, remodeling, restoration and commercial projects in Rowlett."
+    },
+    {
+      "question": "Can you repair storm damage in Rowlett?",
+      "answer": "Yes. We inspect visible hail, wind and water damage, prepare a written scope and complete approved repairs."
+    },
+    {
+      "question": "Do you remodel occupied homes in Rowlett?",
+      "answer": "Yes. We coordinate protection, access, scheduling and cleanup to reduce disruption while the property remains occupied."
+    },
+    {
+      "question": "Do you serve commercial properties in Rowlett?",
+      "answer": "Yes. We provide repairs, tenant improvements, interior build-outs and coordinated commercial construction services."
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "name": "Garland",
+  "slug": "garland",
+  "state": "TX",
+  "county": "Dallas County",
+  "title": "General Contractor in Garland, TX | Luna General Contractors",
+  "meta_description": "Luna General Contractors provides roofing, remodeling, restoration and commercial construction in Garland, TX. Call (817) 784-5998 for a free estimate.",
+  "hero": "Professional roofing, remodeling, restoration and construction services for homeowners, investors and businesses in Garland.",
+  "local_summary": "Garland includes established neighborhoods, newer development and active commercial corridors. Properties around Firewheel, Duck Creek, Lakewood may need coordinated roofing, remodeling, water-damage repair, exterior maintenance and interior improvements designed for North Texas heat, wind, hail and heavy rain.",
+  "property_types": [
+    "Homes in Firewheel",
+    "Properties near Duck Creek",
+    "Established single-family homes",
+    "Newer residential construction",
+    "Retail, office and investment properties"
+  ],
+  "common_needs": [
+    "Roof inspections and storm repairs",
+    "Kitchen and bathroom remodeling",
+    "Flooring, drywall and painting",
+    "Water-damage restoration",
+    "Siding, carpentry and fencing",
+    "Commercial repairs and tenant improvements"
+  ],
+  "nearby_cities": [
+    "Dallas",
+    "Mesquite",
+    "Rowlett",
+    "Richardson",
+    "Plano"
+  ],
+  "faqs": [
+    {
+      "question": "Do you provide free estimates in Garland?",
+      "answer": "Yes. Luna General Contractors provides free estimates for most roofing, remodeling, restoration and commercial projects in Garland."
+    },
+    {
+      "question": "Can you repair storm damage in Garland?",
+      "answer": "Yes. We inspect visible hail, wind and water damage, prepare a written scope and complete approved repairs."
+    },
+    {
+      "question": "Do you remodel occupied homes in Garland?",
+      "answer": "Yes. We coordinate protection, access, scheduling and cleanup to reduce disruption while the property remains occupied."
+    },
+    {
+      "question": "Do you serve commercial properties in Garland?",
+      "answer": "Yes. We provide repairs, tenant improvements, interior build-outs and coordinated commercial construction services."
+    }
+  ]
+}

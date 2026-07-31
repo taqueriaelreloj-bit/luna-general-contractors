@@ -1,0 +1,50 @@
+{
+  "name": "North Richland Hills",
+  "slug": "north-richland-hills",
+  "state": "TX",
+  "county": "Tarrant County",
+  "title": "General Contractor in North Richland Hills, TX | Luna General Contractors",
+  "meta_description": "Luna General Contractors provides roofing, remodeling, restoration and commercial construction in North Richland Hills, TX. Call (817) 784-5998 for a free estimate.",
+  "hero": "Professional roofing, remodeling, restoration and construction services for homeowners, investors and businesses in North Richland Hills.",
+  "local_summary": "North Richland Hills includes established neighborhoods, newer development and active commercial corridors. Properties around HomeTown, Forest Glenn, Northfield Park may need coordinated roofing, remodeling, water-damage repair, exterior maintenance and interior improvements designed for North Texas heat, wind, hail and heavy rain.",
+  "property_types": [
+    "Homes in HomeTown",
+    "Properties near Forest Glenn",
+    "Established single-family homes",
+    "Newer residential construction",
+    "Retail, office and investment properties"
+  ],
+  "common_needs": [
+    "Roof inspections and storm repairs",
+    "Kitchen and bathroom remodeling",
+    "Flooring, drywall and painting",
+    "Water-damage restoration",
+    "Siding, carpentry and fencing",
+    "Commercial repairs and tenant improvements"
+  ],
+  "nearby_cities": [
+    "Hurst",
+    "Keller",
+    "Fort Worth",
+    "Bedford",
+    "Colleyville"
+  ],
+  "faqs": [
+    {
+      "question": "Do you provide free estimates in North Richland Hills?",
+      "answer": "Yes. Luna General Contractors provides free estimates for most roofing, remodeling, restoration and commercial projects in North Richland Hills."
+    },
+    {
+      "question": "Can you repair storm damage in North Richland Hills?",
+      "answer": "Yes. We inspect visible hail, wind and water damage, prepare a written scope and complete approved repairs."
+    },
+    {
+      "question": "Do you remodel occupied homes in North Richland Hills?",
+      "answer": "Yes. We coordinate protection, access, scheduling and cleanup to reduce disruption while the property remains occupied."
+    },
+    {
+      "question": "Do you serve commercial properties in North Richland Hills?",
+      "answer": "Yes. We provide repairs, tenant improvements, interior build-outs and coordinated commercial construction services."
+    }
+  ]
+}
