@@ -1,0 +1,10 @@
+{
+  "name": "General Contractor",
+  "slug": "general-contractor",
+  "summary": "Coordinated residential and commercial construction, remodeling, repairs and restoration managed through one point of contact.",
+  "features": ["Project planning","Trade coordination","Residential remodeling","Commercial improvements","Exterior repairs","Restoration build-back"],
+  "faqs": [
+    {"question":"What does a general contractor coordinate?","answer":"A general contractor organizes the approved scope, scheduling, materials, trade work, site communication and quality control."},
+    {"question":"Do you handle both small repairs and larger remodels?","answer":"Yes. Project fit depends on the scope, location and scheduling, and we review those details during the estimate process."}
+  ]
+}
