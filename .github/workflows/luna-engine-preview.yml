@@ -34,6 +34,9 @@ jobs:
       - name: Build city and city-service previews
         run: python luna_engine/build.py
 
+      - name: Ensure unique service-page titles
+        run: python luna_engine/ensure_unique_titles.py
+
       - name: Validate Luna Engine output
         run: |
           python - <<'PY'
