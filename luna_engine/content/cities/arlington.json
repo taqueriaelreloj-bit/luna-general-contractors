@@ -1,0 +1,16 @@
+{
+  "name":"Arlington","slug":"arlington","state":"TX","county":"Tarrant County",
+  "title":"General Contractor in Arlington, TX | Luna General Contractors",
+  "meta_description":"Roofing, remodeling, restoration and commercial construction in Arlington, TX. Call Luna General Contractors at (817) 784-5998 for a free estimate.",
+  "hero":"Professional construction and remodeling services for Arlington homes, rental properties and businesses.",
+  "local_summary":"Arlington has diverse housing, established neighborhoods, investment properties and major commercial districts. Construction needs range from roof and storm repairs to complete kitchen, bathroom and commercial renovations.",
+  "property_types":["Established single-family homes","Newer residential properties","Rental and investment homes","Retail and office spaces","Large commercial properties"],
+  "common_needs":["Roof repair and replacement","Kitchen and bathroom remodeling","Drywall, painting and flooring","Water-damage restoration","Fence, siding and carpentry work","Commercial tenant improvements"],
+  "nearby_cities":["Grand Prairie","Mansfield","Fort Worth","Euless","Bedford","Dallas","Irving"],
+  "faqs":[
+    {"question":"Do you provide free estimates in Arlington?","answer":"Yes. We provide free estimates for most residential and commercial construction projects in Arlington."},
+    {"question":"Can you complete full home remodels?","answer":"Yes. We coordinate multiple trades and phases for kitchens, bathrooms, flooring, paint, drywall and related work."},
+    {"question":"Do you handle insurance restoration?","answer":"Yes. We complete approved repairs related to storm and water damage and document the completed scope."},
+    {"question":"Do you serve commercial properties in Arlington?","answer":"Yes. We provide repairs, tenant improvements, interior build-outs and commercial remodeling."}
+  ]
+}
