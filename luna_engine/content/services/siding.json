@@ -1,0 +1,10 @@
+{
+  "name": "Siding",
+  "slug": "siding",
+  "summary": "Siding, soffit, fascia and exterior trim repairs or replacement to protect and improve residential and commercial properties.",
+  "features": ["Siding repairs","Siding replacement","Soffit and fascia work","Exterior trim repairs","Storm-damage restoration","Painting and sealing"],
+  "faqs": [
+    {"question":"When should damaged siding be replaced instead of repaired?","answer":"Replacement may be recommended when damage is widespread, materials are deteriorated or matching repairs would not provide a durable result."},
+    {"question":"Can siding damage lead to water intrusion?","answer":"Yes. Open joints, cracks and missing sections can allow moisture behind the exterior finish and should be evaluated promptly."}
+  ]
+}
