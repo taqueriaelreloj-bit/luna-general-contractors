@@ -1,0 +1,16 @@
+{
+  "name":"DeSoto","slug":"desoto","state":"TX","county":"Dallas County",
+  "title":"General Contractor in DeSoto, TX | Luna General Contractors",
+  "meta_description":"Luna General Contractors provides roofing, remodeling, restoration and commercial construction in DeSoto, TX. Call (817) 784-5998 for a free estimate.",
+  "hero":"Professional roofing, remodeling, restoration and construction services for DeSoto homes and commercial properties.",
+  "local_summary":"DeSoto includes established residential neighborhoods, larger homes, rental properties and active commercial corridors. Common projects include storm repairs, interior modernization, exterior maintenance and restoration after water intrusion.",
+  "property_types":["Established single-family homes","Larger residential properties","Rental and investment homes","Retail properties","Office and commercial buildings"],
+  "common_needs":["Roof replacement and repair","Bathroom and kitchen remodeling","Drywall and painting","Flooring upgrades","Siding and trim repair","Commercial tenant improvements"],
+  "nearby_cities":["Cedar Hill","Duncanville","Glenn Heights","Lancaster","Ovilla","Red Oak","Grand Prairie"],
+  "faqs":[
+    {"question":"Do you provide free estimates in DeSoto?","answer":"Yes. We provide free estimates for most residential and commercial construction projects in DeSoto."},
+    {"question":"Do you replace roofs damaged by hail or wind?","answer":"Yes. We inspect the roof, explain the visible conditions and complete approved repairs or replacement."},
+    {"question":"Can you remodel occupied homes?","answer":"Yes. We coordinate access, protection, scheduling and cleanup to reduce disruption."},
+    {"question":"Do you work on commercial properties in DeSoto?","answer":"Yes. We provide repairs, build-outs, remodeling and coordinated commercial construction services."}
+  ]
+}
