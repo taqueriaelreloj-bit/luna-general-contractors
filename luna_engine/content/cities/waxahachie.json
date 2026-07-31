@@ -1,0 +1,19 @@
+{
+  "name": "Waxahachie",
+  "slug": "waxahachie",
+  "state": "TX",
+  "county": "Ellis County",
+  "title": "General Contractor in Waxahachie, TX | Luna General Contractors",
+  "meta_description": "Roofing, remodeling, restoration and commercial construction in Waxahachie, TX. Call Luna General Contractors at (817) 784-5998.",
+  "hero": "Construction, remodeling, roofing and restoration for historic homes, growing neighborhoods and commercial properties in Waxahachie.",
+  "local_summary": "Waxahachie combines historic architecture, established residential areas, newer subdivisions and expanding commercial corridors. Projects often require careful planning around older finishes, storm exposure, modern upgrades and the different needs of owner-occupied, rental and business properties.",
+  "property_types": ["Historic and older homes","Newer subdivision homes","Custom homes","Retail and office properties","Rental and investment properties"],
+  "common_needs": ["Roof inspections and hail repairs","Kitchen and bathroom remodeling","Flooring and paint updates","Drywall restoration after leaks","Fence and exterior repairs","Commercial tenant improvements"],
+  "nearby_cities": ["Midlothian", "Red Oak", "Ovilla", "Glenn Heights", "DeSoto", "Lancaster", "Mansfield"],
+  "faqs": [
+    {"question":"Do you work on older homes in Waxahachie?","answer":"Yes. We evaluate existing conditions and plan remodeling or repair work around the age, materials and layout of the property."},
+    {"question":"Do you provide roofing inspections after hailstorms?","answer":"Yes. We inspect accessible roofing components and explain practical repair or replacement options."},
+    {"question":"Can you remodel kitchens and bathrooms?","answer":"Yes. We coordinate cabinets, countertops, tile, flooring, drywall, paint and related approved work."},
+    {"question":"Do you serve commercial properties in Waxahachie?","answer":"Yes. We provide commercial repairs, tenant improvements and coordinated interior construction."}
+  ]
+}
