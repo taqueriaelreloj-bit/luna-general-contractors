@@ -1,0 +1,44 @@
+{
+  "name": "Midlothian",
+  "slug": "midlothian",
+  "state": "TX",
+  "county": "Ellis County",
+  "title": "General Contractor in Midlothian, TX | Luna General Contractors",
+  "meta_description": "Luna General Contractors provides roofing, remodeling, restoration and commercial construction in Midlothian, TX. Call (817) 784-5998 for a free estimate.",
+  "hero": "Professional roofing, remodeling, restoration and construction services for Midlothian homeowners, investors and businesses.",
+  "local_summary": "Midlothian combines fast-growing residential communities, established homes and expanding commercial corridors. Properties in the area face North Texas heat, hail, wind, heavy rain and expansive clay soil, so project planning must account for both visible finishes and underlying building conditions.",
+  "property_types": [
+    "Newer subdivision homes",
+    "Established single-family homes",
+    "Custom homes on larger lots",
+    "Retail and office properties",
+    "Investment and rental properties"
+  ],
+  "common_needs": [
+    "Roof inspections and storm repairs",
+    "Kitchen and bathroom remodeling",
+    "Drywall and paint repairs after leaks",
+    "Flooring replacement",
+    "Siding, fascia and exterior trim repairs",
+    "Commercial tenant improvements"
+  ],
+  "nearby_cities": ["Waxahachie", "Red Oak", "Ovilla", "Cedar Hill", "Mansfield", "DeSoto", "Glenn Heights"],
+  "faqs": [
+    {
+      "question": "Do you provide free estimates in Midlothian?",
+      "answer": "Yes. Luna General Contractors provides free estimates for most roofing, remodeling, restoration and commercial construction projects in Midlothian."
+    },
+    {
+      "question": "Can you help after hail or wind damage?",
+      "answer": "Yes. We inspect the visible damage, prepare a written scope and complete approved roofing and property repairs."
+    },
+    {
+      "question": "Do you remodel occupied homes?",
+      "answer": "Yes. We plan work areas, protection, scheduling and cleanup to reduce disruption while the home remains occupied."
+    },
+    {
+      "question": "Do you work on commercial properties?",
+      "answer": "Yes. We provide repairs, tenant improvements, interior build-outs and coordinated commercial construction services."
+    }
+  ]
+}
