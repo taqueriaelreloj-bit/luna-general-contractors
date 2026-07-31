@@ -40,41 +40,45 @@ jobs:
           import json
           from pathlib import Path
 
-          dist = Path("luna_engine/dist")
+          root = Path("luna_engine")
+          dist = root / "dist"
+          city_files = sorted((root / "content" / "cities").glob("*.json"))
+          service_files = sorted((root / "content" / "services").glob("*.json"))
           pages = sorted(dist.glob("*.html"))
           manifest_path = dist / "manifest.json"
+
           if not manifest_path.exists():
               raise SystemExit("Missing Luna Engine manifest")
+          if len(city_files) != 36:
+              raise SystemExit(f"Expected 36 city data files, found {len(city_files)}")
+          if len(service_files) != 13:
+              raise SystemExit(f"Expected 13 service data files, found {len(service_files)}")
 
+          expected_pages = len(city_files) * (len(service_files) + 1)
           manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
           manifest_pages = manifest.get("pages", [])
+
+          if manifest.get("cities") != len(city_files):
+              raise SystemExit("Manifest city count is incorrect")
+          if manifest.get("services") != len(service_files):
+              raise SystemExit("Manifest service count is incorrect")
+          if len(pages) != expected_pages:
+              raise SystemExit(f"Expected {expected_pages} generated pages, found {len(pages)}")
           if len(manifest_pages) != len(pages):
               raise SystemExit("Manifest page count does not match generated HTML")
           if set(manifest_pages) != {page.name for page in pages}:
               raise SystemExit("Manifest file list does not match generated HTML")
-          if len(pages) != 504:
-              raise SystemExit(f"Expected 504 generated pages for 36 cities and 13 services, found {len(pages)}")
 
           required = [
-              "<title>",
-              'name="description"',
-              'rel="canonical"',
-              "<h1>",
-              "LocalBusiness",
-              "GeneralContractor",
-              '"@type":"Service"',
-              "Organization",
-              "WebPage",
-              "BreadcrumbList",
-              "FAQPage",
-              "tel:+18177845998",
-              'name="robots"',
-              'property="og:title"',
-              'property="og:description"',
-              'property="og:url"',
+              "<title>", 'name="description"', 'rel="canonical"', "<h1>",
+              "LocalBusiness", "GeneralContractor", '"@type":"Service"',
+              "Organization", "WebPage", "BreadcrumbList", "FAQPage",
+              "tel:+18177845998", 'name="robots"', 'property="og:title"',
+              'property="og:description"', 'property="og:url"',
           ]
 
           titles = set()
+          canonicals = set()
           for page in pages:
               html = page.read_text(encoding="utf-8")
               missing = [token for token in required if token not in html]
@@ -84,22 +88,27 @@ jobs:
                   raise SystemExit(f"{page}: expected exactly one H1")
               if "noindex" in html.lower():
                   raise SystemExit(f"{page}: unexpected noindex")
+
               title = html.split("<title>", 1)[1].split("</title>", 1)[0]
+              canonical = html.split('rel="canonical" href="', 1)[1].split('"', 1)[0]
               if title in titles:
                   raise SystemExit(f"Duplicate title: {title}")
+              if canonical in canonicals:
+                  raise SystemExit(f"Duplicate canonical: {canonical}")
               titles.add(title)
+              canonicals.add(canonical)
 
-          print(f"Validated {len(pages)} Luna Engine pages across 36 cities.")
+          print(f"Validated {len(pages)} Luna Engine pages from {len(city_files)} cities and {len(service_files)} services.")
           PY
 
-      - name: Commit preview output
+      - name: Commit generated city data and preview output
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add luna_engine/dist
+          git add luna_engine/content/cities luna_engine/dist
           if git diff --cached --quiet; then
-            echo "No preview changes to commit."
+            echo "No Luna Engine changes to commit."
           else
-            git commit -m "Build all 36 DFW city and service previews [skip ci]"
+            git commit -m "Build all DFW city and service pages [skip ci]"
             git push origin HEAD:main
           fi
