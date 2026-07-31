@@ -1,0 +1,10 @@
+{
+  "name": "Painting",
+  "slug": "painting",
+  "summary": "Interior and exterior painting with proper preparation, repairs, priming and durable finishes for homes and commercial properties.",
+  "features": ["Interior wall and ceiling painting","Exterior painting","Trim and door painting","Drywall repair and preparation","Caulking and priming","Cabinet painting"],
+  "faqs": [
+    {"question":"What preparation is included before painting?","answer":"Preparation may include protecting surfaces, patching drywall, sanding, caulking, priming and cleaning as needed for the project."},
+    {"question":"Do you paint occupied homes?","answer":"Yes. We plan work areas and daily cleanup to reduce disruption while the property remains occupied."}
+  ]
+}
