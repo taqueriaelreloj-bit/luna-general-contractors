@@ -1,0 +1,10 @@
+{
+  "name": "Fencing",
+  "slug": "fencing",
+  "summary": "Wood fence installation, replacement, repairs, gates and hauling for residential and commercial properties.",
+  "features": ["Wood privacy fencing","Fence repairs","Full fence replacement","Gate installation and repairs","Post replacement","Removal and hauling"],
+  "faqs": [
+    {"question":"Can you repair only the damaged part of a fence?","answer":"Yes, when the remaining fence is structurally serviceable and matching materials are available."},
+    {"question":"Do you remove the old fence materials?","answer":"Removal and hauling can be included in the written scope and estimate."}
+  ]
+}
