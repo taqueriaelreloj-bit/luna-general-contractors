@@ -270,6 +270,8 @@ if (!isHomePage) {
 
           <div>
             <h3>Service Areas</h3>
+            <a href="service-areas.html">View All Service Areas</a>
+            <a href="articles.html">Resources</a>
             <a href="index.html#estimate-form">Dallas, TX</a>
             <a href="index.html#estimate-form">Fort Worth, TX</a>
             <a href="index.html#estimate-form">Midlothian, TX</a>
