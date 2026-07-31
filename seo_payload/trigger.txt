@@ -1,0 +1,1 @@
+Trigger complete local SEO generation after workflow installation.
