@@ -1,0 +1,23 @@
+{
+  "name": "Roofing",
+  "slug": "roofing",
+  "summary": "Roof inspections, repairs, full replacement, storm-damage restoration and emergency protection for residential and commercial properties.",
+  "features": [
+    "Roof inspections",
+    "Roof leak repairs",
+    "Hail and wind damage repairs",
+    "Full shingle roof replacement",
+    "Flashing, ridge and ventilation work",
+    "Insurance restoration scopes"
+  ],
+  "faqs": [
+    {
+      "question": "How do I know whether my roof needs repair or replacement?",
+      "answer": "The decision depends on the roof age, extent of damage, active leaks, condition of the shingles and whether repairs can provide a durable result."
+    },
+    {
+      "question": "Can hail damage be present without an active leak?",
+      "answer": "Yes. Hail can damage shingles, flashing, vents and soft metals before water enters the building, so an inspection is important after a severe storm."
+    }
+  ]
+}
