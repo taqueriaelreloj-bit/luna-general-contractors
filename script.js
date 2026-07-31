@@ -163,7 +163,7 @@ filterButtons.forEach((button) => {
 const estimateForm = document.querySelector("#estimate-form");
 const formMessage = document.querySelector(".form-message");
 
-estimateForm?.addEventListener("submit", (event) => {
+estimateForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   if (!estimateForm.checkValidity()) {
@@ -171,28 +171,42 @@ estimateForm?.addEventListener("submit", (event) => {
     return;
   }
 
-  const data = new FormData(estimateForm);
-  const name = data.get("name");
-  const phone = data.get("phone");
-  const email = data.get("email");
-  const service = data.get("service");
-  const address = data.get("address");
-  const subject = `Free Estimate Request — ${service}`;
-  const body = [
-    "New estimate request from the Luna General Contractors website",
-    "",
-    `Full Name: ${name}`,
-    `Phone Number: ${phone}`,
-    `Email Address: ${email}`,
-    `Service Needed: ${service}`,
-    `Project Address: ${address}`
-  ].join("\n");
+  const submitButton = estimateForm.querySelector('button[type="submit"]');
+  const originalText = submitButton.textContent;
 
-  formMessage.textContent =
-    "Your estimate request is ready. Please send the email that opens next.";
+  submitButton.disabled = true;
+  submitButton.textContent = "Sending...";
+  formMessage.textContent = "Sending your request...";
 
-  window.location.href =
-    `mailto:lunabestcontractors@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  try {
+    const response = await fetch("https://formspree.io/f/maqrzbol", {
+      method: "POST",
+      body: new FormData(estimateForm),
+      headers: {
+        Accept: "application/json"
+      }
+    });
+
+    if (!response.ok) throw new Error("Submission failed");
+
+    formMessage.textContent =
+      "Thank you! Your estimate request was sent successfully. We will contact you soon.";
+
+    estimateForm.reset();
+
+    if (typeof gtag === "function") {
+      gtag("event", "generate_lead", {
+        event_category: "Estimate Form",
+        event_label: "Website Estimate Request"
+      });
+    }
+  } catch (error) {
+    formMessage.textContent =
+      "We could not send your request. Please call (817) 784-5998 or try again.";
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = originalText;
+  }
 });
 
 document.querySelector("#year").textContent = new Date().getFullYear();
