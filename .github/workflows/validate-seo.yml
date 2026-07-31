@@ -7,12 +7,14 @@ on:
       - "*.html"
       - "sitemap.xml"
       - "robots.txt"
+      - "seo-generated-manifest.txt"
+      - "scripts/fix_generated_seo.py"
       - "scripts/validate_seo.py"
       - ".github/workflows/validate-seo.yml"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   validate:
@@ -20,9 +22,25 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Repair generated schemas and sitemap coverage
+        run: python scripts/fix_generated_seo.py
       - name: Validate generated SEO pages
         run: python scripts/validate_seo.py
+      - name: Commit automatic SEO repairs
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add '*.html' sitemap.xml
+          if git diff --cached --quiet; then
+            echo "No SEO repairs needed."
+          else
+            git commit -m "Repair generated SEO schema and sitemap coverage [skip ci]"
+            git push origin HEAD:main
+          fi
