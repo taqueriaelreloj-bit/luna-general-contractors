@@ -53,11 +53,19 @@ jobs:
               raise SystemExit(f"Generator checksum mismatch: {digest}")
 
           source = raw.decode("utf-8")
-          old = 'title=f"General Contractor in {name}, TX | Luna General Contractors"'
-          new = 'title=f"Construction & Remodeling Services in {name}, TX | Luna General Contractors"'
-          if old not in source:
+
+          old_title = 'title=f"General Contractor in {name}, TX | Luna General Contractors"'
+          new_title = 'title=f"Construction & Remodeling Services in {name}, TX | Luna General Contractors"'
+          if old_title not in source:
               raise SystemExit("City title patch target was not found")
-          source = source.replace(old, new, 1)
+          source = source.replace(old_title, new_title, 1)
+
+          old_schema = '"@type":"GeneralContractor"'
+          new_schema = '"@type":["LocalBusiness","GeneralContractor"]'
+          if old_schema not in source:
+              raise SystemExit("LocalBusiness schema patch target was not found")
+          source = source.replace(old_schema, new_schema, 1)
+
           Path("seo_generator.py").write_text(source, encoding="utf-8")
           PY
 
@@ -159,7 +167,7 @@ jobs:
           ]
           for filename in required_examples:
               html = Path(filename).read_text(encoding="utf-8")
-              for token in ["FAQPage", "BreadcrumbList", "Service", "LocalBusiness"]:
+              for token in ["FAQPage", "BreadcrumbList", "Service", "LocalBusiness", "GeneralContractor"]:
                   if token not in html:
                       raise SystemExit(f"{filename} is missing {token}")
 
