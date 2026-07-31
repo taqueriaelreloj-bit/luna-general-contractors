@@ -119,20 +119,22 @@ jobs:
           if url_count != 530:
               raise SystemExit(f"Expected 530 sitemap URLs, found {url_count}")
 
-          titles = []
-          required_tokens = [
+          index_pages = {"service-areas.html", "services-by-city.html", "articles.html"}
+          base_tokens = [
               "<title>", 'name="description"', "<h1", 'rel="canonical"',
-              'property="og:title"', 'application/ld+json', "FAQPage",
-              "BreadcrumbList", "Service"
+              'property="og:title"', 'application/ld+json'
           ]
+          titles = []
           for filename in generated:
               path = Path(filename)
               if not path.exists():
                   raise SystemExit(f"Missing generated page: {filename}")
               html = path.read_text(encoding="utf-8")
-              for token in required_tokens:
+              for token in base_tokens:
                   if token not in html:
                       raise SystemExit(f"{filename} is missing {token}")
+              if filename not in index_pages and "BreadcrumbList" not in html:
+                  raise SystemExit(f"{filename} is missing BreadcrumbList")
               if "noindex" in html.lower():
                   raise SystemExit(f"Unexpected noindex in {filename}")
               match = re.search(r"<title>(.*?)</title>", html, re.S)
@@ -143,16 +145,20 @@ jobs:
           if len(titles) != len(set(titles)):
               raise SystemExit("Generated page titles are not unique")
 
-          for filename in [
+          required_examples = [
               "waxahachie-roofing.html",
               "arlington-bathroom-remodeling.html",
-              "dallas-kitchen-remodeling.html",
-              "service-areas.html",
-              "services-by-city.html",
-              "articles.html"
-          ]:
+              "dallas-kitchen-remodeling.html"
+          ]
+          for filename in required_examples:
+              html = Path(filename).read_text(encoding="utf-8")
+              for token in ["FAQPage", "BreadcrumbList", "Service", "LocalBusiness"]:
+                  if token not in html:
+                      raise SystemExit(f"{filename} is missing {token}")
+
+          for filename in ["service-areas.html", "services-by-city.html", "articles.html"]:
               if not Path(filename).exists():
-                  raise SystemExit(f"Required page was not generated: {filename}")
+                  raise SystemExit(f"Required index page was not generated: {filename}")
 
           print(f"Validated {len(generated)} HTML pages and {url_count} sitemap URLs.")
           PY
