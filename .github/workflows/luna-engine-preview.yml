@@ -10,6 +10,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: luna-engine-preview
+  cancel-in-progress: true
+
 jobs:
   build-preview:
     runs-on: ubuntu-latest
@@ -23,6 +27,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Materialize remaining DFW city data
+        run: python luna_engine/materialize_dfw_cities.py
 
       - name: Build city and city-service previews
         run: python luna_engine/build.py
@@ -45,8 +52,8 @@ jobs:
               raise SystemExit("Manifest page count does not match generated HTML")
           if set(manifest_pages) != {page.name for page in pages}:
               raise SystemExit("Manifest file list does not match generated HTML")
-          if len(pages) < 4:
-              raise SystemExit(f"Expected at least four generated pages, found {len(pages)}")
+          if len(pages) != 504:
+              raise SystemExit(f"Expected 504 generated pages for 36 cities and 13 services, found {len(pages)}")
 
           required = [
               "<title>",
@@ -67,6 +74,7 @@ jobs:
               'property="og:url"',
           ]
 
+          titles = set()
           for page in pages:
               html = page.read_text(encoding="utf-8")
               missing = [token for token in required if token not in html]
@@ -76,8 +84,12 @@ jobs:
                   raise SystemExit(f"{page}: expected exactly one H1")
               if "noindex" in html.lower():
                   raise SystemExit(f"{page}: unexpected noindex")
+              title = html.split("<title>", 1)[1].split("</title>", 1)[0]
+              if title in titles:
+                  raise SystemExit(f"Duplicate title: {title}")
+              titles.add(title)
 
-          print(f"Validated {len(pages)} Luna Engine page(s).")
+          print(f"Validated {len(pages)} Luna Engine pages across 36 cities.")
           PY
 
       - name: Commit preview output
@@ -88,6 +100,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No preview changes to commit."
           else
-            git commit -m "Build Luna Engine city and service previews [skip ci]"
+            git commit -m "Build all 36 DFW city and service previews [skip ci]"
             git push origin HEAD:main
           fi
