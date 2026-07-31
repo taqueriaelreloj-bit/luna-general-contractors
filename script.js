@@ -1,4 +1,13 @@
-const menuToggle = document.querySelector(".menu-toggle");
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+const googleTag = document.createElement("script");
+googleTag.async = true;
+googleTag.src = "https://www.googletagmanager.com/gtag/js?id=G-3MGPLXSG14";
+document.head.appendChild(googleTag);
+
+gtag("js", new Date());
+gtag("config", "G-3MGPLXSG14");const menuToggle = document.querySelector(".menu-toggle");
 const mainNav = document.querySelector(".main-nav");
 const navLinks = document.querySelectorAll(".main-nav a");
 
