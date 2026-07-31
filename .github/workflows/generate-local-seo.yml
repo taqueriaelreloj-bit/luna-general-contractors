@@ -1,0 +1,168 @@
+name: Generate Local SEO Pages
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/generate-local-seo.yml"
+      - "seo_payload/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: local-seo-generation
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Restore verified SEO generator
+        shell: bash
+        run: |
+          cat seo_payload/part*.b64 > /tmp/seo_generator.py.gz.b64
+          python - <<'PY'
+          import base64
+          import gzip
+          import hashlib
+          from pathlib import Path
+
+          payload = Path("/tmp/seo_generator.py.gz.b64").read_text(encoding="utf-8").strip()
+          raw = gzip.decompress(base64.b64decode(payload))
+          digest = hashlib.sha256(raw).hexdigest()
+          expected = "d8e979a6f1f2eb4d2e36b99ff3195c7d4f95a7d6efa4dbe7ef0929b68ed6c424"
+          if digest != expected:
+              raise SystemExit(f"Generator checksum mismatch: {digest}")
+          Path("seo_generator.py").write_bytes(raw)
+          PY
+
+      - name: Generate city, service and article pages
+        run: python seo_generator.py
+
+      - name: Integrate navigation and footer links
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          home = Path("index.html")
+          text = home.read_text(encoding="utf-8")
+          if 'href="service-areas.html"' not in text:
+              marker = '<a href="#contact">Contact</a>'
+              replacement = '<a href="service-areas.html">Service Areas</a>\n        <a href="articles.html">Resources</a>\n        ' + marker
+              text = text.replace(marker, replacement, 1)
+          footer_heading = '<h3>Service Areas</h3>'
+          footer_links = '<h3>Service Areas</h3>\n            <a href="service-areas.html">View All Service Areas</a>\n            <a href="articles.html">Resources</a>'
+          if 'View All Service Areas' not in text:
+              text = text.replace(footer_heading, footer_links, 1)
+          home.write_text(text, encoding="utf-8")
+
+          service_pages = [
+              "roofing.html", "mitigation.html", "insurance-claims.html",
+              "kitchens.html", "bathrooms.html", "flooring.html",
+              "painting.html", "drywall.html", "siding.html",
+              "carpentry.html", "fencing.html", "commercial.html"
+          ]
+          for filename in service_pages:
+              path = Path(filename)
+              if not path.exists():
+                  continue
+              page = path.read_text(encoding="utf-8")
+              if 'href="service-areas.html"' not in page:
+                  marker = '<a href="index.html#estimate-form">Contact</a>'
+                  replacement = '<a href="service-areas.html">Service Areas</a><a href="articles.html">Resources</a>' + marker
+                  page = page.replace(marker, replacement, 1)
+              path.write_text(page, encoding="utf-8")
+
+          script = Path("script.js")
+          js = script.read_text(encoding="utf-8")
+          dynamic_marker = '            <h3>Service Areas</h3>'
+          dynamic_links = '            <h3>Service Areas</h3>\n            <a href="service-areas.html">View All Service Areas</a>\n            <a href="articles.html">Resources</a>'
+          if 'View All Service Areas' not in js:
+              js = js.replace(dynamic_marker, dynamic_links, 1)
+          script.write_text(js, encoding="utf-8")
+          PY
+
+      - name: Validate generated SEO output
+        run: |
+          python - <<'PY'
+          import re
+          from pathlib import Path
+
+          manifest = Path("seo-generated-manifest.txt")
+          if not manifest.exists():
+              raise SystemExit("Missing generated manifest")
+
+          generated = [line.strip() for line in manifest.read_text(encoding="utf-8").splitlines() if line.strip().endswith(".html")]
+          if len(generated) != 517:
+              raise SystemExit(f"Expected 517 generated HTML pages, found {len(generated)}")
+
+          sitemap = Path("sitemap.xml").read_text(encoding="utf-8")
+          url_count = sitemap.count("<url>")
+          if url_count != 530:
+              raise SystemExit(f"Expected 530 sitemap URLs, found {url_count}")
+
+          titles = []
+          required_tokens = [
+              "<title>", 'name="description"', "<h1", 'rel="canonical"',
+              'property="og:title"', 'application/ld+json', "FAQPage",
+              "BreadcrumbList", "Service"
+          ]
+          for filename in generated:
+              path = Path(filename)
+              if not path.exists():
+                  raise SystemExit(f"Missing generated page: {filename}")
+              html = path.read_text(encoding="utf-8")
+              for token in required_tokens:
+                  if token not in html:
+                      raise SystemExit(f"{filename} is missing {token}")
+              if "noindex" in html.lower():
+                  raise SystemExit(f"Unexpected noindex in {filename}")
+              match = re.search(r"<title>(.*?)</title>", html, re.S)
+              if not match:
+                  raise SystemExit(f"Missing title in {filename}")
+              titles.append(match.group(1).strip())
+
+          if len(titles) != len(set(titles)):
+              raise SystemExit("Generated page titles are not unique")
+
+          for filename in [
+              "waxahachie-roofing.html",
+              "arlington-bathroom-remodeling.html",
+              "dallas-kitchen-remodeling.html",
+              "service-areas.html",
+              "services-by-city.html",
+              "articles.html"
+          ]:
+              if not Path(filename).exists():
+                  raise SystemExit(f"Required page was not generated: {filename}")
+
+          print(f"Validated {len(generated)} HTML pages and {url_count} sitemap URLs.")
+          PY
+
+      - name: Remove temporary generator
+        run: rm -f seo_generator.py
+
+      - name: Commit generated website files
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+          else
+            git commit -m "Generate complete local SEO city and service pages"
+            git push
+          fi
