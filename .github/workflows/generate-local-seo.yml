@@ -6,6 +6,11 @@ on:
     paths:
       - ".github/workflows/generate-local-seo.yml"
       - "seo_payload/**"
+  pull_request:
+    paths:
+      - "seo_payload/**"
+  schedule:
+    - cron: "17 */6 * * *"
 
 permissions:
   contents: write
@@ -19,9 +24,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
+      - name: Check out main branch
         uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
 
       - name: Set up Python
@@ -164,5 +170,5 @@ jobs:
             echo "No generated changes."
           else
             git commit -m "Generate complete local SEO city and service pages"
-            git push
+            git push origin HEAD:main
           fi
