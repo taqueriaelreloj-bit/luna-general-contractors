@@ -1,0 +1,10 @@
+{
+  "name": "Commercial Construction",
+  "slug": "commercial-construction",
+  "summary": "Commercial repairs, tenant improvements, interior build-outs and coordinated construction for offices, retail and managed properties.",
+  "features": ["Tenant improvements","Office and retail build-outs","Commercial repairs","Interior framing and drywall","Painting and flooring","Trade coordination"],
+  "faqs": [
+    {"question":"What types of commercial properties do you serve?","answer":"We work with offices, retail spaces, restaurants, managed properties and other small to mid-size commercial facilities."},
+    {"question":"Can you coordinate multiple trades?","answer":"Yes. We can coordinate the approved scope across carpentry, drywall, painting, flooring and other required trades."}
+  ]
+}
