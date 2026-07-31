@@ -1,0 +1,10 @@
+{
+  "name": "Bathroom Remodeling",
+  "slug": "bathroom-remodeling",
+  "summary": "Complete bathroom renovations including showers, waterproofing, tile, vanities, fixtures, lighting and finish work.",
+  "features": ["Walk-in showers","Waterproofing systems","Tile installation","Vanities and countertops","Plumbing fixtures","Lighting and ventilation"],
+  "faqs": [
+    {"question":"How long does a bathroom remodel usually take?","answer":"The schedule depends on demolition, plumbing changes, waterproofing, tile, inspections, material availability and the final scope."},
+    {"question":"Can you convert a tub into a walk-in shower?","answer":"Yes. Tub-to-shower conversions can include plumbing changes, slope preparation, waterproofing, tile, glass and accessibility improvements."}
+  ]
+}
