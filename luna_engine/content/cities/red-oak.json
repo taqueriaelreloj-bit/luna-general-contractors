@@ -1,0 +1,19 @@
+{
+  "name": "Red Oak",
+  "slug": "red-oak",
+  "state": "TX",
+  "county": "Ellis County",
+  "title": "General Contractor in Red Oak, TX | Luna General Contractors",
+  "meta_description": "Roofing, remodeling, restoration and general contracting in Red Oak, TX. Call Luna General Contractors at (817) 784-5998.",
+  "hero": "Residential and commercial construction services for growing neighborhoods and properties throughout Red Oak.",
+  "local_summary": "Red Oak continues to grow along the I-35E corridor, combining established homes, newer subdivisions and expanding business areas. Local projects commonly focus on storm protection, interior upgrades, flooring, paint, exterior repairs and practical improvements for long-term property use.",
+  "property_types": ["Established residential homes","Newer subdivision homes","Custom homes on larger lots","Retail and service properties","Rental and investment homes"],
+  "common_needs": ["Roof repairs after hail and wind","Bathroom and kitchen remodeling","Flooring and painting","Drywall repairs","Fence and siding work","Commercial property improvements"],
+  "nearby_cities": ["Midlothian", "Waxahachie", "Glenn Heights", "DeSoto", "Lancaster", "Ovilla", "Cedar Hill"],
+  "faqs": [
+    {"question":"Do you serve all neighborhoods in Red Oak?","answer":"Yes. We serve Red Oak and nearby Ellis and southern Dallas County communities, subject to project scope and scheduling."},
+    {"question":"Can you inspect a roof after a storm?","answer":"Yes. We inspect visible roofing conditions and provide recommendations for repair or replacement."},
+    {"question":"Do you remodel bathrooms and kitchens?","answer":"Yes. We coordinate the approved scope for cabinets, countertops, tile, flooring, drywall, paint and fixtures."},
+    {"question":"Can you repair exterior siding and trim?","answer":"Yes. We handle siding, soffit, fascia and exterior trim repairs or replacement based on existing conditions."}
+  ]
+}
