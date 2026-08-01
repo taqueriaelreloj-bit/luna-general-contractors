@@ -13,6 +13,19 @@ const isHomePage =
   window.location.pathname.endsWith("/") ||
   window.location.pathname.endsWith("/index.html");
 
+
+// Use one consistent, realistic hero image on every Insurance Claims page.
+if (window.location.pathname.toLowerCase().includes("insurance-claims")) {
+  const insuranceHero = document.querySelector(".local-hero, .trade-hero");
+  if (insuranceHero) {
+    insuranceHero.style.setProperty(
+      "background",
+      "linear-gradient(90deg, rgba(3,5,7,.94) 0%, rgba(3,5,7,.79) 42%, rgba(3,5,7,.25) 72%, rgba(3,5,7,.18) 100%), url('/insurance-claims-hero.webp') center center / cover no-repeat",
+      "important"
+    );
+  }
+}
+
 // Prevent browsers from restoring an old scroll position halfway down a page.
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
