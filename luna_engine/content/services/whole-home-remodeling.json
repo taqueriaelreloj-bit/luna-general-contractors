@@ -1,10 +1,33 @@
 {
   "name": "Whole Home Remodeling",
   "slug": "whole-home-remodeling",
-  "summary": "Complete home remodeling services coordinating kitchens, bathrooms, flooring, drywall, painting, carpentry, electrical, plumbing and layout improvements.",
-  "features": ["Full interior renovations","Kitchen and bathroom updates","Flooring and paint","Drywall and carpentry","Electrical and plumbing coordination","Project planning and sequencing"],
+  "summary": "Complete home remodeling with coordinated planning, selective demolition, layout changes, kitchens, bathrooms, flooring, drywall, painting, carpentry, doors, lighting, plumbing fixtures and finish work.",
+  "features": [
+    "Whole-house planning and phased renovations",
+    "Selective demolition and layout improvements",
+    "Kitchen and bathroom remodeling",
+    "Flooring, drywall, texture and painting",
+    "Doors, trim, cabinets and finish carpentry",
+    "Electrical, plumbing and HVAC coordination",
+    "Permits, inspections and project sequencing",
+    "Final punch-list, cleanup and walkthrough"
+  ],
   "faqs": [
-    {"question":"What is included in a whole home remodel?","answer":"A whole home remodel may include layout changes, kitchens, bathrooms, flooring, drywall, painting, carpentry, lighting, plumbing fixtures and finish upgrades based on the approved scope."},
-    {"question":"Can remodeling be completed in phases?","answer":"Yes. Larger renovations can be divided into logical phases to manage budget, scheduling and access to the home."}
+    {
+      "question": "What is included in a whole home remodel?",
+      "answer": "The scope may include layout changes, kitchens, bathrooms, flooring, drywall, texture, painting, doors, trim, cabinets, lighting, plumbing fixtures and other coordinated improvements selected for the property."
+    },
+    {
+      "question": "Can a whole home remodel be completed in phases?",
+      "answer": "Yes. Larger renovations can be divided into logical phases based on budget, material availability, access to the home and the order required for inspections and trade work."
+    },
+    {
+      "question": "Can homeowners remain in the property during construction?",
+      "answer": "It depends on the extent of demolition, utility interruptions, dust control and how many rooms are affected. Some phased projects allow partial occupancy, while extensive renovations may require temporary arrangements."
+    },
+    {
+      "question": "How are multiple trades coordinated during a full renovation?",
+      "answer": "The project is sequenced so demolition, framing, rough plumbing and electrical, inspections, drywall, cabinets, flooring, painting and finish work occur in the proper order."
+    }
   ]
 }
