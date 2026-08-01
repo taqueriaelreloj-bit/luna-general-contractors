@@ -1,0 +1,22 @@
+{
+  "status": "draft",
+  "slug": "black-white-patterned-kitchen-backsplash",
+  "title": "Black and White Patterned Kitchen Backsplash",
+  "city": "TBD",
+  "city_slug": "",
+  "service": "Kitchen Remodeling",
+  "service_slug": "kitchen-remodeling",
+  "summary": "Completed kitchen backsplash with a high-contrast black and white patterned tile installed around countertops, sink, cooktop and appliance areas.",
+  "problem": "The kitchen needed a distinctive backsplash that would create contrast with the existing wood cabinets and light countertops.",
+  "solution": "Installed the patterned tile across multiple connected wall sections, maintaining alignment around outlets, corners, the cooktop and raised counter area.",
+  "materials": ["Black and white patterned mosaic tile", "Tile-setting materials", "Grout", "Electrical finish plates", "Edge finishing materials"],
+  "duration": "TBD",
+  "date_completed": "2019-02-04",
+  "images": [
+    {"src": "project-images/20190204-195526.webp", "alt": "Black and white patterned backsplash behind kitchen cooktop", "caption": "Completed patterned backsplash behind the cooktop."},
+    {"src": "project-images/20190204-195530.webp", "alt": "Black and white patterned backsplash around kitchen sink and raised counter", "caption": "Continuous backsplash installation around the sink and counter."},
+    {"src": "project-images/20190204-195534.webp", "alt": "Patterned backsplash beside stacked microwave and oven", "caption": "Finished tile detail beside the appliance cabinet."}
+  ],
+  "source_files": ["20190204_195526.jpg", "20190204_195530.jpg", "20190204_195534.jpg"],
+  "publish_note": "Add the actual city and upload all three approved images before changing status to published."
+}
