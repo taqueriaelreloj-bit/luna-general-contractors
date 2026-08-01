@@ -1,10 +1,35 @@
 {
   "name": "Fencing",
   "slug": "fencing",
-  "summary": "Wood fence installation, replacement, repairs, gates and hauling for residential and commercial properties.",
-  "features": ["Wood privacy fencing","Fence repairs","Full fence replacement","Gate installation and repairs","Post replacement","Removal and hauling"],
+  "summary": "Fence installation, replacement and repair for residential and commercial properties, including cedar privacy fences, board-on-board layouts, horizontal designs, gates, metal-post upgrades, staining and hauling.",
+  "features": [
+    "Cedar privacy fencing",
+    "Board-on-board and horizontal fences",
+    "Fence repairs and partial replacement",
+    "Single and double gate installation",
+    "Metal post replacement and upgrades",
+    "Staining, sealing, removal and hauling"
+  ],
   "faqs": [
-    {"question":"Can you repair only the damaged part of a fence?","answer":"Yes, when the remaining fence is structurally serviceable and matching materials are available."},
-    {"question":"Do you remove the old fence materials?","answer":"Removal and hauling can be included in the written scope and estimate."}
+    {
+      "question": "Can you repair only the damaged section of a fence?",
+      "answer": "Yes. Partial repairs may be practical when the remaining fence is structurally serviceable, the posts are stable and compatible materials are available."
+    },
+    {
+      "question": "When should a fence be replaced instead of repaired?",
+      "answer": "Replacement may be a better option when several posts are failing, rot or storm damage is widespread, the fence is leaning throughout or repeated repairs would not provide a durable result."
+    },
+    {
+      "question": "Are metal fence posts better than wood posts?",
+      "answer": "Metal posts are commonly selected for improved resistance to rot and soil moisture. The best choice depends on the design, budget, existing structure and local conditions."
+    },
+    {
+      "question": "Do you install gates and remove the old fence?",
+      "answer": "Yes. Single gates, double gates, hardware, demolition, disposal and hauling can be included in the written project scope."
+    },
+    {
+      "question": "Can a new wood fence be stained or sealed?",
+      "answer": "Yes. Staining or sealing can help protect the wood and create a more consistent finished appearance after the material has reached the appropriate condition for coating."
+    }
   ]
 }
