@@ -116,6 +116,17 @@ document.querySelectorAll('a[href="index.html#contact"]').forEach((link) => {
   link.setAttribute("href", "index.html#estimate-form");
 });
 
+
+// Keep email calls-to-action inside the website instead of opening Outlook.
+document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+  link.setAttribute("href", "#estimate-form");
+  link.removeAttribute("target");
+  if (/send email|email|lunabestcontractors/i.test(link.textContent)) {
+    link.textContent = "Request Online";
+  }
+  link.setAttribute("aria-label", "Open the online estimate form");
+});
+
 menuToggle?.addEventListener("click", () => {
   const isOpen = mainNav.classList.toggle("open");
   menuToggle.setAttribute("aria-expanded", String(isOpen));
