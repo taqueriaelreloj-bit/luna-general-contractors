@@ -1,0 +1,20 @@
+{
+  "status": "draft",
+  "slug": "gray-subway-backsplash-with-metal-accent",
+  "title": "Gray Subway Backsplash with Metallic Accent Bands",
+  "city": "TBD",
+  "city_slug": "",
+  "service": "Kitchen Remodeling",
+  "service_slug": "kitchen-remodeling",
+  "summary": "Kitchen backsplash installation combining gray subway tile with horizontal metallic mosaic accent bands beneath detailed white cabinetry.",
+  "problem": "The kitchen needed a backsplash design that would protect the wall while adding a decorative feature beneath the upper cabinets.",
+  "solution": "Installed gray subway tile with two aligned metallic mosaic accent bands, maintaining straight layout lines around outlets, corners and cabinetry details.",
+  "materials": ["Gray subway tile", "Metallic mosaic accent tile", "Tile-setting materials", "Grout", "Protective countertop covering"],
+  "duration": "TBD",
+  "date_completed": "2018-08-17",
+  "images": [
+    {"src": "project-images/20180817-114531.webp", "alt": "Gray subway backsplash with metallic accent bands during installation", "caption": "Backsplash layout and accent bands installed beneath white cabinetry."}
+  ],
+  "source_files": ["20180817_114531.jpg"],
+  "publish_note": "Add the actual city and upload the approved image before changing status to published."
+}
