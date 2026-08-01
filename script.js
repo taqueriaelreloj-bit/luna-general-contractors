@@ -525,8 +525,8 @@ if (!isHomePage) {
           <div>
             <h3>Contact</h3>
             <a href="tel:+18177845998">☎ (817) 784-5998</a>
-            <a href="mailto:lunabestcontractors@gmail.com">
-              ✉ lunabestcontractors@gmail.com
+            <a href="#estimate-form" aria-label="Open the online estimate form">
+              Request Online
             </a>
             <span>⌖ Dallas–Fort Worth, TX</span>
             <span>English & Spanish</span>
