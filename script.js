@@ -376,6 +376,31 @@ document.querySelectorAll('form[action*="formspree.io"]').forEach((form) => {
     else form.appendChild(photoField);
   }
 
+  if (!isHomePage) {
+    const reviewCard = document.createElement("aside");
+    reviewCard.className = "form-review-card";
+    reviewCard.setAttribute("aria-label", "Customer review");
+    reviewCard.innerHTML = `
+      <p class="eyebrow gold">Real Customer Review</p>
+      <div class="form-review-rating"><strong>5.0</strong><span>★★★★★</span></div>
+      <p class="form-review-count">Google rating · 36 reviews</p>
+      <blockquote>“Fair price for great work. Definitely recommend them for general repairs and maintenance.”</blockquote>
+      <p class="form-review-author">— Nextdoor Neighbor, Grand Prairie, TX</p>
+      <a class="btn btn-outline-light" href="index.html#reviews">Read More Reviews →</a>
+    `;
+
+    const localGrid = form.closest(".local-grid");
+    const globalWrap = form.closest(".global-estimate-wrap");
+
+    if (localGrid && !localGrid.querySelector(".form-review-card")) {
+      const reviewColumn = localGrid.firstElementChild;
+      reviewColumn?.appendChild(reviewCard);
+      reviewColumn?.classList.add("form-review-column");
+    } else if (globalWrap && !globalWrap.querySelector(".form-review-card")) {
+      globalWrap.insertBefore(reviewCard, form.closest(".estimate-card") || form);
+    }
+  }
+
   let formMessage = form.querySelector(".form-message");
   if (!formMessage) {
     formMessage = document.createElement("p");
