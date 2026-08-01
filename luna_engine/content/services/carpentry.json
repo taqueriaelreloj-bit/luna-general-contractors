@@ -1,10 +1,37 @@
 {
   "name": "Carpentry",
   "slug": "carpentry",
-  "summary": "Finish carpentry, trim, doors, framing repairs, cabinets, built-ins and custom woodwork for remodeling and repair projects.",
-  "features": ["Interior trim and baseboards","Door installation and repairs","Framing repairs","Cabinet and built-in work","Exterior wood repairs","Custom carpentry"],
+  "summary": "Interior and exterior carpentry for remodeling, repairs and finish upgrades, including trim, doors, framing, cabinets, built-ins and damaged wood replacement.",
+  "features": [
+    "Baseboards, crown molding and interior trim",
+    "Interior and exterior door installation",
+    "Framing repairs and wall modifications",
+    "Cabinets, shelving and built-ins",
+    "Window, stair and opening trim",
+    "Exterior wood, fascia and soffit repairs",
+    "Rotten or damaged wood replacement",
+    "Preparation for paint or stain"
+  ],
   "faqs": [
-    {"question":"Do you handle both finish carpentry and framing repairs?","answer":"Yes. The scope can include visible finish work as well as framing repairs when required by the project."},
-    {"question":"Can you match existing trim profiles?","answer":"We inspect the existing profile and source or fabricate the closest practical match based on availability."}
+    {
+      "question": "Do you handle both finish carpentry and framing repairs?",
+      "answer": "Yes. A project can include visible finish work such as trim and doors as well as framing repairs, blocking and wall modifications when required by the approved scope."
+    },
+    {
+      "question": "Can you match existing trim profiles?",
+      "answer": "We inspect the existing profile and source the closest practical match. When an exact profile is unavailable, we explain the available options before installation."
+    },
+    {
+      "question": "Can you install prehung and slab doors?",
+      "answer": "Yes. Door work can include prehung units, slab replacement, casing, hardware, alignment and finish preparation, depending on the opening and project conditions."
+    },
+    {
+      "question": "Do you build custom shelves or built-ins?",
+      "answer": "Yes. We can build or install shelving, storage, cabinet components and other practical built-in features based on measurements, materials and the final design."
+    },
+    {
+      "question": "Can carpentry repairs be included in a larger remodel?",
+      "answer": "Yes. Carpentry can be coordinated with drywall, painting, flooring, cabinets, doors and other trades so the work is completed as one organized project."
+    }
   ]
 }
