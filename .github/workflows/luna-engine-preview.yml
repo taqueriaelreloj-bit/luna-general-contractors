@@ -180,5 +180,16 @@ jobs:
             echo "No Luna Engine changes to commit."
           else
             git commit -m "Publish DFW local pages and 25 SEO articles [skip ci]"
-            git push origin HEAD:main
+            for attempt in 1 2 3 4; do
+              git fetch origin main
+              if git rebase origin/main && git push origin HEAD:main; then
+                echo "Published successfully on attempt ${attempt}."
+                exit 0
+              fi
+              git rebase --abort 2>/dev/null || true
+              echo "Remote changed during publish; retrying (${attempt}/4)..."
+              sleep $((attempt * 3))
+            done
+            echo "Unable to publish after 4 attempts."
+            exit 1
           fi
