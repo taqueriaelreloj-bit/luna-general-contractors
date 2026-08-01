@@ -1,0 +1,10 @@
+{
+  "name": "Door Installation",
+  "slug": "door-installation",
+  "summary": "Interior and exterior door installation with framing adjustments, hardware, trim, weather sealing, paint preparation and finish repairs.",
+  "features": ["Exterior entry doors","Interior doors","Patio and French doors","Frames and casing","Locks and hardware","Weather sealing"],
+  "faqs": [
+    {"question":"Can a new door be installed in an existing opening?","answer":"Often yes, but the opening must be checked for size, level, rot, framing condition and compatibility with the selected door."},
+    {"question":"What is included with door installation?","answer":"The scope may include removal, fitting, shimming, fastening, hardware, casing, weather sealing, caulking and finish touch-ups."}
+  ]
+}
