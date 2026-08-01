@@ -1,10 +1,37 @@
 {
   "name": "Commercial Construction",
   "slug": "commercial-construction",
-  "summary": "Commercial repairs, tenant improvements, interior build-outs and coordinated construction for offices, retail and managed properties.",
-  "features": ["Tenant improvements","Office and retail build-outs","Commercial repairs","Interior framing and drywall","Painting and flooring","Trade coordination"],
+  "summary": "Commercial tenant improvements, interior build-outs, renovations and coordinated construction for offices, retail, restaurants, medical spaces and managed properties across the Dallas-Fort Worth area.",
+  "features": [
+    "Office and retail tenant improvements",
+    "Interior framing, drywall and ceilings",
+    "Commercial painting and flooring",
+    "ADA restroom and accessibility upgrades",
+    "Electrical, plumbing and HVAC coordination",
+    "Permits, inspections and project management",
+    "Restaurant and medical-office renovations",
+    "Repairs for occupied and managed properties"
+  ],
   "faqs": [
-    {"question":"What types of commercial properties do you serve?","answer":"We work with offices, retail spaces, restaurants, managed properties and other small to mid-size commercial facilities."},
-    {"question":"Can you coordinate multiple trades?","answer":"Yes. We can coordinate the approved scope across carpentry, drywall, painting, flooring and other required trades."}
+    {
+      "question": "What types of commercial properties do you work on?",
+      "answer": "We work on offices, retail spaces, restaurants, medical and professional suites, managed properties and other small to mid-size commercial facilities."
+    },
+    {
+      "question": "Can you coordinate multiple trades for a commercial build-out?",
+      "answer": "Yes. We can coordinate framing, drywall, acoustical ceilings, painting, flooring, carpentry and approved plumbing, electrical and HVAC work under one project schedule."
+    },
+    {
+      "question": "Do you handle tenant improvements in occupied buildings?",
+      "answer": "Yes. The work can be phased around business operations when practical, with attention to access, dust control, daily cleanup and communication with property management."
+    },
+    {
+      "question": "Can you build or remodel an ADA restroom?",
+      "answer": "Yes. Commercial restroom work can include layout changes, framing, drywall, tile, fixtures, grab bars, clearances and coordination with applicable permit and inspection requirements."
+    },
+    {
+      "question": "Do commercial projects require permits?",
+      "answer": "Many tenant improvements and build-outs require permits and inspections depending on the city and scope. Permit needs should be confirmed before construction begins."
+    }
   ]
 }
