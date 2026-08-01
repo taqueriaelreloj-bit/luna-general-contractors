@@ -1401,3 +1401,45 @@ a {
 .global-estimate-wrap .estimate-card {
   width: min(100%, 520px);
 }
+
+
+/* Project photo upload shared by every estimate form */
+.photo-upload-field {
+  display: grid;
+  gap: 8px;
+  color: inherit;
+  font-weight: 700;
+  text-align: left;
+}
+
+.photo-upload-field > span small,
+.photo-upload-help {
+  font-weight: 500;
+  opacity: 0.75;
+}
+
+.photo-upload-field input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px dashed rgba(240, 169, 0, 0.65);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.photo-upload-field input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 9px 13px;
+  border: 0;
+  border-radius: 4px;
+  background: #f0a900;
+  color: #090b0d;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.estimate-form .photo-upload-field input[type="file"] {
+  background: #fff;
+  color: #17191c;
+}
