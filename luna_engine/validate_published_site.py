@@ -35,8 +35,15 @@ def main() -> None:
         raise SystemExit("Missing Luna Engine manifest")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     generated = manifest.get("pages", [])
-    if len(generated) != 504:
-        raise SystemExit(f"Expected 504 generated local pages, found {len(generated)}")
+
+    city_files = sorted((ROOT / "luna_engine" / "content" / "cities").glob("*.json"))
+    service_files = sorted((ROOT / "luna_engine" / "content" / "services").glob("*.json"))
+    expected_generated = len(city_files) * (len(service_files) + 1)
+    if len(generated) != expected_generated:
+        raise SystemExit(
+            f"Expected {expected_generated} generated local pages from "
+            f"{len(city_files)} cities and {len(service_files)} services, found {len(generated)}"
+        )
 
     article_manifest = ROOT / "luna_engine" / "article-manifest.txt"
     articles = [line.strip() for line in article_manifest.read_text(encoding="utf-8").splitlines() if line.strip()] if article_manifest.exists() else []
