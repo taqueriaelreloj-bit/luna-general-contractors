@@ -1,0 +1,20 @@
+{
+  "status": "draft",
+  "slug": "gray-subway-tile-kitchen-backsplash",
+  "title": "Gray Subway Tile Kitchen Backsplash",
+  "city": "TBD",
+  "city_slug": "",
+  "service": "Kitchen Remodeling",
+  "service_slug": "kitchen-remodeling",
+  "summary": "Kitchen backsplash installation using gray subway tile, with careful protection of countertops, cabinets and electrical openings during construction.",
+  "problem": "The kitchen needed a durable, finished backsplash surface between the countertops and upper cabinets.",
+  "solution": "Protected the work area, laid out and installed gray subway tile around cabinets and electrical openings, then prepared the installation for grout and final detailing.",
+  "materials": ["Gray subway tile", "Tile-setting materials", "Grout", "Protective paper and plastic", "Outlet extensions and finish plates as required"],
+  "duration": "TBD",
+  "date_completed": "2018-05-30",
+  "images": [
+    {"src": "project-images/20180530-181936.webp", "alt": "Gray subway tile kitchen backsplash installation in progress", "caption": "Protected countertops and cabinets during backsplash installation."}
+  ],
+  "source_files": ["20180530_181936.jpg"],
+  "publish_note": "Add the actual city and upload the approved project image before changing status to published."
+}
