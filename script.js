@@ -298,75 +298,146 @@ if (!isHomePage && !document.querySelector("#estimate-form")) {
   if (main) main.appendChild(globalEstimateSection);
 }
 
-// Add optional project-photo uploads to every Formspree estimate form.
-document.querySelectorAll('form[action*="formspree.io"]').forEach((form) => {
-  form.enctype = "multipart/form-data";
-  if (form.querySelector('input[type="file"]')) return;
+// Resize and compress project photos in the browser before upload.
+async function optimizeProjectPhoto(file) {
+  if (!file.type.startsWith("image/")) return file;
 
-  const photoField = document.createElement("label");
-  photoField.className = "photo-upload-field";
-  photoField.innerHTML = `
-    <span>Upload Project Photos <small>(Optional)</small></span>
-    <input type="file" name="project_photos" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" multiple />
-    <small class="photo-upload-help">JPG, PNG, WEBP or HEIC · You can select multiple photos</small>
-  `;
-
-  const submitButton = form.querySelector('button[type="submit"]');
-  if (submitButton) form.insertBefore(photoField, submitButton);
-  else form.appendChild(photoField);
-});
- 
-const estimateForm = document.querySelector("form#estimate-form, #estimate-form form, form.estimate-form");
-const formMessage = document.querySelector(".form-message");
-
-estimateForm?.addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  if (!estimateForm.checkValidity()) {
-    estimateForm.reportValidity();
-    return;
-  }
-
-  const submitButton = estimateForm.querySelector('button[type="submit"]');
-  const originalText = submitButton.textContent;
-
-  submitButton.disabled = true;
-  submitButton.textContent = "Sending...";
-  if (formMessage) formMessage.textContent = "Sending your request...";
-
+  let source;
+  let sourceUrl;
   try {
-    const response = await fetch("https://formspree.io/f/maqrzbol", {
-      method: "POST",
-      body: new FormData(estimateForm),
-      headers: {
-        Accept: "application/json"
-      }
-    });
-
-    if (!response.ok) throw new Error("Submission failed");
-
-    if (formMessage) {
-      formMessage.textContent =
-        "Thank you! Your estimate request was sent successfully. We will contact you soon.";
-    }
-
-    estimateForm.reset();
-
-    if (typeof gtag === "function") {
-      gtag("event", "generate_lead", {
-        event_category: "Estimate Form",
-        event_label: "Website Estimate Request"
+    if ("createImageBitmap" in window) {
+      source = await createImageBitmap(file, { imageOrientation: "from-image" });
+    } else {
+      sourceUrl = URL.createObjectURL(file);
+      source = await new Promise((resolve, reject) => {
+        const image = new Image();
+        image.onload = () => resolve(image);
+        image.onerror = reject;
+        image.src = sourceUrl;
       });
     }
+
+    const maxDimension = 2000;
+    const scale = Math.min(1, maxDimension / Math.max(source.width, source.height));
+    const width = Math.max(1, Math.round(source.width * scale));
+    const height = Math.max(1, Math.round(source.height * scale));
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    canvas.getContext("2d", { alpha: false }).drawImage(source, 0, 0, width, height);
+
+    const blob = await new Promise((resolve, reject) => {
+      canvas.toBlob(
+        (result) => result ? resolve(result) : reject(new Error("Image conversion failed")),
+        "image/jpeg",
+        0.82
+      );
+    });
+
+    const baseName = file.name.replace(/\.[^.]+$/, "") || "project-photo";
+    return new File([blob], `${baseName}-optimized.jpg`, {
+      type: "image/jpeg",
+      lastModified: Date.now()
+    });
   } catch (error) {
-    if (formMessage) {
-      formMessage.textContent =
-        "We could not send your request. Please call (817) 784-5998 or try again.";
-    }
+    // Keep the original when a browser cannot decode a newer image format.
+    return file;
   } finally {
-    submitButton.disabled = false;
-    submitButton.textContent = originalText;
+    if (source?.close) source.close();
+    if (sourceUrl) URL.revokeObjectURL(sourceUrl);
   }
+}
+
+document.querySelectorAll('form[action*="formspree.io"]').forEach((form) => {
+  form.enctype = "multipart/form-data";
+
+  if (!form.querySelector('input[type="file"]')) {
+    const photoField = document.createElement("label");
+    photoField.className = "photo-upload-field";
+    photoField.innerHTML = `
+      <span>Upload Project Photos <small>(Optional)</small></span>
+      <input type="file" name="project_photos" accept="image/*" multiple />
+      <small class="photo-upload-help">Choose photos of any size · They will be resized automatically</small>
+    `;
+
+    const submitButton = form.querySelector('button[type="submit"]');
+    if (submitButton) form.insertBefore(photoField, submitButton);
+    else form.appendChild(photoField);
+  }
+
+  let formMessage = form.querySelector(".form-message");
+  if (!formMessage) {
+    formMessage = document.createElement("p");
+    formMessage.className = "form-message";
+    formMessage.setAttribute("role", "status");
+    formMessage.setAttribute("aria-live", "polite");
+    form.appendChild(formMessage);
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalText = submitButton?.textContent || "Submit";
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Optimizing photos...";
+    }
+    formMessage.textContent = "Preparing your photos and request...";
+
+    try {
+      const formData = new FormData(form);
+      const photoInput = form.querySelector('input[type="file"]');
+      const photos = [...(photoInput?.files || [])];
+      formData.delete("project_photos");
+
+      if (photos.length) {
+        const optimizedPhotos = [];
+        for (let index = 0; index < photos.length; index += 1) {
+          if (submitButton) {
+            submitButton.textContent = `Optimizing photo ${index + 1} of ${photos.length}...`;
+          }
+          optimizedPhotos.push(await optimizeProjectPhoto(photos[index]));
+        }
+        optimizedPhotos.forEach((photo) => formData.append("project_photos", photo, photo.name));
+      }
+
+      if (submitButton) submitButton.textContent = "Sending...";
+      formMessage.textContent = "Sending your request...";
+
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" }
+      });
+
+      if (!response.ok) throw new Error("Submission failed");
+
+      formMessage.textContent =
+        "Thank you! Your estimate request and photos were sent successfully. We will contact you soon.";
+      form.reset();
+
+      if (typeof gtag === "function") {
+        gtag("event", "generate_lead", {
+          event_category: "Estimate Form",
+          event_label: "Website Estimate Request"
+        });
+      }
+    } catch (error) {
+      formMessage.textContent =
+        "We could not send your request. Try fewer photos, or call (817) 784-5998.";
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalText;
+      }
+    }
+  });
 });
 
 const year = document.querySelector("#year");
