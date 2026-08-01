@@ -1,0 +1,763 @@
+/* Luna General Contractors — competitive homepage preview */
+:root {
+  --v2-ink: #090b0d;
+  --v2-panel: #101419;
+  --v2-panel-2: #171c22;
+  --v2-line: rgba(255, 255, 255, 0.12);
+  --v2-gold: #d7a845;
+  --v2-gold-2: #f0c76a;
+  --v2-cream: #f7f3ea;
+  --v2-muted: #aeb6bf;
+  --v2-white: #ffffff;
+  --v2-green: #67c587;
+  --v2-radius: 22px;
+  --v2-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
+body.v2-page {
+  background: var(--v2-ink);
+  color: var(--v2-white);
+}
+
+.v2-page main {
+  overflow: hidden;
+}
+
+.v2-container {
+  width: min(1180px, calc(100% - 36px));
+  margin-inline: auto;
+}
+
+.v2-section {
+  padding: 92px 0;
+}
+
+.v2-section-light {
+  background: var(--v2-cream);
+  color: #15181c;
+}
+
+.v2-section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 38px;
+}
+
+.v2-kicker {
+  margin: 0 0 10px;
+  color: var(--v2-gold-2);
+  font: 800 0.78rem/1.2 Inter, sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.v2-section-light .v2-kicker {
+  color: #8d6517;
+}
+
+.v2-page h1,
+.v2-page h2,
+.v2-page h3 {
+  font-family: "Barlow Condensed", Inter, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.v2-section h2 {
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 4.6rem);
+  line-height: 0.98;
+}
+
+.v2-section-lead {
+  max-width: 680px;
+  margin: 14px 0 0;
+  color: var(--v2-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.v2-section-light .v2-section-lead {
+  color: #5d646c;
+}
+
+.v2-hero {
+  position: relative;
+  min-height: 760px;
+  display: grid;
+  align-items: center;
+  padding: 82px 0 72px;
+  background:
+    linear-gradient(90deg, rgba(7, 9, 11, 0.98) 0%, rgba(7, 9, 11, 0.91) 43%, rgba(7, 9, 11, 0.42) 72%, rgba(7, 9, 11, 0.26) 100%),
+    url("roofing-project-one.jpg") center 34% / cover no-repeat;
+}
+
+.v2-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 150px;
+  background: linear-gradient(transparent, var(--v2-ink));
+  pointer-events: none;
+}
+
+.v2-hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(330px, 0.75fr);
+  gap: 50px;
+  align-items: center;
+}
+
+.v2-hero-copy {
+  max-width: 720px;
+}
+
+.v2-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 22px;
+  padding: 9px 14px;
+  border: 1px solid rgba(240, 199, 106, 0.42);
+  border-radius: 999px;
+  background: rgba(11, 13, 16, 0.58);
+  color: #ffe6ad;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.v2-hero h1 {
+  margin: 0;
+  max-width: 790px;
+  font-size: clamp(4rem, 8.2vw, 7.25rem);
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+.v2-hero h1 span {
+  color: var(--v2-gold-2);
+}
+
+.v2-hero-intro {
+  max-width: 680px;
+  margin: 27px 0 0;
+  color: #d5dbe1;
+  font-size: clamp(1.05rem, 2vw, 1.24rem);
+  line-height: 1.72;
+}
+
+.v2-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.v2-btn {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 22px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.v2-btn:hover {
+  transform: translateY(-2px);
+}
+
+.v2-btn-gold {
+  background: linear-gradient(135deg, var(--v2-gold-2), var(--v2-gold));
+  color: #111317;
+  box-shadow: 0 14px 34px rgba(215, 168, 69, 0.22);
+}
+
+.v2-btn-dark {
+  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(11, 13, 16, 0.64);
+  color: var(--v2-white);
+  backdrop-filter: blur(10px);
+}
+
+.v2-trust-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 34px;
+}
+
+.v2-trust-item {
+  padding: 14px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 13px;
+  background: rgba(11, 13, 16, 0.58);
+  backdrop-filter: blur(10px);
+}
+
+.v2-trust-item strong {
+  display: block;
+  font-size: 0.9rem;
+}
+
+.v2-trust-item small {
+  display: block;
+  margin-top: 4px;
+  color: #aeb7bf;
+  line-height: 1.35;
+}
+
+.v2-lead-card {
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--v2-radius);
+  background: rgba(11, 14, 17, 0.91);
+  box-shadow: var(--v2-shadow);
+  backdrop-filter: blur(16px);
+}
+
+.v2-lead-card h2 {
+  margin: 0;
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.v2-lead-card > p {
+  margin: 8px 0 20px;
+  color: var(--v2-muted);
+}
+
+.v2-lead-card form {
+  display: grid;
+  gap: 11px;
+}
+
+.v2-lead-card input,
+.v2-lead-card select,
+.v2-lead-card textarea {
+  width: 100%;
+  min-height: 49px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background: #f7f7f7;
+  color: #111317;
+  padding: 0 14px;
+  font: 500 0.94rem/1.3 Inter, sans-serif;
+}
+
+.v2-lead-card textarea {
+  min-height: 92px;
+  padding-top: 13px;
+  resize: vertical;
+}
+
+.v2-lead-card .privacy {
+  color: #aeb7bf;
+  text-align: center;
+}
+
+.v2-proof-band {
+  position: relative;
+  z-index: 3;
+  margin-top: -22px;
+}
+
+.v2-proof-grid {
+  display: grid;
+  grid-template-columns: 1.25fr repeat(3, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--v2-line);
+  border-radius: 18px;
+  background: var(--v2-panel);
+  box-shadow: var(--v2-shadow);
+}
+
+.v2-proof-main,
+.v2-proof-stat {
+  min-height: 134px;
+  padding: 25px;
+}
+
+.v2-proof-main {
+  background: linear-gradient(135deg, #1a1f25, #101317);
+}
+
+.v2-proof-main strong {
+  display: block;
+  color: var(--v2-gold-2);
+  font-size: 1.05rem;
+}
+
+.v2-proof-main p {
+  margin: 9px 0 0;
+  color: #ccd2d8;
+  line-height: 1.55;
+}
+
+.v2-proof-stat {
+  border-left: 1px solid var(--v2-line);
+}
+
+.v2-proof-stat strong {
+  display: block;
+  color: var(--v2-white);
+  font: 800 2.4rem/1 "Barlow Condensed", sans-serif;
+}
+
+.v2-proof-stat span {
+  display: block;
+  margin-top: 9px;
+  color: var(--v2-muted);
+  line-height: 1.45;
+}
+
+.v2-services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.v2-service-card {
+  position: relative;
+  min-height: 310px;
+  overflow: hidden;
+  border: 1px solid var(--v2-line);
+  border-radius: 17px;
+  background: var(--v2-panel);
+  color: var(--v2-white);
+  text-decoration: none;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.2);
+}
+
+.v2-service-card img {
+  width: 100%;
+  height: 175px;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.v2-service-card:hover img {
+  transform: scale(1.04);
+}
+
+.v2-service-card-body {
+  padding: 20px;
+}
+
+.v2-service-card h3 {
+  margin: 0;
+  font-size: 1.65rem;
+}
+
+.v2-service-card p {
+  margin: 8px 0 0;
+  color: var(--v2-muted);
+  font-size: 0.91rem;
+  line-height: 1.55;
+}
+
+.v2-service-card span {
+  display: inline-block;
+  margin-top: 13px;
+  color: var(--v2-gold-2);
+  font-weight: 800;
+  font-size: 0.88rem;
+}
+
+.v2-advantage-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 52px;
+  align-items: center;
+}
+
+.v2-advantage-image {
+  position: relative;
+  min-height: 560px;
+  overflow: hidden;
+  border-radius: var(--v2-radius);
+  background: url("bathroom-glass-shower-after.jpg") center / cover no-repeat;
+  box-shadow: var(--v2-shadow);
+}
+
+.v2-advantage-image::after {
+  content: "Real Luna project";
+  position: absolute;
+  left: 22px;
+  bottom: 22px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(7, 9, 11, 0.84);
+  color: var(--v2-white);
+  font-weight: 800;
+}
+
+.v2-check-list {
+  display: grid;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.v2-check {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.v2-check-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e8d3a4;
+  color: #5a3d08;
+  font-weight: 900;
+}
+
+.v2-check h3 {
+  margin: 0;
+  font-size: 1.45rem;
+}
+
+.v2-check p {
+  margin: 5px 0 0;
+  color: #626970;
+  line-height: 1.6;
+}
+
+.v2-process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.v2-process-card {
+  position: relative;
+  padding: 28px 23px;
+  border: 1px solid var(--v2-line);
+  border-radius: 17px;
+  background: linear-gradient(145deg, var(--v2-panel-2), #101318);
+}
+
+.v2-process-card b {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--v2-gold);
+  color: #111317;
+  font-size: 1.1rem;
+}
+
+.v2-process-card h3 {
+  margin: 20px 0 0;
+  font-size: 1.65rem;
+}
+
+.v2-process-card p {
+  margin: 8px 0 0;
+  color: var(--v2-muted);
+  line-height: 1.6;
+}
+
+.v2-project-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr 0.85fr;
+  gap: 18px;
+}
+
+.v2-project-card {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+  border-radius: 18px;
+  color: var(--v2-white);
+  text-decoration: none;
+  box-shadow: var(--v2-shadow);
+}
+
+.v2-project-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.v2-project-card:hover img {
+  transform: scale(1.035);
+}
+
+.v2-project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 42%, rgba(4, 6, 8, 0.94));
+}
+
+.v2-project-copy {
+  position: absolute;
+  z-index: 2;
+  inset: auto 22px 22px;
+}
+
+.v2-project-copy small {
+  color: var(--v2-gold-2);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.v2-project-copy h3 {
+  margin: 6px 0 0;
+  font-size: 1.8rem;
+}
+
+.v2-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.v2-review-card {
+  padding: 27px;
+  border: 1px solid var(--v2-line);
+  border-radius: 17px;
+  background: var(--v2-panel);
+}
+
+.v2-stars {
+  color: var(--v2-gold-2);
+  letter-spacing: 0.1em;
+}
+
+.v2-review-card blockquote {
+  margin: 17px 0;
+  color: #d5dbe1;
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.v2-review-card strong,
+.v2-review-card small {
+  display: block;
+}
+
+.v2-review-card small {
+  margin-top: 4px;
+  color: var(--v2-muted);
+}
+
+.v2-area-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 22px;
+}
+
+.v2-map-card,
+.v2-area-card {
+  overflow: hidden;
+  border: 1px solid var(--v2-line);
+  border-radius: 18px;
+  background: var(--v2-panel);
+}
+
+.v2-map-card iframe {
+  width: 100%;
+  min-height: 430px;
+  border: 0;
+  display: block;
+}
+
+.v2-area-card {
+  padding: 30px;
+}
+
+.v2-city-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 11px;
+  margin: 24px 0 28px;
+}
+
+.v2-city-list a {
+  padding: 10px 12px;
+  border: 1px solid var(--v2-line);
+  border-radius: 9px;
+  color: #dce1e6;
+  text-decoration: none;
+  text-align: center;
+  font-size: 0.91rem;
+}
+
+.v2-city-list a:hover {
+  border-color: var(--v2-gold);
+  color: var(--v2-gold-2);
+}
+
+.v2-faq {
+  display: grid;
+  gap: 12px;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.v2-faq details {
+  border: 1px solid #d4d0c6;
+  border-radius: 13px;
+  background: #ffffff;
+  padding: 0 21px;
+}
+
+.v2-faq summary {
+  cursor: pointer;
+  padding: 21px 0;
+  font-weight: 800;
+  list-style: none;
+}
+
+.v2-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.v2-faq p {
+  margin: 0 0 21px;
+  color: #5b6269;
+  line-height: 1.7;
+}
+
+.v2-final-cta {
+  position: relative;
+  padding: 90px 0;
+  background:
+    linear-gradient(90deg, rgba(7, 9, 11, 0.98), rgba(7, 9, 11, 0.7)),
+    url("commercial-interior.jpg") center / cover no-repeat;
+}
+
+.v2-final-cta-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 30px;
+  align-items: center;
+}
+
+.v2-final-cta h2 {
+  margin: 0;
+  max-width: 760px;
+  font-size: clamp(2.7rem, 5vw, 5rem);
+  line-height: 0.96;
+}
+
+.v2-final-cta p {
+  margin: 16px 0 0;
+  color: #d1d7dd;
+  font-size: 1.05rem;
+}
+
+.v2-preview-note {
+  padding: 12px 18px;
+  background: #f0c76a;
+  color: #141619;
+  text-align: center;
+  font-weight: 800;
+}
+
+@media (max-width: 1050px) {
+  .v2-hero-grid,
+  .v2-advantage-grid,
+  .v2-area-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .v2-hero-copy {
+    max-width: none;
+  }
+
+  .v2-lead-card {
+    max-width: 720px;
+  }
+
+  .v2-services-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .v2-project-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .v2-project-card:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .v2-section {
+    padding: 68px 0;
+  }
+
+  .v2-hero {
+    min-height: auto;
+    padding: 62px 0;
+    background-position: 63% center;
+  }
+
+  .v2-hero-grid {
+    gap: 28px;
+  }
+
+  .v2-hero h1 {
+    font-size: clamp(3.4rem, 18vw, 5.2rem);
+  }
+
+  .v2-trust-row,
+  .v2-proof-grid,
+  .v2-services-grid,
+  .v2-process-grid,
+  .v2-project-grid,
+  .v2-reviews-grid,
+  .v2-city-list,
+  .v2-final-cta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .v2-proof-stat {
+    border-left: 0;
+    border-top: 1px solid var(--v2-line);
+  }
+
+  .v2-section-head {
+    display: block;
+  }
+
+  .v2-section-head .v2-btn {
+    margin-top: 22px;
+  }
+
+  .v2-project-card:first-child {
+    grid-column: auto;
+  }
+
+  .v2-project-card {
+    min-height: 360px;
+  }
+
+  .v2-advantage-image {
+    min-height: 420px;
+  }
+
+  .v2-map-card iframe {
+    min-height: 330px;
+  }
+}
