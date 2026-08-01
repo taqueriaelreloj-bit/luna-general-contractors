@@ -10,6 +10,33 @@ ROOT = Path(__file__).resolve().parent.parent
 DOMAIN = "https://lunageneralcontractors.com"
 IGNORE_SCHEMES = ("mailto:", "tel:", "javascript:", "data:")
 
+REQUIRED_HEADER_MARKERS = (
+    'class="site-header"',
+    'class="brand"',
+    'class="brand-moon"',
+    'class="brand-copy"',
+    'LUNA',
+    'GENERAL CONTRACTORS',
+    'Roofing • Remodeling • Restoration',
+    'class="main-nav"',
+    'Call Now for a Free Estimate',
+    '(817) 784-5998',
+    'English & Spanish',
+    'class="trade-bar"',
+    'href="roofing.html"',
+    'href="mitigation.html"',
+    'href="insurance-claims.html"',
+    'href="kitchens.html"',
+    'href="bathrooms.html"',
+    'href="flooring.html"',
+    'href="painting.html"',
+    'href="drywall.html"',
+    'href="siding.html"',
+    'href="carpentry.html"',
+    'href="fencing.html"',
+    'href="commercial.html"',
+)
+
 
 def local_target(current: Path, href: str) -> Path | None:
     href = href.strip()
@@ -78,6 +105,14 @@ def main() -> None:
     html_files = sorted(ROOT.glob("*.html"))
     for page in html_files:
         html = page.read_text(encoding="utf-8")
+
+        missing_header_markers = [marker for marker in REQUIRED_HEADER_MARKERS if marker not in html]
+        if missing_header_markers:
+            raise SystemExit(
+                f"{page.name}: incomplete Luna header; missing {missing_header_markers[0]} "
+                f"({len(missing_header_markers)} header requirements missing)"
+            )
+
         title_match = re.search(r"<title>(.*?)</title>", html, re.I | re.S)
         canonical_match = re.search(r'<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']+)', html, re.I)
         if not title_match:
@@ -111,8 +146,9 @@ def main() -> None:
         raise SystemExit(f"Broken internal link in {page}: {href} ({len(broken)} total)")
 
     print(
-        f"Validated {len(generated)} local pages, {len(articles)} generated articles, "
-        f"{len(html_files)} root HTML files, {len(urls)} sitemap URLs and all internal links."
+        f"Validated the complete Luna header on {len(html_files)} HTML pages, "
+        f"{len(generated)} local pages, {len(articles)} generated articles, "
+        f"{len(urls)} sitemap URLs and all internal links."
     )
 
 
