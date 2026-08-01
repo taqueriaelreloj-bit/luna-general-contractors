@@ -1,0 +1,10 @@
+{
+  "name": "Concrete Driveways",
+  "slug": "concrete-driveways",
+  "summary": "Concrete driveway installation and replacement with site preparation, forms, reinforcement, proper slope, finishing and cleanup.",
+  "features": ["Driveway replacement","New concrete driveways","Site preparation","Reinforcement","Drainage and slope","Broom and decorative finishes"],
+  "faqs": [
+    {"question":"What affects the cost of a concrete driveway?","answer":"Cost depends on square footage, thickness, reinforcement, demolition, access, grading, drainage, finish and local requirements."},
+    {"question":"How long before a new driveway can be used?","answer":"Curing time varies by conditions and concrete mix. Light foot traffic may be possible sooner, while vehicle use generally requires a longer curing period."}
+  ]
+}
