@@ -1383,3 +1383,21 @@ a {
 .trade-cta .btn{min-width:235px;white-space:nowrap;text-align:center}
 @media(max-width:1024px){.trade-bar-inner{justify-content:flex-start}.trade-overview-grid{grid-template-columns:1fr;gap:35px}}
 @media(max-width:760px){.trade-bar a{padding:9px 11px;font-size:.62rem}.trade-hero{min-height:520px}.trade-hero-copy{padding-block:70px}.trade-list{grid-template-columns:1fr}.trade-cta .container{align-items:flex-start;flex-direction:column}.trade-cta .btn{width:100%;min-width:0}.trade-gallery{min-height:clamp(320px,125vw,560px)}.gallery-slot figcaption{padding:75px 58px 18px}.gallery-slot figcaption strong{font-size:1.15rem}.gallery-slot figcaption small{font-size:.68rem}.showcase-arrow{width:40px;height:56px;font-size:1.9rem}.showcase-prev{left:8px}.showcase-next{right:8px}.showcase-counter{top:8px;right:8px}.showcase-thumbnail{flex-basis:82px;height:56px}}
+
+
+/* Complete estimate form shared by every internal page */
+.global-estimate-section {
+  padding: clamp(56px, 7vw, 92px) 0;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(240, 169, 0, 0.12), transparent 42%),
+    #090b0d;
+}
+
+.global-estimate-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.global-estimate-wrap .estimate-card {
+  width: min(100%, 520px);
+}
