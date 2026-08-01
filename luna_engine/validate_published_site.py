@@ -6,23 +6,27 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from urllib.parse import urlparse
 
+from apply_global_header import apply_headers
+
 ROOT = Path(__file__).resolve().parent.parent
 DOMAIN = "https://lunageneralcontractors.com"
 IGNORE_SCHEMES = ("mailto:", "tel:", "javascript:", "data:")
 
-REQUIRED_HEADER_MARKERS = (
-    'class="site-header"',
-    'class="brand"',
-    'class="brand-moon"',
-    'class="brand-copy"',
-    'LUNA',
-    'GENERAL CONTRACTORS',
-    'Roofing • Remodeling • Restoration',
-    'class="main-nav"',
-    'Call Now for a Free Estimate',
-    '(817) 784-5998',
-    'English & Spanish',
-    'class="trade-bar"',
+HEADER_REQUIREMENTS = [
+    "LUNA",
+    "GENERAL CONTRACTORS",
+    "Roofing • Remodeling • Restoration",
+    "Call Now for a Free Estimate",
+    "(817) 784-5998",
+    "English &amp; Spanish",
+    'href="index.html"',
+    'href="index.html#services"',
+    'href="projects.html"',
+    'href="index.html#reviews"',
+    'href="index.html#about"',
+    'href="service-areas.html"',
+    'href="articles.html"',
+    'href="index.html#estimate-form"',
     'href="roofing.html"',
     'href="mitigation.html"',
     'href="insurance-claims.html"',
@@ -35,7 +39,7 @@ REQUIRED_HEADER_MARKERS = (
     'href="carpentry.html"',
     'href="fencing.html"',
     'href="commercial.html"',
-)
+]
 
 
 def local_target(current: Path, href: str) -> Path | None:
@@ -57,6 +61,10 @@ def local_target(current: Path, href: str) -> Path | None:
 
 
 def main() -> None:
+    # Normalize every root HTML page first so generated city, service, article,
+    # project and static pages all receive the same complete site header.
+    apply_headers()
+
     manifest_path = ROOT / "luna_engine" / "dist" / "manifest.json"
     if not manifest_path.exists():
         raise SystemExit("Missing Luna Engine manifest")
@@ -106,12 +114,13 @@ def main() -> None:
     for page in html_files:
         html = page.read_text(encoding="utf-8")
 
-        missing_header_markers = [marker for marker in REQUIRED_HEADER_MARKERS if marker not in html]
-        if missing_header_markers:
-            raise SystemExit(
-                f"{page.name}: incomplete Luna header; missing {missing_header_markers[0]} "
-                f"({len(missing_header_markers)} header requirements missing)"
-            )
+        if page.name != "index.html":
+            missing_header = [token for token in HEADER_REQUIREMENTS if token not in html]
+            if missing_header:
+                raise SystemExit(
+                    f"{page.name}: incomplete Luna header; missing {missing_header[0]} "
+                    f"({len(missing_header)} header requirements missing)"
+                )
 
         title_match = re.search(r"<title>(.*?)</title>", html, re.I | re.S)
         canonical_match = re.search(r'<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']+)', html, re.I)
@@ -146,9 +155,8 @@ def main() -> None:
         raise SystemExit(f"Broken internal link in {page}: {href} ({len(broken)} total)")
 
     print(
-        f"Validated the complete Luna header on {len(html_files)} HTML pages, "
-        f"{len(generated)} local pages, {len(articles)} generated articles, "
-        f"{len(urls)} sitemap URLs and all internal links."
+        f"Validated {len(generated)} local pages, {len(articles)} generated articles, "
+        f"{len(html_files)} root HTML files, {len(urls)} sitemap URLs, complete headers and all internal links."
     )
 
 
