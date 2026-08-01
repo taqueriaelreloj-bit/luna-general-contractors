@@ -1,0 +1,10 @@
+{
+  "name": "Foundation Repair",
+  "slug": "foundation-repair",
+  "summary": "Foundation repair coordination for residential and light commercial properties, including evaluation, excavation, support systems, drainage considerations and related interior repairs.",
+  "features": ["Foundation evaluations","Pier installation coordination","Slab and beam repairs","Drainage corrections","Crack repair","Interior finish restoration"],
+  "faqs": [
+    {"question":"What are common signs of foundation problems?","answer":"Common signs include wall or ceiling cracks, sticking doors, uneven floors, separation around windows and visible exterior brick movement."},
+    {"question":"Does every crack mean foundation failure?","answer":"No. Some cracks are cosmetic or caused by normal movement. A qualified evaluation is needed to determine the cause and appropriate repair."}
+  ]
+}
