@@ -107,7 +107,10 @@ jobs:
       - name: Publish pages to site root and update sitemap
         run: python luna_engine/publish.py
 
-      - name: Validate published pages
+      - name: Generate second local SEO article batch
+        run: python luna_engine/build_articles.py
+
+      - name: Validate published pages and articles
         run: |
           python - <<'PY'
           import json
@@ -128,30 +131,48 @@ jobs:
               if 'href="/styles.css"' not in html:
                   raise SystemExit(f"Root stylesheet link missing in {name}")
 
+          article_manifest = root / 'luna_engine/article-manifest.txt'
+          article_pages = [line.strip() for line in article_manifest.read_text(encoding='utf-8').splitlines() if line.strip()]
+          if len(article_pages) != 10:
+              raise SystemExit(f"Expected 10 generated articles, found {len(article_pages)}")
+          article_index = (root / 'articles.html').read_text(encoding='utf-8')
+          for name in article_pages:
+              path = root / name
+              if not path.exists():
+                  raise SystemExit(f"Missing generated article: {name}")
+              html = path.read_text(encoding='utf-8')
+              for token in ('<title>', '<h1>', 'Article', 'BreadcrumbList', 'FAQPage', 'rel="canonical"'):
+                  if token not in html:
+                      raise SystemExit(f"{name}: missing {token}")
+              if f'href="{name}"' not in article_index:
+                  raise SystemExit(f"Article index missing {name}")
+
           tree = ET.parse(root / 'sitemap.xml')
           ns = {'sm': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
           sitemap_urls = {node.text for node in tree.findall('sm:url/sm:loc', ns) if node.text}
-          missing_urls = [f"https://lunageneralcontractors.com/{name}" for name in pages if f"https://lunageneralcontractors.com/{name}" not in sitemap_urls]
+          all_names = pages + article_pages
+          missing_urls = [f"https://lunageneralcontractors.com/{name}" for name in all_names if f"https://lunageneralcontractors.com/{name}" not in sitemap_urls]
           if missing_urls:
               raise SystemExit(f"Sitemap missing {len(missing_urls)} generated URLs; first: {missing_urls[0]}")
-          print(f"Validated {len(pages)} published pages and sitemap coverage.")
+          print(f"Validated {len(pages)} local pages, {len(article_pages)} new articles and sitemap coverage.")
           PY
 
-      - name: Commit generated pages and sitemap
+      - name: Commit generated pages articles and sitemap
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add luna_engine/content/cities luna_engine/dist sitemap.xml
+          git add luna_engine/content/cities luna_engine/dist luna_engine/article-manifest.txt sitemap.xml articles.html
           python - <<'PY' > /tmp/luna-pages.txt
           import json
           from pathlib import Path
           manifest = json.loads(Path('luna_engine/dist/manifest.json').read_text(encoding='utf-8'))
-          print('\n'.join(manifest['pages']))
+          article_pages = [line.strip() for line in Path('luna_engine/article-manifest.txt').read_text(encoding='utf-8').splitlines() if line.strip()]
+          print('\n'.join(manifest['pages'] + article_pages))
           PY
           git add --pathspec-from-file=/tmp/luna-pages.txt
           if git diff --cached --quiet; then
             echo "No Luna Engine changes to commit."
           else
-            git commit -m "Publish all DFW city and service pages [skip ci]"
+            git commit -m "Publish DFW local pages and second article batch [skip ci]"
             git push origin HEAD:main
           fi
