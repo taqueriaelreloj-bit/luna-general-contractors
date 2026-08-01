@@ -1,0 +1,21 @@
+{
+  "status": "draft",
+  "slug": "gray-glass-mosaic-kitchen-backsplash",
+  "title": "Gray Glass Mosaic Kitchen Backsplash",
+  "city": "TBD",
+  "city_slug": "",
+  "service": "Kitchen Remodeling",
+  "service_slug": "kitchen-remodeling",
+  "summary": "Finished kitchen backsplash featuring a gray glass mosaic pattern coordinated with dark wood cabinets and light countertops.",
+  "problem": "The kitchen needed a finished backsplash that would protect the wall and complement the existing cabinets, counters and appliances.",
+  "solution": "Installed a glass mosaic backsplash across the main countertop walls, around outlets and behind cooking and preparation areas, with clean transitions at corners and cabinet edges.",
+  "materials": ["Gray glass mosaic tile", "Tile-setting materials", "Grout", "Electrical finish plates", "Edge and corner finishing materials"],
+  "duration": "TBD",
+  "date_completed": "2018-06-04",
+  "images": [
+    {"src": "project-images/20180604-141728.webp", "alt": "Completed gray glass mosaic kitchen backsplash", "caption": "Wide view of the completed backsplash and kitchen."},
+    {"src": "project-images/20180604-141741.webp", "alt": "Close view of gray glass mosaic backsplash near stove outlet", "caption": "Detailed view of the tile pattern and outlet finish."}
+  ],
+  "source_files": ["20180604_141728.jpg", "20180604_141741.jpg"],
+  "publish_note": "Add the actual city and upload both approved images before changing status to published."
+}
