@@ -1,0 +1,10 @@
+{
+  "name": "Window Replacement",
+  "slug": "window-replacement",
+  "summary": "Window replacement services for improved appearance, operation, weather resistance and energy performance with careful removal, installation, sealing and trim repair.",
+  "features": ["Single and multiple window replacement","Energy-efficient windows","Exterior sealing","Interior trim repair","Rot damage repairs","Final caulking and cleanup"],
+  "faqs": [
+    {"question":"When should residential windows be replaced?","answer":"Replacement may be appropriate when windows leak air or water, have damaged frames, fogged glass, poor operation or no longer meet the homeowner's performance goals."},
+    {"question":"Can windows be replaced without damaging interior walls?","answer":"Many replacements can be completed with limited disturbance, although damaged framing, trim or water intrusion may require additional repairs."}
+  ]
+}
