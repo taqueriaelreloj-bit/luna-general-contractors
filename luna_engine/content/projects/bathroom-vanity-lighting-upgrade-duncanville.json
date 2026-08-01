@@ -1,0 +1,19 @@
+{
+  "status": "published",
+  "slug": "bathroom-vanity-lighting-upgrade-duncanville",
+  "title": "Bathroom Vanity and Lighting Upgrade in Duncanville",
+  "city": "Duncanville",
+  "city_slug": "duncanville",
+  "service": "Bathroom Remodeling",
+  "service_slug": "bathroom-remodeling",
+  "summary": "Bathroom finish upgrade with an oversized mirror, multi-light vanity fixture, refreshed wall color and coordinated electrical finish work.",
+  "problem": "The vanity area needed brighter lighting and a cleaner, more updated appearance around the mirror and countertop.",
+  "solution": "Updated the vanity lighting, completed electrical finish work, refreshed the surrounding wall surfaces and prepared the space for the final bathroom details.",
+  "materials": ["Multi-light vanity fixture", "Electrical finish plates", "Mirror", "Paint and wall repair materials", "Caulk and finish materials"],
+  "duration": "Approximately 1 to 2 days",
+  "date_completed": "2019-02-09",
+  "images": [
+    {"src": "20190209-182516.webp", "alt": "Bathroom vanity mirror and lighting upgrade in Duncanville", "caption": "Vanity area during the lighting and finish upgrade."},
+    {"src": "20190209-182542.webp", "alt": "Updated bathroom vanity light above large mirror", "caption": "Updated vanity lighting and mirror area."}
+  ]
+}
