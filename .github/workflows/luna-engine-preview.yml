@@ -167,15 +167,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add luna_engine/content/cities luna_engine/dist luna_engine/article-manifest.txt sitemap.xml articles.html
-          python - <<'PY' > /tmp/luna-pages.txt
-          import json
-          from pathlib import Path
-          manifest = json.loads(Path('luna_engine/dist/manifest.json').read_text(encoding='utf-8'))
-          article_pages = [line.strip() for line in Path('luna_engine/article-manifest.txt').read_text(encoding='utf-8').splitlines() if line.strip()]
-          print('\n'.join(manifest['pages'] + article_pages))
-          PY
-          git add --pathspec-from-file=/tmp/luna-pages.txt
+
+          # Stage every generated or normalized file so the working tree is clean
+          # before rebase. This includes all pages updated by the shared-header pass.
+          git add -A
+
           if git diff --cached --quiet; then
             echo "No Luna Engine changes to commit."
           else
