@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Luna General Contractors">
   <rect width="64" height="64" rx="12" fill="#090b0d"/>
-  <circle cx="29" cy="32" r="21" fill="#f0a900"/>
-  <circle cx="39" cy="27" r="21" fill="#090b0d"/>
+  <circle cx="27" cy="32" r="23" fill="#f0a900"/>
+  <circle cx="39" cy="25" r="23" fill="#090b0d"/>
 </svg>
