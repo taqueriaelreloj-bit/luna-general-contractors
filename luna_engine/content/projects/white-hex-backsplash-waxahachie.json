@@ -12,5 +12,21 @@
   "materials": ["White hexagon tile", "Tile-setting materials", "Grout", "Edge finishing materials", "Electrical finish plates"],
   "duration": "Approximately 2 days",
   "date_completed": "2018-04-29",
-  "images": []
+  "images": [
+    {
+      "src": "20180414-185531.webp",
+      "alt": "White hexagon tile backsplash installation in progress in Waxahachie Texas",
+      "caption": "Backsplash installation in progress"
+    },
+    {
+      "src": "20180429-113604.webp",
+      "alt": "Completed white hexagon backsplash behind range and microwave in Waxahachie Texas",
+      "caption": "Completed range wall"
+    },
+    {
+      "src": "20180429-113627.webp",
+      "alt": "Finished white hexagon kitchen backsplash detail in Waxahachie Texas",
+      "caption": "Finished tile detail"
+    }
+  ]
 }
