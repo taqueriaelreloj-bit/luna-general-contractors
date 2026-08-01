@@ -298,6 +298,24 @@ if (!isHomePage && !document.querySelector("#estimate-form")) {
   if (main) main.appendChild(globalEstimateSection);
 }
 
+// Add optional project-photo uploads to every Formspree estimate form.
+document.querySelectorAll('form[action*="formspree.io"]').forEach((form) => {
+  form.enctype = "multipart/form-data";
+  if (form.querySelector('input[type="file"]')) return;
+
+  const photoField = document.createElement("label");
+  photoField.className = "photo-upload-field";
+  photoField.innerHTML = `
+    <span>Upload Project Photos <small>(Optional)</small></span>
+    <input type="file" name="project_photos" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" multiple />
+    <small class="photo-upload-help">JPG, PNG, WEBP or HEIC · You can select multiple photos</small>
+  `;
+
+  const submitButton = form.querySelector('button[type="submit"]');
+  if (submitButton) form.insertBefore(photoField, submitButton);
+  else form.appendChild(photoField);
+});
+ 
 const estimateForm = document.querySelector("#estimate-form");
 const formMessage = document.querySelector(".form-message");
 
