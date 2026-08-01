@@ -1,10 +1,31 @@
 {
   "name": "Insurance Claims",
   "slug": "insurance-claims",
-  "summary": "Property repair and reconstruction for approved insurance scopes involving storm, roofing and water-related damage.",
-  "features": ["Damage documentation support","Scope review","Roofing repairs","Interior reconstruction","Exterior restoration","Project coordination"],
+  "summary": "Property repair and reconstruction for approved insurance scopes involving hail, wind, roofing, water and interior damage. Luna General Contractors helps homeowners move from the insurer's repair estimate to a coordinated construction plan and completed build-back.",
+  "features": [
+    "Review of approved insurance repair scopes",
+    "Roofing, siding, fascia and exterior restoration",
+    "Drywall, texture, paint and trim replacement",
+    "Flooring, cabinet and interior build-back",
+    "Documentation of construction-related site conditions",
+    "Coordination of multiple trades through completion"
+  ],
   "faqs": [
-    {"question":"Do you act as a public adjuster?","answer":"No. We provide construction estimates and complete approved repairs; coverage decisions and policy interpretation remain with the insurer and policyholder."},
-    {"question":"Can you work from an insurance estimate?","answer":"Yes. We can review the approved construction scope, inspect site conditions and discuss the repair plan with the property owner."}
+    {
+      "question": "Do you act as a public adjuster?",
+      "answer": "No. Luna General Contractors is a construction company. We prepare construction estimates, review repair scopes and complete approved repairs, while coverage decisions and policy interpretation remain with the insurer and policyholder."
+    },
+    {
+      "question": "Can you work from an insurance company estimate?",
+      "answer": "Yes. We can review the approved construction scope, compare it with visible site conditions and organize the roofing, exterior or interior repairs included in the project."
+    },
+    {
+      "question": "What types of insurance-related repairs do you handle?",
+      "answer": "Projects may include hail and wind repairs, roofing, siding, fascia, drywall, ceilings, texture, painting, trim, flooring, cabinets and water-damage reconstruction after the property has been stabilized."
+    },
+    {
+      "question": "Can one contractor coordinate several approved trades?",
+      "answer": "Yes. When the approved scope involves multiple trades, we can coordinate the construction sequence so roofing, drywall, paint, trim, flooring and related repairs are completed under one project plan."
+    }
   ]
 }
