@@ -157,6 +157,9 @@ jobs:
           print(f"Validated {len(pages)} local pages, {len(article_pages)} new articles and sitemap coverage.")
           PY
 
+      - name: Audit technical SEO sitemap robots and internal links
+        run: python luna_engine/validate_published_site.py
+
       - name: Commit generated pages articles and sitemap
         run: |
           git config user.name "github-actions[bot]"
