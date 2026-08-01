@@ -27,7 +27,7 @@ SERVICES = {
     "bathroom-remodeling": ("Bathroom Remodeling", "showers, tile, vanities, lighting, flooring and complete bathroom renovations"),
     "kitchen-remodeling": ("Kitchen Remodeling", "cabinets, countertops, backsplashes, flooring, lighting and layout improvements"),
     "flooring": ("Flooring", "luxury vinyl plank, engineered wood, laminate, tile and flooring repairs"),
-    "painting": ("Painting", "interior painting, exterior painting, trim, doors and surface preparation"),
+    "painting": ("Painting Services", "professional painters for interior painting, exterior painting, trim, doors and surface preparation"),
     "drywall": ("Drywall", "drywall installation, repairs, tape, texture matching and ceiling work"),
     "siding": ("Siding", "siding repair, replacement, soffit, fascia and exterior trim"),
     "carpentry": ("Carpentry", "trim, doors, framing, cabinets, built-ins and custom wood repairs"),
