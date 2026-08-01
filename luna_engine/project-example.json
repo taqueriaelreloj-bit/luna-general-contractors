@@ -1,0 +1,32 @@
+{
+  "status": "draft",
+  "slug": "bathroom-remodel-midlothian-001",
+  "title": "Primary Bathroom Remodel in Midlothian, TX",
+  "meta_description": "See a real Luna General Contractors bathroom remodeling project in Midlothian, Texas.",
+  "city": "Midlothian",
+  "city_slug": "midlothian",
+  "service": "Bathroom Remodeling",
+  "service_slug": "bathroom-remodeling",
+  "summary": "Brief factual summary of the completed project.",
+  "problem": "Describe the actual condition before work began.",
+  "solution": "Describe the actual work completed without exaggeration.",
+  "materials": [
+    "Waterproofing system",
+    "Tile and grout",
+    "Plumbing fixtures"
+  ],
+  "duration": "Approximately 3 weeks",
+  "date_completed": "2026-07-01",
+  "images": [
+    {
+      "src": "project-photo-before.webp",
+      "alt": "Bathroom before remodeling in Midlothian Texas",
+      "caption": "Before construction"
+    },
+    {
+      "src": "project-photo-after.webp",
+      "alt": "Completed bathroom remodel in Midlothian Texas",
+      "caption": "Completed project"
+    }
+  ]
+}
