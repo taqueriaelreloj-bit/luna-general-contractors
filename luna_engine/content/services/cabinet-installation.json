@@ -1,0 +1,10 @@
+{
+  "name": "Cabinet Installation",
+  "slug": "cabinet-installation",
+  "summary": "Kitchen, bathroom and storage cabinet installation with layout verification, leveling, fastening, fillers, trim, hardware and coordination with countertops and appliances.",
+  "features": ["Kitchen cabinets","Bathroom vanities","Utility and storage cabinets","Cabinet layout and leveling","Fillers and trim","Hardware installation"],
+  "faqs": [
+    {"question":"What should be completed before cabinet installation?","answer":"Measurements, layout, wall condition, plumbing, electrical locations, flooring strategy and appliance dimensions should be confirmed before installation begins."},
+    {"question":"Can new cabinets be installed in an existing kitchen layout?","answer":"Yes. Cabinets can follow the existing layout or be reconfigured when plumbing, electrical, clearances and countertop requirements allow."}
+  ]
+}
