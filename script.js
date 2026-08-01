@@ -316,7 +316,7 @@ document.querySelectorAll('form[action*="formspree.io"]').forEach((form) => {
   else form.appendChild(photoField);
 });
  
-const estimateForm = document.querySelector("#estimate-form");
+const estimateForm = document.querySelector("form#estimate-form, #estimate-form form, form.estimate-form");
 const formMessage = document.querySelector(".form-message");
 
 estimateForm?.addEventListener("submit", async (event) => {
