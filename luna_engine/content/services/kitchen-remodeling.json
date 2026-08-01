@@ -1,10 +1,33 @@
 {
   "name": "Kitchen Remodeling",
   "slug": "kitchen-remodeling",
-  "summary": "Kitchen renovations with coordinated cabinets, countertops, backsplashes, flooring, lighting, plumbing fixtures and layout improvements.",
-  "features": ["Cabinet installation","Quartz countertops","Tile backsplashes","Kitchen islands","Lighting upgrades","Flooring and paint"],
+  "summary": "Complete kitchen remodeling with coordinated demolition, layout improvements, cabinets, countertops, backsplashes, flooring, lighting, plumbing fixtures, drywall, paint and finish carpentry for homes throughout Dallas-Fort Worth.",
+  "features": [
+    "Kitchen layout improvements",
+    "Cabinet installation and refinishing",
+    "Quartz and granite countertops",
+    "Kitchen islands and pantry upgrades",
+    "Backsplash and tile installation",
+    "Lighting and electrical coordination",
+    "Plumbing fixture updates",
+    "Flooring, drywall, trim and paint"
+  ],
   "faqs": [
-    {"question":"What should be planned before a kitchen remodel begins?","answer":"The scope should address layout, cabinets, appliances, electrical, plumbing, countertops, flooring, lighting, permits and material lead times."},
-    {"question":"Can a kitchen remain usable during remodeling?","answer":"Limited use may be possible during some phases, but demolition, plumbing and countertop work often require a temporary kitchen arrangement."}
+    {
+      "question": "What should be planned before a kitchen remodel begins?",
+      "answer": "The project scope should address layout, cabinets, appliances, electrical, plumbing, countertops, backsplash, flooring, lighting, permits, selections and material lead times before demolition begins."
+    },
+    {
+      "question": "Can Luna General Contractors coordinate the complete kitchen remodel?",
+      "answer": "Yes. We can coordinate demolition, framing adjustments, drywall, cabinets, countertops, tile, flooring, painting, finish carpentry and the required plumbing and electrical trades under one organized project."
+    },
+    {
+      "question": "Can a kitchen remain usable during remodeling?",
+      "answer": "Limited use may be possible during some phases, but demolition, plumbing, electrical, cabinet and countertop work often require a temporary kitchen arrangement."
+    },
+    {
+      "question": "Can you install new cabinets without changing the entire floor plan?",
+      "answer": "Yes. Many projects keep the existing kitchen footprint while replacing cabinets, countertops, backsplash, fixtures, lighting and finishes. Layout changes can also be evaluated when the owner wants an island, pantry or more open design."
+    }
   ]
 }
