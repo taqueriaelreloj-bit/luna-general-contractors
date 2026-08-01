@@ -1,0 +1,10 @@
+{
+  "name": "Room Additions",
+  "slug": "room-additions",
+  "summary": "Residential room additions planned to expand living space with coordinated foundations, framing, roofing, insulation, drywall, electrical, plumbing and interior finishes.",
+  "features": ["Bedroom additions","Family rooms","Home offices","Foundation and framing","Roof tie-ins","Interior finish work"],
+  "faqs": [
+    {"question":"Do room additions require permits?","answer":"Most room additions require plans, permits and inspections. Requirements depend on the city, project size, structure and utility work involved."},
+    {"question":"Can an addition match the existing home?","answer":"The design can coordinate rooflines, exterior materials, trim, flooring, paint and interior finishes to create a consistent transition."}
+  ]
+}
