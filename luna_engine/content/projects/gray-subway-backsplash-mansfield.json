@@ -12,5 +12,11 @@
   "materials": ["Gray subway tile", "Tile-setting materials", "Grout", "Edge trim", "Electrical finish plates"],
   "duration": "Approximately 2 days",
   "date_completed": "2018-05-30",
-  "images": []
+  "images": [
+    {
+      "src": "20180530-181936.webp",
+      "alt": "Gray subway tile kitchen backsplash installation in Mansfield Texas",
+      "caption": "Tile installation and protected work area"
+    }
+  ]
 }
