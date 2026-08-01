@@ -398,15 +398,15 @@ if (!isHomePage) {
             <h3>Service Areas</h3>
             <a href="service-areas.html">View All Service Areas</a>
             <a href="articles.html">Resources</a>
-            <a href="index.html#estimate-form">Dallas, TX</a>
-            <a href="index.html#estimate-form">Fort Worth, TX</a>
-            <a href="index.html#estimate-form">Midlothian, TX</a>
-            <a href="index.html#estimate-form">Mansfield, TX</a>
-            <a href="index.html#estimate-form">Arlington, TX</a>
-            <a href="index.html#estimate-form">Grand Prairie, TX</a>
-            <a href="index.html#estimate-form">Keller, TX</a>
-            <a href="index.html#estimate-form">Irving, TX</a>
-            <a href="index.html#estimate-form">Lewisville, TX</a>
+            <a href="dallas.html">Dallas, TX</a>
+            <a href="fort-worth.html">Fort Worth, TX</a>
+            <a href="midlothian.html">Midlothian, TX</a>
+            <a href="mansfield.html">Mansfield, TX</a>
+            <a href="arlington.html">Arlington, TX</a>
+            <a href="grand-prairie.html">Grand Prairie, TX</a>
+            <a href="keller.html">Keller, TX</a>
+            <a href="irving.html">Irving, TX</a>
+            <a href="lewisville.html">Lewisville, TX</a>
           </div>
 
           <div>
