@@ -1,0 +1,20 @@
+{
+  "status": "published",
+  "slug": "custom-tile-tub-shower-cedar-hill",
+  "title": "Custom Tile Tub and Shower Remodel in Cedar Hill",
+  "city": "Cedar Hill",
+  "city_slug": "cedar-hill",
+  "service": "Bathroom Remodeling",
+  "service_slug": "bathroom-remodeling",
+  "summary": "Tub and shower renovation featuring large-format wall tile, a recessed niche, updated lighting and a refreshed enclosure area.",
+  "problem": "The original fiberglass shower and enclosure looked dated and did not provide the custom tile finish or storage the homeowner wanted.",
+  "solution": "Removed the existing enclosure, prepared the walls, installed large-format tile with a recessed niche and completed the surrounding bathroom finish work.",
+  "materials": ["Large-format wall tile", "Tile leveling system", "Recessed shower niche", "Waterproofing materials", "Grout", "Trim and finish materials", "Bathroom lighting"],
+  "duration": "Approximately 1 to 2 weeks",
+  "date_completed": "2018-11-22",
+  "images": [
+    {"src": "20181122-084133.webp", "alt": "Original fiberglass shower enclosure before remodel in Cedar Hill", "caption": "Existing shower before demolition."},
+    {"src": "20181122-084149.webp", "alt": "Original sliding shower doors before bathroom renovation", "caption": "Original enclosure and shower doors."},
+    {"src": "20181122-084234.webp", "alt": "Large-format shower tile and recessed niche during installation", "caption": "Tile installation in progress."}
+  ]
+}
