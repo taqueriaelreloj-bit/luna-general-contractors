@@ -1,0 +1,10 @@
+{
+  "name": "Pergolas",
+  "slug": "pergolas",
+  "summary": "Custom pergola construction for patios, gardens and outdoor seating areas using coordinated posts, beams, rafters, finishes and optional lighting.",
+  "features": ["Wood pergolas","Attached pergolas","Freestanding pergolas","Decorative rafters","Stain and paint finishes","Lighting coordination"],
+  "faqs": [
+    {"question":"What is the difference between a pergola and a patio cover?","answer":"A pergola typically uses an open rafter design for partial shade, while a patio cover generally has a solid roof for greater weather protection."},
+    {"question":"Can a pergola be attached to the house?","answer":"Yes, depending on the wall, roofline, foundation and structural requirements. Freestanding designs are also available."}
+  ]
+}
