@@ -6,6 +6,7 @@ on:
     paths:
       - "luna_engine/content/projects/**"
       - "luna_engine/build_projects.py"
+      - "luna_engine/link_projects_to_service_pages.py"
       - "luna_engine/project-example.json"
       - ".github/workflows/build-project-case-studies.yml"
 
@@ -33,7 +34,10 @@ jobs:
       - name: Build approved real project pages
         run: python luna_engine/build_projects.py
 
-      - name: Validate project pages index and sitemap
+      - name: Link projects from city service pages
+        run: python luna_engine/link_projects_to_service_pages.py
+
+      - name: Validate project pages index sitemap and local links
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -42,10 +46,13 @@ jobs:
           root = Path('.')
           index = root / 'projects.html'
           manifest = root / 'luna_engine/project-manifest.txt'
+          linked_manifest = root / 'luna_engine/project-linked-pages.txt'
           if not index.exists():
               raise SystemExit('Missing projects.html')
           if not manifest.exists():
               raise SystemExit('Missing project manifest')
+          if not linked_manifest.exists():
+              raise SystemExit('Missing project-linked-pages manifest')
 
           index_html = index.read_text(encoding='utf-8')
           required_index = ('<title>', '<h1>', 'rel="canonical"', 'Construction and Remodeling Projects')
@@ -65,6 +72,12 @@ jobs:
               if f'href="{name}"' not in index_html:
                   raise SystemExit(f'Project index missing link to {name}')
 
+          linked_pages = [line.strip() for line in linked_manifest.read_text(encoding='utf-8').splitlines() if line.strip()]
+          for name in linked_pages:
+              html = (root / name).read_text(encoding='utf-8')
+              if 'LUNA_PROJECTS_START' not in html or 'Related Projects in This Area' not in html:
+                  raise SystemExit(f'{name}: missing related-project section')
+
           tree = ET.parse(root / 'sitemap.xml')
           ns = {'sm': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
           urls = {node.text for node in tree.findall('sm:url/sm:loc', ns) if node.text}
@@ -73,20 +86,23 @@ jobs:
           if missing_urls:
               raise SystemExit(f'Sitemap missing project URL: {missing_urls[0]}')
 
-          print(f'Validated projects index and {len(project_pages)} approved real project case studies.')
+          print(f'Validated projects index, {len(project_pages)} case studies and {len(linked_pages)} linked service pages.')
           PY
 
-      - name: Commit generated project pages
+      - name: Commit generated project pages and local links
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add projects.html sitemap.xml luna_engine/project-manifest.txt
+          git add projects.html sitemap.xml luna_engine/project-manifest.txt luna_engine/project-linked-pages.txt
           if [ -s luna_engine/project-manifest.txt ]; then
             git add --pathspec-from-file=luna_engine/project-manifest.txt
+          fi
+          if [ -s luna_engine/project-linked-pages.txt ]; then
+            git add --pathspec-from-file=luna_engine/project-linked-pages.txt
           fi
           if git diff --cached --quiet; then
             echo "No project changes to commit."
           else
-            git commit -m "Publish approved real project case studies [skip ci]"
+            git commit -m "Publish project case studies and local service links [skip ci]"
             git push origin HEAD:main
           fi
