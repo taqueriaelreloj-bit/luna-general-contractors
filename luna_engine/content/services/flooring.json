@@ -1,10 +1,37 @@
 {
   "name": "Flooring",
   "slug": "flooring",
-  "summary": "Flooring installation and repair for luxury vinyl plank, engineered wood, laminate, tile, baseboards and transitions.",
-  "features": ["Luxury vinyl plank","Engineered wood","Laminate flooring","Tile installation","Baseboards and transitions","Subfloor evaluation"],
+  "summary": "Professional flooring installation, replacement and repair for luxury vinyl plank, engineered wood, laminate, tile, baseboards, transitions and subfloor preparation throughout Dallas–Fort Worth.",
+  "features": [
+    "Luxury vinyl plank installation",
+    "Engineered wood and laminate flooring",
+    "Ceramic and porcelain tile",
+    "Floor removal and replacement",
+    "Subfloor patching and leveling",
+    "Baseboards, shoe molding and transitions",
+    "Moisture-damage flooring replacement",
+    "Individual plank and tile repairs"
+  ],
   "faqs": [
-    {"question":"Which flooring works well for busy households?","answer":"Luxury vinyl plank and quality tile are popular because they provide durable surfaces and practical maintenance for active homes."},
-    {"question":"Do floors need leveling before installation?","answer":"Some properties require patching or leveling so the finished floor performs correctly. The condition must be evaluated before installation."}
+    {
+      "question": "Which flooring works well for busy households?",
+      "answer": "Luxury vinyl plank and quality porcelain tile are popular for active homes because they provide durable surfaces, practical maintenance and a wide range of styles. The best option also depends on moisture exposure, pets, traffic and the condition of the subfloor."
+    },
+    {
+      "question": "Do floors need leveling before installation?",
+      "answer": "Some properties require patching, grinding or leveling so the finished floor lies flat and performs correctly. The existing surface and subfloor should be evaluated before installation begins."
+    },
+    {
+      "question": "Can damaged flooring be repaired without replacing the entire room?",
+      "answer": "Sometimes. Individual planks, tiles, transitions or small sections may be replaceable when matching material is available and the surrounding floor is still in good condition."
+    },
+    {
+      "question": "Can you replace flooring after a water-damage loss?",
+      "answer": "Yes. After the affected area has been stabilized and properly dried, flooring, underlayment, baseboards and related finishes can be replaced as part of the reconstruction scope."
+    },
+    {
+      "question": "What is included in a complete flooring installation?",
+      "answer": "A complete scope may include removal, disposal, subfloor preparation, underlayment, flooring installation, transitions, baseboards or shoe molding, caulking and final cleanup, depending on the project."
+    }
   ]
 }
