@@ -1,0 +1,10 @@
+{
+  "name": "Whole Home Remodeling",
+  "slug": "whole-home-remodeling",
+  "summary": "Complete home remodeling services coordinating kitchens, bathrooms, flooring, drywall, painting, carpentry, electrical, plumbing and layout improvements.",
+  "features": ["Full interior renovations","Kitchen and bathroom updates","Flooring and paint","Drywall and carpentry","Electrical and plumbing coordination","Project planning and sequencing"],
+  "faqs": [
+    {"question":"What is included in a whole home remodel?","answer":"A whole home remodel may include layout changes, kitchens, bathrooms, flooring, drywall, painting, carpentry, lighting, plumbing fixtures and finish upgrades based on the approved scope."},
+    {"question":"Can remodeling be completed in phases?","answer":"Yes. Larger renovations can be divided into logical phases to manage budget, scheduling and access to the home."}
+  ]
+}
