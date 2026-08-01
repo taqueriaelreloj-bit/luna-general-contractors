@@ -1,10 +1,33 @@
 {
   "name": "Siding",
   "slug": "siding",
-  "summary": "Siding, soffit, fascia and exterior trim repairs or replacement to protect and improve residential and commercial properties.",
-  "features": ["Siding repairs","Siding replacement","Soffit and fascia work","Exterior trim repairs","Storm-damage restoration","Painting and sealing"],
+  "summary": "Siding repair and replacement, soffit, fascia, exterior trim, sealing and storm-damage restoration for residential and commercial properties across Dallas–Fort Worth.",
+  "features": [
+    "Siding repairs and partial replacement",
+    "Full siding replacement",
+    "Soffit and fascia repair",
+    "Exterior trim and corner boards",
+    "Storm, hail and wind damage restoration",
+    "Caulking, sealing, priming and painting",
+    "Rotten wood and moisture-damaged material replacement",
+    "Coordination with roofing and exterior repairs"
+  ],
   "faqs": [
-    {"question":"When should damaged siding be replaced instead of repaired?","answer":"Replacement may be recommended when damage is widespread, materials are deteriorated or matching repairs would not provide a durable result."},
-    {"question":"Can siding damage lead to water intrusion?","answer":"Yes. Open joints, cracks and missing sections can allow moisture behind the exterior finish and should be evaluated promptly."}
+    {
+      "question": "When should damaged siding be replaced instead of repaired?",
+      "answer": "Replacement may be recommended when damage is widespread, materials are deteriorated, moisture has reached the sheathing or matching repairs would not provide a durable and consistent result."
+    },
+    {
+      "question": "Can siding damage lead to water intrusion?",
+      "answer": "Yes. Open joints, cracks, missing panels, failed caulking and damaged trim can allow moisture behind the exterior finish and should be evaluated promptly."
+    },
+    {
+      "question": "Can you repair soffit, fascia and exterior trim with the siding project?",
+      "answer": "Yes. Related exterior components can be inspected and included in the same repair scope when they are damaged, deteriorated or contributing to water entry."
+    },
+    {
+      "question": "Do siding repairs include painting and sealing?",
+      "answer": "When included in the scope, repaired or replaced areas can be caulked, primed, painted and sealed so the exterior has a finished and weather-resistant result."
+    }
   ]
 }
