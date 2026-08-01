@@ -1,10 +1,37 @@
 {
   "name": "Drywall",
   "slug": "drywall",
-  "summary": "Drywall installation, repairs, tape and float, texture matching and ceiling restoration for remodeling and property-damage projects.",
-  "features": ["Drywall installation","Hole and crack repairs","Tape, float and finishing","Texture matching","Ceiling repairs","Water-damage reconstruction"],
+  "summary": "Drywall installation, repair and finishing for remodels, additions and property-damage reconstruction, including hanging, tape and float, texture matching, ceiling restoration and paint-ready surfaces.",
+  "features": [
+    "New drywall installation",
+    "Hole, crack and seam repairs",
+    "Tape, float and smooth finishing",
+    "Texture matching and retexturing",
+    "Ceiling and soffit repairs",
+    "Water-damage drywall replacement",
+    "Access-panel and plumbing-cut repairs",
+    "Paint-ready wall preparation"
+  ],
   "faqs": [
-    {"question":"Can you match an existing wall texture?","answer":"Yes. We evaluate the existing finish and use the closest practical texture and paint process for a consistent repair."},
-    {"question":"Do you repair drywall after plumbing leaks?","answer":"Yes. After the moisture source is corrected and affected materials are dry, we can replace drywall, texture and repaint the area."}
+    {
+      "question": "Can you match an existing wall or ceiling texture?",
+      "answer": "Yes. We evaluate the existing finish and use the closest practical application method for orange peel, knockdown, hand texture or smooth-wall repairs. Exact matching can depend on the age and previous paint layers."
+    },
+    {
+      "question": "Do you repair drywall after plumbing or roof leaks?",
+      "answer": "Yes. After the leak is corrected and the area is properly dried, damaged drywall and insulation can be removed and replaced, then taped, floated, textured, primed and painted as required by the repair scope."
+    },
+    {
+      "question": "Can you repair only the damaged section instead of replacing the entire wall?",
+      "answer": "Often yes. Localized holes, access cuts, cracks and damaged panels can usually be patched or replaced in sections when the surrounding drywall remains sound."
+    },
+    {
+      "question": "What is included in a complete drywall installation?",
+      "answer": "A complete scope may include measuring, hanging drywall, corner bead, tape, joint compound, multiple finish coats, sanding, texture, cleanup and preparation for primer and paint."
+    },
+    {
+      "question": "Do you handle drywall for room additions and whole-home remodels?",
+      "answer": "Yes. We can coordinate drywall installation and finishing for new walls, ceilings, remodels, additions, commercial spaces and multi-room reconstruction projects."
+    }
   ]
 }
