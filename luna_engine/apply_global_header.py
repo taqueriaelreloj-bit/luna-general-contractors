@@ -24,7 +24,7 @@ HEADER = '''<header class="site-header" id="page-top">
       <a href="index.html">Home</a>
       <a href="index.html#services">Services</a>
       <a href="projects.html">Projects</a>
-      <a href="index.html#reviews">Reviews</a>
+      <a href="reviews.html">Reviews</a>
       <a href="index.html#about">About</a>
       <a href="service-areas.html">Service Areas</a>
       <a href="articles.html">Resources</a>
