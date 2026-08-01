@@ -110,6 +110,9 @@ jobs:
       - name: Generate second local SEO article batch
         run: python luna_engine/build_articles.py
 
+      - name: Generate third local SEO article batch
+        run: python luna_engine/build_articles_batch3.py
+
       - name: Validate published pages and articles
         run: |
           python - <<'PY'
@@ -133,8 +136,8 @@ jobs:
 
           article_manifest = root / 'luna_engine/article-manifest.txt'
           article_pages = [line.strip() for line in article_manifest.read_text(encoding='utf-8').splitlines() if line.strip()]
-          if len(article_pages) != 10:
-              raise SystemExit(f"Expected 10 generated articles, found {len(article_pages)}")
+          if len(article_pages) != 25:
+              raise SystemExit(f"Expected 25 generated articles, found {len(article_pages)}")
           article_index = (root / 'articles.html').read_text(encoding='utf-8')
           for name in article_pages:
               path = root / name
@@ -154,7 +157,7 @@ jobs:
           missing_urls = [f"https://lunageneralcontractors.com/{name}" for name in all_names if f"https://lunageneralcontractors.com/{name}" not in sitemap_urls]
           if missing_urls:
               raise SystemExit(f"Sitemap missing {len(missing_urls)} generated URLs; first: {missing_urls[0]}")
-          print(f"Validated {len(pages)} local pages, {len(article_pages)} new articles and sitemap coverage.")
+          print(f"Validated {len(pages)} local pages, {len(article_pages)} articles and sitemap coverage.")
           PY
 
       - name: Audit technical SEO sitemap robots and internal links
@@ -176,6 +179,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No Luna Engine changes to commit."
           else
-            git commit -m "Publish DFW local pages and second article batch [skip ci]"
+            git commit -m "Publish DFW local pages and 25 SEO articles [skip ci]"
             git push origin HEAD:main
           fi
