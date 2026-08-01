@@ -1,0 +1,10 @@
+{
+  "name": "Patio Covers",
+  "slug": "patio-covers",
+  "summary": "Custom patio covers designed for shade, weather protection and a finished connection to the home with coordinated framing, roofing and exterior details.",
+  "features": ["Attached patio covers","Freestanding covers","Roofing and flashing","Posts and beams","Ceiling finishes","Fans and lighting coordination"],
+  "faqs": [
+    {"question":"Can a patio cover attach to an existing roof?","answer":"In many cases it can, but the connection, flashing, drainage and structural support must be evaluated before construction."},
+    {"question":"Do patio covers need permits?","answer":"Permit requirements vary by city and depend on size, attachment method, structure and electrical work."}
+  ]
+}
