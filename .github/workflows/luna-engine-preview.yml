@@ -104,14 +104,54 @@ jobs:
           print(f"Validated {len(pages)} Luna Engine pages from {len(city_files)} cities and {len(service_files)} services.")
           PY
 
-      - name: Commit generated city data and preview output
+      - name: Publish pages to site root and update sitemap
+        run: python luna_engine/publish.py
+
+      - name: Validate published pages
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          root = Path('.')
+          manifest = json.loads((root / 'luna_engine/dist/manifest.json').read_text(encoding='utf-8'))
+          pages = manifest['pages']
+          missing = [name for name in pages if not (root / name).exists()]
+          if missing:
+              raise SystemExit(f"Missing {len(missing)} published pages; first: {missing[0]}")
+
+          for name in pages:
+              html = (root / name).read_text(encoding='utf-8')
+              if 'href="../../' in html:
+                  raise SystemExit(f"Preview-only relative link remains in {name}")
+              if 'href="/styles.css"' not in html:
+                  raise SystemExit(f"Root stylesheet link missing in {name}")
+
+          tree = ET.parse(root / 'sitemap.xml')
+          ns = {'sm': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+          sitemap_urls = {node.text for node in tree.findall('sm:url/sm:loc', ns) if node.text}
+          missing_urls = [f"https://lunageneralcontractors.com/{name}" for name in pages if f"https://lunageneralcontractors.com/{name}" not in sitemap_urls]
+          if missing_urls:
+              raise SystemExit(f"Sitemap missing {len(missing_urls)} generated URLs; first: {missing_urls[0]}")
+          print(f"Validated {len(pages)} published pages and sitemap coverage.")
+          PY
+
+      - name: Commit generated pages and sitemap
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add luna_engine/content/cities luna_engine/dist
+          git add luna_engine/content/cities luna_engine/dist sitemap.xml
+          python - <<'PY' > /tmp/luna-pages.txt
+          import json
+          from pathlib import Path
+          manifest = json.loads(Path('luna_engine/dist/manifest.json').read_text(encoding='utf-8'))
+          print('\n'.join(manifest['pages']))
+          PY
+          git add --pathspec-from-file=/tmp/luna-pages.txt
           if git diff --cached --quiet; then
             echo "No Luna Engine changes to commit."
           else
-            git commit -m "Build all DFW city and service pages [skip ci]"
+            git commit -m "Publish all DFW city and service pages [skip ci]"
             git push origin HEAD:main
           fi
