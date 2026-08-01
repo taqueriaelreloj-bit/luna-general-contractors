@@ -1,0 +1,22 @@
+{
+  "status": "draft",
+  "slug": "white-hexagon-kitchen-backsplash",
+  "title": "White Hexagon Kitchen Backsplash",
+  "city": "TBD",
+  "city_slug": "",
+  "service": "Kitchen Remodeling",
+  "service_slug": "kitchen-remodeling",
+  "summary": "Kitchen update featuring a white hexagon backsplash installed around the range and microwave with clean cuts and a bright neutral finish.",
+  "problem": "The range wall needed a finished backsplash surface that would coordinate with white cabinets, stainless appliances and the existing granite countertops.",
+  "solution": "Installed white hexagon tile behind the range and microwave, completing the layout around cabinets, counter edges and electrical components.",
+  "materials": ["White hexagon tile", "Tile-setting materials", "Grout", "Edge finishing materials", "Electrical finish plates"],
+  "duration": "TBD",
+  "date_completed": "2018-04-29",
+  "images": [
+    {"src": "project-images/20180414-185531.webp", "alt": "Kitchen range wall before white hexagon backsplash installation", "caption": "Range area before the backsplash was completed."},
+    {"src": "project-images/20180429-113604.webp", "alt": "Close view of completed white hexagon backsplash", "caption": "Detailed view of the installed white hexagon tile."},
+    {"src": "project-images/20180429-113627.webp", "alt": "Completed white hexagon backsplash behind range and microwave", "caption": "Finished backsplash surrounding the range and microwave."}
+  ],
+  "source_files": ["20180414_185531.jpg", "20180429_113604.jpg", "20180429_113627.jpg"],
+  "publish_note": "Add the actual city and upload all approved images before changing status to published."
+}
