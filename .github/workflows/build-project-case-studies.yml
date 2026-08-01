@@ -1,0 +1,92 @@
+name: Build Real Project Case Studies
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "luna_engine/content/projects/**"
+      - "luna_engine/build_projects.py"
+      - "luna_engine/project-example.json"
+      - ".github/workflows/build-project-case-studies.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-project-case-studies
+  cancel-in-progress: true
+
+jobs:
+  build-projects:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build approved real project pages
+        run: python luna_engine/build_projects.py
+
+      - name: Validate project pages index and sitemap
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          root = Path('.')
+          index = root / 'projects.html'
+          manifest = root / 'luna_engine/project-manifest.txt'
+          if not index.exists():
+              raise SystemExit('Missing projects.html')
+          if not manifest.exists():
+              raise SystemExit('Missing project manifest')
+
+          index_html = index.read_text(encoding='utf-8')
+          required_index = ('<title>', '<h1>', 'rel="canonical"', 'Construction and Remodeling Projects')
+          for token in required_index:
+              if token not in index_html:
+                  raise SystemExit(f'projects.html missing {token}')
+
+          project_pages = [line.strip() for line in manifest.read_text(encoding='utf-8').splitlines() if line.strip()]
+          for name in project_pages:
+              path = root / name
+              if not path.exists():
+                  raise SystemExit(f'Missing project page: {name}')
+              html = path.read_text(encoding='utf-8')
+              for token in ('<title>', '<h1>', 'Article', 'BreadcrumbList', 'ImageGallery', 'rel="canonical"', 'tel:+18177845998'):
+                  if token not in html:
+                      raise SystemExit(f'{name}: missing {token}')
+              if f'href="{name}"' not in index_html:
+                  raise SystemExit(f'Project index missing link to {name}')
+
+          tree = ET.parse(root / 'sitemap.xml')
+          ns = {'sm': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+          urls = {node.text for node in tree.findall('sm:url/sm:loc', ns) if node.text}
+          expected = ['https://lunageneralcontractors.com/projects.html'] + [f'https://lunageneralcontractors.com/{name}' for name in project_pages]
+          missing_urls = [url for url in expected if url not in urls]
+          if missing_urls:
+              raise SystemExit(f'Sitemap missing project URL: {missing_urls[0]}')
+
+          print(f'Validated projects index and {len(project_pages)} approved real project case studies.')
+          PY
+
+      - name: Commit generated project pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add projects.html sitemap.xml luna_engine/project-manifest.txt
+          if [ -s luna_engine/project-manifest.txt ]; then
+            git add --pathspec-from-file=luna_engine/project-manifest.txt
+          fi
+          if git diff --cached --quiet; then
+            echo "No project changes to commit."
+          else
+            git commit -m "Publish approved real project case studies [skip ci]"
+            git push origin HEAD:main
+          fi
