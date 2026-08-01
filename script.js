@@ -54,7 +54,7 @@ if (!isHomePage) {
           <a href="index.html">Home</a>
           <a href="index.html#services">Services</a>
           <a href="projects.html">Projects</a>
-          <a href="index.html#reviews">Reviews</a>
+          <a href="reviews.html">Reviews</a>
           <a href="index.html#about">About</a>
           <a href="service-areas.html">Service Areas</a>
           <a href="articles.html">Resources</a>
@@ -386,7 +386,7 @@ document.querySelectorAll('form[action*="formspree.io"]').forEach((form) => {
       <p class="form-review-count">Google rating · 36 reviews</p>
       <blockquote>“Fair price for great work. Definitely recommend them for general repairs and maintenance.”</blockquote>
       <p class="form-review-author">— Nextdoor Neighbor, Grand Prairie, TX</p>
-      <a class="btn btn-outline-light" href="index.html#reviews">Read More Reviews →</a>
+      <a class="btn btn-outline-light" href="reviews.html">Read More Reviews →</a>
     `;
 
     const localGrid = form.closest(".local-grid");
@@ -528,7 +528,7 @@ if (!isHomePage) {
             <h3>Company</h3>
             <a href="index.html#about">About Us</a>
             <a href="projects.html">Projects</a>
-            <a href="index.html#reviews">Reviews</a>
+            <a href="reviews.html">Reviews</a>
             <a href="index.html#estimate-form">Contact</a>
           </div>
 
