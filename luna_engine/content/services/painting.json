@@ -1,10 +1,33 @@
 {
   "name": "Painting",
   "slug": "painting",
-  "summary": "Interior and exterior painting with proper preparation, repairs, priming and durable finishes for homes and commercial properties.",
-  "features": ["Interior wall and ceiling painting","Exterior painting","Trim and door painting","Drywall repair and preparation","Caulking and priming","Cabinet painting"],
+  "summary": "Interior and exterior painting for homes and commercial properties, including surface preparation, drywall repairs, caulking, priming, trim, doors, cabinets, siding, fascia and durable finish coatings.",
+  "features": [
+    "Interior wall and ceiling painting",
+    "Exterior siding, fascia and soffit painting",
+    "Trim, baseboard and door painting",
+    "Drywall patching and surface preparation",
+    "Caulking, sanding, priming and sealing",
+    "Cabinet painting and finish upgrades",
+    "Occupied-home and commercial painting",
+    "Cleanup and final touch-ups"
+  ],
   "faqs": [
-    {"question":"What preparation is included before painting?","answer":"Preparation may include protecting surfaces, patching drywall, sanding, caulking, priming and cleaning as needed for the project."},
-    {"question":"Do you paint occupied homes?","answer":"Yes. We plan work areas and daily cleanup to reduce disruption while the property remains occupied."}
+    {
+      "question": "What preparation is included before painting?",
+      "answer": "Preparation may include protecting floors and furnishings, cleaning surfaces, patching drywall, sanding, scraping loose coatings, caulking gaps and applying primer where needed."
+    },
+    {
+      "question": "When is primer necessary?",
+      "answer": "Primer is commonly recommended over new drywall, repairs, stains, bare wood, major color changes and surfaces where adhesion or sealing must be improved."
+    },
+    {
+      "question": "Do you paint occupied homes and active commercial spaces?",
+      "answer": "Yes. Work areas, access, ventilation and daily cleanup can be coordinated to reduce disruption while the property remains occupied or in operation."
+    },
+    {
+      "question": "Can exterior painting include siding, fascia, soffits and trim?",
+      "answer": "Yes. Exterior scopes can include siding, fascia, soffits, doors, trim and other approved surfaces after repairs and preparation are completed."
+    }
   ]
 }
