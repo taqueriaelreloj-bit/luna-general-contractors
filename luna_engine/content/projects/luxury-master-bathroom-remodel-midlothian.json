@@ -1,0 +1,26 @@
+{
+  "status": "published",
+  "slug": "luxury-master-bathroom-remodel-midlothian",
+  "title": "Luxury Master Bathroom Remodel in Midlothian",
+  "city": "Midlothian",
+  "city_slug": "midlothian",
+  "service": "Bathroom Remodeling",
+  "service_slug": "bathroom-remodeling",
+  "summary": "Complete master bathroom transformation featuring a custom walk-in shower, frameless glass, dual vanities, decorative tile, updated lighting and refined trim details.",
+  "problem": "The existing bathroom had an outdated layout, aging finishes and a shower area that required full demolition before the new design could be built.",
+  "solution": "Completed demolition, framing and plumbing preparation, then installed a custom tiled shower, bench, niche, frameless glass, new vanities, countertops, lighting, trim and finish work.",
+  "materials": ["Large-format porcelain tile", "Decorative herringbone accent tile", "Shower pan materials", "Frameless glass enclosure", "Custom vanities", "Stone countertops", "Plumbing fixtures", "Lighting fixtures", "Paint and trim"],
+  "duration": "Approximately 4 to 6 weeks",
+  "date_completed": "2020-08-25",
+  "images": [
+    {"src": "20200530-111001.webp", "alt": "Master bathroom before demolition in Midlothian", "caption": "Original bathroom before the remodel began."},
+    {"src": "20200530-111004.webp", "alt": "Existing tub and shower area before master bathroom renovation", "caption": "Original tub and shower configuration."},
+    {"src": "20200616-111509.webp", "alt": "Master bathroom demolition with walls open for plumbing changes", "caption": "Demolition and plumbing preparation."},
+    {"src": "20200616-173800.webp", "alt": "Bathroom wall framing exposed during remodel", "caption": "Framing and wall preparation during construction."},
+    {"src": "20200616-173803.webp", "alt": "Bathroom shower area prepared for rebuilding", "caption": "Shower area after demolition."},
+    {"src": "20200825-141001.webp", "alt": "Completed luxury master bathroom with frameless glass shower", "caption": "Finished bathroom showing the custom shower and vanity."},
+    {"src": "20200825-141009.webp", "alt": "Custom walk-in shower with decorative herringbone accent tile", "caption": "Frameless glass shower with decorative accent wall."},
+    {"src": "20200825-141014.webp", "alt": "Luxury bathroom vanity with stone countertop and mirror", "caption": "Completed vanity and lighting installation."},
+    {"src": "20200825-141020.webp", "alt": "Finished master bathroom remodel with custom shower and dual vanities", "caption": "Wide view of the completed master bathroom."}
+  ]
+}
