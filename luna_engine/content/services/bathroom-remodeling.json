@@ -1,10 +1,37 @@
 {
   "name": "Bathroom Remodeling",
   "slug": "bathroom-remodeling",
-  "summary": "Complete bathroom renovations including showers, waterproofing, tile, vanities, fixtures, lighting and finish work.",
-  "features": ["Walk-in showers","Waterproofing systems","Tile installation","Vanities and countertops","Plumbing fixtures","Lighting and ventilation"],
+  "summary": "Complete bathroom remodeling with coordinated demolition, framing, plumbing, electrical, waterproofing, tile, vanities, countertops, fixtures, lighting, ventilation, drywall, paint and finish carpentry.",
+  "features": [
+    "Tub-to-shower conversions",
+    "Custom walk-in showers",
+    "Waterproofing and shower pans",
+    "Tile walls, floors, niches and benches",
+    "Vanities, countertops and mirrors",
+    "Plumbing, lighting and ventilation coordination",
+    "Drywall, texture, paint and trim",
+    "Accessibility and layout improvements"
+  ],
   "faqs": [
-    {"question":"How long does a bathroom remodel usually take?","answer":"The schedule depends on demolition, plumbing changes, waterproofing, tile, inspections, material availability and the final scope."},
-    {"question":"Can you convert a tub into a walk-in shower?","answer":"Yes. Tub-to-shower conversions can include plumbing changes, slope preparation, waterproofing, tile, glass and accessibility improvements."}
+    {
+      "question": "How long does a complete bathroom remodel usually take?",
+      "answer": "The schedule depends on demolition, hidden repairs, plumbing or electrical changes, inspections, waterproofing cure times, tile layout, glass fabrication and material availability. A detailed scope and material plan should be established before construction begins."
+    },
+    {
+      "question": "Can you convert a bathtub into a walk-in shower?",
+      "answer": "Yes. A tub-to-shower conversion can include demolition, drain and supply-line adjustments, slope preparation, waterproofing, tile, niches, benches, grab-blocking, fixtures and a framed or frameless glass enclosure."
+    },
+    {
+      "question": "What waterproofing work is included in a custom tile shower?",
+      "answer": "The system may include substrate preparation, a shower pan or bonded membrane, sealed corners and penetrations, curb or curbless detailing, flood testing when appropriate, and tile installation over the approved waterproof assembly."
+    },
+    {
+      "question": "Can the bathroom layout or plumbing locations be changed?",
+      "answer": "Yes, when site conditions allow. Moving a vanity, toilet, tub or shower may require opening walls or concrete, rerouting supply and drain lines, framing changes, permits and additional repair work."
+    },
+    {
+      "question": "Do you handle the complete bathroom project or only tile?",
+      "answer": "Luna General Contractors can coordinate the complete remodel, including demolition, carpentry, plumbing, electrical, waterproofing, tile, glass, vanity installation, countertops, drywall, painting, trim and final finish work."
+    }
   ]
 }
