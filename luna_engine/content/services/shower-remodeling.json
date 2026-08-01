@@ -1,0 +1,11 @@
+{
+  "name": "Shower Remodeling",
+  "slug": "shower-remodeling",
+  "summary": "Custom shower remodeling with demolition, waterproofing, tile installation, niches, benches, plumbing fixtures, drains and frameless glass enclosures.",
+  "features": ["Walk-in shower conversions","Waterproof shower systems","Custom tile walls and floors","Built-in niches and benches","Plumbing fixture upgrades","Frameless glass enclosures"],
+  "faqs": [
+    {"question":"What is included in a custom shower remodel?","answer":"A complete shower remodel may include demolition, framing repairs, plumbing changes, waterproofing, tile installation, niche or bench construction, drain work, fixtures and glass installation."},
+    {"question":"Can a bathtub be converted into a walk-in shower?","answer":"Yes. Many existing tub areas can be converted into walk-in showers after evaluating the drain location, plumbing, wall framing, waterproofing requirements and available dimensions."},
+    {"question":"How long does a shower remodeling project usually take?","answer":"Many custom shower projects take about one to three weeks depending on demolition, repairs, waterproofing, tile complexity, material availability and glass fabrication."}
+  ]
+}
