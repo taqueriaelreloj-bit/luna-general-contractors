@@ -1,0 +1,10 @@
+{
+  "name": "Outdoor Living",
+  "slug": "outdoor-living",
+  "summary": "Outdoor living construction and remodeling for patios, seating areas, exterior finishes, lighting, shade structures and entertainment spaces.",
+  "features": ["Outdoor kitchens","Covered patios","Entertainment areas","Exterior lighting","Masonry and finishes","Drainage coordination"],
+  "faqs": [
+    {"question":"What can be included in an outdoor living project?","answer":"Projects may include patios, shade structures, outdoor kitchens, lighting, fans, seating walls, masonry, exterior finishes and drainage improvements."},
+    {"question":"Can outdoor living areas be added to an existing patio?","answer":"Yes. Existing spaces can often be expanded or upgraded after evaluating the slab, drainage, structure and utility needs."}
+  ]
+}
