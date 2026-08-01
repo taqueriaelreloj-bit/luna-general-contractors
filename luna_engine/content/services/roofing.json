@@ -1,23 +1,33 @@
 {
   "name": "Roofing",
   "slug": "roofing",
-  "summary": "Roof inspections, repairs, full replacement, storm-damage restoration and emergency protection for residential and commercial properties.",
+  "summary": "Residential and commercial roofing services for inspections, leak repairs, storm damage, shingle replacement, flashing, ventilation, decking and coordinated insurance restoration work.",
   "features": [
-    "Roof inspections",
-    "Roof leak repairs",
-    "Hail and wind damage repairs",
-    "Full shingle roof replacement",
-    "Flashing, ridge and ventilation work",
-    "Insurance restoration scopes"
+    "Detailed roof inspections",
+    "Roof leak diagnosis and repair",
+    "Hail and wind damage restoration",
+    "Full asphalt shingle roof replacement",
+    "Flashing, vents, ridges and pipe boots",
+    "Decking replacement when needed",
+    "Emergency tarping and temporary protection",
+    "Insurance-scope repair coordination"
   ],
   "faqs": [
     {
       "question": "How do I know whether my roof needs repair or replacement?",
-      "answer": "The decision depends on the roof age, extent of damage, active leaks, condition of the shingles and whether repairs can provide a durable result."
+      "answer": "The decision depends on the roof age, extent of damage, active leaks, shingle condition, decking condition and whether a localized repair can provide a durable result."
     },
     {
       "question": "Can hail damage be present without an active leak?",
       "answer": "Yes. Hail can damage shingles, flashing, vents and soft metals before water enters the building, so an inspection is important after a severe storm."
+    },
+    {
+      "question": "What is normally included in a full roof replacement?",
+      "answer": "A typical replacement may include tear-off, underlayment, shingles, starter, ridge caps, flashing, pipe boots, ventilation, cleanup and replacement of damaged decking when approved or required."
+    },
+    {
+      "question": "Can you work from an insurance roofing estimate?",
+      "answer": "Yes. We can review the approved construction scope, compare it with visible site conditions and complete the covered roofing repairs or replacement. Coverage decisions remain with the carrier and policyholder."
     }
   ]
 }
