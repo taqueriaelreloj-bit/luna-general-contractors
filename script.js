@@ -248,6 +248,43 @@ filterButtons.forEach((button) => {
   });
 });
 
+// Make the complete lead form available on every internal page.
+if (!isHomePage && !document.querySelector("#estimate-form")) {
+  const globalEstimateSection = document.createElement("section");
+  globalEstimateSection.className = "global-estimate-section";
+  globalEstimateSection.id = "contact";
+  globalEstimateSection.innerHTML = `
+    <div class="container global-estimate-wrap">
+      <aside class="estimate-card" aria-label="Free estimate form">
+        <h2>Get Your Free Estimate</h2>
+        <p>Fast, Easy & No Obligation</p>
+        <form id="estimate-form" action="https://formspree.io/f/maqrzbol" method="POST">
+          <label><span class="sr-only">Full name</span><input type="text" name="name" placeholder="Full Name*" required /></label>
+          <label><span class="sr-only">Phone number</span><input type="tel" name="phone" placeholder="Phone Number*" required /></label>
+          <label><span class="sr-only">Email</span><input type="email" name="email" placeholder="Email*" required /></label>
+          <label>
+            <span class="sr-only">Service needed</span>
+            <select name="service" required>
+              <option value="">Service Needed*</option>
+              <option>Roofing</option><option>Remodeling</option><option>Kitchen Remodeling</option>
+              <option>Bathroom Remodeling</option><option>Water Damage Mitigation</option>
+              <option>Insurance Claims</option><option>Flooring</option><option>Painting</option>
+              <option>Drywall</option><option>Siding</option><option>Carpentry</option>
+              <option>Fencing</option><option>Concrete</option><option>Commercial</option><option>Other</option>
+            </select>
+          </label>
+          <label><span class="sr-only">Project address</span><input type="text" name="address" placeholder="Project Address*" required /></label>
+          <button class="btn btn-gold btn-full" type="submit">Get Free Estimate →</button>
+          <small class="privacy">🔒 We respect your privacy.</small>
+          <p class="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </aside>
+    </div>
+  `;
+  const main = document.querySelector("main");
+  if (main) main.appendChild(globalEstimateSection);
+}
+
 const estimateForm = document.querySelector("#estimate-form");
 const formMessage = document.querySelector(".form-message");
 
