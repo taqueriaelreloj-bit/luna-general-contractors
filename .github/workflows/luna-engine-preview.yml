@@ -54,8 +54,8 @@ jobs:
               raise SystemExit("Missing Luna Engine manifest")
           if len(city_files) != 36:
               raise SystemExit(f"Expected 36 city data files, found {len(city_files)}")
-          if len(service_files) != 13:
-              raise SystemExit(f"Expected 13 service data files, found {len(service_files)}")
+          if len(service_files) != 14:
+              raise SystemExit(f"Expected 14 service data files, found {len(service_files)}")
 
           expected_pages = len(city_files) * (len(service_files) + 1)
           manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
