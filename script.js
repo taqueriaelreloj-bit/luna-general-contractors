@@ -7,7 +7,95 @@ googleTag.src = "https://www.googletagmanager.com/gtag/js?id=G-3MGPLXSG14";
 document.head.appendChild(googleTag);
 
 gtag("js", new Date());
-gtag("config", "G-3MGPLXSG14");const menuToggle = document.querySelector(".menu-toggle");
+gtag("config", "G-3MGPLXSG14");
+
+const isHomePage =
+  window.location.pathname.endsWith("/") ||
+  window.location.pathname.endsWith("/index.html");
+
+// Prevent browsers from restoring an old scroll position halfway down a page.
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+// Every internal page uses the same complete header and navigation.
+if (!isHomePage) {
+  const existingHeader = document.querySelector("header.site-header, body > header");
+  const standardHeader = `
+    <header class="site-header" id="page-top">
+      <div class="topbar container">
+        <a class="brand" href="index.html" aria-label="Luna General Contractors home">
+          <span class="brand-moon" aria-hidden="true"></span>
+          <span class="brand-copy">
+            <strong>LUNA</strong>
+            <small>GENERAL CONTRACTORS</small>
+            <em>Roofing • Remodeling • Restoration</em>
+          </span>
+        </a>
+
+        <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="index.html#services">Services</a>
+          <a href="projects.html">Projects</a>
+          <a href="index.html#reviews">Reviews</a>
+          <a href="index.html#about">About</a>
+          <a href="service-areas.html">Service Areas</a>
+          <a href="articles.html">Resources</a>
+          <a href="index.html#estimate-form">Contact</a>
+        </nav>
+
+        <div class="header-call">
+          <small>Call Now for a Free Estimate</small>
+          <a href="tel:+18177845998">☎ (817) 784-5998</a>
+          <span>English & Spanish</span>
+        </div>
+      </div>
+      <nav class="trade-bar" aria-label="Trade pages">
+        <div class="trade-bar-inner">
+          <a href="roofing.html">Roofing</a>
+          <a href="mitigation.html">Mitigation</a>
+          <a href="insurance-claims.html">Insurance Claims</a>
+          <a href="kitchens.html">Kitchen</a>
+          <a href="bathrooms.html">Bathroom</a>
+          <a href="flooring.html">Flooring</a>
+          <a href="painting.html">Painting</a>
+          <a href="drywall.html">Drywall</a>
+          <a href="siding.html">Siding</a>
+          <a href="carpentry.html">Carpentry</a>
+          <a href="fencing.html">Fencing</a>
+          <a href="commercial.html">Commercial</a>
+        </div>
+      </nav>
+    </header>
+  `;
+
+  if (existingHeader) {
+    existingHeader.outerHTML = standardHeader;
+  } else {
+    document.body.insertAdjacentHTML("afterbegin", standardHeader);
+  }
+}
+
+// Links to another HTML page always open at that page's beginning.
+document.querySelectorAll('a[href*=".html#"]').forEach((link) => {
+  const rawHref = link.getAttribute("href");
+  if (!rawHref) return;
+  const [page, fragment] = rawHref.split("#");
+
+  // Keep intentional homepage section links, but never attach a gallery/photo fragment
+  // to a separate service, city, article or project page.
+  if (page && page !== "index.html") {
+    link.setAttribute("href", page);
+  } else if (page === "index.html" && ["gallery", "photos", "projects-gallery"].includes(fragment)) {
+    link.setAttribute("href", "index.html");
+  }
+});
+
+const menuToggle = document.querySelector(".menu-toggle");
 const mainNav = document.querySelector(".main-nav");
 const navLinks = document.querySelectorAll(".main-nav a");
 
@@ -37,7 +125,7 @@ document.querySelectorAll(".service-card").forEach((card) => {
   card.setAttribute("aria-label", `Open ${card.querySelector("h3")?.textContent || "service"} page`);
 
   const openServicePage = () => {
-    window.location.href = destination.href;
+    window.location.href = destination.href.split("#")[0];
   };
 
   card.addEventListener("click", (event) => {
@@ -64,7 +152,7 @@ document.querySelectorAll("[data-gallery]").forEach((gallery) => {
   let autoplayTimer;
 
   if (!slides.length || !thumbnailRow) return;
-  totalLabel.textContent = String(slides.length);
+  if (totalLabel) totalLabel.textContent = String(slides.length);
 
   const thumbnails = slides.map((slide, index) => {
     const sourceImage = slide.querySelector("img");
@@ -73,8 +161,8 @@ document.querySelectorAll("[data-gallery]").forEach((gallery) => {
     button.type = "button";
     button.className = "showcase-thumbnail";
     button.setAttribute("role", "tab");
-    button.setAttribute("aria-label", `View project ${index + 1}: ${sourceImage.alt}`);
-    image.src = sourceImage.src;
+    button.setAttribute("aria-label", `View project ${index + 1}: ${sourceImage?.alt || "project image"}`);
+    image.src = sourceImage?.src || "";
     image.alt = "";
     button.appendChild(image);
     button.addEventListener("click", () => showSlide(index, true));
@@ -95,7 +183,7 @@ document.querySelectorAll("[data-gallery]").forEach((gallery) => {
       thumbnail.setAttribute("aria-selected", String(isActive));
       thumbnail.tabIndex = isActive ? 0 : -1;
     });
-    currentLabel.textContent = String(activeIndex + 1);
+    if (currentLabel) currentLabel.textContent = String(activeIndex + 1);
     thumbnails[activeIndex].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
     if (restartAutoplay) startAutoplay();
   }
@@ -176,7 +264,7 @@ estimateForm?.addEventListener("submit", async (event) => {
 
   submitButton.disabled = true;
   submitButton.textContent = "Sending...";
-  formMessage.textContent = "Sending your request...";
+  if (formMessage) formMessage.textContent = "Sending your request...";
 
   try {
     const response = await fetch("https://formspree.io/f/maqrzbol", {
@@ -189,8 +277,10 @@ estimateForm?.addEventListener("submit", async (event) => {
 
     if (!response.ok) throw new Error("Submission failed");
 
-    formMessage.textContent =
-      "Thank you! Your estimate request was sent successfully. We will contact you soon.";
+    if (formMessage) {
+      formMessage.textContent =
+        "Thank you! Your estimate request was sent successfully. We will contact you soon.";
+    }
 
     estimateForm.reset();
 
@@ -201,21 +291,20 @@ estimateForm?.addEventListener("submit", async (event) => {
       });
     }
   } catch (error) {
-    formMessage.textContent =
-      "We could not send your request. Please call (817) 784-5998 or try again.";
+    if (formMessage) {
+      formMessage.textContent =
+        "We could not send your request. Please call (817) 784-5998 or try again.";
+    }
   } finally {
     submitButton.disabled = false;
     submitButton.textContent = originalText;
   }
 });
 
-document.querySelector("#year").textContent = new Date().getFullYear();
+const year = document.querySelector("#year");
+if (year) year.textContent = new Date().getFullYear();
 
 // Add the complete footer to every service page
-const isHomePage =
-  window.location.pathname.endsWith("/") ||
-  window.location.pathname.endsWith("/index.html");
-
 if (!isHomePage) {
   const existingFooter = document.querySelector("footer");
 
@@ -224,7 +313,7 @@ if (!isHomePage) {
       <footer class="site-footer">
         <div class="container footer-grid">
           <div class="footer-brand">
-            <a class="brand" href="index.html#home">
+            <a class="brand" href="index.html">
               <span class="brand-moon" aria-hidden="true"></span>
               <span class="brand-copy">
                 <strong>LUNA</strong>
@@ -263,7 +352,7 @@ if (!isHomePage) {
           <div>
             <h3>Company</h3>
             <a href="index.html#about">About Us</a>
-            <a href="index.html#projects">Projects</a>
+            <a href="projects.html">Projects</a>
             <a href="index.html#reviews">Reviews</a>
             <a href="index.html#estimate-form">Contact</a>
           </div>
@@ -302,3 +391,12 @@ if (!isHomePage) {
     }
   }
 }
+
+// Open every page at its beginning unless the user intentionally selected a homepage section.
+window.addEventListener("load", () => {
+  const hash = window.location.hash;
+  const intentionalHomeSection = isHomePage && hash && !["#home", "#page-top"].includes(hash);
+  if (!intentionalHomeSection) {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }
+});
