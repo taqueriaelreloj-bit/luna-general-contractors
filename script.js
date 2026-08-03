@@ -309,6 +309,36 @@ if (!isHomePage && !document.querySelector("#estimate-form")) {
   if (main) main.appendChild(globalEstimateSection);
 }
 
+// Track high-intent lead actions across every page.
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("a");
+  if (!link || typeof gtag !== "function") return;
+
+  const href = link.getAttribute("href") || "";
+  const eventDetails = {
+    link_text: link.textContent.trim().replace(/\s+/g, " ").slice(0, 100),
+    link_url: link.href,
+    page_path: window.location.pathname
+  };
+
+  if (href.startsWith("tel:")) {
+    gtag("event", "click_phone", eventDetails);
+    return;
+  }
+
+  if (
+    href === "#estimate-form" ||
+    href === "#contact" ||
+    href.includes("index.html#estimate-form") ||
+    link.closest(".hero-actions, .contact-actions, .trade-cta")
+  ) {
+    gtag("event", "begin_lead", {
+      ...eventDetails,
+      event_category: "Lead CTA"
+    });
+  }
+});
+
 // Resize and compress project photos in the browser before upload.
 async function optimizeProjectPhoto(file) {
   if (!file.type.startsWith("image/")) return file;
