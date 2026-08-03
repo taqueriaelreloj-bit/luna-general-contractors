@@ -322,7 +322,21 @@ document.addEventListener("click", (event) => {
   };
 
   if (href.startsWith("tel:")) {
-    gtag("event", "click_phone", eventDetails);
+    event.preventDefault();
+    let callOpened = false;
+    const openCallLink = () => {
+      if (callOpened) return;
+      callOpened = true;
+      window.location.href = link.href;
+    };
+
+    gtag("event", "click_phone", {
+      ...eventDetails,
+      transport_type: "beacon",
+      event_callback: openCallLink
+    });
+
+    window.setTimeout(openCallLink, 350);
     return;
   }
 
