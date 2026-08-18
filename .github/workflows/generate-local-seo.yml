@@ -72,6 +72,88 @@ jobs:
       - name: Generate city, service and article pages
         run: python seo_generator.py
 
+      - name: Add unique mini-blog content to known non-indexed pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          blogs = {
+              "allen-carpentry.html": (
+                  "Carpentry Details That Matter in Allen Homes",
+                  "In Allen, small carpentry details often determine whether a remodel looks original to the home or added later. Door openings, baseboards, casing, built-ins, exterior trim, and framing repairs all need clean measurements and solid fastening. We also look at how wood movement, paint preparation, and nearby finishes will affect the final result. Planning these details before cutting material helps reduce visible gaps and keeps the finished work consistent with the rest of the property.",
+                  "For older and newer homes alike, it is also important to check what is behind the finish surface. A trim repair can reveal moisture damage, an uneven opening, or framing that needs correction first. Addressing the underlying condition before installing new material usually creates a stronger and better-looking repair."
+              ),
+              "allen-flooring.html": (
+                  "Choosing Flooring for Daily Life in Allen",
+                  "Flooring should be selected around the way the home is actually used. In Allen, busy households often need surfaces that can handle pets, children, furniture movement, and frequent cleaning without losing their appearance. Before installation, we check the subfloor, transitions, door clearances, and moisture-related concerns so the new floor sits correctly and connects cleanly with nearby rooms.",
+                  "Material choice also affects maintenance and long-term performance. Luxury vinyl, engineered wood, tile, and other options each respond differently to water, temperature changes, and heavy traffic. Matching the product to the room and preparing the base correctly can prevent many common flooring problems later."
+              ),
+              "allen-insurance-claims.html": (
+                  "Documenting Property Damage Before Repairs Begin",
+                  "When an Allen property has storm, water, or other covered damage, good documentation can be as important as the repair itself. Photos, measurements, visible damage notes, and a clear written scope help explain what was affected and what work may be needed to restore the property. The goal is to separate observed conditions from assumptions and create a record that can be reviewed by the owner and insurance professionals.",
+                  "Damage can also involve several trades at once. Roofing, drywall, flooring, cabinets, paint, and mechanical components may all be connected to the same event. Coordinating those areas in one repair plan can reduce missed items and make the restoration sequence easier to understand."
+              ),
+              "allen-kitchen-remodeling.html": (
+                  "Planning an Allen Kitchen Around How It Is Used",
+                  "A successful kitchen remodel starts with movement, storage, and daily routines rather than finishes alone. In Allen homes, changing an island, appliance location, cabinet layout, or sink position can affect electrical, plumbing, flooring, countertops, and lighting. Reviewing those connections before demolition helps avoid conflicts after new materials have already been ordered.",
+                  "The best layout is not always the largest one. Clear walkways, practical cabinet access, useful counter space, and well-placed lighting often make a bigger difference in everyday use. We also plan transitions between the kitchen and adjacent living areas so the finished remodel feels connected to the rest of the home."
+              ),
+              "allen-painting.html": (
+                  "Why Surface Preparation Changes a Paint Job",
+                  "Painting in an Allen home is more than applying a new color. Walls and trim may have nail holes, old caulk, small drywall repairs, stains, glossy coatings, or uneven texture that become more noticeable after fresh paint is applied. Proper cleaning, patching, sanding, caulking, and priming help the finish look more consistent and improve adhesion.",
+                  "Different areas also need different products. Bathrooms, kitchens, exterior trim, doors, and high-traffic walls can have very different moisture and wear conditions. Choosing the right sheen and coating for each surface helps the finished work stay cleaner and hold up longer."
+              ),
+              "allen-roofing.html": (
+                  "Roof Checks After North Texas Storms",
+                  "Allen roofs can be exposed to hail, strong wind, heavy rain, and rapid temperature changes. Some problems are obvious, but others start around flashing, vents, penetrations, lifted shingles, or areas where water can travel before it becomes visible inside. A roof review should look at the system as a whole instead of focusing only on one damaged shingle or one ceiling stain.",
+                  "When repair or replacement is being considered, decking condition, ventilation, underlayment, flashing details, and cleanup all matter. Taking time to review these items before work begins helps create a clearer scope and reduces surprises once the existing roofing materials are removed."
+              ),
+              "allen-siding.html": (
+                  "Siding Repairs Should Protect More Than Appearance",
+                  "Siding helps define the exterior appearance of an Allen home, but it also protects the wall assembly from weather. Cracks, loose panels, failed caulk joints, damaged trim, and openings around penetrations can allow moisture to reach areas that are not immediately visible. A good siding repair considers both the exposed finish and the condition behind it.",
+                  "Matching profiles, maintaining proper clearances, sealing transitions, and preparing repaired areas for paint are all important parts of the job. When moisture damage is discovered, correcting the source before closing the wall can help prevent the same problem from returning."
+              ),
+              "allen-water-damage-restoration.html": (
+                  "What to Check After Water Damage in an Allen Property",
+                  "Water can move through wall cavities, cabinets, flooring layers, and framing farther than the first visible stain suggests. In an Allen property, the first step after the source is controlled is to identify the affected materials and determine which areas can dry in place and which may require removal. Moisture readings, access openings, and visible condition checks help build a more accurate restoration plan.",
+                  "After damaged materials are removed and the structure is dry, reconstruction should follow the correct sequence. Drywall, texture, paint, flooring, trim, cabinets, and other finishes often overlap, so coordinating them carefully can reduce rework and help the repaired area blend with the surrounding home."
+              ),
+              "allen.html": (
+                  "Planning Remodeling Work in Allen",
+                  "Allen includes established neighborhoods, newer construction, and homes that have already been updated more than once. That variety means two projects with the same name can require very different scopes. Before pricing a remodel, it is useful to look at existing materials, access, previous modifications, and the way plumbing, electrical, HVAC, and structural components interact with the proposed work.",
+                  "A detailed scope also helps homeowners compare options more accurately. Separating necessary repairs from finish upgrades, identifying decisions that must be made before construction, and documenting unknown conditions can make scheduling and budgeting more predictable from the beginning."
+              ),
+              "arlington-bathroom-remodeling.html": (
+                  "Bathroom Remodeling Decisions for Arlington Homes",
+                  "Bathroom remodeling in Arlington often combines several trades in a very small space. Moving a shower, tub, vanity, or toilet can affect plumbing, waterproofing, electrical work, framing, drywall, tile, and ventilation. Reviewing these connections early helps keep the layout practical and reduces changes once the room is already under construction.",
+                  "Waterproofing deserves special attention because finished tile does not replace the waterproof system behind it. Proper substrate preparation, shower pan details, wall waterproofing, slope, penetrations, and transitions are important for long-term performance. The finish materials should be selected only after the underlying assembly is planned correctly."
+              ),
+          }
+
+          anchor = '<section class="seo-section seo-faq">'
+          for filename, (title, p1, p2) in blogs.items():
+              path = Path(filename)
+              if not path.exists():
+                  print(f"Skipping missing target: {filename}")
+                  continue
+              html = path.read_text(encoding="utf-8")
+              marker = '<section class="seo-section seo-mini-blog">'
+              if marker in html:
+                  continue
+              if anchor not in html:
+                  print(f"Skipping target without FAQ anchor: {filename}")
+                  continue
+              block = (
+                  '<section class="seo-section seo-mini-blog"><div class="container">'
+                  '<article><p class="eyebrow gold">Local Project Notes</p>'
+                  f'<h2>{title}</h2><p>{p1}</p><p>{p2}</p>'
+                  '</article></div></section>'
+              )
+              html = html.replace(anchor, block + anchor, 1)
+              path.write_text(html, encoding="utf-8")
+              print(f"Enriched {filename}")
+          PY
+
       - name: Integrate navigation and footer links
         run: |
           python - <<'PY'
