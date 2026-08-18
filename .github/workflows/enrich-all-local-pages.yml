@@ -1,0 +1,111 @@
+name: Enrich All Local SEO Pages
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/enrich_all_local_pages.py"
+      - ".github/workflows/enrich-all-local-pages.yml"
+  schedule:
+    - cron: "27 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: enrich-all-local-seo-pages
+  cancel-in-progress: false
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Add unique mini-blog to every local city and service page
+        run: python scripts/enrich_all_local_pages.py
+
+      - name: Validate local mini-blog coverage
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          marker = 'seo-section seo-mini-blog'
+          manifest = [
+              line.strip()
+              for line in Path('seo-generated-manifest.txt').read_text(encoding='utf-8').splitlines()
+              if line.strip().endswith('.html')
+          ]
+
+          local_pages = []
+          for filename in manifest:
+              path = Path(filename)
+              if not path.exists():
+                  continue
+              text = path.read_text(encoding='utf-8')
+              if '<section class="seo-section seo-faq">' in text or marker in text:
+                  # Index/article pages without local service structure are excluded by the generator script.
+                  if filename in {
+                      'articles.html', 'service-areas.html', 'services-by-city.html',
+                      'bathroom-remodeling-cost-waxahachie.html',
+                      'best-general-contractor-midlothian.html',
+                      'commercial-construction-planning-dallas.html',
+                      'drywall-repair-after-water-damage-grand-prairie.html',
+                      'fence-replacement-cost-cedar-hill.html',
+                      'flooring-options-mansfield.html',
+                      'kitchen-remodeling-ideas-texas.html',
+                      'roof-replacement-cost-dallas.html',
+                      'roofing-insurance-claim-fort-worth.html',
+                      'water-damage-insurance-claims-arlington.html',
+                  }:
+                      continue
+                  local_pages.append(filename)
+
+          missing = []
+          duplicate = []
+          headings = []
+          for filename in local_pages:
+              text = Path(filename).read_text(encoding='utf-8')
+              count = text.count(marker)
+              if count == 0:
+                  missing.append(filename)
+              elif count > 1:
+                  duplicate.append(filename)
+              match = re.search(r'<section class="seo-section seo-mini-blog">.*?<h2>(.*?)</h2>', text, re.S)
+              if match:
+                  headings.append((filename, match.group(1).strip()))
+
+          if missing:
+              raise SystemExit('Missing mini-blog: ' + ', '.join(missing[:20]))
+          if duplicate:
+              raise SystemExit('Duplicate mini-blog block: ' + ', '.join(duplicate[:20]))
+          if len(headings) != len(local_pages):
+              raise SystemExit(f'Expected {len(local_pages)} mini-blog headings, found {len(headings)}')
+
+          print(f'Validated mini-blog coverage on {len(local_pages)} local pages.')
+          PY
+
+      - name: Commit enriched pages
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add '*.html'
+          if git diff --cached --quiet; then
+            echo "All local pages already contain current unique mini-blog content."
+          else
+            git commit -m "Enrich all local SEO pages with unique project notes"
+            git push origin HEAD:main
+          fi
