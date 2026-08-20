@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - "scripts/enrich_all_local_pages.py"
+      - "scripts/enrich_local_faqs.py"
       - ".github/workflows/enrich-all-local-pages.yml"
   schedule:
     - cron: "27 */6 * * *"
@@ -35,66 +36,94 @@ jobs:
       - name: Add unique mini-blog to every local city and service page
         run: python scripts/enrich_all_local_pages.py
 
-      - name: Validate local mini-blog coverage
+      - name: Add unique FAQs to every local city and service page
+        run: python scripts/enrich_local_faqs.py
+
+      - name: Validate local SEO enrichment coverage
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
           import re
 
-          marker = 'seo-section seo-mini-blog'
+          blog_marker = 'seo-section seo-mini-blog'
+          faq_marker = 'seo-section seo-faq'
           manifest = [
               line.strip()
               for line in Path('seo-generated-manifest.txt').read_text(encoding='utf-8').splitlines()
               if line.strip().endswith('.html')
           ]
 
+          excluded = {
+              'articles.html', 'service-areas.html', 'services-by-city.html',
+              'bathroom-remodeling-cost-waxahachie.html',
+              'best-general-contractor-midlothian.html',
+              'commercial-construction-planning-dallas.html',
+              'drywall-repair-after-water-damage-grand-prairie.html',
+              'fence-replacement-cost-cedar-hill.html',
+              'flooring-options-mansfield.html',
+              'kitchen-remodeling-ideas-texas.html',
+              'roof-replacement-cost-dallas.html',
+              'roofing-insurance-claim-fort-worth.html',
+              'water-damage-insurance-claims-arlington.html',
+          }
+
           local_pages = []
           for filename in manifest:
+              if filename in excluded:
+                  continue
               path = Path(filename)
               if not path.exists():
                   continue
               text = path.read_text(encoding='utf-8')
-              if '<section class="seo-section seo-faq">' in text or marker in text:
-                  # Index/article pages without local service structure are excluded by the generator script.
-                  if filename in {
-                      'articles.html', 'service-areas.html', 'services-by-city.html',
-                      'bathroom-remodeling-cost-waxahachie.html',
-                      'best-general-contractor-midlothian.html',
-                      'commercial-construction-planning-dallas.html',
-                      'drywall-repair-after-water-damage-grand-prairie.html',
-                      'fence-replacement-cost-cedar-hill.html',
-                      'flooring-options-mansfield.html',
-                      'kitchen-remodeling-ideas-texas.html',
-                      'roof-replacement-cost-dallas.html',
-                      'roofing-insurance-claim-fort-worth.html',
-                      'water-damage-insurance-claims-arlington.html',
-                  }:
-                      continue
+              if faq_marker in text or blog_marker in text:
                   local_pages.append(filename)
 
-          missing = []
-          duplicate = []
-          headings = []
+          missing_blog = []
+          duplicate_blog = []
+          missing_faq = []
+          duplicate_faq = []
+          missing_schema = []
+          faq_fingerprints = {}
+
           for filename in local_pages:
               text = Path(filename).read_text(encoding='utf-8')
-              count = text.count(marker)
-              if count == 0:
-                  missing.append(filename)
-              elif count > 1:
-                  duplicate.append(filename)
-              match = re.search(r'<section class="seo-section seo-mini-blog">.*?<h2>(.*?)</h2>', text, re.S)
+              blog_count = text.count(blog_marker)
+              faq_count = text.count(faq_marker)
+              schema_count = text.count('"@type":"FAQPage"')
+
+              if blog_count == 0:
+                  missing_blog.append(filename)
+              elif blog_count > 1:
+                  duplicate_blog.append(filename)
+
+              if faq_count == 0:
+                  missing_faq.append(filename)
+              elif faq_count > 1:
+                  duplicate_faq.append(filename)
+
+              if schema_count != 1:
+                  missing_schema.append(filename)
+
+              match = re.search(r'<section class="seo-section seo-faq">(.*?)</section>', text, re.S)
               if match:
-                  headings.append((filename, match.group(1).strip()))
+                  fingerprint = match.group(1).strip()
+                  if fingerprint in faq_fingerprints:
+                      raise SystemExit(f'Duplicate FAQ block: {faq_fingerprints[fingerprint]} and {filename}')
+                  faq_fingerprints[fingerprint] = filename
 
-          if missing:
-              raise SystemExit('Missing mini-blog: ' + ', '.join(missing[:20]))
-          if duplicate:
-              raise SystemExit('Duplicate mini-blog block: ' + ', '.join(duplicate[:20]))
-          if len(headings) != len(local_pages):
-              raise SystemExit(f'Expected {len(local_pages)} mini-blog headings, found {len(headings)}')
+          if missing_blog:
+              raise SystemExit('Missing mini-blog: ' + ', '.join(missing_blog[:20]))
+          if duplicate_blog:
+              raise SystemExit('Duplicate mini-blog block: ' + ', '.join(duplicate_blog[:20]))
+          if missing_faq:
+              raise SystemExit('Missing FAQ: ' + ', '.join(missing_faq[:20]))
+          if duplicate_faq:
+              raise SystemExit('Duplicate FAQ block count: ' + ', '.join(duplicate_faq[:20]))
+          if missing_schema:
+              raise SystemExit('FAQ schema validation failed: ' + ', '.join(missing_schema[:20]))
 
-          print(f'Validated mini-blog coverage on {len(local_pages)} local pages.')
+          print(f'Validated mini-blog and unique FAQ coverage on {len(local_pages)} local pages.')
           PY
 
       - name: Commit enriched pages
@@ -104,8 +133,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add '*.html'
           if git diff --cached --quiet; then
-            echo "All local pages already contain current unique mini-blog content."
+            echo "All local pages already contain current unique SEO enrichment."
           else
-            git commit -m "Enrich all local SEO pages with unique project notes"
+            git commit -m "Enrich local SEO pages with unique FAQs and project notes"
             git push origin HEAD:main
           fi
