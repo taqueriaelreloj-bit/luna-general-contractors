@@ -11,9 +11,9 @@
   "common_needs": ["Roof inspections and hail repairs","Kitchen and bathroom remodeling","Flooring and paint updates","Drywall restoration after leaks","Fence and exterior repairs","Commercial tenant improvements"],
   "nearby_cities": ["Midlothian", "Red Oak", "Ovilla", "Glenn Heights", "DeSoto", "Lancaster", "Mansfield"],
   "faqs": [
-    {"question":"Do you work on older homes in Waxahachie?","answer":"Yes. We evaluate existing conditions and plan remodeling or repair work around the age, materials and layout of the property."},
-    {"question":"Do you provide roofing inspections after hailstorms?","answer":"Yes. We inspect accessible roofing components and explain practical repair or replacement options."},
-    {"question":"Can you remodel kitchens and bathrooms?","answer":"Yes. We coordinate cabinets, countertops, tile, flooring, drywall, paint and related approved work."},
-    {"question":"Do you serve commercial properties in Waxahachie?","answer":"Yes. We provide commercial repairs, tenant improvements and coordinated interior construction."}
+    {"question":"What should be checked before remodeling an older Waxahachie home?","answer":"Older homes may have previous repairs, uneven framing, older plumbing or electrical routes, and finish materials that no longer match modern sizes. We start with field measurements and visible existing conditions so the remodel scope is based on the actual house."},
+    {"question":"Can a damaged Waxahachie roof be repaired instead of fully replaced?","answer":"Sometimes. The decision depends on the age of the roof, location and extent of damage, shingle condition, matching availability and whether the surrounding roof can accept a durable repair. We can inspect the visible condition and explain practical construction options."},
+    {"question":"How do you plan kitchen or bathroom upgrades in a historic-style home?","answer":"We first identify which original details the owner wants to preserve, then coordinate new cabinets, tile, fixtures, flooring and paint around the actual dimensions and existing construction. This helps modernize function without treating every older feature as something that must be removed."},
+    {"question":"Do Waxahachie commercial remodels need to be planned around business hours?","answer":"They often do. Access, dust control, noise, deliveries, shutdowns and material staging can affect normal operations, so we can organize the work in phases when the project and property allow it."}
   ]
 }
