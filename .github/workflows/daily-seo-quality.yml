@@ -10,6 +10,7 @@ on:
       - "scripts/enrich_all_local_pages.py"
       - "scripts/enrich_local_faqs.py"
       - "scripts/update_sitemap_lastmod.py"
+      - "tests/test_seo_quality_audit.py"
       - ".github/workflows/daily-seo-quality.yml"
       - "sitemap.xml"
       - "robots.txt"
@@ -39,6 +40,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Run SEO audit tests
+        run: python -m unittest -v tests/test_seo_quality_audit.py
 
       - name: Build expected local SEO output
         run: |
