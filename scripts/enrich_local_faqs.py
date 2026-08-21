@@ -149,7 +149,9 @@ def extract_service(filename: str, page_html: str) -> str:
             candidate = visible.split(" in ", 1)[0].strip()
             if candidate:
                 return candidate
-    return "General Contracting"
+    # City hub pages and dedicated general-contractor pages share a city but
+    # serve different search intents. Keep their visible FAQ copy distinct.
+    return "Construction & Remodeling"
 
 
 def faq_pool(service: str):
@@ -162,9 +164,12 @@ def build_faqs(filename: str, city: str, service: str):
     ordered = [pool[(start + i) % len(pool)] for i in range(len(pool))]
     selected = ordered[:4]
     result = []
-    for question, answer in selected:
+    for position, (question, answer) in enumerate(selected):
+        question_text = question.format(city=city, service=service)
+        if position == 0 and city.casefold() not in question_text.casefold():
+            question_text = question_text.rstrip("?") + f" in {city}?"
         result.append((
-            question.format(city=city, service=service),
+            question_text,
             answer.format(city=city, service=service),
         ))
     if pool is not GENERIC_FAQS:
@@ -252,9 +257,9 @@ def main() -> None:
         block = render_faq_section(city, service, faqs)
         schema = render_schema(faqs)
 
-        fingerprint = hashlib.sha256((block + schema).encode("utf-8")).hexdigest()
+        fingerprint = hashlib.sha256(schema.encode("utf-8")).hexdigest()
         if fingerprint in fingerprints:
-            raise SystemExit(f"Duplicate FAQ content generated for {fingerprints[fingerprint]} and {filename}")
+            raise SystemExit(f"Duplicate FAQ schema generated for {fingerprints[fingerprint]} and {filename}")
         fingerprints[fingerprint] = filename
 
         new_html = replace_faq_section(page_html, block)
@@ -276,3 +281,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

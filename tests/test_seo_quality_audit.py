@@ -4,6 +4,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from scripts.enrich_all_local_pages import build_blog
+from scripts.enrich_local_faqs import build_faqs, render_schema
 from scripts.seo_quality_audit import Auditor
 from scripts.update_sitemap_lastmod import update_sitemap
 
@@ -88,6 +90,24 @@ class SEOAuditTests(unittest.TestCase):
             if item.page == "extra.html" and item.severity == "warning"
         ]
         self.assertIn("Indexable root HTML is not listed in the sitemap", messages)
+
+    def test_city_copy_is_grammatical_for_vowel_city_names(self):
+        block = build_blog("allen-carpentry.html", "Allen", "Carpentry")
+        self.assertNotIn("a Allen", block)
+        self.assertIn("in Allen", block)
+
+    def test_city_hub_and_general_contractor_faq_schemas_are_distinct(self):
+        service_schema = render_schema(
+            build_faqs(
+                "arlington-general-contractor.html",
+                "Arlington",
+                "General Contracting",
+            )
+        )
+        hub_schema = render_schema(
+            build_faqs("arlington.html", "Arlington", "Construction & Remodeling")
+        )
+        self.assertNotEqual(service_schema, hub_schema)
 
 
 if __name__ == "__main__":
