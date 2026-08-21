@@ -1,0 +1,68 @@
+name: Daily SEO Quality Audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/seo_quality_audit.py"
+      - "scripts/enrich_all_local_pages.py"
+      - "scripts/enrich_local_faqs.py"
+      - "scripts/update_sitemap_lastmod.py"
+      - ".github/workflows/daily-seo-quality.yml"
+      - "sitemap.xml"
+      - "robots.txt"
+  schedule:
+    - cron: "15 13 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-seo-quality-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Check out production
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build expected local SEO output
+        run: |
+          python scripts/enrich_all_local_pages.py
+          python scripts/enrich_local_faqs.py
+          python scripts/update_sitemap_lastmod.py
+
+      - name: Run full SEO audit
+        id: seo_audit
+        continue-on-error: true
+        run: python scripts/seo_quality_audit.py --root . --report seo-audit-report.md --strict
+
+      - name: Publish audit summary
+        if: always()
+        run: cat seo-audit-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload full audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-quality-audit
+          path: seo-audit-report.md
+          retention-days: 30
+
+      - name: Fail on critical SEO defects
+        if: steps.seo_audit.outcome == 'failure'
+        run: exit 1
