@@ -150,5 +150,6 @@ jobs:
             echo "All local pages already contain current unique SEO enrichment."
           else
             git commit -m "Enrich local SEO pages with accurate FAQs, project notes and sitemap dates"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi

@@ -1,0 +1,12 @@
+title: Luna General Contractors
+url: https://lunageneralcontractors.com
+baseurl: ""
+
+# Keep build tools and duplicate generated output out of the public Pages site.
+exclude:
+  - luna_engine
+  - scripts
+  - tests
+  - tools
+  - seo_payload
+  - README.md

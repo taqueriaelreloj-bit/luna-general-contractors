@@ -154,6 +154,9 @@ class Auditor:
         self.base_url = base_url.rstrip("/")
         self.findings: list[Finding] = []
         self.pages: dict[str, PageData] = {}
+        self.sitemap_entries: set[str] = set()
+        self.discovered_root_pages: set[str] = set()
+        self.noindex_pages: set[str] = set()
 
     def add(self, severity: str, page: str, message: str) -> None:
         self.findings.append(Finding(severity, page, message))
@@ -186,7 +189,7 @@ class Auditor:
             paths.append(path)
         return paths
 
-    def parse_page(self, relative: str) -> PageData | None:
+    def parse_page(self, relative: str, in_sitemap: bool = True) -> PageData | None:
         path = self.root / relative
         if not path.exists():
             self.add("critical", relative, "Listed in sitemap but file is missing")
@@ -204,13 +207,15 @@ class Auditor:
             return None
         page = parser.page
         self.pages[relative] = page
-        self.audit_page(relative, page, source)
+        self.audit_page(relative, page, source, in_sitemap)
         return page
 
     def expected_canonical(self, relative: str) -> str:
         return f"{self.base_url}/" if relative == "index.html" else f"{self.base_url}/{relative}"
 
-    def audit_page(self, relative: str, page: PageData, source: str) -> None:
+    def audit_page(
+        self, relative: str, page: PageData, source: str, in_sitemap: bool
+    ) -> None:
         if not page.html_lang:
             self.add("warning", relative, "Missing language on the <html> element")
 
@@ -229,17 +234,24 @@ class Auditor:
         if len(h1_values) != 1:
             self.add("critical", relative, f"Expected exactly one H1; found {len(h1_values)}")
 
+        robots = page.metas.get("robots", "")
+        is_noindex = "noindex" in robots.lower()
+        if is_noindex:
+            self.noindex_pages.add(relative)
+
         if len(page.canonical) != 1:
             self.add("critical", relative, f"Expected one canonical URL; found {len(page.canonical)}")
-        elif page.canonical[0].rstrip("/") != self.expected_canonical(relative).rstrip("/"):
+        elif (
+            not (is_noindex and not in_sitemap)
+            and page.canonical[0].rstrip("/") != self.expected_canonical(relative).rstrip("/")
+        ):
             self.add("critical", relative, f"Canonical points to {page.canonical[0]}")
 
         if "viewport" not in page.metas:
             self.add("critical", relative, "Missing viewport meta tag")
-        robots = page.metas.get("robots", "")
-        if "noindex" in robots.lower():
+        if is_noindex and in_sitemap:
             self.add("critical", relative, "Sitemap page is marked noindex")
-        if "max-image-preview:large" not in robots.lower():
+        if not is_noindex and "max-image-preview:large" not in robots.lower():
             self.add("warning", relative, "Robots meta does not allow large image previews explicitly")
 
         for key in ("og:title", "og:description", "og:url", "og:image"):
@@ -346,6 +358,8 @@ class Auditor:
             "H1": defaultdict(list),
         }
         for relative, page in self.pages.items():
+            if relative in self.noindex_pages:
+                continue
             if page.title:
                 fields["title"][page.title.lower()].append(relative)
             description = page.metas.get("description", "")
@@ -362,9 +376,24 @@ class Auditor:
                     self.add("critical", sample, f"Duplicate {label} across {len(pages)} pages")
 
     def run(self) -> None:
-        paths = self.sitemap_paths()
+        sitemap_paths = self.sitemap_paths()
+        self.sitemap_entries = set(sitemap_paths)
+        self.discovered_root_pages = {
+            path.name for path in self.root.glob("*.html") if path.is_file()
+        }
+        paths = sorted(self.sitemap_entries | self.discovered_root_pages)
         for relative in paths:
-            self.parse_page(relative)
+            page = self.parse_page(relative, relative in self.sitemap_entries)
+            if (
+                page
+                and relative not in self.sitemap_entries
+                and relative not in self.noindex_pages
+            ):
+                self.add(
+                    "warning",
+                    relative,
+                    "Indexable root HTML is not listed in the sitemap",
+                )
         self.audit_links()
         self.audit_uniqueness()
 
@@ -374,7 +403,9 @@ class Auditor:
         lines = [
             "# Luna General Contractors — SEO Quality Audit",
             "",
-            f"- Production pages checked: **{len(self.pages)}**",
+            f"- Root HTML and sitemap pages checked: **{len(self.pages)}**",
+            f"- URLs listed in sitemap: **{len(self.sitemap_entries)}**",
+            f"- Indexable root pages omitted from sitemap: **{len(self.discovered_root_pages - self.sitemap_entries - self.noindex_pages)}**",
             f"- Critical findings: **{len(critical)}**",
             f"- Warnings: **{len(warnings)}**",
             "",
