@@ -64,6 +64,31 @@ class SEOAuditTests(unittest.TestCase):
         self.assertEqual(1, count)
         self.assertIn("<lastmod>2026-08-21</lastmod>", text)
 
+    def test_indexable_root_page_outside_sitemap_is_reported(self):
+        root = self.make_site(GOOD_PAGE)
+        extra = GOOD_PAGE.replace(
+            "https://lunageneralcontractors.com/",
+            "https://lunageneralcontractors.com/extra.html",
+        )
+        extra = extra.replace(
+            "Luna General Contractors in Dallas Fort Worth",
+            "Roof Repair Planning in Arlington Texas",
+        )
+        extra = extra.replace(
+            "Dallas Fort Worth General Contractor",
+            "Arlington Roof Repair Planning",
+        )
+        (root / "extra.html").write_text(extra, encoding="utf-8")
+
+        auditor = Auditor(root)
+        auditor.run()
+        messages = [
+            item.message
+            for item in auditor.findings
+            if item.page == "extra.html" and item.severity == "warning"
+        ]
+        self.assertIn("Indexable root HTML is not listed in the sitemap", messages)
+
 
 if __name__ == "__main__":
     unittest.main()
