@@ -4,14 +4,10 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - ".github/workflows/generate-local-seo.yml"
       - "seo_payload/**"
   pull_request:
     paths:
       - "seo_payload/**"
-  schedule:
-    - cron: "17 */6 * * *"
-
 permissions:
   contents: write
 
@@ -53,7 +49,6 @@ jobs:
               raise SystemExit(f"Generator checksum mismatch: {digest}")
 
           source = raw.decode("utf-8")
-
           old_title = 'title=f"General Contractor in {name}, TX | Luna General Contractors"'
           new_title = 'title=f"Construction & Remodeling Services in {name}, TX | Luna General Contractors"'
           if old_title not in source:
@@ -65,93 +60,163 @@ jobs:
           if old_schema not in source:
               raise SystemExit("LocalBusiness schema patch target was not found")
           source = source.replace(old_schema, new_schema, 1)
-
           Path("seo_generator.py").write_text(source, encoding="utf-8")
           PY
 
       - name: Generate city, service and article pages
         run: python seo_generator.py
 
-      - name: Add unique mini-blog content to known non-indexed pages
+      - name: Enrich local pages and strengthen internal links
         run: |
           python - <<'PY'
+          import hashlib
+          import html as html_lib
+          import re
           from pathlib import Path
 
-          blogs = {
-              "allen-carpentry.html": (
-                  "Carpentry Details That Matter in Allen Homes",
-                  "In Allen, small carpentry details often determine whether a remodel looks original to the home or added later. Door openings, baseboards, casing, built-ins, exterior trim, and framing repairs all need clean measurements and solid fastening. We also look at how wood movement, paint preparation, and nearby finishes will affect the final result. Planning these details before cutting material helps reduce visible gaps and keeps the finished work consistent with the rest of the property.",
-                  "For older and newer homes alike, it is also important to check what is behind the finish surface. A trim repair can reveal moisture damage, an uneven opening, or framing that needs correction first. Addressing the underlying condition before installing new material usually creates a stronger and better-looking repair."
-              ),
-              "allen-flooring.html": (
-                  "Choosing Flooring for Daily Life in Allen",
-                  "Flooring should be selected around the way the home is actually used. In Allen, busy households often need surfaces that can handle pets, children, furniture movement, and frequent cleaning without losing their appearance. Before installation, we check the subfloor, transitions, door clearances, and moisture-related concerns so the new floor sits correctly and connects cleanly with nearby rooms.",
-                  "Material choice also affects maintenance and long-term performance. Luxury vinyl, engineered wood, tile, and other options each respond differently to water, temperature changes, and heavy traffic. Matching the product to the room and preparing the base correctly can prevent many common flooring problems later."
-              ),
-              "allen-insurance-claims.html": (
-                  "Documenting Property Damage Before Repairs Begin",
-                  "When an Allen property has storm, water, or other covered damage, good documentation can be as important as the repair itself. Photos, measurements, visible damage notes, and a clear written scope help explain what was affected and what work may be needed to restore the property. The goal is to separate observed conditions from assumptions and create a record that can be reviewed by the owner and insurance professionals.",
-                  "Damage can also involve several trades at once. Roofing, drywall, flooring, cabinets, paint, and mechanical components may all be connected to the same event. Coordinating those areas in one repair plan can reduce missed items and make the restoration sequence easier to understand."
-              ),
-              "allen-kitchen-remodeling.html": (
-                  "Planning an Allen Kitchen Around How It Is Used",
-                  "A successful kitchen remodel starts with movement, storage, and daily routines rather than finishes alone. In Allen homes, changing an island, appliance location, cabinet layout, or sink position can affect electrical, plumbing, flooring, countertops, and lighting. Reviewing those connections before demolition helps avoid conflicts after new materials have already been ordered.",
-                  "The best layout is not always the largest one. Clear walkways, practical cabinet access, useful counter space, and well-placed lighting often make a bigger difference in everyday use. We also plan transitions between the kitchen and adjacent living areas so the finished remodel feels connected to the rest of the home."
-              ),
-              "allen-painting.html": (
-                  "Why Surface Preparation Changes a Paint Job",
-                  "Painting in an Allen home is more than applying a new color. Walls and trim may have nail holes, old caulk, small drywall repairs, stains, glossy coatings, or uneven texture that become more noticeable after fresh paint is applied. Proper cleaning, patching, sanding, caulking, and priming help the finish look more consistent and improve adhesion.",
-                  "Different areas also need different products. Bathrooms, kitchens, exterior trim, doors, and high-traffic walls can have very different moisture and wear conditions. Choosing the right sheen and coating for each surface helps the finished work stay cleaner and hold up longer."
-              ),
-              "allen-roofing.html": (
-                  "Roof Checks After North Texas Storms",
-                  "Allen roofs can be exposed to hail, strong wind, heavy rain, and rapid temperature changes. Some problems are obvious, but others start around flashing, vents, penetrations, lifted shingles, or areas where water can travel before it becomes visible inside. A roof review should look at the system as a whole instead of focusing only on one damaged shingle or one ceiling stain.",
-                  "When repair or replacement is being considered, decking condition, ventilation, underlayment, flashing details, and cleanup all matter. Taking time to review these items before work begins helps create a clearer scope and reduces surprises once the existing roofing materials are removed."
-              ),
-              "allen-siding.html": (
-                  "Siding Repairs Should Protect More Than Appearance",
-                  "Siding helps define the exterior appearance of an Allen home, but it also protects the wall assembly from weather. Cracks, loose panels, failed caulk joints, damaged trim, and openings around penetrations can allow moisture to reach areas that are not immediately visible. A good siding repair considers both the exposed finish and the condition behind it.",
-                  "Matching profiles, maintaining proper clearances, sealing transitions, and preparing repaired areas for paint are all important parts of the job. When moisture damage is discovered, correcting the source before closing the wall can help prevent the same problem from returning."
-              ),
-              "allen-water-damage-restoration.html": (
-                  "What to Check After Water Damage in an Allen Property",
-                  "Water can move through wall cavities, cabinets, flooring layers, and framing farther than the first visible stain suggests. In an Allen property, the first step after the source is controlled is to identify the affected materials and determine which areas can dry in place and which may require removal. Moisture readings, access openings, and visible condition checks help build a more accurate restoration plan.",
-                  "After damaged materials are removed and the structure is dry, reconstruction should follow the correct sequence. Drywall, texture, paint, flooring, trim, cabinets, and other finishes often overlap, so coordinating them carefully can reduce rework and help the repaired area blend with the surrounding home."
-              ),
-              "allen.html": (
-                  "Planning Remodeling Work in Allen",
-                  "Allen includes established neighborhoods, newer construction, and homes that have already been updated more than once. That variety means two projects with the same name can require very different scopes. Before pricing a remodel, it is useful to look at existing materials, access, previous modifications, and the way plumbing, electrical, HVAC, and structural components interact with the proposed work.",
-                  "A detailed scope also helps homeowners compare options more accurately. Separating necessary repairs from finish upgrades, identifying decisions that must be made before construction, and documenting unknown conditions can make scheduling and budgeting more predictable from the beginning."
-              ),
-              "arlington-bathroom-remodeling.html": (
-                  "Bathroom Remodeling Decisions for Arlington Homes",
-                  "Bathroom remodeling in Arlington often combines several trades in a very small space. Moving a shower, tub, vanity, or toilet can affect plumbing, waterproofing, electrical work, framing, drywall, tile, and ventilation. Reviewing these connections early helps keep the layout practical and reduces changes once the room is already under construction.",
-                  "Waterproofing deserves special attention because finished tile does not replace the waterproof system behind it. Proper substrate preparation, shower pan details, wall waterproofing, slope, penetrations, and transitions are important for long-term performance. The finish materials should be selected only after the underlying assembly is planned correctly."
-              ),
+          manifest = Path("seo-generated-manifest.txt")
+          generated = [x.strip() for x in manifest.read_text(encoding="utf-8").splitlines() if x.strip().endswith(".html")]
+          generated_set = set(generated)
+
+          service_labels = {
+              "roofing": "Roofing",
+              "bathroom-remodeling": "Bathroom Remodeling",
+              "kitchen-remodeling": "Kitchen Remodeling",
+              "flooring": "Flooring",
+              "painting": "Painting",
+              "drywall": "Drywall",
+              "siding": "Siding",
+              "carpentry": "Carpentry",
+              "fencing": "Fencing",
+              "commercial-construction": "Commercial Construction",
+              "water-damage-restoration": "Water Damage Restoration",
+              "insurance-claims": "Insurance Claim Repairs",
+              "general-contractor": "General Contracting",
           }
 
+          service_notes = {
+              "roofing": ("roof condition, flashing, ventilation, decking and drainage details", "storm exposure, roof penetrations and the condition of the existing roofing system"),
+              "bathroom-remodeling": ("layout, plumbing locations, waterproofing, ventilation and finish transitions", "shower assemblies, fixture clearances and moisture-prone areas"),
+              "kitchen-remodeling": ("cabinet layout, appliance locations, electrical needs, plumbing and countertop dimensions", "daily workflow, storage, lighting and connections to adjacent rooms"),
+              "flooring": ("subfloor condition, transitions, moisture concerns and door clearances", "traffic, pets, cleaning needs and how the selected material performs in the room"),
+              "painting": ("surface preparation, patching, caulking, priming and coating selection", "existing texture, stains, glossy surfaces and high-wear areas"),
+              "drywall": ("damage extent, framing behind the surface, tape joints, texture and paint-ready finishing", "matching surrounding surfaces and correcting underlying moisture or movement first"),
+              "siding": ("wall protection, trim details, penetrations, clearances and weather-resistant transitions", "loose materials, failed sealant and hidden moisture at vulnerable exterior joints"),
+              "carpentry": ("measurements, fastening, existing framing, trim profiles and finish preparation", "door openings, baseboards, casing, built-ins and structural support where required"),
+              "fencing": ("post condition, alignment, gate operation, drainage and property-side access", "wind exposure, soil movement and the condition of existing rails and pickets"),
+              "commercial-construction": ("access, phasing, code-related requirements, trade coordination and business operations", "tenant improvements, office repairs and scheduling work around occupied spaces"),
+              "water-damage-restoration": ("moisture extent, affected materials, drying status and reconstruction sequencing", "wall cavities, cabinets, flooring layers and finishes beyond the first visible stain"),
+              "insurance-claims": ("photos, measurements, observed conditions and a clear repair scope", "documenting affected trades without assuming coverage or policy decisions"),
+              "general-contractor": ("existing conditions, access, project sequencing, materials and coordination between trades", "how structural, mechanical and finish work interact before construction begins"),
+          }
+
+          intros = [
+              "A useful estimate starts with the conditions that are actually present at the property.",
+              "Good project planning begins before materials are ordered or demolition starts.",
+              "Two projects with the same service name can require very different scopes once existing conditions are reviewed.",
+              "Clear documentation and trade coordination can prevent small unknowns from becoming expensive changes later.",
+          ]
+          closers = [
+              "That review creates a clearer scope, better sequencing and more realistic expectations for the owner.",
+              "Addressing those details early helps reduce rework and gives each trade better information before its portion begins.",
+              "The goal is a repair or remodel that performs well and connects cleanly with the surrounding property.",
+              "Planning around the existing building usually produces a more dependable result than relying on a generic scope.",
+          ]
+
+          suffixes = sorted(service_labels, key=len, reverse=True)
+          city_pages = {}
+          service_pages = []
+          for filename in generated:
+              stem = filename[:-5]
+              matched = None
+              for suffix in suffixes:
+                  token = "-" + suffix
+                  if stem.endswith(token):
+                      matched = suffix
+                      city_slug = stem[:-len(token)]
+                      service_pages.append((filename, city_slug, matched))
+                      city_pages.setdefault(city_slug, []).append((filename, matched))
+                      break
+
+          def city_name(slug):
+              return " ".join(part.capitalize() for part in slug.split("-"))
+
           anchor = '<section class="seo-section seo-faq">'
-          for filename, (title, p1, p2) in blogs.items():
+          enriched = 0
+          linked = 0
+
+          for filename, city_slug, service in service_pages:
               path = Path(filename)
               if not path.exists():
-                  print(f"Skipping missing target: {filename}")
                   continue
-              html = path.read_text(encoding="utf-8")
-              marker = '<section class="seo-section seo-mini-blog">'
-              if marker in html:
+              page = path.read_text(encoding="utf-8")
+              city = city_name(city_slug)
+              label = service_labels[service]
+              note1, note2 = service_notes[service]
+              digest = int(hashlib.sha256(filename.encode()).hexdigest()[:8], 16)
+
+              if '<section class="seo-section seo-mini-blog">' not in page and anchor in page:
+                  p1 = f"{intros[digest % len(intros)]} For {label.lower()} in {city}, we review {note1}. The purpose is to build the scope around the property rather than assume every home or commercial space is constructed the same way."
+                  p2 = f"We also consider {note2}. {closers[(digest // 7) % len(closers)]}"
+                  title_choices = [
+                      f"Planning {label} Work in {city}",
+                      f"What We Review Before {label} in {city}",
+                      f"Existing Conditions Matter for {city} {label}",
+                      f"A Better Starting Point for {label} in {city}",
+                  ]
+                  title = title_choices[(digest // 13) % len(title_choices)]
+                  block = (
+                      '<section class="seo-section seo-mini-blog"><div class="container"><article>'
+                      '<p class="eyebrow gold">Local Project Notes</p>'
+                      f'<h2>{html_lib.escape(title)}</h2><p>{html_lib.escape(p1)}</p><p>{html_lib.escape(p2)}</p>'
+                      '</article></div></section>'
+                  )
+                  page = page.replace(anchor, block + anchor, 1)
+                  enriched += 1
+
+              if 'data-local-service-links' not in page and anchor in page:
+                  siblings = [(f, s) for f, s in city_pages.get(city_slug, []) if f != filename]
+                  siblings.sort(key=lambda x: x[1])
+                  if siblings:
+                      links = ''.join(
+                          f'<a class="seo-service-link" href="{html_lib.escape(f)}"><strong>{html_lib.escape(service_labels[s])}</strong><span>Explore {html_lib.escape(service_labels[s].lower())} options in {html_lib.escape(city)}</span></a>'
+                          for f, s in siblings[:6]
+                      )
+                      city_main = f"{city_slug}.html"
+                      city_link = f'<p><a class="btn btn-outline" href="{city_main}">View all construction services in {html_lib.escape(city)}</a></p>' if city_main in generated_set else ''
+                      block = (
+                          '<section class="seo-section seo-muted" data-local-service-links><div class="container">'
+                          f'<p class="eyebrow gold">More Local Services</p><h2>More Construction Services in {html_lib.escape(city)}</h2>'
+                          f'<div class="seo-service-grid">{links}</div>{city_link}</div></section>'
+                      )
+                      page = page.replace(anchor, block + anchor, 1)
+                      linked += 1
+
+              path.write_text(page, encoding="utf-8")
+
+          # Add direct links from each city landing page to every generated service page for that city.
+          for city_slug, siblings in city_pages.items():
+              city_file = f"{city_slug}.html"
+              if city_file not in generated_set or not Path(city_file).exists():
                   continue
-              if anchor not in html:
-                  print(f"Skipping target without FAQ anchor: {filename}")
+              path = Path(city_file)
+              page = path.read_text(encoding="utf-8")
+              if 'data-city-crawl-links' in page or anchor not in page:
                   continue
-              block = (
-                  '<section class="seo-section seo-mini-blog"><div class="container">'
-                  '<article><p class="eyebrow gold">Local Project Notes</p>'
-                  f'<h2>{title}</h2><p>{p1}</p><p>{p2}</p>'
-                  '</article></div></section>'
+              city = city_name(city_slug)
+              links = ''.join(
+                  f'<a href="{html_lib.escape(f)}">{html_lib.escape(service_labels[s])}</a>'
+                  for f, s in sorted(siblings, key=lambda x: x[1])
               )
-              html = html.replace(anchor, block + anchor, 1)
-              path.write_text(html, encoding="utf-8")
-              print(f"Enriched {filename}")
+              block = (
+                  '<section class="seo-section" data-city-crawl-links><div class="container">'
+                  f'<h2>Services We Provide in {html_lib.escape(city)}</h2><div class="seo-nearby">{links}</div>'
+                  '</div></section>'
+              )
+              page = page.replace(anchor, block + anchor, 1)
+              path.write_text(page, encoding="utf-8")
+
+          print(f"Enriched {enriched} local service pages; strengthened links on {linked} pages.")
           PY
 
       - name: Integrate navigation and footer links
@@ -165,10 +230,6 @@ jobs:
               marker = '<a href="#contact">Contact</a>'
               replacement = '<a href="service-areas.html">Service Areas</a>\n        <a href="articles.html">Resources</a>\n        ' + marker
               text = text.replace(marker, replacement, 1)
-          footer_heading = '<h3>Service Areas</h3>'
-          footer_links = '<h3>Service Areas</h3>\n            <a href="service-areas.html">View All Service Areas</a>\n            <a href="articles.html">Resources</a>'
-          if 'View All Service Areas' not in text:
-              text = text.replace(footer_heading, footer_links, 1)
           home.write_text(text, encoding="utf-8")
 
           service_pages = [
@@ -187,15 +248,10 @@ jobs:
                   replacement = '<a href="service-areas.html">Service Areas</a><a href="articles.html">Resources</a>' + marker
                   page = page.replace(marker, replacement, 1)
               path.write_text(page, encoding="utf-8")
-
-          script = Path("script.js")
-          js = script.read_text(encoding="utf-8")
-          dynamic_marker = '            <h3>Service Areas</h3>'
-          dynamic_links = '            <h3>Service Areas</h3>\n            <a href="service-areas.html">View All Service Areas</a>\n            <a href="articles.html">Resources</a>'
-          if 'View All Service Areas' not in js:
-              js = js.replace(dynamic_marker, dynamic_links, 1)
-          script.write_text(js, encoding="utf-8")
           PY
+
+      - name: Update sitemap dates for meaningful page changes
+        run: python scripts/update_sitemap_lastmod.py
 
       - name: Validate generated SEO output
         run: |
@@ -203,11 +259,7 @@ jobs:
           import re
           from pathlib import Path
 
-          manifest = Path("seo-generated-manifest.txt")
-          if not manifest.exists():
-              raise SystemExit("Missing generated manifest")
-
-          generated = [line.strip() for line in manifest.read_text(encoding="utf-8").splitlines() if line.strip().endswith(".html")]
+          generated = [line.strip() for line in Path("seo-generated-manifest.txt").read_text(encoding="utf-8").splitlines() if line.strip().endswith(".html")]
           if len(generated) != 517:
               raise SystemExit(f"Expected 517 generated HTML pages, found {len(generated)}")
 
@@ -217,47 +269,40 @@ jobs:
               raise SystemExit(f"Expected 530 sitemap URLs, found {url_count}")
 
           index_pages = {"service-areas.html", "services-by-city.html", "articles.html"}
-          base_tokens = [
-              "<title>", 'name="description"', "<h1", 'rel="canonical"',
-              'property="og:title"', 'application/ld+json'
-          ]
+          base_tokens = ["<title>", 'name="description"', "<h1", 'rel="canonical"', 'property="og:title"', 'application/ld+json']
           titles = []
+          enriched_service_pages = 0
           for filename in generated:
               path = Path(filename)
               if not path.exists():
                   raise SystemExit(f"Missing generated page: {filename}")
-              html = path.read_text(encoding="utf-8")
+              page = path.read_text(encoding="utf-8")
               for token in base_tokens:
-                  if token not in html:
+                  if token not in page:
                       raise SystemExit(f"{filename} is missing {token}")
-              if filename not in index_pages and "BreadcrumbList" not in html:
+              if filename not in index_pages and "BreadcrumbList" not in page:
                   raise SystemExit(f"{filename} is missing BreadcrumbList")
-              if "noindex" in html.lower():
+              if "noindex" in page.lower():
                   raise SystemExit(f"Unexpected noindex in {filename}")
-              match = re.search(r"<title>(.*?)</title>", html, re.S)
+              match = re.search(r"<title>(.*?)</title>", page, re.S)
               if not match:
                   raise SystemExit(f"Missing title in {filename}")
               titles.append(match.group(1).strip())
+              if 'data-local-service-links' in page:
+                  enriched_service_pages += 1
+                  if 'seo-mini-blog' not in page:
+                      raise SystemExit(f"{filename} has local links but no local content block")
 
           if len(titles) != len(set(titles)):
               raise SystemExit("Generated page titles are not unique")
-
-          required_examples = [
-              "waxahachie-roofing.html",
-              "arlington-bathroom-remodeling.html",
-              "dallas-kitchen-remodeling.html"
-          ]
-          for filename in required_examples:
-              html = Path(filename).read_text(encoding="utf-8")
-              for token in ["FAQPage", "BreadcrumbList", "Service", "LocalBusiness", "GeneralContractor"]:
-                  if token not in html:
-                      raise SystemExit(f"{filename} is missing {token}")
+          if enriched_service_pages < 400:
+              raise SystemExit(f"Expected at least 400 enriched city-service pages, found {enriched_service_pages}")
 
           for filename in ["service-areas.html", "services-by-city.html", "articles.html"]:
               if not Path(filename).exists():
                   raise SystemExit(f"Required index page was not generated: {filename}")
 
-          print(f"Validated {len(generated)} HTML pages and {url_count} sitemap URLs.")
+          print(f"Validated {len(generated)} HTML pages, {enriched_service_pages} enriched city-service pages and {url_count} sitemap URLs.")
           PY
 
       - name: Remove temporary generator
@@ -272,6 +317,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No generated changes."
           else
-            git commit -m "Generate complete local SEO city and service pages"
+            git commit -m "Generate enriched local SEO pages and crawl links"
             git push origin HEAD:main
           fi
