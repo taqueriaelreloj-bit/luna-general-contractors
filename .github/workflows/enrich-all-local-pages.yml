@@ -6,9 +6,10 @@ on:
     paths:
       - "scripts/enrich_all_local_pages.py"
       - "scripts/enrich_local_faqs.py"
+      - "scripts/update_sitemap_lastmod.py"
       - ".github/workflows/enrich-all-local-pages.yml"
   schedule:
-    - cron: "27 */6 * * *"
+    - cron: "45 12 * * *"
 
 permissions:
   contents: write
@@ -20,6 +21,7 @@ concurrency:
 jobs:
   enrich:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
 
     steps:
       - name: Check out main branch
@@ -38,6 +40,9 @@ jobs:
 
       - name: Add unique FAQs to every local city and service page
         run: python scripts/enrich_local_faqs.py
+
+      - name: Update sitemap dates only for changed pages
+        run: python scripts/update_sitemap_lastmod.py
 
       - name: Validate local SEO enrichment coverage
         shell: bash
@@ -84,6 +89,7 @@ jobs:
           missing_faq = []
           duplicate_faq = []
           missing_schema = []
+          bad_copy = []
           faq_fingerprints = {}
 
           for filename in local_pages:
@@ -105,6 +111,12 @@ jobs:
               if schema_count != 1:
                   missing_schema.append(filename)
 
+              visible = re.sub(r'<[^>]+>', ' ', text)
+              if re.search(r'\bin\s+Serving\s+[A-Z]', visible, re.I):
+                  bad_copy.append(filename)
+              if re.search(r'\b(?:a|A)\s+(?:Allen|Arlington|Euless|Irving|Ovilla)\b', visible):
+                  bad_copy.append(filename)
+
               match = re.search(r'<section class="seo-section seo-faq">(.*?)</section>', text, re.S)
               if match:
                   fingerprint = match.group(1).strip()
@@ -122,6 +134,8 @@ jobs:
               raise SystemExit('Duplicate FAQ block count: ' + ', '.join(duplicate_faq[:20]))
           if missing_schema:
               raise SystemExit('FAQ schema validation failed: ' + ', '.join(missing_schema[:20]))
+          if bad_copy:
+              raise SystemExit('Awkward generated city copy: ' + ', '.join(sorted(set(bad_copy))[:20]))
 
           print(f'Validated mini-blog and unique FAQ coverage on {len(local_pages)} local pages.')
           PY
@@ -131,10 +145,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add '*.html'
+          git add '*.html' sitemap.xml
           if git diff --cached --quiet; then
             echo "All local pages already contain current unique SEO enrichment."
           else
-            git commit -m "Enrich local SEO pages with unique FAQs and project notes"
+            git commit -m "Enrich local SEO pages with accurate FAQs, project notes and sitemap dates"
             git push origin HEAD:main
           fi
