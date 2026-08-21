@@ -163,7 +163,7 @@ CITY_LEADS = [
     "In {city}, we approach remodeling by connecting the requested finish work to the existing building conditions behind it.",
     "A {city} project is easier to plan when measurements, access, existing materials, and trade dependencies are reviewed together.",
     "For homeowners and property managers in {city}, a clear field-based scope can make remodeling decisions easier to compare.",
-    "Before work begins at a {city} property, it helps to identify the decisions that affect more than one trade or finish.",
+    "Before work begins at a property in {city}, it helps to identify the decisions that affect more than one trade or finish.",
     "Projects in {city} can vary widely even when the requested service sounds the same, so the scope should follow the property rather than a generic template.",
     "At a {city} property, early planning can reduce avoidable changes once demolition or installation is underway.",
     "For construction work in {city}, practical sequencing and documented field conditions are often as important as the final material selections.",
@@ -187,9 +187,9 @@ def stable_index(key: str, salt: str, length: int) -> int:
 
 
 def extract_city(page_html: str, filename: str) -> str:
-    match = re.search(r'<p class="eyebrow gold">([^<]+?),\s*Texas</p>', page_html, re.I)
+    match = re.search(r'<p class="eyebrow gold">(?:Serving\s+)?([^<]+?),\s*Texas</p>', page_html, re.I)
     if match:
-        return html.unescape(match.group(1)).strip()
+        return re.sub(r"^Serving\s+", "", html.unescape(match.group(1)), flags=re.I).strip()
 
     stem = Path(filename).stem
     for suffix in sorted(SERVICE_SUFFIXES, key=len, reverse=True):

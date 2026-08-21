@@ -4,14 +4,10 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - ".github/workflows/generate-local-seo.yml"
       - "seo_payload/**"
   pull_request:
     paths:
       - "seo_payload/**"
-  schedule:
-    - cron: "17 */6 * * *"
-
 permissions:
   contents: write
 
@@ -253,6 +249,9 @@ jobs:
                   page = page.replace(marker, replacement, 1)
               path.write_text(page, encoding="utf-8")
           PY
+
+      - name: Update sitemap dates for meaningful page changes
+        run: python scripts/update_sitemap_lastmod.py
 
       - name: Validate generated SEO output
         run: |

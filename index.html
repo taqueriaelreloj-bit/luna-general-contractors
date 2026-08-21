@@ -9,12 +9,10 @@
     name="description"
     content="Dallas–Fort Worth general contractor for roofing, bathroom and kitchen remodeling, restoration, flooring and commercial construction. Call for a free estimate."
   />
-  <meta
-    name="keywords"
-    content="general contractor Dallas, roofing Fort Worth, remodeling Midlothian, water damage restoration, insurance claims contractor, drywall contractor"
-  />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#090b0d" />
   <link rel="canonical" href="https://lunageneralcontractors.com/" />
+  <link rel="preload" as="image" href="bathroom-before-after-shower.jpg.webp" fetchpriority="high" />
   <link rel="icon" href="https://lunageneralcontractors.com/favicon.svg?v=2" type="image/svg+xml" sizes="any" />
   <link rel="shortcut icon" href="https://lunageneralcontractors.com/favicon.svg?v=2" type="image/svg+xml" />
 
@@ -22,6 +20,14 @@
   <meta property="og:description" content="Roofing, remodeling, restoration, flooring and commercial construction across Dallas–Fort Worth. Call for a free estimate." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://lunageneralcontractors.com/" />
+  <meta property="og:image" content="https://lunageneralcontractors.com/bathroom-before-after-shower.jpg.webp" />
+  <meta property="og:image:alt" content="Completed remodeling project by Luna General Contractors" />
+  <meta property="og:site_name" content="Luna General Contractors" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="General Contractor Dallas–Fort Worth | Luna General Contractors" />
+  <meta name="twitter:description" content="Roofing, remodeling, restoration, flooring and commercial construction across Dallas–Fort Worth." />
+  <meta name="twitter:image" content="https://lunageneralcontractors.com/bathroom-before-after-shower.jpg.webp" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,35 +35,88 @@
     href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20260821-1" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "GeneralContractor",
-    "name": "Luna General Contractors",
-    "telephone": "+1-817-784-5998",
-    "email": "lunabestcontractors@gmail.com",
-    "areaServed": [
-      "Dallas, TX",
-      "Fort Worth, TX",
-      "Midlothian, TX",
-      "Mansfield, TX",
-      "Arlington, TX",
-      "Grand Prairie, TX",
-      "Irving, TX",
-      "Keller, TX",
-      "Lewisville, TX"
-    ],
-    "serviceType": [
-      "Roofing",
-      "Remodeling",
-      "Water Damage Mitigation",
-      "Insurance Claim Restoration",
-      "Drywall",
-      "Painting",
-      "Flooring",
-      "Commercial Construction"
+    "@graph": [
+      {
+        "@type": ["LocalBusiness", "GeneralContractor"],
+        "@id": "https://lunageneralcontractors.com/#business",
+        "name": "Luna General Contractors",
+        "url": "https://lunageneralcontractors.com/",
+        "logo": "https://lunageneralcontractors.com/favicon.svg",
+        "image": "https://lunageneralcontractors.com/bathroom-before-after-shower.jpg.webp",
+        "telephone": "+1-817-784-5998",
+        "email": "lunabestcontractors@gmail.com",
+        "priceRange": "$",
+        "knowsLanguage": ["English", "Spanish"],
+        "areaServed": [
+          {"@type": "AdministrativeArea", "name": "Dallas–Fort Worth, Texas"},
+          {"@type": "City", "name": "Dallas, Texas"},
+          {"@type": "City", "name": "Fort Worth, Texas"},
+          {"@type": "City", "name": "Midlothian, Texas"},
+          {"@type": "City", "name": "Mansfield, Texas"},
+          {"@type": "City", "name": "Arlington, Texas"},
+          {"@type": "City", "name": "Grand Prairie, Texas"}
+        ],
+        "sameAs": [
+          "https://nextdoor.com/pages/luna-general-contractors-grand-prairie-tx/"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Construction and Restoration Services",
+          "itemListElement": [
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Roofing"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Kitchen Remodeling"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Bathroom Remodeling"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Water Damage Restoration"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Commercial Construction"}}
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://lunageneralcontractors.com/#website",
+        "url": "https://lunageneralcontractors.com/",
+        "name": "Luna General Contractors",
+        "publisher": {"@id": "https://lunageneralcontractors.com/#business"},
+        "inLanguage": ["en-US", "es-US"]
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What areas does Luna General Contractors serve?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Luna General Contractors serves residential and commercial properties throughout Dallas–Fort Worth, including Dallas, Fort Worth, Midlothian, Mansfield, Arlington, Grand Prairie and surrounding DFW communities."}
+      },
+      {
+        "@type": "Question",
+        "name": "Do you provide written construction estimates?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Yes. We review the property and requested work, then prepare a scope based on visible conditions, measurements, materials, trade coordination and project requirements."}
+      },
+      {
+        "@type": "Question",
+        "name": "Can Luna coordinate several trades on one project?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Yes. As a general contractor, Luna can coordinate related work such as framing, roofing, drywall, painting, flooring, carpentry, plumbing and electrical work within one organized construction scope."}
+      },
+      {
+        "@type": "Question",
+        "name": "Can you help document insurance-related property repairs?",
+        "acceptedAnswer": {"@type": "Answer", "text": "We can document visible damage, measurements and the construction repair scope, prepare estimates and coordinate covered repairs. The insurance carrier and policy determine coverage."}
+      },
+      {
+        "@type": "Question",
+        "name": "Do you handle residential and commercial construction?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Yes. Luna General Contractors works on residential remodeling and repairs as well as commercial improvements, repairs and coordinated build-outs."}
+      }
     ]
   }
   </script>
@@ -77,11 +136,11 @@
         </span>
       </a>
 
-      <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+      <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-nav">
         <span></span><span></span><span></span>
       </button>
 
-      <nav class="main-nav" aria-label="Main navigation">
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
         <a class="active" href="#home">Home</a>
         <a href="#services">Services</a>
         <a href="#roofing">Roofing</a>
@@ -135,7 +194,7 @@
             </div>
             <div class="trust-item">
               <span class="trust-icon">◎</span>
-              <div><strong>Insurance Claims</strong><small>We work for you</small></div>
+              <div><strong>Claim Documentation</strong><small>Scope &amp; estimate support</small></div>
             </div>
             <div class="trust-item">
               <span class="trust-icon">◷</span>
@@ -211,7 +270,7 @@
 
         <div class="service-grid">
           <article class="service-card" id="roofing">
-            <img src="roofing-project-one.jpg" alt="Residential roofing project by Luna General Contractors" loading="lazy" />
+            <img src="roofing-project-one.jpg" alt="Residential roofing project by Luna General Contractors" loading="lazy" decoding="async" width="900" height="650" />
             <div class="service-card-body">
               <span class="line-icon">⌂</span>
               <h3>Roofing</h3>
@@ -221,7 +280,7 @@
           </article>
 
           <article class="service-card" id="mitigation">
-            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=80" alt="Water mitigation equipment" />
+            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=80" alt="Water mitigation equipment" loading="lazy" decoding="async" width="900" height="650" />
             <div class="service-card-body">
               <span class="line-icon">♨</span>
               <h3>Mitigation</h3>
@@ -231,7 +290,7 @@
           </article>
 
           <article class="service-card" id="claims">
-            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80" alt="Insurance claim documents" />
+            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80" alt="Insurance claim documents" loading="lazy" decoding="async" width="900" height="650" />
             <div class="service-card-body">
               <span class="line-icon">▤</span>
               <h3>Insurance Claims</h3>
@@ -241,7 +300,7 @@
           </article>
 
           <article class="service-card">
-            <img src="kitchen-project-one.jpg" alt="Remodeled kitchen by Luna General Contractors" loading="lazy" />
+            <img src="kitchen-project-one.jpg" alt="Remodeled kitchen by Luna General Contractors" loading="lazy" decoding="async" width="900" height="650" />
             <div class="service-card-body">
               <span class="line-icon">♨</span>
               <h3>Kitchens</h3>
@@ -251,7 +310,7 @@
           </article>
 
           <article class="service-card">
-            <img src="bathroom-glass-shower-after.jpg" alt="Completed custom glass shower by Luna General Contractors" loading="lazy" />
+            <img src="bathroom-glass-shower-after.jpg" alt="Completed custom glass shower by Luna General Contractors" loading="lazy" decoding="async" width="900" height="650" />
             <div class="service-card-body">
               <span class="line-icon">♧</span>
               <h3>Bathrooms</h3>
@@ -261,7 +320,7 @@
           </article>
 
           <article class="service-card">
-            <img src="flooring-after.jpg" alt="New flooring installed by Luna General Contractors" loading="lazy" />
+            <img src="flooring-after.jpg" alt="New flooring installed by Luna General Contractors" loading="lazy" decoding="async" width="900" height="650" />
             <div class="service-card-body">
               <span class="line-icon">⌁</span>
               <h3>Flooring</h3>
@@ -271,7 +330,7 @@
           </article>
 
           <article class="service-card">
-            <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=900&q=80" alt="Interior painting" />
+            <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=900&q=80" alt="Interior painting" loading="lazy" decoding="async" width="900" height="650" />
             <div class="service-card-body">
               <span class="line-icon">▱</span>
               <h3>Painting</h3>
@@ -281,7 +340,7 @@
           </article>
 
           <article class="service-card">
-            <img src="drywall-installation.jpg" alt="Sheetrock installation by Luna General Contractors" loading="lazy" />
+            <img src="drywall-installation.jpg" alt="Sheetrock installation by Luna General Contractors" loading="lazy" decoding="async" width="900" height="650" />
             <div class="service-card-body">
               <span class="line-icon">▧</span>
               <h3>Drywall</h3>
@@ -291,7 +350,7 @@
           </article>
 
           <article class="service-card">
-            <img src="siding-after.jpg" alt="Completed residential siding project by Luna General Contractors" loading="lazy" />
+            <img src="siding-after.jpg" alt="Completed residential siding project by Luna General Contractors" loading="lazy" decoding="async" width="900" height="650" />
             <div class="service-card-body">
               <span class="line-icon">♜</span>
               <h3>Siding</h3>
@@ -301,7 +360,7 @@
           </article>
 
           <article class="service-card">
-            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80" alt="Wood framing" />
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80" alt="Wood framing" loading="lazy" decoding="async" width="900" height="650" />
             <div class="service-card-body">
               <span class="line-icon">⌁</span>
               <h3>Carpentry</h3>
@@ -311,7 +370,7 @@
           </article>
 
           <article class="service-card">
-            <img src="fencing-project-two.jpg" alt="Wood privacy fence by Luna General Contractors" loading="lazy" />
+            <img src="fencing-project-two.jpg" alt="Wood privacy fence by Luna General Contractors" loading="lazy" decoding="async" width="900" height="650" />
             <div class="service-card-body">
               <span class="line-icon">▥</span>
               <h3>Fencing</h3>
@@ -321,7 +380,7 @@
           </article>
 
           <article class="service-card">
-            <img src="commercial-interior.jpg" alt="Commercial construction project by Luna General Contractors" loading="lazy" />
+            <img src="commercial-interior.jpg" alt="Commercial construction project by Luna General Contractors" loading="lazy" decoding="async" width="900" height="650" />
             <div class="service-card-body">
               <span class="line-icon">▥</span>
               <h3>Commercial</h3>
@@ -330,6 +389,22 @@
             </div>
           </article>
         </div>
+      </div>
+    </section>
+
+    <section class="section process-section" id="process">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow gold">Built Around the Actual Property</p>
+          <h2>A Clear Construction Process</h2>
+          <p>Large companies often force projects into a standard package. Luna starts with field conditions, the owner's priorities and a written scope that the crews can actually build.</p>
+        </div>
+        <ol class="process-grid">
+          <li class="process-card"><h3>Inspect &amp; Listen</h3><p>We review visible conditions, measurements, access, priorities and the way the space needs to function.</p></li>
+          <li class="process-card"><h3>Build the Scope</h3><p>The estimate identifies the work, major materials, related trades, exclusions and decisions that still need confirmation.</p></li>
+          <li class="process-card"><h3>Coordinate the Work</h3><p>Crews, materials, protection and trade sequencing are organized around the agreed construction plan.</p></li>
+          <li class="process-card"><h3>Final Walkthrough</h3><p>We review completed work with the owner, address remaining items and document project completion.</p></li>
+        </ol>
       </div>
     </section>
 
@@ -495,6 +570,41 @@
             <span>Call Today!</span>
           </div>
           <a class="btn btn-gold" href="tel:+18177845998">☎ (817) 784-5998</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section resources-section" id="resources">
+      <div class="container">
+        <div class="section-heading split-heading">
+          <div>
+            <p class="eyebrow gold">Practical Local Information</p>
+            <h2>DFW Construction Guides</h2>
+          </div>
+          <a class="btn btn-outline-light" href="articles.html">View All Guides →</a>
+        </div>
+        <div class="resource-grid">
+          <article class="resource-card"><p class="eyebrow gold">Roofing</p><h3>Roof Replacement Cost in Dallas</h3><p>Understand the measurements, pitch, materials, decking and storm conditions that affect a roofing scope.</p><a href="roof-replacement-cost-dallas.html">Read the Roofing Guide →</a></article>
+          <article class="resource-card"><p class="eyebrow gold">Bathrooms</p><h3>Bathroom Remodeling Cost in Waxahachie</h3><p>See how shower design, plumbing, tile, glass, cabinetry and hidden conditions affect planning.</p><a href="bathroom-remodeling-cost-waxahachie.html">Read the Bathroom Guide →</a></article>
+          <article class="resource-card"><p class="eyebrow gold">Property Claims</p><h3>Water Damage Repair Documentation</h3><p>Learn what photos, measurements and repair-scope details help organize reconstruction after water damage.</p><a href="water-damage-insurance-claims-arlington.html">Read the Documentation Guide →</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq-section" id="faq">
+      <div class="container faq-shell">
+        <div>
+          <p class="eyebrow gold">Frequently Asked Questions</p>
+          <h2>Before You Start a Project</h2>
+          <p>Clear expectations make construction easier to compare and manage. These answers explain how Luna approaches work throughout Dallas–Fort Worth.</p>
+          <a class="btn btn-gold" href="#contact">Request a Free Estimate</a>
+        </div>
+        <div class="faq-list">
+          <details><summary>What areas does Luna General Contractors serve?</summary><p>We serve residential and commercial properties throughout Dallas–Fort Worth, including Dallas, Fort Worth, Midlothian, Mansfield, Arlington, Grand Prairie and surrounding DFW communities. See our <a href="service-areas.html">service areas</a>.</p></details>
+          <details><summary>Do you provide written construction estimates?</summary><p>Yes. We review the property and requested work, then prepare a scope based on visible conditions, measurements, materials, trade coordination and project requirements.</p></details>
+          <details><summary>Can Luna coordinate several trades on one project?</summary><p>Yes. As a general contractor, we can coordinate related work such as framing, roofing, drywall, painting, flooring, carpentry, plumbing and electrical work within one organized construction scope.</p></details>
+          <details><summary>Can you help document insurance-related property repairs?</summary><p>We can document visible damage, measurements and the construction repair scope, prepare estimates and coordinate covered repairs. The insurance carrier and policy determine coverage.</p></details>
+          <details><summary>Do you handle residential and commercial construction?</summary><p>Yes. We work on residential remodeling and repairs as well as commercial improvements, repairs and coordinated build-outs.</p></details>
         </div>
       </div>
     </section>
