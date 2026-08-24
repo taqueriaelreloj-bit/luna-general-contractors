@@ -110,5 +110,13 @@ class SEOAuditTests(unittest.TestCase):
         self.assertNotEqual(service_schema, hub_schema)
 
 
+    def test_directory_hubs_link_to_home_estimate_form(self):
+        root = Path(__file__).resolve().parents[1]
+        for page_name in ("articles.html", "service-areas.html", "services-by-city.html"):
+            with self.subTest(page=page_name):
+                page = (root / page_name).read_text(encoding="utf-8")
+                self.assertNotIn('href="#estimate-form"', page)
+                self.assertIn('href="index.html#estimate-form"', page)
+
 if __name__ == "__main__":
     unittest.main()
