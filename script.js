@@ -186,8 +186,16 @@ document.querySelectorAll("[data-gallery]").forEach((gallery) => {
     button.className = "showcase-thumbnail";
     button.setAttribute("role", "tab");
     button.setAttribute("aria-label", `View project ${index + 1}: ${sourceImage?.alt || "project image"}`);
-    image.src = sourceImage?.src || "";
     image.alt = "";
+    image.loading = "lazy";
+    image.decoding = "async";
+    const sourceWidth = sourceImage?.getAttribute("width");
+    const sourceHeight = sourceImage?.getAttribute("height");
+    if (sourceWidth && sourceHeight) {
+      image.width = Number(sourceWidth);
+      image.height = Number(sourceHeight);
+    }
+    image.src = sourceImage?.currentSrc || sourceImage?.src || "";
     button.appendChild(image);
     button.addEventListener("click", () => showSlide(index, true));
     thumbnailRow.appendChild(button);
