@@ -6,14 +6,14 @@ This audit classifies every root-level HTML page omitted from `sitemap.xml` on c
 
 - Root-level HTML files: 1006
 - Sitemap URLs: 540
-- Root-level HTML files outside the sitemap: 466
+- Root-level HTML files outside the sitemap at audit time: 466
 - Generated copies under `luna_engine/dist/`: excluded from this count because they are build artifacts, not independent public-page decisions
 
 ## Classification
 
 | Classification | Count | Recommendation |
 |---|---:|---|
-| Ready for sitemap | 1 | Add in the next sitemap update after final validation |
+| Ready for sitemap | 1 | Added in the follow-up Weatherford sitemap update |
 | Enrich, then index | 17 | Complete social metadata/local proof, validate, then add in small batches |
 | Hold: low content | 15 | Expand substantially before considering indexing |
 | Hold: template family | 432 | Improve and validate by service family; do not add all 432 at once |
@@ -23,7 +23,7 @@ This audit classifies every root-level HTML page omitted from `sitemap.xml` on c
 
 ### Ready now
 
-- `weatherford.html` is the strongest omitted city hub: one H1, self-canonical, indexable robots directive, four JSON-LD blocks, Open Graph image, Twitter card, and approximately 780 visible words.
+- `weatherford.html` was the strongest omitted city hub and is now staged for sitemap inclusion: one H1, self-canonical, indexable robots directive, four JSON-LD blocks, Open Graph image, Twitter card, and approximately 780 visible words.
 
 ### Improve before indexing
 
@@ -39,7 +39,7 @@ This audit classifies every root-level HTML page omitted from `sitemap.xml` on c
 
 ## Safe rollout
 
-1. Add `weatherford.html` in its own small sitemap change.
+1. Add `weatherford.html` in its own small sitemap change. Completed in the follow-up PR.
 2. Complete metadata and local-proof improvements for the seven hub/trust pages.
 3. Improve and release the ten stronger local guides in a measured batch.
 4. Expand the fifteen thin articles.
