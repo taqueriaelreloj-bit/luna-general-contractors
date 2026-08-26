@@ -13,6 +13,18 @@ on:
       - "scripts/validate_sitemap_exclusions.py"
       - "seo/sitemap-exclusions.csv"
       - ".github/workflows/validate-seo.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "*.html"
+      - "sitemap.xml"
+      - "robots.txt"
+      - "seo-generated-manifest.txt"
+      - "scripts/fix_generated_seo.py"
+      - "scripts/validate_seo.py"
+      - "scripts/validate_sitemap_exclusions.py"
+      - "seo/sitemap-exclusions.csv"
+      - ".github/workflows/validate-seo.yml"
   workflow_dispatch:
 
 permissions:
@@ -37,6 +49,7 @@ jobs:
       - name: Validate sitemap exclusion inventory
         run: python scripts/validate_sitemap_exclusions.py
       - name: Commit automatic SEO repairs
+        if: github.event_name == 'push'
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
