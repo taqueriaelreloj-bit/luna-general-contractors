@@ -9,9 +9,37 @@ document.head.appendChild(googleTag);
 gtag("js", new Date());
 gtag("config", "G-3MGPLXSG14");
 
+const isSpanishPage = document.documentElement.lang.toLowerCase().startsWith("es");
+const isPrivacyPage = window.location.pathname.endsWith("/privacy.html");
+const formCopy = isSpanishPage
+  ? {
+      photoLabel: "Suba fotos del proyecto",
+      optional: "(Opcional)",
+      photoHelp: "Elija fotos de cualquier tamaño · Se reducirán automáticamente",
+      optimizing: "Optimizando fotos...",
+      optimizingOne: (current, total) => `Optimizando foto ${current} de ${total}...`,
+      preparing: "Preparando sus fotos y solicitud...",
+      sending: "Enviando...",
+      sendingRequest: "Enviando su solicitud...",
+      success: "¡Gracias! Su solicitud y sus fotos se enviaron correctamente. Nos comunicaremos pronto.",
+      error: "No pudimos enviar su solicitud. Intente con menos fotos o llame al (817) 784-5998."
+    }
+  : {
+      photoLabel: "Upload Project Photos",
+      optional: "(Optional)",
+      photoHelp: "Choose photos of any size · They will be resized automatically",
+      optimizing: "Optimizing photos...",
+      optimizingOne: (current, total) => `Optimizing photo ${current} of ${total}...`,
+      preparing: "Preparing your photos and request...",
+      sending: "Sending...",
+      sendingRequest: "Sending your request...",
+      success: "Thank you! Your estimate request and photos were sent successfully. We will contact you soon.",
+      error: "We could not send your request. Try fewer photos, or call (817) 784-5998."
+    };
 const isHomePage =
   window.location.pathname.endsWith("/") ||
-  window.location.pathname.endsWith("/index.html");
+  window.location.pathname.endsWith("/index.html") ||
+  window.location.pathname.endsWith("/es.html");
 
 
 // Use one consistent, realistic hero image on every Insurance Claims page.
@@ -58,13 +86,14 @@ if (!isHomePage) {
           <a href="index.html#about">About</a>
           <a href="service-areas.html">Service Areas</a>
           <a href="articles.html">Resources</a>
+          <a class="language-link" href="es.html" lang="es">Español</a>
           <a href="index.html#estimate-form">Contact</a>
         </nav>
 
         <div class="header-call">
           <small>Call Now for a Free Estimate</small>
           <a href="tel:+18177845998">☎ (817) 784-5998</a>
-          <span>English & Spanish</span>
+          <span>English · <a class="language-inline" href="es.html" lang="es">Español</a></span>
         </div>
       </div>
       <nav class="trade-bar" aria-label="Trade pages">
@@ -281,7 +310,7 @@ filterButtons.forEach((button) => {
 });
 
 // Make the complete lead form available on every internal page.
-if (!isHomePage && !document.querySelector("#estimate-form")) {
+if (!isHomePage && !isPrivacyPage && !document.querySelector("#estimate-form")) {
   const globalEstimateSection = document.createElement("section");
   globalEstimateSection.className = "global-estimate-section";
   globalEstimateSection.id = "contact";
@@ -291,9 +320,9 @@ if (!isHomePage && !document.querySelector("#estimate-form")) {
         <h2>Get Your Free Estimate</h2>
         <p>Fast, Easy & No Obligation</p>
         <form id="estimate-form" action="https://formspree.io/f/maqrzbol" method="POST">
-          <label><span class="sr-only">Full name</span><input type="text" name="name" placeholder="Full Name*" required /></label>
-          <label><span class="sr-only">Phone number</span><input type="tel" name="phone" placeholder="Phone Number*" required /></label>
-          <label><span class="sr-only">Email</span><input type="email" name="email" placeholder="Email*" required /></label>
+          <label><span class="sr-only">Full name</span><input type="text" name="name" placeholder="Full Name*" autocomplete="name" required /></label>
+          <label><span class="sr-only">Phone number</span><input type="tel" name="phone" placeholder="Phone Number*" autocomplete="tel" inputmode="tel" required /></label>
+          <label><span class="sr-only">Email</span><input type="email" name="email" placeholder="Email*" autocomplete="email" required /></label>
           <label>
             <span class="sr-only">Service needed</span>
             <select name="service" required>
@@ -305,9 +334,9 @@ if (!isHomePage && !document.querySelector("#estimate-form")) {
               <option>Fencing</option><option>Concrete</option><option>Commercial</option><option>Other</option>
             </select>
           </label>
-          <label><span class="sr-only">Project address</span><input type="text" name="address" placeholder="Project Address*" required /></label>
+          <label><span class="sr-only">Project address</span><input type="text" name="address" placeholder="Project Address (Optional)" autocomplete="street-address" /></label>
           <button class="btn btn-gold btn-full" type="submit">Get Free Estimate →</button>
-          <small class="privacy">🔒 We respect your privacy.</small>
+          <small class="privacy">🔒 We respect your privacy. <a href="privacy.html">Privacy notice</a>.</small>
           <p class="form-message" role="status" aria-live="polite"></p>
         </form>
       </aside>
@@ -418,9 +447,9 @@ document.querySelectorAll('form[action*="formspree.io"]').forEach((form) => {
     const photoField = document.createElement("label");
     photoField.className = "photo-upload-field";
     photoField.innerHTML = `
-      <span>Upload Project Photos <small>(Optional)</small></span>
+      <span>${formCopy.photoLabel} <small>${formCopy.optional}</small></span>
       <input type="file" name="project_photos" accept="image/*" multiple />
-      <small class="photo-upload-help">Choose photos of any size · They will be resized automatically</small>
+      <small class="photo-upload-help">${formCopy.photoHelp}</small>
     `;
 
     const submitButton = form.querySelector('button[type="submit"]');
@@ -474,9 +503,9 @@ document.querySelectorAll('form[action*="formspree.io"]').forEach((form) => {
     const originalText = submitButton?.textContent || "Submit";
     if (submitButton) {
       submitButton.disabled = true;
-      submitButton.textContent = "Optimizing photos...";
+      submitButton.textContent = formCopy.optimizing;
     }
-    formMessage.textContent = "Preparing your photos and request...";
+    formMessage.textContent = formCopy.preparing;
 
     try {
       const formData = new FormData(form);
@@ -488,15 +517,15 @@ document.querySelectorAll('form[action*="formspree.io"]').forEach((form) => {
         const optimizedPhotos = [];
         for (let index = 0; index < photos.length; index += 1) {
           if (submitButton) {
-            submitButton.textContent = `Optimizing photo ${index + 1} of ${photos.length}...`;
+            submitButton.textContent = formCopy.optimizingOne(index + 1, photos.length);
           }
           optimizedPhotos.push(await optimizeProjectPhoto(photos[index]));
         }
         optimizedPhotos.forEach((photo) => formData.append("project_photos", photo, photo.name));
       }
 
-      if (submitButton) submitButton.textContent = "Sending...";
-      formMessage.textContent = "Sending your request...";
+      if (submitButton) submitButton.textContent = formCopy.sending;
+      formMessage.textContent = formCopy.sendingRequest;
 
       const response = await fetch(form.action, {
         method: "POST",
@@ -506,8 +535,7 @@ document.querySelectorAll('form[action*="formspree.io"]').forEach((form) => {
 
       if (!response.ok) throw new Error("Submission failed");
 
-      formMessage.textContent =
-        "Thank you! Your estimate request and photos were sent successfully. We will contact you soon.";
+      formMessage.textContent = formCopy.success;
       form.reset();
 
       if (typeof gtag === "function") {
@@ -517,8 +545,7 @@ document.querySelectorAll('form[action*="formspree.io"]').forEach((form) => {
         });
       }
     } catch (error) {
-      formMessage.textContent =
-        "We could not send your request. Try fewer photos, or call (817) 784-5998.";
+      formMessage.textContent = formCopy.error;
     } finally {
       if (submitButton) {
         submitButton.disabled = false;
@@ -581,6 +608,7 @@ if (!isHomePage) {
             <a href="index.html#about">About Us</a>
             <a href="projects.html">Projects</a>
             <a href="reviews.html">Reviews</a>
+            <a href="es.html" lang="es">Español</a>
             <a href="index.html#estimate-form">Contact</a>
           </div>
 
@@ -606,7 +634,7 @@ if (!isHomePage) {
               Request Online
             </a>
             <span>⌖ Dallas–Fort Worth, TX</span>
-            <span>English & Spanish</span>
+            <span>English · <a href="es.html" lang="es">Español</a></span>
           </div>
         </div>
       </footer>
@@ -617,6 +645,12 @@ if (!isHomePage) {
       footerYear.textContent = new Date().getFullYear();
     }
   }
+}
+
+// Make the mobile phone action explicit instead of relying on an icon alone.
+const floatingCall = document.querySelector(".floating-call");
+if (floatingCall) {
+  floatingCall.dataset.label = isSpanishPage ? "Llamar ahora" : "Call now";
 }
 
 // Open every page at its beginning unless the user intentionally selected a homepage section.
