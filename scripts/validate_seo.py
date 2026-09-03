@@ -30,7 +30,7 @@ PRIMARY_SERVICE_PAGES = {
     "fencing.html",
     "commercial.html",
 }
-PRIMARY_PAGES = {"index.html", "projects.html"} | PRIMARY_SERVICE_PAGES
+PRIMARY_PAGES = {"index.html", "es.html", "projects.html"} | PRIMARY_SERVICE_PAGES
 
 
 def common_errors(path: Path, expected_canonical: str) -> list[str]:
@@ -118,6 +118,10 @@ def validate_primary(path: Path) -> list[str]:
         errors.append("missing ImageGallery schema")
     elif path.name == "index.html":
         for schema_type in ("LocalBusiness", "GeneralContractor", "FAQPage"):
+            if schema_type not in types:
+                errors.append(f"missing {schema_type} schema")
+    elif path.name == "es.html":
+        for schema_type in ("LocalBusiness", "GeneralContractor", "WebPage"):
             if schema_type not in types:
                 errors.append(f"missing {schema_type} schema")
     return errors
