@@ -6,7 +6,6 @@ on:
     branches: [main]
     paths:
       - 'tools/generate_seo_pages.py'
-      - '.github/workflows/generate-seo-pages.yml'
 
 permissions:
   contents: write
@@ -27,6 +26,12 @@ jobs:
 
       - name: Generate city, service and article pages
         run: python tools/generate_seo_pages.py
+
+      - name: Apply sitemap exclusion index controls
+        run: |
+          python scripts/apply_sitemap_exclusion_noindex.py
+          python scripts/validate_sitemap_exclusions.py
+          python scripts/seo_quality_audit.py --root . --report seo-audit-report.md --strict
 
       - name: Commit generated pages
         run: |
