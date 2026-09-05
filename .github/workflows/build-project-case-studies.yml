@@ -3,12 +3,12 @@ name: Build Real Project Case Studies
 on:
   workflow_dispatch:
   push:
+    branches: [main]
     paths:
       - "luna_engine/content/projects/**"
       - "luna_engine/build_projects.py"
       - "luna_engine/link_projects_to_service_pages.py"
       - "luna_engine/project-example.json"
-      - ".github/workflows/build-project-case-studies.yml"
 
 permissions:
   contents: write
@@ -36,6 +36,9 @@ jobs:
 
       - name: Link projects from city service pages
         run: python luna_engine/link_projects_to_service_pages.py
+
+      - name: Preserve bilingual Mansfield case
+        run: python scripts/preserve_bilingual_mansfield_case.py
 
       - name: Validate project pages index sitemap and local links
         run: |
@@ -104,5 +107,5 @@ jobs:
             echo "No project changes to commit."
           else
             git commit -m "Publish project case studies and local service links [skip ci]"
-            git push origin HEAD:main
+            git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
