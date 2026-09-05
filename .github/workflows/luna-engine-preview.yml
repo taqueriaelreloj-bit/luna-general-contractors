@@ -3,9 +3,9 @@ name: Luna Engine Preview
 on:
   workflow_dispatch:
   push:
+    branches: [main]
     paths:
       - "luna_engine/**"
-      - ".github/workflows/luna-engine-preview.yml"
 
 permissions:
   contents: write
@@ -163,6 +163,12 @@ jobs:
       - name: Audit technical SEO sitemap robots and internal links
         run: python luna_engine/validate_published_site.py
 
+      - name: Apply sitemap exclusion index controls
+        run: |
+          python scripts/apply_sitemap_exclusion_noindex.py
+          python scripts/validate_sitemap_exclusions.py
+          python scripts/seo_quality_audit.py --root . --report seo-audit-report.md --strict
+
       - name: Commit generated pages articles and sitemap
         run: |
           git config user.name "github-actions[bot]"
@@ -177,8 +183,9 @@ jobs:
           else
             git commit -m "Publish DFW local pages and 25 SEO articles [skip ci]"
             for attempt in 1 2 3 4; do
-              git fetch origin main
-              if git rebase origin/main && git push origin HEAD:main; then
+              target_branch="${GITHUB_REF_NAME}"
+              git fetch origin "${target_branch}"
+              if git rebase "origin/${target_branch}" && git push origin "HEAD:${target_branch}"; then
                 echo "Published successfully on attempt ${attempt}."
                 exit 0
               fi

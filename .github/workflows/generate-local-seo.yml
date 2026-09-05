@@ -308,6 +308,12 @@ jobs:
       - name: Remove temporary generator
         run: rm -f seo_generator.py
 
+      - name: Apply sitemap exclusion index controls
+        run: |
+          python scripts/apply_sitemap_exclusion_noindex.py
+          python scripts/validate_sitemap_exclusions.py
+          python scripts/seo_quality_audit.py --root . --report seo-audit-report.md --strict
+
       - name: Commit generated website files
         shell: bash
         run: |
