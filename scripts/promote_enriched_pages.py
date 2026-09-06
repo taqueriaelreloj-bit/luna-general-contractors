@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Promote the final 17 enriched pages into the public sitemap.
+"""Promote evidence-backed local pages into the public sitemap.
 
 The site generators can rebuild these pages. This idempotent post-processing
 step restores verified-work context, complete social metadata and sitemap
-coverage without claiming that a DFW portfolio image came from a specific city.
+coverage without claiming that a portfolio image came from a specific city
+unless the related project record supports that attribution.
 """
 
 from __future__ import annotations
@@ -450,6 +451,120 @@ ARTICLE_PAGES = {
     },
 }
 
+LOCAL_SERVICE_PAGES = {
+    "arlington-backsplash-installation.html": {
+        "city": "Arlington",
+        "title": "Backsplash Installation in Arlington, TX | Luna",
+        "description": "Plan an Arlington backsplash installation with verified project evidence, layout checks, material options and a written scope. Request a free estimate.",
+        "image": "20180530-181936.webp", "width": 720, "height": 405,
+        "alt": "Representative gray tile backsplash installation by Luna General Contractors",
+        "caption": "Representative DFW portfolio photograph shown with Luna's documented Arlington backsplash case; it is not identified as the exact Arlington installation.",
+        "intro": [
+            "An Arlington backsplash estimate should begin with the actual wall dimensions, cabinet clearances, countertop condition and every outlet or appliance interruption. Those details determine the layout, cut count, edge treatment and whether wall preparation belongs in the scope.",
+            "Luna's project record for Arlington provides a concrete reference for material selection and installation sequence while the estimate for a new property remains based on its own measurements and conditions.",
+        ],
+        "case_title": "Gray Glass Mosaic Kitchen Backsplash in Arlington",
+        "case_link": "gray-glass-mosaic-kitchen-backsplash-arlington.html",
+        "project_date": "June 4, 2018",
+        "duration": "Approximately two days",
+        "material": "Gray glass mosaic tile, grout, setting and edge-finishing materials",
+        "evidence": "The documented scope coordinated a reflective gray glass mosaic with existing cabinets, countertops and stainless-steel appliances. Installation included careful layout, cuts and grout joints throughout the backsplash area.",
+        "heading": "Plan reflective mosaic around the existing kitchen",
+        "planning": "Glass mosaic can emphasize uneven walls, irregular counter lines and inconsistent outlet placement. Before installation, we establish the most visible reference lines, confirm the finished height beneath cabinets and decide how exposed edges will terminate. That planning reduces narrow cuts and helps the pattern remain balanced across the working wall.",
+        "checks": ["Measured wall area and cabinet-to-counter height", "Outlet, switch, window and appliance locations", "Flatness and readiness of the existing wall", "Starting point, focal areas and planned cut distribution", "Grout color, edge profile, protection and cleanup"],
+        "planning_summary": "The Arlington scope should identify the selected mosaic, wall preparation, layout reference, edge trim, grout, electrical plate handling, protection and cleanup before installation begins.",
+    },
+    "mansfield-backsplash-installation.html": {
+        "city": "Mansfield",
+        "title": "Backsplash Installation in Mansfield, TX | Luna",
+        "description": "See a verified Mansfield gray subway-tile backsplash and plan wall preparation, layout, cuts, grout and edge trim. Request a free estimate.",
+        "image": "20180530-181936.webp", "width": 720, "height": 405,
+        "alt": "Gray subway tile kitchen backsplash installation in Mansfield, Texas",
+        "caption": "Photograph from Luna's documented gray subway-tile backsplash project in Mansfield.",
+        "intro": [
+            "A Mansfield backsplash scope should connect the tile layout to the cabinets, countertop, range area and decorative hood rather than treat the wall as one uninterrupted rectangle. Exact measurements show where full tiles, cut pieces and finished edges will appear.",
+            "Luna's documented Mansfield project gives homeowners a city-specific example with recorded material, scope, completion date and duration. A new estimate still depends on the conditions at the property being priced.",
+        ],
+        "case_title": "Gray Subway Tile Kitchen Backsplash in Mansfield",
+        "case_link": "gray-subway-kitchen-backsplash-mansfield.html",
+        "project_date": "May 30, 2018",
+        "duration": "Approximately two days",
+        "material": "Gray subway tile, grout, setting materials, edge trim and electrical finish plates",
+        "evidence": "The project protected the working wall and coordinated gray subway tile with white cabinetry, darker countertops and a decorative range hood. Detailed cuts were completed around cabinets, outlets and the range area.",
+        "heading": "Use the range and hood as a visual reference",
+        "planning": "Subway tile looks simple, but the result depends on where courses start and finish. At the Mansfield project, the range wall and hood created an important focal area. A current scope should define the bond pattern, grout-joint size, termination points and how the layout responds to any change in cabinet height.",
+        "checks": ["Countertop length and distance to upper cabinets", "Range, hood and appliance-center reference lines", "Outlet-cover removal and safe electrical coordination", "Tile pattern, joint width, grout and edge trim", "Wall repair, protection, cure time and final cleanup"],
+        "planning_summary": "The Mansfield estimate should record the tile and pattern, wall repairs, range-area layout, cut details, grout, edge trim, protection and realistic working sequence.",
+    },
+    "midlothian-backsplash-installation.html": {
+        "city": "Midlothian",
+        "title": "Backsplash Installation in Midlothian, TX | Luna",
+        "description": "Plan a Midlothian backsplash using verified gray subway and metallic-accent project evidence, layout checks and a written installation scope.",
+        "image": "20180429-113604.webp", "width": 523, "height": 720,
+        "alt": "Representative completed kitchen backsplash by Luna General Contractors",
+        "caption": "Representative DFW portfolio photograph shown with Luna's documented Midlothian backsplash case; it is not identified as the exact Midlothian installation.",
+        "intro": [
+            "A Midlothian backsplash with an accent band needs more layout decisions than a single-field tile. The estimator must confirm band height, interruptions at outlets, transitions near the range and how the accent meets corners or exposed edges.",
+            "Luna's documented Midlothian case records a gray subway installation with metallic mosaic accents, providing a useful local example without assuming that another kitchen needs the same pattern or materials.",
+        ],
+        "case_title": "Gray Subway Backsplash with Metallic Accents in Midlothian",
+        "case_link": "gray-subway-metallic-accent-backsplash-midlothian.html",
+        "project_date": "August 17, 2018",
+        "duration": "Approximately two days",
+        "material": "Gray subway tile, metallic mosaic accent, grout, setting materials and edge trim",
+        "evidence": "The recorded project added horizontal metallic accent bands within a gray subway-tile field. The layout was completed around cabinets, countertops and electrical components to add contrast without overwhelming the existing finishes.",
+        "heading": "Lay out decorative bands before setting field tile",
+        "planning": "Accent material can be thinner or thicker than the field tile and may arrive on flexible sheets. The scope should address surface alignment, band height, sheet seams and transitions before setting begins. A dry layout helps reveal awkward fragments at corners and keeps the feature line continuous across visible sections.",
+        "checks": ["Field-tile and accent-sheet thickness", "Accent height through outlets and focal areas", "Corner, cabinet and exposed-edge terminations", "Wall flatness and preparation requirements", "Grout compatibility, protection and cure schedule"],
+        "planning_summary": "The Midlothian estimate should distinguish field tile from accent material and specify alignment, transitions, edge treatment, grout, wall preparation and protection.",
+    },
+    "grand-prairie-backsplash-installation.html": {
+        "city": "Grand Prairie",
+        "title": "Backsplash Installation in Grand Prairie, TX | Luna",
+        "description": "Review a documented Grand Prairie patterned-tile backsplash and plan alignment, focal areas, cuts, grout and wall preparation. Get an estimate.",
+        "image": "20180429-113627.webp", "width": 523, "height": 720,
+        "alt": "Representative decorative kitchen backsplash detail by Luna General Contractors",
+        "caption": "Representative DFW portfolio photograph shown with Luna's documented Grand Prairie backsplash case; it is not identified as the exact Grand Prairie installation.",
+        "intro": [
+            "Patterned tile makes layout errors more visible, so a Grand Prairie estimate should document focal walls, centerlines, corner transitions and where the pattern will be interrupted by cabinets, outlets or appliances.",
+            "Luna's Grand Prairie project record supplies a city-specific example with a documented material choice, installation scope, date and approximate duration. New work is measured and priced from the current kitchen rather than copied from that earlier project.",
+        ],
+        "case_title": "Black and White Patterned Kitchen Backsplash in Grand Prairie",
+        "case_link": "black-white-patterned-kitchen-backsplash-grand-prairie.html",
+        "project_date": "February 4, 2019",
+        "duration": "Approximately two days",
+        "material": "Black-and-white patterned tile, grout, setting and edge-finishing materials",
+        "evidence": "The documented installation used patterned tile to create a focal surface while coordinating with the existing countertops, cabinets and appliances. Work included consistent alignment, detailed cuts and finished grout joints.",
+        "heading": "Center the pattern where the kitchen is seen first",
+        "planning": "A repeating design should be reviewed across the complete elevation before tile is set. We identify the main viewing angle, test how the motif meets corners and verify that cuts around electrical boxes do not break the pattern unnecessarily. Extra tile should be considered for pattern alignment and future repairs.",
+        "checks": ["Pattern repeat and recommended material overage", "Primary focal point and elevation centerline", "Corner transitions and cabinet-end visibility", "Outlet, switch and appliance interruptions", "Wall preparation, grout choice and edge finish"],
+        "planning_summary": "The Grand Prairie scope should show the pattern reference, starting point, anticipated cuts, material allowance, grout, edge finish and wall-preparation responsibilities.",
+    },
+    "waxahachie-backsplash-installation.html": {
+        "city": "Waxahachie",
+        "title": "Backsplash Installation in Waxahachie, TX | Luna",
+        "description": "See a verified Waxahachie white-hexagon backsplash and plan range-wall layout, cuts, edge finishing, grout and wall preparation.",
+        "image": "20180429-113604.webp", "width": 523, "height": 720,
+        "alt": "Completed white hexagon backsplash behind a range and microwave in Waxahachie, Texas",
+        "caption": "Completed range-wall photograph from Luna's documented white-hexagon backsplash project in Waxahachie.",
+        "intro": [
+            "A Waxahachie range-wall backsplash needs a layout that stays balanced beneath the microwave and reads cleanly beside cabinet edges. Hexagon tile adds diagonal cuts and small perimeter pieces that should be planned before installation.",
+            "Luna's documented Waxahachie project includes exact progress and completed photographs plus the material, work scope, completion date and approximate duration. Those records provide direct local proof while each new kitchen receives its own measurements.",
+        ],
+        "case_title": "White Hexagon Kitchen Backsplash in Waxahachie",
+        "case_link": "white-hexagon-kitchen-backsplash-waxahachie.html",
+        "project_date": "April 29, 2018",
+        "duration": "Approximately two days",
+        "material": "White hexagon tile, grout, setting and edge-finishing materials",
+        "evidence": "The project installed white hexagon tile behind the range and microwave, coordinating the bright neutral finish with white cabinets, stainless appliances and existing granite countertops. Layout and cuts were completed around cabinets, counter edges and electrical components.",
+        "heading": "Plan small perimeter cuts before installing hexagon tile",
+        "planning": "Hexagon sheets can drift at seams if the pattern is not checked continuously. A dry layout helps balance the range wall and shows whether the top, bottom or side boundaries would create fragile pieces. The estimate should also identify exposed edges and any wall correction needed behind the tile.",
+        "checks": ["Range and microwave centerline", "Sheet orientation and seam alignment", "Perimeter cuts at cabinets and countertops", "Outlet placement and electrical finish plates", "Wall flatness, grout, edge finish and cleanup"],
+        "planning_summary": "The Waxahachie estimate should document sheet orientation, range-wall centerline, perimeter cuts, wall preparation, grout, edge finish, protection and cleanup.",
+    },
+}
+
+
 REVIEWS = {
     "reviews.html": {
         "title": "Customer Reviews | Luna General Contractors",
@@ -459,8 +574,8 @@ REVIEWS = {
     }
 }
 
-PROMOTED = set(CITY_PAGES) | set(ARTICLE_PAGES) | set(REVIEWS)
-HUB_PAGES = {"service-areas.html", "articles.html"}
+PROMOTED = set(CITY_PAGES) | set(ARTICLE_PAGES) | set(LOCAL_SERVICE_PAGES) | set(REVIEWS)
+HUB_PAGES = {"service-areas.html", "articles.html", "kitchens.html"}
 
 
 def replace_tag_value(source: str, pattern: str, replacement: str, label: str) -> str:
@@ -534,6 +649,7 @@ def update_schema(source: str, config: dict[str, object], page_kind: str) -> str
         types = set(schema_type if isinstance(schema_type, list) else [schema_type])
         target = page_kind == "article" and "Article" in types
         target = target or page_kind == "city" and bool(types & {"LocalBusiness", "GeneralContractor", "RoofingContractor"})
+        target = target or page_kind == "local_service" and bool(types & {"Service", "WebPage"})
         target = target or page_kind == "reviews" and "GeneralContractor" in types
         if not target:
             return match.group(0)
@@ -542,6 +658,8 @@ def update_schema(source: str, config: dict[str, object], page_kind: str) -> str
             data["headline"] = str(config["title"]).split(" | Luna")[0]
             data["description"] = str(config["description"])
             data["dateModified"] = LASTMOD
+        elif page_kind == "local_service":
+            data["description"] = str(config["description"])
         return match.group(1) + json.dumps(data, ensure_ascii=False, separators=(",", ":")) + match.group(3)
 
     pattern = re.compile(r'(<script\b[^>]*type=["\']application/ld\+json["\'][^>]*>)([\s\S]*?)(</script>)', re.I)
@@ -594,6 +712,32 @@ def article_block(config: dict[str, object]) -> str:
     )
 
 
+def local_service_block(config: dict[str, object]) -> str:
+    intro = "".join(f"<p>{html.escape(str(paragraph))}</p>" for paragraph in config["intro"])
+    checks = "".join(f"<li>{html.escape(str(item))}</li>" for item in config["checks"])
+    return (
+        f'{START}{intro}<div class="local-grid" data-evidence-backed-service style="margin:32px 0 40px">'
+        '<div><p class="eyebrow gold">Verified Local Project</p>'
+        f'<h2>{html.escape(str(config["case_title"]))}</h2>'
+        f'<p>{html.escape(str(config["evidence"]))}</p>'
+        '<ul class="seo-checklist">'
+        f'<li><strong>Completed:</strong> {html.escape(str(config["project_date"]))}</li>'
+        f'<li><strong>Recorded duration:</strong> {html.escape(str(config["duration"]))}</li>'
+        f'<li><strong>Materials:</strong> {html.escape(str(config["material"]))}</li></ul>'
+        f'<p><a class="seo-text-link" href="{html.escape(str(config["case_link"]), quote=True)}">View the documented {html.escape(str(config["city"]))} project →</a></p></div>'
+        '<figure class="seo-article-photo" style="margin:0">'
+        f'<img src="{html.escape(str(config["image"]), quote=True)}" alt="{html.escape(str(config["alt"]), quote=True)}" '
+        f'width="{config["width"]}" height="{config["height"]}" loading="lazy" decoding="async">'
+        f'<figcaption>{html.escape(str(config["caption"]))}</figcaption></figure></div>'
+        f'<section><h2>Backsplash estimate checklist for {html.escape(str(config["city"]))}</h2>'
+        f'<ul class="seo-checklist">{checks}</ul>'
+        f'<h3>{html.escape(str(config["heading"]))}</h3><p>{html.escape(str(config["planning"]))}</p>'
+        '<p><a class="seo-text-link" href="kitchens.html">Explore kitchen remodeling services →</a> '
+        '<a class="seo-text-link" href="#estimate-form">Request a property-specific estimate →</a></p></section>'
+        f'{END}'
+    )
+
+
 def reviews_block() -> str:
     config = REVIEWS["reviews.html"]
     return (
@@ -641,6 +785,23 @@ def article_links_block() -> str:
     )
 
 
+def kitchen_local_links_block() -> str:
+    cards = "".join(
+        f'<article class="seo-city-card"><p class="eyebrow gold">Verified Local Example</p>'
+        f'<h2><a href="{name}">{html.escape(str(config["city"]))} Backsplash Installation</a></h2>'
+        f'<p>{html.escape(str(config["description"]))}</p>'
+        f'<a class="seo-text-link" href="{name}">View local service and project evidence →</a></article>'
+        for name, config in LOCAL_SERVICE_PAGES.items()
+    )
+    return (
+        f'{START}<section class="seo-section" data-ready-page-enrichment><div class="container">'
+        '<div class="section-heading"><p class="eyebrow gold">Backsplash Work by City</p>'
+        '<h2>Plan With Real DFW Project Evidence</h2>'
+        '<p>These five service pages connect estimating guidance to a documented Luna backsplash project in the same city.</p></div>'
+        f'<div class="seo-city-grid">{cards}</div></div></section>{END}'
+    )
+
+
 def enrich_city(path: Path, config: dict[str, object]) -> None:
     source = clear_block(path.read_text(encoding="utf-8"))
     image_config = {**config, "image": "dfw-roof-replacement-brick-home-2019.jpg", "width": 1188, "height": 891, "alt": "Completed shingle roof on a brick home by Luna General Contractors in DFW"}
@@ -672,6 +833,26 @@ def enrich_article(path: Path, config: dict[str, object]) -> None:
         if not container:
             raise SystemExit(f"{path.name}: article insertion point not found")
         source = source[: container.end()] + block + source[container.end() :]
+    path.write_text(source, encoding="utf-8")
+
+
+def enrich_local_service(path: Path, config: dict[str, object]) -> None:
+    source = clear_block(path.read_text(encoding="utf-8"))
+    source = update_head(source, config)
+    source = update_schema(source, config, "local_service")
+    stylesheet_tags = re.findall(r'<link\b[^>]*rel=["\']stylesheet["\'][^>]*>', source, re.I)
+    style_hrefs = [re.search(r'href=["\']([^"\']+)', tag, re.I).group(1) for tag in stylesheet_tags if re.search(r'href=["\']([^"\']+)', tag, re.I)]
+    if not any("local-seo.css" in href for href in style_hrefs):
+        source = source.replace("</head>", '<link rel="stylesheet" href="local-seo.css?v=20260906">\n</head>', 1)
+    intro_pattern = re.compile(r'(<h2>Local Backsplash Installation Services</h2>)[\s\S]*?(<div class="local-grid">)', re.I)
+    source, count = intro_pattern.subn(lambda match: match.group(1) + local_service_block(config) + match.group(2), source, count=1)
+    if count != 1:
+        raise SystemExit(f"{path.name}: local-service insertion point not found")
+    planning_pattern = re.compile(r'(<h2>Planning the Project</h2>)[\s\S]*?(</article>)', re.I)
+    planning = f'<p>{html.escape(str(config["planning_summary"]))}</p>'
+    source, count = planning_pattern.subn(lambda match: match.group(1) + planning + match.group(2), source, count=1)
+    if count != 1:
+        raise SystemExit(f"{path.name}: planning section not found")
     path.write_text(source, encoding="utf-8")
 
 
@@ -714,6 +895,7 @@ def update_sitemap() -> None:
     source = path.read_text(encoding="utf-8")
     priorities = {name: "0.9" for name in CITY_PAGES}
     priorities.update({name: "0.7" for name in ARTICLE_PAGES})
+    priorities.update({name: "0.8" for name in LOCAL_SERVICE_PAGES})
     priorities["reviews.html"] = "0.8"
     additions = []
     for name in sorted(PROMOTED):
@@ -762,11 +944,14 @@ def validate() -> None:
             raise SystemExit(f"{name}: stale sitemap-exclusion row")
     service_areas = (ROOT / "service-areas.html").read_text(encoding="utf-8")
     articles = (ROOT / "articles.html").read_text(encoding="utf-8")
+    kitchens = (ROOT / "kitchens.html").read_text(encoding="utf-8")
     if any(f'href="{name}"' not in service_areas for name in CITY_PAGES):
         raise SystemExit("service-areas.html: missing promoted city link")
     if any(f'href="{name}"' not in articles for name in ARTICLE_PAGES):
         raise SystemExit("articles.html: missing promoted article link")
-    for name, source in (("service-areas.html", service_areas), ("articles.html", articles)):
+    if any(f'href="{name}"' not in kitchens for name in LOCAL_SERVICE_PAGES):
+        raise SystemExit("kitchens.html: missing promoted backsplash link")
+    for name, source in (("service-areas.html", service_areas), ("articles.html", articles), ("kitchens.html", kitchens)):
         if source.count(START) != 1 or source.count(END) != 1:
             raise SystemExit(f"{name}: expected one enrichment block")
 
@@ -776,10 +961,13 @@ def main() -> None:
         enrich_city(ROOT / name, config)
     for name, config in ARTICLE_PAGES.items():
         enrich_article(ROOT / name, config)
+    for name, config in LOCAL_SERVICE_PAGES.items():
+        enrich_local_service(ROOT / name, config)
     for name, config in REVIEWS.items():
         enrich_reviews(ROOT / name, config)
     enrich_hub(ROOT / "service-areas.html", service_area_links_block())
     enrich_hub(ROOT / "articles.html", article_links_block())
+    enrich_hub(ROOT / "kitchens.html", kitchen_local_links_block())
     remove_promoted_classifications()
     update_sitemap()
     validate()
