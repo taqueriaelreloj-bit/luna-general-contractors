@@ -217,7 +217,16 @@ def main() -> None:
     urls=[DOMAIN+("/" if not x else "/"+x) for x in static+generated]
     sitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{u}</loc><lastmod>{TODAY}</lastmod></url>\n' for u in urls)+'</urlset>\n'
     write("sitemap.xml",sitemap)
-    write("robots.txt",f"User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n")
+    write(
+        "robots.txt",
+        "User-agent: OAI-SearchBot\n"
+        "Allow: /\n\n"
+        "User-agent: ChatGPT-User\n"
+        "Allow: /\n\n"
+        "User-agent: *\n"
+        "Allow: /\n\n"
+        f"Sitemap: {DOMAIN}/sitemap.xml\n",
+    )
     print(f"Generated {len(generated)} SEO pages and sitemap with {len(urls)} URLs")
 
 if __name__ == "__main__":
