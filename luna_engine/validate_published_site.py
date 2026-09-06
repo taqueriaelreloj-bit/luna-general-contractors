@@ -130,12 +130,16 @@ def main() -> None:
             raise SystemExit(f"{page.name}: missing canonical")
         title = re.sub(r"\s+", " ", title_match.group(1)).strip()
         canonical = canonical_match.group(1).strip()
-        if title in duplicate_titles:
-            raise SystemExit(f"Duplicate title in {duplicate_titles[title]} and {page.name}: {title}")
-        if canonical in duplicate_canonicals:
-            raise SystemExit(f"Duplicate canonical in {duplicate_canonicals[canonical]} and {page.name}: {canonical}")
-        duplicate_titles[title] = page.name
-        duplicate_canonicals[canonical] = page.name
+        robots_match = re.search(r'<meta[^>]+name=["\']robots["\'][^>]*>', html, re.I)
+        robots_tag = robots_match.group(0).lower() if robots_match else ""
+        is_indexable = "noindex" not in robots_tag
+        if is_indexable:
+            if title in duplicate_titles:
+                raise SystemExit(f"Duplicate title in {duplicate_titles[title]} and {page.name}: {title}")
+            if canonical in duplicate_canonicals:
+                raise SystemExit(f"Duplicate canonical in {duplicate_canonicals[canonical]} and {page.name}: {canonical}")
+            duplicate_titles[title] = page.name
+            duplicate_canonicals[canonical] = page.name
 
         for href in re.findall(r'href=["\']([^"\']+)', html, re.I):
             target = local_target(page, href)
