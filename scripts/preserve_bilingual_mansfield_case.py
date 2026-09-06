@@ -40,6 +40,10 @@ SPANISH_INDEX_LINK = (
     f'href="{SPANISH_NAME}" lang="es">Ver en español →</a>'
 )
 
+EVIDENCE_START = "<!-- VERIFIED_PROJECT_EVIDENCE_START -->"
+EVIDENCE_END = "<!-- VERIFIED_PROJECT_EVIDENCE_END -->"
+EVIDENCE_BLOCK = """<!-- VERIFIED_PROJECT_EVIDENCE_START --><div class="local-grid" data-project-evidence><article><p class="eyebrow gold">Evidence status</p><h2>What this project record verifies</h2><ul><li><strong>Location:</strong> Mansfield, Texas</li><li><strong>Work:</strong> gray subway-tile backsplash with cuts around cabinets, outlets and the range area</li><li><strong>Recorded duration:</strong> approximately two days</li><li><strong>Completion date:</strong> May 30, 2018</li><li><strong>Published evidence:</strong> one photograph showing tile installation and the protected work area</li></ul></article><article><p class="eyebrow gold">Transparent limits</p><h2>What is not claimed</h2><p>The published record does not contain the contract price, a project-specific customer review or a photograph from before work began. This page does not invent or imply those details.</p><p>A current price must be based on measured wall area, tile selection, layout, outlet count, substrate repair, edge treatment and site access.</p><p><a class="seo-text-link" href="#estimate-form">Request a measured Mansfield estimate →</a></p></article></div><!-- VERIFIED_PROJECT_EVIDENCE_END -->"""
+
 
 def patch_english() -> None:
     source = ENGLISH.read_text(encoding="utf-8")
@@ -91,6 +95,22 @@ def patch_english() -> None:
         'loading="lazy" width="1200" height="900"',
         'loading="lazy" decoding="async" width="720" height="405"',
     )
+    source = re.sub(
+        re.escape(EVIDENCE_START) + r"[\\s\\S]*?" + re.escape(EVIDENCE_END),
+        "",
+        source,
+    )
+    evidence_anchor = '<p><strong>Completed:</strong> 2018-05-30</p>'
+    if evidence_anchor not in source:
+        raise SystemExit("Mansfield English evidence anchor was not found")
+    source = source.replace(evidence_anchor, evidence_anchor + EVIDENCE_BLOCK, 1)
+    source = re.sub(
+        r'"dateModified":"[^"]+"',
+        '"dateModified":"2026-09-06"',
+        source,
+        count=1,
+    )
+
     ENGLISH.write_text(source, encoding="utf-8")
 
 

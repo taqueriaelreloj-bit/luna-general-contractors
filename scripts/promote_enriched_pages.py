@@ -565,6 +565,60 @@ LOCAL_SERVICE_PAGES = {
 }
 
 
+SHOWER_SERVICE_PAGES = {
+    "cedar-hill-shower-remodeling.html": {
+        "city": "Cedar Hill",
+        "title": "Shower Remodeling in Cedar Hill, TX | Luna",
+        "description": "Plan a Cedar Hill shower remodel with a documented local project, waterproofing checks, tile details and a property-specific estimate.",
+        "image": "dfw-bathroom-remodel-glass-shower-2020.jpg", "width": 1188, "height": 891,
+        "alt": "Representative glass shower and custom tile bathroom work by Luna General Contractors",
+        "caption": "Representative Luna DFW bathroom photograph. It is not identified as the exact Cedar Hill installation.",
+        "intro_heading": "Local Shower Remodeling Services", "estimate_label": "Shower-remodel",
+        "hub_page": "bathrooms.html", "hub_link_text": "Explore bathroom remodeling services",
+        "intro": [
+            "A Cedar Hill shower estimate should begin with the existing enclosure, wall and floor condition, drain location, plumbing access and the dimensions available for tile, niches and glass. Those conditions determine whether the scope includes framing repair, plumbing changes or substrate correction before waterproofing.",
+            "Luna's documented Cedar Hill tub-and-shower project provides a local reference for demolition, wall preparation, large-format tile, a recessed niche and surrounding finish work. A new property is still measured and priced from its own conditions.",
+        ],
+        "case_title": "Custom Tile Tub and Shower Remodel in Cedar Hill",
+        "case_link": "custom-tile-tub-shower-cedar-hill.html",
+        "project_date": "November 22, 2018",
+        "duration": "Approximately one to two weeks",
+        "material": "Large-format wall tile, leveling system, recessed niche, waterproofing materials, grout, trim and bathroom lighting",
+        "evidence": "The project record documents removal of an older fiberglass enclosure, preparation of the shower walls, installation of large-format tile and a recessed niche, plus related lighting and finish work.",
+        "heading": "Resolve the substrate and niche layout before waterproofing",
+        "planning": "Shower tile depends on the assembly behind it. The scope should identify damaged framing or wallboard, the approved tile substrate, waterproofing transitions, niche location and fixture penetrations before tile begins. Glass dimensions are confirmed only after the finished tile surfaces are established.",
+        "checks": ["Existing enclosure and demolition limits", "Drain, valve, showerhead and plumbing-access locations", "Framing, substrate and wall-flatness corrections", "Waterproofing system, seams, penetrations and flood testing when applicable", "Tile layout, niche placement, edge trim, glass and cure sequence"],
+        "planning_summary": "The Cedar Hill estimate should define demolition, substrate repair, plumbing coordination, waterproofing, tile and niche layout, edge finishing, glass responsibility, protection and cleanup.",
+    },
+    "midlothian-shower-remodeling.html": {
+        "city": "Midlothian",
+        "title": "Shower Remodeling in Midlothian, TX | Luna",
+        "description": "Plan a Midlothian shower remodel with a documented local project, sequencing guidance, tile and glass details, and a written estimate.",
+        "image": "dfw-bathroom-remodel-finished-2020.jpg", "width": 1188, "height": 891,
+        "alt": "Representative completed bathroom remodeling project by Luna General Contractors",
+        "caption": "Representative Luna DFW bathroom photograph. It is not identified as the exact Midlothian installation.",
+        "intro_heading": "Local Shower Remodeling Services", "estimate_label": "Shower-remodel",
+        "hub_page": "bathrooms.html", "hub_link_text": "Explore bathroom remodeling services",
+        "intro": [
+            "A Midlothian custom-shower scope should coordinate demolition, framing, plumbing, waterproofing, tile elevations, the shower pan, bench, niche and glass as one sequence. When the shower is part of a full bathroom remodel, vanity, lighting, flooring and trim decisions also affect access and scheduling.",
+            "Luna's documented Midlothian master-bath project records a complete transformation with a custom tiled shower, bench, niche, frameless glass and related room finishes. A current estimate remains specific to the dimensions and conditions of the home being reviewed.",
+        ],
+        "case_title": "Luxury Master Bathroom Remodel in Midlothian",
+        "case_link": "luxury-master-bathroom-remodel-midlothian.html",
+        "project_date": "August 25, 2020",
+        "duration": "Approximately four to six weeks",
+        "material": "Large-format porcelain tile, herringbone accent tile, shower-pan materials, frameless glass, fixtures, vanities, stone tops, lighting, paint and trim",
+        "evidence": "The project record documents full demolition, framing and plumbing preparation followed by a custom tiled shower, bench, niche, frameless glass, dual vanities, countertops, lighting and finish work.",
+        "heading": "Coordinate a custom shower with the complete bathroom sequence",
+        "planning": "A full-room remodel needs decisions in the right order. Drain and valve locations come before wall closure; waterproofing and pan work precede tile; glass is measured after tile; and vanity, countertop, mirror and lighting dimensions must agree. The written scope should also separate owner selections from contractor-supplied materials.",
+        "checks": ["Demolition limits and concealed-condition allowance", "Drain, valve, bench and niche dimensions", "Shower-pan slope, waterproofing and transition details", "Field tile, accent layout, grout, edges and glass measurement", "Vanity, countertop, lighting, ventilation, paint and trim coordination"],
+        "planning_summary": "The Midlothian estimate should sequence demolition, framing, plumbing, waterproofing, shower-pan work, tile, glass, vanities, lighting and finishes, with selections and responsibilities written clearly.",
+    },
+}
+
+ALL_LOCAL_SERVICE_PAGES = {**LOCAL_SERVICE_PAGES, **SHOWER_SERVICE_PAGES}
+
+
 REVIEWS = {
     "reviews.html": {
         "title": "Customer Reviews | Luna General Contractors",
@@ -574,8 +628,8 @@ REVIEWS = {
     }
 }
 
-PROMOTED = set(CITY_PAGES) | set(ARTICLE_PAGES) | set(LOCAL_SERVICE_PAGES) | set(REVIEWS)
-HUB_PAGES = {"service-areas.html", "articles.html", "kitchens.html"}
+PROMOTED = set(CITY_PAGES) | set(ARTICLE_PAGES) | set(ALL_LOCAL_SERVICE_PAGES) | set(REVIEWS)
+HUB_PAGES = {"service-areas.html", "articles.html", "kitchens.html", "bathrooms.html"}
 
 
 def replace_tag_value(source: str, pattern: str, replacement: str, label: str) -> str:
@@ -729,10 +783,11 @@ def local_service_block(config: dict[str, object]) -> str:
         f'<img src="{html.escape(str(config["image"]), quote=True)}" alt="{html.escape(str(config["alt"]), quote=True)}" '
         f'width="{config["width"]}" height="{config["height"]}" loading="lazy" decoding="async">'
         f'<figcaption>{html.escape(str(config["caption"]))}</figcaption></figure></div>'
-        f'<section><h2>Backsplash estimate checklist for {html.escape(str(config["city"]))}</h2>'
+        f'<section><h2>{html.escape(str(config.get("estimate_label", "Backsplash")))} estimate checklist for {html.escape(str(config["city"]))}</h2>'
         f'<ul class="seo-checklist">{checks}</ul>'
         f'<h3>{html.escape(str(config["heading"]))}</h3><p>{html.escape(str(config["planning"]))}</p>'
-        '<p><a class="seo-text-link" href="kitchens.html">Explore kitchen remodeling services →</a> '
+        f'<p><a class="seo-text-link" href="{html.escape(str(config.get("hub_page", "kitchens.html")), quote=True)}">'
+        f'{html.escape(str(config.get("hub_link_text", "Explore kitchen remodeling services")))} →</a> '
         '<a class="seo-text-link" href="#estimate-form">Request a property-specific estimate →</a></p></section>'
         f'{END}'
     )
@@ -802,6 +857,23 @@ def kitchen_local_links_block() -> str:
     )
 
 
+def bathroom_local_links_block() -> str:
+    cards = "".join(
+        f'<article class="seo-city-card"><p class="eyebrow gold">Verified Local Example</p>'
+        f'<h2><a href="{name}">{html.escape(str(config["city"]))} Shower Remodeling</a></h2>'
+        f'<p>{html.escape(str(config["description"]))}</p>'
+        f'<a class="seo-text-link" href="{name}">View local service and project evidence →</a></article>'
+        for name, config in SHOWER_SERVICE_PAGES.items()
+    )
+    return (
+        f'{START}<section class="seo-section" data-ready-page-enrichment><div class="container">'
+        '<div class="section-heading"><p class="eyebrow gold">Documented Shower Work by City</p>'
+        '<h2>Plan a Shower Remodel With Local Project Evidence</h2>'
+        '<p>These service pages connect estimating guidance to documented Luna bathroom projects in Cedar Hill and Midlothian. Representative portfolio images are labeled clearly when the original project photographs are not published.</p></div>'
+        f'<div class="seo-city-grid">{cards}</div></div></section>{END}'
+    )
+
+
 def enrich_city(path: Path, config: dict[str, object]) -> None:
     source = clear_block(path.read_text(encoding="utf-8"))
     image_config = {**config, "image": "dfw-roof-replacement-brick-home-2019.jpg", "width": 1188, "height": 891, "alt": "Completed shingle roof on a brick home by Luna General Contractors in DFW"}
@@ -844,7 +916,8 @@ def enrich_local_service(path: Path, config: dict[str, object]) -> None:
     style_hrefs = [re.search(r'href=["\']([^"\']+)', tag, re.I).group(1) for tag in stylesheet_tags if re.search(r'href=["\']([^"\']+)', tag, re.I)]
     if not any("local-seo.css" in href for href in style_hrefs):
         source = source.replace("</head>", '<link rel="stylesheet" href="local-seo.css?v=20260906">\n</head>', 1)
-    intro_pattern = re.compile(r'(<h2>Local Backsplash Installation Services</h2>)[\s\S]*?(<div class="local-grid">)', re.I)
+    intro_heading = re.escape(str(config.get("intro_heading", "Local Backsplash Installation Services")))
+    intro_pattern = re.compile(rf'(<h2>{intro_heading}</h2>)[\s\S]*?(<div class="local-grid">)', re.I)
     source, count = intro_pattern.subn(lambda match: match.group(1) + local_service_block(config) + match.group(2), source, count=1)
     if count != 1:
         raise SystemExit(f"{path.name}: local-service insertion point not found")
@@ -895,7 +968,7 @@ def update_sitemap() -> None:
     source = path.read_text(encoding="utf-8")
     priorities = {name: "0.9" for name in CITY_PAGES}
     priorities.update({name: "0.7" for name in ARTICLE_PAGES})
-    priorities.update({name: "0.8" for name in LOCAL_SERVICE_PAGES})
+    priorities.update({name: "0.8" for name in ALL_LOCAL_SERVICE_PAGES})
     priorities["reviews.html"] = "0.8"
     additions = []
     for name in sorted(PROMOTED):
@@ -945,13 +1018,16 @@ def validate() -> None:
     service_areas = (ROOT / "service-areas.html").read_text(encoding="utf-8")
     articles = (ROOT / "articles.html").read_text(encoding="utf-8")
     kitchens = (ROOT / "kitchens.html").read_text(encoding="utf-8")
+    bathrooms = (ROOT / "bathrooms.html").read_text(encoding="utf-8")
     if any(f'href="{name}"' not in service_areas for name in CITY_PAGES):
         raise SystemExit("service-areas.html: missing promoted city link")
     if any(f'href="{name}"' not in articles for name in ARTICLE_PAGES):
         raise SystemExit("articles.html: missing promoted article link")
     if any(f'href="{name}"' not in kitchens for name in LOCAL_SERVICE_PAGES):
         raise SystemExit("kitchens.html: missing promoted backsplash link")
-    for name, source in (("service-areas.html", service_areas), ("articles.html", articles), ("kitchens.html", kitchens)):
+    if any(f'href="{name}"' not in bathrooms for name in SHOWER_SERVICE_PAGES):
+        raise SystemExit("bathrooms.html: missing promoted shower link")
+    for name, source in (("service-areas.html", service_areas), ("articles.html", articles), ("kitchens.html", kitchens), ("bathrooms.html", bathrooms)):
         if source.count(START) != 1 or source.count(END) != 1:
             raise SystemExit(f"{name}: expected one enrichment block")
 
@@ -961,13 +1037,14 @@ def main() -> None:
         enrich_city(ROOT / name, config)
     for name, config in ARTICLE_PAGES.items():
         enrich_article(ROOT / name, config)
-    for name, config in LOCAL_SERVICE_PAGES.items():
+    for name, config in ALL_LOCAL_SERVICE_PAGES.items():
         enrich_local_service(ROOT / name, config)
     for name, config in REVIEWS.items():
         enrich_reviews(ROOT / name, config)
     enrich_hub(ROOT / "service-areas.html", service_area_links_block())
     enrich_hub(ROOT / "articles.html", article_links_block())
     enrich_hub(ROOT / "kitchens.html", kitchen_local_links_block())
+    enrich_hub(ROOT / "bathrooms.html", bathroom_local_links_block())
     remove_promoted_classifications()
     update_sitemap()
     validate()
