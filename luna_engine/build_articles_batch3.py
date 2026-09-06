@@ -58,10 +58,26 @@ def main() -> None:
     index = index_path.read_text(encoding="utf-8")
     start, end = '<!-- LUNA_BATCH3_START -->', '<!-- LUNA_BATCH3_END -->'
     block = start + ''.join(cards) + end
+    hrefs = [f'href="{filename}"' for filename in generated]
+    ready_end = '<!-- READY_PAGE_ENRICHMENT_END -->'
+
+    if (start in index) != (end in index):
+        raise SystemExit('Article index contains an incomplete third-batch marker')
     if start in index and end in index:
         before = index.split(start, 1)[0]
         after = index.split(end, 1)[1]
         index = before + block + after
+    elif all(href in index for href in hrefs):
+        # The enrichment pass can replace the generated marker while preserving
+        # every article link. In that state, the index is already complete.
+        pass
+    elif ready_end in index:
+        before, after = index.split(ready_end, 1)
+        marker = '</div></div></section>'
+        insertion_at = before.rfind(marker)
+        if insertion_at == -1:
+            raise SystemExit('Enriched article index insertion marker not found')
+        index = before[:insertion_at] + block + before[insertion_at:] + ready_end + after
     else:
         marker = '</div></div></section></main>'
         if marker not in index:
