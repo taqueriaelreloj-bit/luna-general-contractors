@@ -6,6 +6,11 @@ on:
     branches: [main]
     paths:
       - "luna_engine/**"
+      - "scripts/apply_sitemap_exclusion_noindex.py"
+      - "scripts/promote_enriched_pages.py"
+      - "scripts/seo_quality_audit.py"
+      - "scripts/validate_sitemap_exclusions.py"
+      - "seo/sitemap-exclusions.csv"
 
 permissions:
   contents: write
