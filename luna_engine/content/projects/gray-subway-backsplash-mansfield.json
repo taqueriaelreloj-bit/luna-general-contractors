@@ -9,7 +9,13 @@
   "summary": "Kitchen backsplash installation using gray subway tile with clean alignment around white cabinets, countertops and a decorative range hood.",
   "problem": "The kitchen needed a finished backsplash surface that would protect the wall and coordinate with the white cabinetry and darker countertops.",
   "solution": "Installed gray subway tile across the working wall and completed detailed cuts around cabinets, outlets and the range area for a clean, consistent finish.",
-  "materials": ["Gray subway tile", "Tile-setting materials", "Grout", "Edge trim", "Electrical finish plates"],
+  "materials": [
+    "Gray subway tile",
+    "Tile-setting materials",
+    "Grout",
+    "Edge trim",
+    "Electrical finish plates"
+  ],
   "duration": "Approximately 2 days",
   "date_completed": "2018-05-30",
   "images": [
@@ -18,5 +24,20 @@
       "alt": "Gray subway tile kitchen backsplash installation in Mansfield Texas",
       "caption": "Tile installation and protected work area"
     }
-  ]
+  ],
+  "public_evidence": {
+    "verified": [
+      "Mansfield, Texas location",
+      "Gray subway-tile backsplash scope",
+      "Listed materials",
+      "Approximately two-day duration",
+      "May 30, 2018 completion date",
+      "One installation-stage photograph"
+    ],
+    "not_published": [
+      "Contract price",
+      "Project-specific customer review",
+      "Before-work photograph"
+    ]
+  }
 }
