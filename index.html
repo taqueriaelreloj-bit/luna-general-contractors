@@ -48,6 +48,7 @@
         "@type": ["LocalBusiness", "GeneralContractor"],
         "@id": "https://lunageneralcontractors.com/#business",
         "name": "Luna General Contractors",
+        "description": "Dallas–Fort Worth general contractor for roofing, remodeling, restoration and coordinated residential and commercial construction.",
         "url": "https://lunageneralcontractors.com/",
         "logo": "https://lunageneralcontractors.com/favicon.svg",
         "image": "https://lunageneralcontractors.com/dfw-bathroom-remodel-glass-shower-2020.jpg",
@@ -55,6 +56,13 @@
         "email": "lunabestcontractors@gmail.com",
         "priceRange": "$",
         "knowsLanguage": ["English", "Spanish"],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+1-817-784-5998",
+          "email": "lunabestcontractors@gmail.com",
+          "contactType": "customer service",
+          "availableLanguage": ["English", "Spanish"]
+        },
         "areaServed": [
           {"@type": "AdministrativeArea", "name": "Dallas–Fort Worth, Texas"},
           {"@type": "City", "name": "Dallas, Texas"},
@@ -71,11 +79,18 @@
           "@type": "OfferCatalog",
           "name": "Construction and Restoration Services",
           "itemListElement": [
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Roofing"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Kitchen Remodeling"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Bathroom Remodeling"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Water Damage Restoration"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Commercial Construction"}}
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Roofing", "url": "https://lunageneralcontractors.com/roofing.html"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Water Damage Restoration", "url": "https://lunageneralcontractors.com/mitigation.html"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Insurance-Related Repair Documentation", "url": "https://lunageneralcontractors.com/insurance-claims.html"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Kitchen Remodeling", "url": "https://lunageneralcontractors.com/kitchens.html"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Bathroom Remodeling", "url": "https://lunageneralcontractors.com/bathrooms.html"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Flooring", "url": "https://lunageneralcontractors.com/flooring.html"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Interior and Exterior Painting", "url": "https://lunageneralcontractors.com/painting.html"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Drywall", "url": "https://lunageneralcontractors.com/drywall.html"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Siding", "url": "https://lunageneralcontractors.com/siding.html"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Carpentry", "url": "https://lunageneralcontractors.com/carpentry.html"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fencing", "url": "https://lunageneralcontractors.com/fencing.html"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Commercial Construction", "url": "https://lunageneralcontractors.com/commercial.html"}}
           ]
         }
       },
@@ -86,6 +101,20 @@
         "name": "Luna General Contractors",
         "publisher": {"@id": "https://lunageneralcontractors.com/#business"},
         "inLanguage": ["en-US", "es-US"]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://lunageneralcontractors.com/#webpage",
+        "url": "https://lunageneralcontractors.com/",
+        "name": "Dallas–Fort Worth General Contractor | Luna",
+        "description": "Dallas–Fort Worth general contractor for roofing, bathroom and kitchen remodeling, restoration, flooring and commercial construction.",
+        "isPartOf": {"@id": "https://lunageneralcontractors.com/#website"},
+        "about": {"@id": "https://lunageneralcontractors.com/#business"},
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://lunageneralcontractors.com/dfw-bathroom-remodel-glass-shower-2020.jpg"
+        },
+        "inLanguage": "en-US"
       }
     ]
   }
@@ -441,37 +470,37 @@
         <div class="why-intro">
           <p class="eyebrow">Why Choose</p>
           <h2>Luna General<br />Contractors?</h2>
-          <p>We are committed to quality, transparency and customer satisfaction on every project.</p>
+          <p>Luna coordinates residential and commercial roofing, remodeling and restoration projects across Dallas–Fort Worth. Each project begins with visible site conditions, owner priorities and a written scope, followed by trade coordination for the agreed work. Service is available in English and Spanish.</p>
         </div>
 
         <div class="why-item">
           <svg class="why-icon" aria-hidden="true" focusable="false"><use href="#icon-hard-hat"></use></svg>
-          <h3>Experienced Professionals</h3>
-          <p>Skilled tradesmen with years of construction and restoration experience.</p>
+          <h3>Coordinated Trades</h3>
+          <p>Roofing, framing, drywall, painting, flooring and related trades organized under one construction scope.</p>
         </div>
 
         <div class="why-item">
           <svg class="why-icon" aria-hidden="true" focusable="false"><use href="#icon-award"></use></svg>
-          <h3>Quality Workmanship</h3>
-          <p>We use proven methods and professional-grade materials for lasting results.</p>
+          <h3>Project-Specific Planning</h3>
+          <p>Recommendations are based on visible conditions, measurements, materials and the intended use of the space.</p>
         </div>
 
         <div class="why-item">
           <svg class="why-icon" aria-hidden="true" focusable="false"><use href="#icon-clock"></use></svg>
-          <h3>On-Time & On-Budget</h3>
-          <p>Clear schedules, organized crews and proactive communication.</p>
+          <h3>Written Scope &amp; Estimate</h3>
+          <p>A written scope makes materials, trade responsibilities and next steps easier to compare.</p>
         </div>
 
         <div class="why-item">
           <svg class="why-icon" aria-hidden="true" focusable="false"><use href="#icon-file-check"></use></svg>
-          <h3>Honest & Transparent</h3>
-          <p>Detailed scopes of work and straightforward pricing you can trust.</p>
+          <h3>Progress Communication</h3>
+          <p>Questions, site conditions and decisions that need confirmation are documented as the work moves forward.</p>
         </div>
 
         <div class="why-item">
           <svg class="why-icon" aria-hidden="true" focusable="false"><use href="#icon-map-pin"></use></svg>
-          <h3>Local & Reliable</h3>
-          <p>Proudly serving Dallas, Fort Worth and nearby communities.</p>
+          <h3>DFW Service Area</h3>
+          <p>Serving Dallas, Fort Worth, Midlothian, Mansfield, Arlington, Grand Prairie and nearby communities.</p>
         </div>
       </div>
     </section>

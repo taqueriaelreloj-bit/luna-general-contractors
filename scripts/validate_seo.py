@@ -117,13 +117,28 @@ def validate_primary(path: Path) -> list[str]:
     elif path.name == "projects.html" and "ImageGallery" not in types:
         errors.append("missing ImageGallery schema")
     elif path.name == "index.html":
-        for schema_type in ("LocalBusiness", "GeneralContractor", "FAQPage"):
+        for schema_type in ("LocalBusiness", "GeneralContractor", "WebPage", "FAQPage"):
             if schema_type not in types:
                 errors.append(f"missing {schema_type} schema")
     elif path.name == "es.html":
         for schema_type in ("LocalBusiness", "GeneralContractor", "WebPage"):
             if schema_type not in types:
                 errors.append(f"missing {schema_type} schema")
+    return errors
+
+
+def validate_robots(path: Path) -> list[str]:
+    if not path.exists():
+        return ["file not found"]
+    text = path.read_text(encoding="utf-8", errors="replace").replace("\r\n", "\n")
+    errors: list[str] = []
+    if f"Sitemap: {DOMAIN}/sitemap.xml" not in text:
+        errors.append("missing sitemap declaration")
+    if re.search(r"(?im)^Disallow:\s*/\s*$", text):
+        errors.append("blocks the entire site")
+    for agent in ("OAI-SearchBot", "ChatGPT-User"):
+        if f"User-agent: {agent}\nAllow: /" not in text:
+            errors.append(f"missing explicit allow rule for {agent}")
     return errors
 
 
@@ -154,6 +169,8 @@ def main() -> int:
         errors = validate_primary(path)
         if errors:
             failures.append(f"{filename}: " + "; ".join(errors))
+    for error in validate_robots(ROOT / "robots.txt"):
+        failures.append(f"robots.txt: {error}")
     try:
         tree = ET.parse(ROOT / "sitemap.xml")
         locs = [
