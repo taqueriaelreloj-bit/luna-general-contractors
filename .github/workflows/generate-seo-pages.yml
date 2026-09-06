@@ -27,6 +27,9 @@ jobs:
       - name: Generate city, service and article pages
         run: python tools/generate_seo_pages.py
 
+      - name: Promote fully enriched pages
+        run: python scripts/promote_enriched_pages.py
+
       - name: Apply sitemap exclusion index controls
         run: |
           python scripts/apply_sitemap_exclusion_noindex.py

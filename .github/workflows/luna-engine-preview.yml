@@ -163,6 +163,9 @@ jobs:
       - name: Audit technical SEO sitemap robots and internal links
         run: python luna_engine/validate_published_site.py
 
+      - name: Promote fully enriched pages
+        run: python scripts/promote_enriched_pages.py
+
       - name: Apply sitemap exclusion index controls
         run: |
           python scripts/apply_sitemap_exclusion_noindex.py

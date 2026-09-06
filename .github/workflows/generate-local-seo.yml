@@ -308,6 +308,9 @@ jobs:
       - name: Remove temporary generator
         run: rm -f seo_generator.py
 
+      - name: Promote fully enriched pages
+        run: python scripts/promote_enriched_pages.py
+
       - name: Apply sitemap exclusion index controls
         run: |
           python scripts/apply_sitemap_exclusion_noindex.py
