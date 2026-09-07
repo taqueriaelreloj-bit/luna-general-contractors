@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from datetime import date
 from pathlib import Path
+import csv
 import json
 import re
 import xml.etree.ElementTree as ET
@@ -10,8 +11,19 @@ ROOT = Path(__file__).resolve().parents[1]
 DOMAIN = "https://lunageneralcontractors.com"
 MANIFEST = ROOT / "seo-generated-manifest.txt"
 SITEMAP = ROOT / "sitemap.xml"
+CLASSIFICATIONS = ROOT / "seo" / "sitemap-exclusions.csv"
+HELD_CLASSIFICATIONS = {"hold-low-content", "hold-template-family"}
 
 INDEX_PAGES = {"service-areas.html", "services-by-city.html", "articles.html"}
+
+
+def held_pages() -> set[str]:
+    with CLASSIFICATIONS.open(newline="", encoding="utf-8") as handle:
+        return {
+            row["path"].strip()
+            for row in csv.DictReader(handle)
+            if row["classification"].strip() in HELD_CLASSIFICATIONS
+        }
 
 
 def title_from_html(html: str, fallback: str) -> str:
@@ -109,15 +121,22 @@ def patch_pages(files: list[str]) -> None:
             path.write_text(html, encoding="utf-8")
 
 
-def patch_sitemap(files: list[str]) -> None:
+def patch_sitemap(files: list[str], held: set[str]) -> None:
     ET.register_namespace("", "http://www.sitemaps.org/schemas/sitemap/0.9")
     tree = ET.parse(SITEMAP)
     root = tree.getroot()
     ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+    entries = list(root.findall(f"{ns}url"))
+    for entry in entries:
+        loc = entry.find(f"{ns}loc")
+        if loc is not None and loc.text and loc.text.removeprefix(f"{DOMAIN}/") in held:
+            root.remove(entry)
     existing = {node.text for node in root.findall(f"{ns}url/{ns}loc") if node.text}
     today = date.today().isoformat()
 
     for filename in files:
+        if filename in held:
+            continue
         url = f"{DOMAIN}/{filename}"
         if url in existing:
             continue
@@ -136,9 +155,14 @@ def main() -> None:
         for line in MANIFEST.read_text(encoding="utf-8").splitlines()
         if line.strip().endswith(".html")
     ]
+    held = held_pages()
     patch_pages(files)
-    patch_sitemap(files)
-    print(f"Patched structured data and sitemap coverage for {len(files)} generated pages.")
+    patch_sitemap(files, held)
+    indexed = len([filename for filename in files if filename not in held])
+    print(
+        f"Patched structured data for {len(files)} generated pages; "
+        f"kept {len(held & set(files))} held pages out of the sitemap and covered {indexed} indexable pages."
+    )
 
 
 if __name__ == "__main__":

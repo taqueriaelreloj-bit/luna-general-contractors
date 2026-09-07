@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import csv
 import json
 import re
 import sys
@@ -31,6 +32,17 @@ PRIMARY_SERVICE_PAGES = {
     "commercial.html",
 }
 PRIMARY_PAGES = {"index.html", "es.html", "projects.html"} | PRIMARY_SERVICE_PAGES
+CLASSIFICATIONS = ROOT / "seo" / "sitemap-exclusions.csv"
+HELD_CLASSIFICATIONS = {"hold-low-content", "hold-template-family"}
+
+
+def held_pages() -> set[str]:
+    with CLASSIFICATIONS.open(newline="", encoding="utf-8") as handle:
+        return {
+            row["path"].strip()
+            for row in csv.DictReader(handle)
+            if row["classification"].strip() in HELD_CLASSIFICATIONS
+        }
 
 
 def common_errors(path: Path, expected_canonical: str) -> list[str]:
@@ -84,7 +96,7 @@ def parsed_schema_types(text: str) -> tuple[set[str], list[str]]:
     return types, errors
 
 
-def validate_generated(path: Path) -> list[str]:
+def validate_generated(path: Path, allow_noindex: bool = False) -> list[str]:
     text = path.read_text(encoding="utf-8", errors="replace")
     errors = common_errors(path, f"{DOMAIN}/{path.name}")
     if 'tel:+18177845998' not in text:
@@ -95,7 +107,7 @@ def validate_generated(path: Path) -> list[str]:
                 errors.append(f"missing {schema} schema")
     if path.name not in INDEX_PAGES | ARTICLE_PAGES and "FAQPage" not in text:
         errors.append("missing FAQPage schema")
-    if "noindex" in text.lower():
+    if "noindex" in text.lower() and not allow_noindex:
         errors.append("unexpected noindex")
     _, schema_errors = parsed_schema_types(text)
     return errors + schema_errors
@@ -152,13 +164,14 @@ def main() -> int:
         for line in manifest.read_text(encoding="utf-8").splitlines()
         if line.strip().endswith(".html")
     ]
+    held = held_pages()
     failures: list[str] = []
     for filename in generated:
         path = ROOT / filename
         if not path.exists():
             failures.append(f"{filename}: file not found")
             continue
-        errors = validate_generated(path)
+        errors = validate_generated(path, allow_noindex=filename in held)
         if errors:
             failures.append(f"{filename}: " + "; ".join(errors))
     for filename in sorted(PRIMARY_PAGES):
@@ -181,6 +194,8 @@ def main() -> int:
         if len(locs) != len(set(locs)):
             failures.append("sitemap.xml: duplicate URLs found")
         for filename in generated:
+            if filename in held:
+                continue
             if f"{DOMAIN}/{filename}" not in locs:
                 failures.append(f"{filename}: missing from sitemap.xml")
         for filename in PRIMARY_PAGES:
