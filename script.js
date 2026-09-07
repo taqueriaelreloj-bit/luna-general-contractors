@@ -464,7 +464,7 @@ document.querySelectorAll('form[action*="formspree.io"]').forEach((form) => {
     reviewCard.innerHTML = `
       <p class="eyebrow gold">Real Customer Review</p>
       <div class="form-review-rating"><strong>5.0</strong><span>★★★★★</span></div>
-      <p class="form-review-count">Google rating · 36 reviews</p>
+      <p class="form-review-count">Google rating · 38 reviews</p>
       <blockquote>“Fair price for great work. Definitely recommend them for general repairs and maintenance.”</blockquote>
       <p class="form-review-author">— Nextdoor Neighbor, Grand Prairie, TX</p>
       <a class="btn btn-outline-light" href="reviews.html">Read More Reviews →</a>
@@ -633,6 +633,7 @@ if (!isHomePage) {
             <a href="#estimate-form" aria-label="Open the online estimate form">
               Request Online
             </a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Luna%20General%20Contractors%2C%204906%20Red%20River%20Trail%2C%20Grand%20Prairie%2C%20TX%2075052" target="_blank" rel="noopener noreferrer">View Our Google Profile</a>
             <span>⌖ Dallas–Fort Worth, TX</span>
             <span>English · <a href="es.html" lang="es">Español</a></span>
           </div>
