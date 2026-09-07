@@ -118,5 +118,30 @@ class SEOAuditTests(unittest.TestCase):
                 self.assertNotIn('href="#estimate-form"', page)
                 self.assertIn('href="index.html#estimate-form"', page)
 
+
+    def test_projects_portfolio_uses_selected_real_photos(self):
+        root = Path(__file__).resolve().parents[1]
+        page = (root / "projects.html").read_text(encoding="utf-8")
+        stylesheet = (root / "local-seo.css").read_text(encoding="utf-8")
+        selected_photos = (
+            "dfw-roof-replacement-brick-home-2019.jpg",
+            "roofing-project-one.jpg",
+            "dfw-roof-eaves-pergola-2019.jpg",
+            "dfw-bathroom-remodel-glass-shower-2020.jpg",
+            "dfw-bathroom-remodel-finished-2020.jpg",
+            "dfw-bathroom-remodel-vanity-2020.jpg",
+            "dfw-kitchen-remodel-quartz-island-2018.jpg",
+            "dfw-kitchen-remodel-wood-cabinets-2018.jpg",
+        )
+        self.assertEqual(1, page.count("<h1>"))
+        self.assertIn('href="local-seo.css?v=20260907"', page)
+        self.assertIn('property="og:image"', page)
+        self.assertIn("Every image below shows actual completed work", page)
+        self.assertIn(".portfolio-proof-grid", stylesheet)
+        for photo in selected_photos:
+            with self.subTest(photo=photo):
+                self.assertIn(f'src="{photo}"', page)
+                self.assertTrue((root / photo).exists())
+
 if __name__ == "__main__":
     unittest.main()
