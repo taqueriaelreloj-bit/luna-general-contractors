@@ -13,6 +13,8 @@ DOMAIN = "https://lunageneralcontractors.com"
 PHONE = "(817) 784-5998"
 PHONE_LINK = "+18177845998"
 EMAIL = "lunabestcontractors@gmail.com"
+SOCIAL_IMAGE = f"{DOMAIN}/dfw-bathroom-remodel-glass-shower-2020.jpg"
+SOCIAL_IMAGE_ALT = "Finished glass shower remodel by Luna General Contractors in Dallas–Fort Worth"
 
 
 def load_json(path: Path) -> dict:
@@ -41,7 +43,12 @@ def page_head(title: str, description: str, url: str, schemas: list[dict]) -> st
   <meta property="og:description" content="{escape(description)}">
   <meta property="og:url" content="{url}">
   <meta property="og:site_name" content="Luna General Contractors">
+  <meta property="og:image" content="{SOCIAL_IMAGE}">
+  <meta property="og:image:alt" content="{SOCIAL_IMAGE_ALT}">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{escape(title)}">
+  <meta name="twitter:description" content="{escape(description)}">
+  <meta name="twitter:image" content="{SOCIAL_IMAGE}">
   <link rel="stylesheet" href="../../styles.css">
   {schema_html}
 </head>'''
