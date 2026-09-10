@@ -1,16 +1,52 @@
 {
-  "name":"Dallas","slug":"dallas","state":"TX","county":"Dallas County",
-  "title":"General Contractor in Dallas, TX | Luna General Contractors",
-  "meta_description":"Luna General Contractors provides roofing, remodeling, restoration and commercial construction in Dallas, TX. Call (817) 784-5998 for a free estimate.",
-  "hero":"Residential and commercial construction services across Dallas, including roofing, remodeling and property restoration.",
-  "local_summary":"Dallas includes historic neighborhoods, established homes, newer developments, multifamily properties and a broad range of commercial buildings. Projects often require careful coordination across multiple trades, schedules, access conditions and existing building systems.",
-  "property_types":["Historic and established homes","Newer residential properties","Rental and investment homes","Multifamily properties","Retail, office and commercial buildings"],
-  "common_needs":["Roof and storm-damage restoration","Kitchen and bathroom remodeling","Drywall, paint and flooring","Water-damage repairs","Exterior siding and carpentry","Commercial tenant improvements"],
-  "nearby_cities":["Irving","Grand Prairie","Mesquite","Garland","Richardson","Duncanville","Arlington"],
-  "faqs":[
-    {"question":"Does Luna General Contractors serve Dallas?","answer":"Yes. We provide residential and commercial construction services across Dallas and surrounding DFW communities."},
-    {"question":"Can you coordinate multi-trade renovations?","answer":"Yes. We manage scheduling, materials and coordination for projects involving several trades and work phases."},
-    {"question":"Do you work on investment properties?","answer":"Yes. We complete repairs, renovations and turnovers for homeowners, investors, landlords and property managers."},
-    {"question":"Do you provide commercial construction services?","answer":"Yes. We provide repairs, remodeling, tenant improvements and interior build-outs for commercial properties."}
+  "name": "Dallas",
+  "slug": "dallas",
+  "state": "TX",
+  "county": "Dallas County",
+  "title": "Dallas General Contractor | Roofing & Remodeling | Luna",
+  "meta_description": "Dallas general contractor for roofing, remodeling, restoration and commercial construction. Real project photos, written scopes and free estimates.",
+  "hero": "Dallas roofing, remodeling, restoration and commercial construction coordinated through one local general contractor.",
+  "local_summary": "Luna serves Dallas homeowners, investors and businesses with written scopes and coordinated trade work. We evaluate existing conditions before estimating roofing, kitchen and bathroom remodeling, water-damage build-back, exterior repairs and commercial improvements.",
+  "property_types": [
+    "Historic and established homes",
+    "Newer residential properties",
+    "Rental and investment homes",
+    "Multifamily properties",
+    "Retail, office and commercial buildings"
+  ],
+  "common_needs": [
+    "Roof and storm-damage restoration",
+    "Kitchen and bathroom remodeling",
+    "Drywall, paint and flooring",
+    "Water-damage repairs",
+    "Exterior siding and carpentry",
+    "Commercial tenant improvements"
+  ],
+  "nearby_cities": [
+    "Irving",
+    "Grand Prairie",
+    "Mesquite",
+    "Garland",
+    "Richardson",
+    "Duncanville",
+    "Arlington"
+  ],
+  "faqs": [
+    {
+      "question": "Does Luna General Contractors serve Dallas?",
+      "answer": "Yes. We provide residential and commercial construction services across Dallas and surrounding DFW communities."
+    },
+    {
+      "question": "Can you coordinate multi-trade renovations?",
+      "answer": "Yes. We manage scheduling, materials and coordination for projects involving several trades and work phases."
+    },
+    {
+      "question": "Do you work on investment properties?",
+      "answer": "Yes. We complete repairs, renovations and turnovers for homeowners, investors, landlords and property managers."
+    },
+    {
+      "question": "Do you provide commercial construction services?",
+      "answer": "Yes. We provide repairs, remodeling, tenant improvements and interior build-outs for commercial properties."
+    }
   ]
 }
