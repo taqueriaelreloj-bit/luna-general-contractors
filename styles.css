@@ -2040,3 +2040,6 @@ a {
 .local-project-photo img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center}
 .local-project-photo figcaption{margin:0;padding:12px 16px 14px;color:#d9dde1;font-size:.9rem;line-height:1.5}
 @media(max-width:620px){.local-project-photo img{aspect-ratio:4/3}}
+
+/* Keep flooring photos compact even if an image fails to load. */
+.local-project-photo img{height:auto}
