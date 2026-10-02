@@ -2043,3 +2043,31 @@ a {
 
 /* Keep flooring photos compact even if an image fails to load. */
 .local-project-photo img{height:auto}
+
+
+/* Site-wide readable gallery captions */
+body .city-gallery-card strong,
+body .gallery-section .gallery-slot figcaption,
+body .gallery-section .gallery-slot figcaption strong {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  letter-spacing: .015em;
+  line-height: 1.4;
+}
+body .city-gallery-card strong,
+body .gallery-section .gallery-slot figcaption strong {
+  font-size: 1.05rem;
+}
+body .city-gallery-card span,
+body .gallery-section .gallery-slot figcaption small {
+  color: #f1f3f5;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: .9rem;
+  line-height: 1.5;
+}
+body .city-gallery-card span { margin-top: 7px; }
+body .gallery-section .gallery-slot figcaption span {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: .9rem;
+  line-height: 1.5;
+}
