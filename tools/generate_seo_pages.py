@@ -46,7 +46,7 @@ FLOORING_IMAGES = [
 ]
 
 FLOORING_CITY_IMAGES = {
-    "Allen": ("allen-flooring-light-oak.webp", 720, 960),
+    "Allen": ("allen-flooring-light-oak.jpg", 1050, 1400),
 }
 
 CITY_GROUPS = {
