@@ -45,6 +45,10 @@ FLOORING_IMAGES = [
     ("dfw-dark-wood-flooring-dining-room-2019.jpg", 501, 891),
 ]
 
+FLOORING_CITY_IMAGES = {
+    "Allen": ("allen-flooring-light-oak.webp", 720, 960),
+}
+
 CITY_GROUPS = {
     "south": ["Midlothian", "Waxahachie", "Red Oak", "Ovilla", "Glenn Heights", "DeSoto", "Lancaster", "Cedar Hill", "Duncanville", "Mansfield"],
     "central": ["Dallas", "Grand Prairie", "Arlington", "Irving", "Mesquite", "Garland", "Richardson", "Farmers Branch", "Carrollton", "Coppell"],
@@ -190,8 +194,8 @@ def service_page(city: str, service_slug: str, service_name: str, scope: str) ->
     if service_slug == "roofing":
         image = '<img src="roofing-project-one.jpg" loading="lazy" width="1200" height="800" alt="Roofing project completed by Luna General Contractors">'
     elif service_slug == "flooring":
-        floor_image, floor_w, floor_h = FLOORING_IMAGES[CITIES.index(city) % len(FLOORING_IMAGES)]
-        image = f'<figure class="local-project-photo"><img src="{floor_image}" alt="Flooring installation example from Luna General Contractors DFW project portfolio" width="{floor_w}" height="{floor_h}" loading="lazy" decoding="async"><figcaption>Flooring project example from Luna General Contractors&#39; DFW portfolio. Ask about flooring options for {escape(city)}.</figcaption></figure>'
+        floor_image, floor_w, floor_h = FLOORING_CITY_IMAGES.get(city, FLOORING_IMAGES[CITIES.index(city) % len(FLOORING_IMAGES)])
+        image = f'<figure class="local-project-photo"><img src="{floor_image}" alt="Flooring installation example from Luna General Contractors DFW project portfolio" width="{floor_w}" height="{floor_h}" loading="lazy" decoding="async"><figcaption>Flooring option for {escape(city)}.</figcaption></figure>'
     else:
         image = ''
     return head(title,description,url,city,schema_html)+nav()+f'''<main><section class="local-hero"><div class="container"><div class="breadcrumbs"><a href="index.html">Home</a> / <a href="{cslug}.html">{escape(city)}</a> / {escape(service_name)}</div><p class="eyebrow gold">{escape(city)}, Texas</p><h1>{escape(service_name)} in {escape(city)}</h1><p>Local help with {escape(scope)} for properties throughout {escape(city)}.</p><div class="hero-actions"><a class="btn btn-gold" href="tel:{PHONE_LINK}">☎ Call for a Free Estimate</a><a class="btn btn-outline" href="#estimate-form">Request Online</a></div></div></section><section class="local-content"><div class="container"><div class="local-grid"><div><p class="eyebrow gold">Professional {escape(service_name)}</p><h2>A Clear Plan for Your {escape(city)} Property</h2><p>Properties in {escape(city)} include {escape(detail)}. Our approach begins with the actual conditions at the property rather than a one-size-fits-all scope.</p><p>For {escape(service_name.lower())}, we review access, measurements, affected materials, desired finishes and any related work needed for a complete result. You receive practical recommendations and a defined project scope before work begins.</p><p>Luna General Contractors coordinates the necessary trades and keeps communication centered on schedule, quality and the agreed scope.</p>{image}</div><aside class="local-card"><h3>Service overview</h3><p><strong>{escape(service_name)}:</strong> {escape(scope)}.</p><p><strong>Area:</strong> {escape(city)}, Texas and nearby DFW communities.</p><a class="btn btn-gold" href="tel:{PHONE_LINK}">{PHONE}</a></aside></div><h2>Related Services in {escape(city)}</h2><div class="local-services">{other_services}</div><div class="local-near"><h2>{escape(service_name)} Near {escape(city)}</h2>{near_links}</div><div class="faq"><h2>Frequently Asked Questions</h2>{faq_html}</div></div></section>{form(city,service_name)}</main>'''+footer()+"</body></html>"
