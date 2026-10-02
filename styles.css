@@ -2074,12 +2074,12 @@ body .gallery-section .gallery-slot figcaption span {
 
 
 /* Hide repeated lower estimate forms on location pages */
-body .local-form .local-grid {
+body:has(.estimate-card #estimate-form, .hero #estimate-form, .hero-grid #estimate-form) .local-form .local-grid {
   grid-template-columns: 1fr;
   max-width: 850px;
   margin-inline: auto;
   text-align: center;
 }
-body .local-form form.estimate-form {
+body:has(.estimate-card #estimate-form, .hero #estimate-form, .hero-grid #estimate-form) .local-form form.estimate-form {
   display: none;
 }
