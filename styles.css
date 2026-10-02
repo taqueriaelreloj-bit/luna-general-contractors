@@ -2071,3 +2071,15 @@ body .gallery-section .gallery-slot figcaption span {
   font-size: .9rem;
   line-height: 1.5;
 }
+
+
+/* Hide repeated lower estimate forms on location pages */
+body .local-form .local-grid {
+  grid-template-columns: 1fr;
+  max-width: 850px;
+  margin-inline: auto;
+  text-align: center;
+}
+body .local-form form.estimate-form {
+  display: none;
+}
