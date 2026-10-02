@@ -346,6 +346,61 @@ if (!isHomePage && !isPrivacyPage && !document.querySelector("#estimate-form")) 
   if (main) main.appendChild(globalEstimateSection);
 }
 
+// Put a page's single estimate form in its hero when that page has a hero.
+const pageMain = document.querySelector("main");
+const pageHero = pageMain?.querySelector(".city-hero, .local-hero, .seo-hero, .trade-hero, .service-hero, .hero");
+const heroContainer = pageHero?.querySelector(".container");
+const estimateAnchor = document.querySelector("#estimate-form");
+const pageEstimateForm = estimateAnchor?.matches("form") ? estimateAnchor : estimateAnchor?.querySelector("form");
+if (heroContainer && !pageHero.querySelector(".estimate-card") && pageEstimateForm) {
+  const existingCard = pageEstimateForm.closest(".estimate-card");
+  const card = existingCard || document.createElement("aside");
+  if (!existingCard) {
+    card.className = "estimate-card";
+    card.setAttribute("aria-label", "Free estimate form");
+    card.innerHTML = "<h2>Get Your Free Estimate</h2><p>Fast, Easy &amp; No Obligation</p>";
+    pageEstimateForm.id = "estimate-form";
+    pageEstimateForm.classList.remove("estimate-form");
+    card.appendChild(pageEstimateForm);
+    const oldEstimateSection = pageEstimateForm.closest(".local-form");
+    if (oldEstimateSection?.id === "estimate-form") oldEstimateSection.removeAttribute("id");
+  }
+  const globalSection = card.closest(".global-estimate-section");
+  const heroCopy = document.createElement("div");
+  heroCopy.className = "global-hero-copy";
+  while (heroContainer.firstChild) heroCopy.appendChild(heroContainer.firstChild);
+  heroContainer.classList.add("global-estimate-hero");
+  heroContainer.appendChild(heroCopy);
+  heroContainer.appendChild(card);
+  if (globalSection) globalSection.remove();
+  if (!document.querySelector("#contact")) card.id = "contact";
+}
+
+// Add the same DFW portfolio gallery to internal pages that do not already have one.
+if (!isHomePage && !isPrivacyPage && pageMain && !pageMain.querySelector(".city-gallery, .gallery-section, [data-gallery], .project-gallery")) {
+  const projectGallery = document.createElement("section");
+  projectGallery.className = "city-gallery";
+  projectGallery.setAttribute("aria-labelledby", "site-project-gallery-heading");
+  projectGallery.innerHTML = `
+    <div class="container">
+      <div class="city-gallery-heading">
+        <p class="eyebrow gold">Luna Project Gallery</p>
+        <h2 id="site-project-gallery-heading">Recent DFW Project Work</h2>
+        <p>Examples of roofing, kitchen, bathroom and flooring work from Luna's Dallas–Fort Worth portfolio.</p>
+      </div>
+      <div class="city-gallery-grid">
+        <figure class="city-gallery-card"><div class="city-gallery-image"><img src="/dfw-roof-replacement-brick-home-2019.jpg" alt="Completed shingle roof on a brick home by Luna General Contractors in DFW" width="1188" height="891" loading="lazy" decoding="async"><span class="city-gallery-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 11 9-7 9 7M5.5 9.5V20h13V9.5M10 20v-6h4v6"/></svg></span></div><figcaption><strong>Roof Replacement</strong><span>Completed shingle roof · DFW portfolio</span></figcaption></figure>
+        <figure class="city-gallery-card"><div class="city-gallery-image"><img src="/dfw-kitchen-remodel-quartz-island-2018.jpg" alt="Kitchen remodel with quartz island from Luna's DFW portfolio" width="1188" height="891" loading="lazy" decoding="async"><span class="city-gallery-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 10h18M9 10v11M15 10v11"/></svg></span></div><figcaption><strong>Kitchen Remodel</strong><span>Quartz island and updated finishes · DFW portfolio</span></figcaption></figure>
+        <figure class="city-gallery-card"><div class="city-gallery-image"><img src="/dfw-bathroom-remodel-glass-shower-2020.jpg" alt="Bathroom remodel with glass shower from Luna's DFW portfolio" width="1188" height="891" loading="lazy" decoding="async"><span class="city-gallery-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12V6a3 3 0 0 1 6 0M8 6h4M3 12h18v3a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4zM6 19v2M18 19v2"/></svg></span></div><figcaption><strong>Bathroom Remodel</strong><span>Glass shower and coordinated finishes · DFW portfolio</span></figcaption></figure>
+        <figure class="city-gallery-card"><div class="city-gallery-image"><img src="/dfw-gray-plank-flooring-installation-2018.jpg" alt="Gray plank flooring installation from Luna's DFW portfolio" width="1188" height="891" loading="lazy" decoding="async"><span class="city-gallery-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"/></svg></span></div><figcaption><strong>Flooring Installation</strong><span>Plank flooring and transitions · DFW portfolio</span></figcaption></figure>
+      </div>
+      <p class="city-gallery-note">These photos show DFW portfolio work and are not represented as projects completed specifically on this page. <a href="projects.html"><strong>View more projects →</strong></a></p>
+    </div>
+  `;
+  const localFormSection = pageMain.querySelector(".local-form");
+  if (localFormSection) localFormSection.before(projectGallery);
+  else pageMain.appendChild(projectGallery);
+}
 // Track high-intent lead actions across every page.
 document.addEventListener("click", (event) => {
   const link = event.target.closest("a");
