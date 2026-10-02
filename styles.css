@@ -1869,3 +1869,167 @@ a {
     min-height: auto;
   }
 }
+
+
+/* Shared city / service-area page layout */
+.local-hero {
+  min-height: 520px;
+  display: grid;
+  align-items: center;
+  color: #fff;
+  background:
+    radial-gradient(circle at 82% 24%, rgba(229, 160, 0, 0.20), transparent 32%),
+    linear-gradient(120deg, #05080a 15%, #111820 70%, #05080a);
+}
+
+.local-hero .container {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.local-hero h1 {
+  max-width: 1050px;
+  margin: 0.2em 0;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  line-height: 0.96;
+}
+
+.local-hero p {
+  max-width: 820px;
+  font-size: 1.16rem;
+}
+
+.local-content,
+.local-form {
+  padding: 72px 0;
+  background: #fff;
+  color: #17191c;
+}
+
+.local-content h2,
+.local-form h2 {
+  font-size: clamp(2rem, 4vw, 3.3rem);
+}
+
+.local-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 42px;
+}
+
+.local-card {
+  padding: 30px;
+  background: #f3f4f5;
+  border-left: 5px solid #e5a000;
+}
+
+.local-services {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+  margin: 28px 0;
+}
+
+.local-services a {
+  display: block;
+  padding: 18px;
+  color: #fff;
+  background: #111820;
+  border-bottom: 3px solid #e5a000;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.local-services a:hover,
+.local-services a:focus-visible {
+  color: #111;
+  background: var(--gold);
+}
+
+.local-near {
+  margin: 28px 0;
+}
+
+.local-near a {
+  display: inline-block;
+  margin: 5px 12px 5px 0;
+  color: #9a6200;
+  font-weight: 800;
+}
+
+.faq {
+  margin-top: 30px;
+}
+
+.faq details {
+  padding: 16px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.faq summary {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.local-form .estimate-form {
+  display: grid;
+  gap: 13px;
+  width: min(100%, 820px);
+  padding: 25px;
+  background: #f3f4f5;
+}
+
+.local-form .estimate-form label {
+  display: grid;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.local-form .estimate-form input,
+.local-form .estimate-form select,
+.local-form .estimate-form textarea {
+  width: 100%;
+  padding: 13px;
+  color: #17191c;
+  background: #fff;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+}
+
+.local-form .estimate-form textarea {
+  resize: vertical;
+}
+
+@media (max-width: 800px) {
+  .local-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .local-services {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .local-hero {
+    min-height: 430px;
+  }
+
+  .local-hero .container {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+@media (max-width: 520px) {
+  .local-services {
+    grid-template-columns: 1fr;
+  }
+
+  .local-content,
+  .local-form {
+    padding: 50px 0;
+  }
+
+  .local-form .estimate-form {
+    padding: 20px;
+  }
+}
