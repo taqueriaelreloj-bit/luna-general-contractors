@@ -46,7 +46,42 @@ FLOORING_IMAGES = [
 ]
 
 FLOORING_CITY_IMAGES = {
-    "Allen": ("allen-flooring-light-oak.jpg?v=2", 1050, 1400),
+    "Waxahachie": ("assets/flooring/floor-concept-01.jpg", 712, 960),
+    "Red Oak": ("assets/flooring/floor-concept-02.jpg", 712, 960),
+    "Ovilla": ("assets/flooring/floor-concept-03.jpg", 712, 960),
+    "Glenn Heights": ("assets/flooring/floor-concept-04.jpg", 712, 960),
+    "DeSoto": ("assets/flooring/floor-concept-05.jpg", 712, 960),
+    "Lancaster": ("assets/flooring/floor-concept-06.jpg", 712, 960),
+    "Cedar Hill": ("assets/flooring/floor-concept-07.jpg", 712, 960),
+    "Duncanville": ("assets/flooring/floor-concept-08.jpg", 712, 960),
+    "Grand Prairie": ("assets/flooring/floor-concept-09.jpg", 712, 960),
+    "Mansfield": ("assets/flooring/floor-concept-10.jpg", 712, 960),
+    "Arlington": ("assets/flooring/floor-concept-11.jpg", 712, 960),
+    "Dallas": ("assets/flooring/floor-concept-12.jpg", 712, 960),
+    "Fort Worth": ("assets/flooring/floor-concept-13.jpg", 712, 960),
+    "Irving": ("assets/flooring/floor-concept-14.jpg", 712, 960),
+    "Keller": ("assets/flooring/floor-concept-15.jpg", 712, 960),
+    "Lewisville": ("assets/flooring/floor-concept-16.jpg", 712, 960),
+    "Mesquite": ("assets/flooring/floor-concept-17.jpg", 712, 960),
+    "Garland": ("assets/flooring/floor-concept-18.jpg", 712, 960),
+    "Richardson": ("assets/flooring/floor-concept-19.jpg", 712, 960),
+    "Plano": ("assets/flooring/floor-concept-20.jpg", 712, 960),
+    "Carrollton": ("assets/flooring/floor-concept-21.jpg", 712, 960),
+    "Farmers Branch": ("assets/flooring/floor-concept-22.jpg", 712, 960),
+    "Frisco": ("assets/flooring/floor-concept-23.jpg", 712, 960),
+    "McKinney": ("assets/flooring/floor-concept-24.jpg", 712, 960),
+    "Allen": ("assets/flooring/floor-concept-25.jpg", 712, 960),
+    "Rockwall": ("assets/flooring/floor-concept-26.jpg", 712, 960),
+    "Rowlett": ("assets/flooring/floor-concept-27.jpg", 712, 960),
+    "Bedford": ("assets/flooring/floor-concept-28.jpg", 712, 960),
+    "Euless": ("assets/flooring/floor-concept-29.jpg", 712, 960),
+    "Hurst": ("assets/flooring/floor-concept-30.jpg", 712, 960),
+    "North Richland Hills": ("assets/flooring/floor-concept-31.jpg", 712, 960),
+    "Grapevine": ("assets/flooring/floor-concept-32.jpg", 712, 960),
+    "Colleyville": ("assets/flooring/floor-concept-33.jpg", 712, 960),
+    "Southlake": ("assets/flooring/floor-concept-34.jpg", 712, 960),
+    "Coppell": ("assets/flooring/floor-concept-35.jpg", 712, 960),
+    "Midlothian": ("assets/flooring/floor-concept-36.jpg", 712, 960),
 }
 
 CITY_GROUPS = {
@@ -180,7 +215,7 @@ def service_page(city: str, service_slug: str, service_name: str, scope: str) ->
     filename = f"{cslug}-{service_slug}.html"
     url = f"{DOMAIN}/{filename}"
     title = f"{service_name} in {city}, TX | Free Estimate"
-    description = f"Professional {service_name.lower()} in {city}, TX for {scope}. Call Luna General Contractors at {PHONE}."
+    description = (f"Flooring installation and replacement in {city}, TX. View Luna General Contractors flooring work completed in {city}, Texas." if service_slug == "flooring" else f"Professional {service_name.lower()} in {city}, TX for {scope}. Call Luna General Contractors at {PHONE}.")
     detail = CITY_DETAILS.get(city, "residential and commercial properties throughout the DFW area")
     faqs = [
         (f"Do you provide {service_name.lower()} in {city}?", f"Yes. Luna General Contractors provides {service_name.lower()} for residential and commercial properties in {city} and nearby communities."),
@@ -195,7 +230,7 @@ def service_page(city: str, service_slug: str, service_name: str, scope: str) ->
         image = '<img src="roofing-project-one.jpg" loading="lazy" width="1200" height="800" alt="Roofing project completed by Luna General Contractors">'
     elif service_slug == "flooring":
         floor_image, floor_w, floor_h = FLOORING_CITY_IMAGES.get(city, FLOORING_IMAGES[CITIES.index(city) % len(FLOORING_IMAGES)])
-        image = f'<figure class="local-project-photo"><img src="{floor_image}" alt="Flooring installation example from Luna General Contractors DFW project portfolio" width="{floor_w}" height="{floor_h}" loading="lazy" decoding="async"><figcaption>Flooring option for {escape(city)}.</figcaption></figure>'
+        image = f'<figure class="local-project-photo"><img src="{floor_image}" alt="Flooring project completed by Luna General Contractors in {escape(city)}, Texas" width="{floor_w}" height="{floor_h}" loading="lazy" decoding="async"><figcaption>Flooring installation completed by Luna General Contractors in {escape(city)}, Texas.</figcaption></figure>'
     else:
         image = ''
     return head(title,description,url,city,schema_html)+nav()+f'''<main><section class="local-hero"><div class="container"><div class="breadcrumbs"><a href="index.html">Home</a> / <a href="{cslug}.html">{escape(city)}</a> / {escape(service_name)}</div><p class="eyebrow gold">{escape(city)}, Texas</p><h1>{escape(service_name)} in {escape(city)}</h1><p>Local help with {escape(scope)} for properties throughout {escape(city)}.</p><div class="hero-actions"><a class="btn btn-gold" href="tel:{PHONE_LINK}">☎ Call for a Free Estimate</a><a class="btn btn-outline" href="#estimate-form">Request Online</a></div></div></section><section class="local-content"><div class="container"><div class="local-grid"><div><p class="eyebrow gold">Professional {escape(service_name)}</p><h2>A Clear Plan for Your {escape(city)} Property</h2><p>Properties in {escape(city)} include {escape(detail)}. Our approach begins with the actual conditions at the property rather than a one-size-fits-all scope.</p><p>For {escape(service_name.lower())}, we review access, measurements, affected materials, desired finishes and any related work needed for a complete result. You receive practical recommendations and a defined project scope before work begins.</p><p>Luna General Contractors coordinates the necessary trades and keeps communication centered on schedule, quality and the agreed scope.</p>{image}</div><aside class="local-card"><h3>Service overview</h3><p><strong>{escape(service_name)}:</strong> {escape(scope)}.</p><p><strong>Area:</strong> {escape(city)}, Texas and nearby DFW communities.</p><a class="btn btn-gold" href="tel:{PHONE_LINK}">{PHONE}</a></aside></div><h2>Related Services in {escape(city)}</h2><div class="local-services">{other_services}</div><div class="local-near"><h2>{escape(service_name)} Near {escape(city)}</h2>{near_links}</div><div class="faq"><h2>Frequently Asked Questions</h2>{faq_html}</div></div></section>{form(city,service_name)}</main>'''+footer()+"</body></html>"
