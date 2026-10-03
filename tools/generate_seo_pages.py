@@ -267,7 +267,7 @@ def main() -> None:
     ]
     for args in articles:
         write(args[0],article_page(*args)); generated.append(args[0])
-    static=["","roofing.html","mitigation.html","insurance-claims.html","kitchens.html","bathrooms.html","flooring.html","painting.html","drywall.html","siding.html","carpentry.html","fencing.html","commercial.html","articles.html","service-areas.html"]
+    static=["","roofing.html","mitigation.html","insurance-claims.html","kitchens.html","bathrooms.html","flooring.html","painting.html","drywall.html","siding.html","carpentry.html","fencing.html","commercial.html","articles.html","service-areas.html","flooring-options-mansfield.html"]
     urls=[DOMAIN+("/" if not x else "/"+x) for x in static+generated]
     sitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{u}</loc><lastmod>{TODAY}</lastmod></url>\n' for u in urls)+'</urlset>\n'
     write("sitemap.xml",sitemap)
