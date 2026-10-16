@@ -2267,3 +2267,84 @@ body:has(.estimate-card #estimate-form, .hero #estimate-form, .hero-grid #estima
     height: 220px;
   }
 }
+
+
+/* Roofing service-area pages: practical visit checklist and distinct photographic hero. */
+body.roofing-location-page .local-hero {
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(90deg, rgba(5, 8, 10, .94) 0%, rgba(5, 8, 10, .76) 52%, rgba(5, 8, 10, .28) 100%),
+    url("/dfw-roof-replacement-brick-home-2019.jpg") center 48% / cover no-repeat;
+}
+body.roofing-location-page .local-hero .container { max-width: 1180px; }
+body.roofing-location-page .local-hero h1 { max-width: 720px; text-wrap: balance; }
+body.roofing-location-page .local-hero p { max-width: 680px; }
+body.roofing-location-page .roofing-visit-guide {
+  margin: 38px 0 52px;
+  padding: clamp(24px, 4vw, 44px);
+  color: #fff;
+  background: #111820;
+  border: 1px solid #303943;
+  border-top: 4px solid var(--gold);
+  border-radius: 10px;
+  box-shadow: 0 20px 46px rgba(7, 9, 11, .14);
+}
+body.roofing-location-page .roofing-visit-heading { max-width: 780px; }
+body.roofing-location-page .roofing-visit-heading .eyebrow {
+  margin: 0 0 10px;
+  color: var(--gold-2);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+body.roofing-location-page .roofing-visit-heading h2 {
+  margin: 0 0 12px;
+  font-size: clamp(1.8rem, 3.5vw, 2.7rem);
+  line-height: 1.05;
+}
+body.roofing-location-page .roofing-visit-heading > p:last-child {
+  margin: 0;
+  color: #d1d5d9;
+}
+body.roofing-location-page .roofing-visit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 26px;
+}
+body.roofing-location-page .roofing-visit-grid article {
+  min-height: 205px;
+  padding: 22px;
+  background: #1b2229;
+  border: 1px solid #38414a;
+  border-radius: 7px;
+}
+body.roofing-location-page .roofing-visit-grid article > span {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--gold-2);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+body.roofing-location-page .roofing-visit-grid h3 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.35rem;
+  text-transform: uppercase;
+}
+body.roofing-location-page .roofing-visit-grid p { margin: 0; color: #d1d5d9; }
+body.roofing-location-page .local-content > .container > p a {
+  color: #8e5a00;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 760px) {
+  body.roofing-location-page .roofing-visit-grid { grid-template-columns: 1fr; }
+  body.roofing-location-page .roofing-visit-grid article { min-height: auto; }
+}
