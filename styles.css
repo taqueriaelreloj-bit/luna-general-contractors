@@ -2125,3 +2125,99 @@ body:has(.estimate-card #estimate-form, .hero #estimate-form, .hero-grid #estima
     font-size: clamp(3rem, 11vw, 5.2rem);
   }
 }
+
+
+/* Roofing systems and manufacturer warranty guide */
+.roofing-materials h2 {
+  margin: 0 0 14px;
+  font-size: clamp(2.2rem, 4.6vw, 3.8rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.roofing-materials-intro {
+  max-width: 900px;
+  margin: 0 0 24px;
+  color: #4b5157;
+}
+
+.roof-type-grid,
+.roof-warranty-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 24px 0 36px;
+}
+
+.roof-info-card {
+  padding: 22px;
+  background: #f5f6f7;
+  border: 1px solid #d9dde1;
+  border-top: 3px solid var(--gold);
+  border-radius: 7px;
+}
+
+.roof-info-card h3 {
+  margin: 0 0 9px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.55rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.roof-info-card p {
+  margin: 0;
+  color: #4b5157;
+}
+
+.roofing-warranty-heading {
+  margin: 0 0 10px;
+  font-size: clamp(1.8rem, 3.4vw, 2.7rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.roof-warranty-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 20px;
+}
+
+.roof-warranty-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.roof-warranty-card a {
+  margin-top: auto;
+  color: #8e5a00;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.roofing-warranty-note {
+  margin: 0;
+  padding: 18px 20px;
+  color: #33383d;
+  background: #fff8e8;
+  border-left: 4px solid var(--gold);
+  line-height: 1.6;
+}
+
+@media (max-width: 800px) {
+  .roof-warranty-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .roof-type-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .roof-info-card {
+    padding: 18px;
+  }
+}
