@@ -1,0 +1,115 @@
+/* Static, accessible commercial roofing guide. No carousel or JavaScript needed. */
+.commercial-roofing {
+  --cr-ink: #16303e; --cr-muted: #536774; --cr-line: #d8e2e7;
+  margin: 54px 0; border: 1px solid var(--cr-line); border-radius: 16px;
+  background: #f1f5f7; color: var(--cr-ink); overflow: hidden;
+  overflow-wrap: anywhere; scroll-margin-top: 140px;
+}
+.commercial-roofing *, .commercial-roofing *::before, .commercial-roofing *::after { box-sizing: border-box; }
+.commercial-roofing h2, .commercial-roofing h3, .commercial-roofing h4 { font-family: "Inter", Arial, sans-serif; line-height: 1.2; letter-spacing: -.03em; text-transform: none; color: var(--cr-ink); }
+.commercial-roofing .cr-hero { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, .85fr); gap: 36px; padding: clamp(24px, 3.5vw, 44px); background: #15313f; color: #fff; border-top: 5px solid #e8ae23; }
+.commercial-roofing .cr-eyebrow { margin: 0 0 12px; color: #815900; font-size: .7rem; letter-spacing: .12em; font-weight: 850; text-transform: uppercase; }
+.commercial-roofing .cr-hero .cr-eyebrow { color: #ffce5b; }
+.commercial-roofing .cr-hero h2 { font-size: clamp(1.85rem, 3.5vw, 2.8rem); line-height: 1.1; color: #fff; margin: 0 0 20px; text-wrap: balance; }
+.commercial-roofing .cr-intro { font-size: .96rem; line-height: 1.8; color: #dae5eb; margin: 0; }
+.commercial-roofing .cr-project-brief { align-self: start; padding: 24px; background: #244552; border: 1px solid #44616e; border-radius: 8px; }
+.commercial-roofing .cr-project-brief h3 { margin: 0 0 12px; color: #fff; font-size: 1.3rem; }
+.commercial-roofing .cr-project-brief p:last-child { color: #d4e0e7; font-size: .85rem; line-height: 1.75; margin: 0; }
+.commercial-roofing .cr-label { font-size: .68rem; color: #536774; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 9px; }
+.commercial-roofing .cr-project-brief .cr-label { color: #ffce5b; }
+.commercial-roofing .cr-jump { display: flex; flex-wrap: wrap; gap: 8px 26px; padding: 18px clamp(24px, 3.5vw, 44px); border-bottom: 1px solid var(--cr-line); background: #e5edf0; }
+.commercial-roofing a:not(.btn) { color: #215d77; text-decoration: underline; text-underline-offset: 3px; }
+.commercial-roofing .cr-jump a { font-size: .78rem; font-weight: 800; }
+.commercial-roofing a:focus-visible, .commercial-roofing summary:focus-visible { outline: 3px solid #ae7900; outline-offset: 4px; }
+.commercial-roofing .cr-content { padding: clamp(24px, 3.5vw, 44px); }
+.commercial-roofing .cr-section-heading { max-width: 850px; margin: 0 0 24px; scroll-margin-top: 150px; }
+.commercial-roofing .cr-section-heading:not(:first-child) { margin-top: 42px; }
+.commercial-roofing .cr-section-heading h3 { font-size: clamp(1.45rem, 2.4vw, 2rem); margin: 0 0 12px; }
+.commercial-roofing .cr-section-heading > p:last-child { font-size: .92rem; color: var(--cr-muted); line-height: 1.7; margin: 0; }
+.commercial-roofing .cr-membranes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.commercial-roofing .cr-membrane { display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--cr-line); background: #fff; border-radius: 10px; overflow: hidden; }
+.commercial-roofing .cr-material-art { background: #eaf0f2; }
+.commercial-roofing .cr-material-art img { display: block; width: 100%; height: auto; }
+.commercial-roofing .cr-material-art > span { display: block; padding: 0 18px 10px; font-size: .64rem; color: #5e7480; }
+.commercial-roofing .cr-card-body { display: flex; flex: 1; flex-direction: column; gap: 16px; padding: 24px 21px; }
+.commercial-roofing .cr-card-body h4 { font-size: clamp(1.7rem, 2.8vw, 2.2rem); margin: 0 0 8px; }
+.commercial-roofing .cr-card-body .cr-brand { font-size: .75rem; color: #5b6f7a; margin: 0; line-height: 1.6; }
+.commercial-roofing .cr-card-body > p { font-size: .86rem; color: var(--cr-muted); line-height: 1.75; margin: 0; }
+.commercial-roofing .cr-card-body .cr-selection { font-weight: 650; color: #304d5c; }
+.commercial-roofing .cr-card-body .cr-city-note { padding: 15px; border-left: 3px solid #deb145; background: #f7f5ee; color: #455866; }
+.commercial-roofing .cr-city-note strong { display: block; font-size: .66rem; text-transform: uppercase; letter-spacing: .06em; color: #7c590d; margin-bottom: 7px; }
+.commercial-roofing .cr-warranty-detail { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--cr-line); }
+.commercial-roofing .cr-warranty-detail summary { cursor: pointer; font-size: .72rem; color: #536774; line-height: 1.6; }
+.commercial-roofing .cr-warranty-detail summary strong { display: block; color: #16303e; font-size: .86rem; margin-top: 5px; }
+.commercial-roofing .cr-warranty-detail p { color: var(--cr-muted); font-size: .79rem; line-height: 1.75; margin: 12px 0 0; }
+.commercial-roofing .cr-card-links { font-size: .77rem; font-weight: 750; }
+.commercial-roofing .cr-families { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.commercial-roofing .cr-family { background: #fff; border: 1px solid var(--cr-line); border-radius: 8px; }
+.commercial-roofing .cr-family summary { display: grid; grid-template-columns: 30px minmax(0, 1fr) 18px; align-items: start; gap: 12px; list-style: none; padding: 20px; cursor: pointer; }
+.commercial-roofing .cr-family summary::-webkit-details-marker { display: none; }
+.commercial-roofing .cr-family-number { color: #9a741d; font-size: .85rem; font-weight: 850; padding-top: 2px; }
+.commercial-roofing .cr-family summary strong { font-size: .99rem; line-height: 1.4; display: block; }
+.commercial-roofing .cr-family summary small { font-size: .72rem; line-height: 1.5; color: #677d89; display: block; margin-top: 4px; }
+.commercial-roofing .cr-expand { color: #1f5b71; font-size: 1.3rem; line-height: 1; transition: transform .15s; }
+.commercial-roofing .cr-family[open] .cr-expand { transform: rotate(45deg); }
+.commercial-roofing .cr-family[open] { border-color: #8faebd; }
+.commercial-roofing .cr-family-body { padding: 0 22px 24px; font-size: .85rem; line-height: 1.75; color: var(--cr-muted); }
+.commercial-roofing .cr-family-body p { margin: 0 0 15px; }
+.commercial-roofing .cr-family-body > a { font-size: .77rem; font-weight: 750; }
+.commercial-roofing .cr-inline-link { display: block; margin-top: 10px; }
+.commercial-roofing .cr-assembly { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+.commercial-roofing .cr-assembly figure { margin: 0; min-width: 0; }
+.commercial-roofing .cr-assembly img { display: block; width: 100%; height: auto; }
+.commercial-roofing .cr-assembly figcaption { font-size: .72rem; color: var(--cr-muted); line-height: 1.7; margin-top: 10px; }
+.commercial-roofing .cr-assembly-notes h4 { margin: 0 0 16px; font-size: 1.25rem; }
+.commercial-roofing .cr-assembly-notes ol { list-style: none; padding: 0; margin: 0; counter-reset: cr-steps; }
+.commercial-roofing .cr-assembly-notes li { position: relative; counter-increment: cr-steps; padding: 0 0 16px 35px; color: var(--cr-muted); font-size: .82rem; line-height: 1.65; }
+.commercial-roofing .cr-assembly-notes li::before { content: counter(cr-steps, decimal-leading-zero); position: absolute; left: 0; top: 1px; color: #956c10; font-weight: 800; }
+.commercial-roofing .cr-assembly-notes strong { display: block; color: var(--cr-ink); margin-bottom: 3px; }
+.commercial-roofing .cr-reference-photos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+.commercial-roofing .cr-reference-photos figure { background: #fff; border: 1px solid var(--cr-line); border-radius: 8px; margin: 0; min-width: 0; overflow: hidden; }
+.commercial-roofing .cr-reference-photos img { display: block; width: 100%; height: 250px; object-fit: contain; background: #e1e8eb; }
+.commercial-roofing .cr-reference-photos figcaption { padding: 13px 16px; font-size: .68rem; color: var(--cr-muted); line-height: 1.7; }
+.commercial-roofing .cr-reference-photos figcaption strong { display: block; color: var(--cr-ink); font-size: .83rem; margin-bottom: 4px; }
+.commercial-roofing .cr-reference-photos > p { grid-column: 1 / -1; margin: 0; font-size: .71rem; line-height: 1.7; color: var(--cr-muted); }
+.commercial-roofing .cr-coverage { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.6fr); gap: 25px; margin-top: 30px; padding: 26px; border-radius: 8px; background: #e5edef; scroll-margin-top: 150px; }
+.commercial-roofing .cr-coverage h3 { margin: 0; font-size: 1.5rem; }
+.commercial-roofing .cr-coverage p:not(.cr-eyebrow) { margin: 0 0 12px; color: #4b626f; font-size: .8rem; line-height: 1.8; }
+.commercial-roofing .cr-coverage p:last-child { margin-bottom: 0; }
+.commercial-roofing .cr-next { display: flex; justify-content: space-between; align-items: center; gap: 25px; margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--cr-line); }
+.commercial-roofing .cr-next strong { font-size: 1rem; }
+.commercial-roofing .cr-next p { margin: 6px 0 0; color: var(--cr-muted); font-size: .85rem; line-height: 1.7; }
+.commercial-roofing .cr-next .btn { white-space: normal; text-align: center; flex-shrink: 0; max-width: 320px; }
+.commercial-roofing--contrast .cr-hero { background: #111f28; }
+.commercial-roofing--contrast .cr-project-brief { background: #253644; }
+.commercial-roofing--spotlight .cr-hero { grid-template-columns: minmax(0, 1fr); }
+.commercial-roofing--spotlight .cr-project-brief { max-width: 900px; }
+.commercial-roofing--spotlight .cr-membranes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.commercial-roofing--spotlight .cr-membrane:first-child { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.35fr); }
+.commercial-roofing--spotlight .cr-membrane:first-child .cr-material-art { align-self: start; }
+.commercial-roofing--rows .cr-membranes { grid-template-columns: 1fr; }
+.commercial-roofing--rows .cr-membrane { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.4fr); }
+.commercial-roofing--rows .cr-material-art { align-self: start; }
+@media (max-width: 1050px) {
+  .commercial-roofing .cr-hero, .commercial-roofing .cr-assembly { grid-template-columns: 1fr; }
+  .commercial-roofing .cr-project-brief { max-width: none; }
+  .commercial-roofing .cr-membranes { grid-template-columns: 1fr; }
+  .commercial-roofing .cr-membrane, .commercial-roofing--spotlight .cr-membrane:first-child { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); grid-column: auto; }
+  .commercial-roofing .cr-material-art { align-self: start; }
+  .commercial-roofing .cr-next { align-items: start; flex-direction: column; }
+}
+@media (max-width: 700px) {
+  .commercial-roofing { margin-block: 32px; border-radius: 10px; }
+  .commercial-roofing .cr-hero, .commercial-roofing .cr-content { padding: 22px; }
+  .commercial-roofing .cr-hero { gap: 22px; }
+  .commercial-roofing .cr-membrane, .commercial-roofing--spotlight .cr-membrane:first-child { display: flex; }
+  .commercial-roofing .cr-material-art { align-self: stretch; }
+  .commercial-roofing .cr-families, .commercial-roofing .cr-coverage, .commercial-roofing .cr-reference-photos { grid-template-columns: 1fr; }
+  .commercial-roofing .cr-reference-photos > p { grid-column: auto; }
+  .commercial-roofing .cr-card-body { padding: 22px 18px; }
+  .commercial-roofing .cr-family summary { padding: 18px 15px; gap: 9px; grid-template-columns: 26px minmax(0,1fr) 16px; }
+  .commercial-roofing .cr-coverage { padding: 22px; gap: 16px; }
+  .commercial-roofing .cr-next .btn { width: 100%; max-width: none; }
+  .commercial-roofing .cr-jump { padding: 17px 22px; gap: 12px 20px; }
+}
+@media (prefers-reduced-motion: reduce) { .commercial-roofing .cr-expand { transition: none; } }
