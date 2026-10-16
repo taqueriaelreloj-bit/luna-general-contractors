@@ -56,7 +56,7 @@ FLOORING_CITY_IMAGES = {
     "Duncanville": ("assets/flooring/floor-concept-08.jpg", 712, 960),
     "Grand Prairie": ("assets/flooring/floor-concept-09.jpg", 712, 960),
     "Mansfield": ("assets/flooring/floor-concept-10.jpg", 712, 960),
-    "Arlington": ("assets/flooring/floor-concept-11.jpg", 712, 960),
+    "Arlington": ("assets/flooring/arlington-flooring-option.jpg", 712, 960),
     "Dallas": ("assets/flooring/floor-concept-12.jpg", 712, 960),
     "Fort Worth": ("assets/flooring/floor-concept-13.jpg", 712, 960),
     "Irving": ("assets/flooring/floor-concept-14.jpg", 712, 960),

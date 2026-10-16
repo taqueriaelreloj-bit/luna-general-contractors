@@ -1,0 +1,66 @@
+/* Shared service guides and the complete home-page ending. */
+@media(min-width:1025px) and (max-width:1320px){.complete-page .topbar{grid-template-columns:220px minmax(0,1fr) 210px}.complete-page .main-nav{min-width:0;flex-wrap:wrap;column-gap:12px;row-gap:0;justify-content:center}}
+.complete-page .local-hero h1,.complete-page .trade-hero h1{max-width:100%;font-size:clamp(2.55rem,5.5vw,5.4rem);line-height:1.02;overflow-wrap:break-word;text-wrap:balance}
+.complete-page .local-form form.estimate-form{display:grid!important;margin-top:24px}
+.complete-page .local-form h2{max-width:900px;line-height:1.15}
+.complete-page .complete-contact{background:#10161c;color:#fff;border-top:4px solid #e5a000}
+.complete-page .complete-contact h2{color:#fff;font-size:clamp(2rem,4vw,3rem);line-height:1.1}
+.complete-contact .contact-actions{min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:12px}
+.complete-contact .contact-actions a{white-space:normal;overflow-wrap:anywhere;text-align:center}
+.complete-contact .complete-estimate-link{color:#ffc342;text-decoration:underline;padding:8px}
+.complete-page .footer-grid{grid-template-columns:minmax(0,1.5fr) repeat(4,minmax(0,1fr));gap:28px}
+.complete-page .footer-grid>div{min-width:0}
+.complete-page .footer-grid a{overflow-wrap:anywhere}
+.service-guide{padding:72px 0;color:#18232b;background:#f4f5f5}
+.service-guide *{box-sizing:border-box}
+.sg-heading{max-width:900px;margin-bottom:32px}
+.sg-eyebrow{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:#946000;font-weight:800}
+.sg-heading h2{font-size:clamp(2rem,4vw,3.4rem);line-height:1.08;margin:12px 0 20px;color:#101820}
+.sg-heading>p:last-child{font-size:1.1rem;line-height:1.75}
+.sg-brief{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin:28px 0 36px;padding:30px;background:#111c25;color:#e5ebef;border-top:4px solid #e5a000;border-radius:8px}
+.sg-brief h3{font-size:1.45rem;line-height:1.2;color:#fff;margin:0 0 12px}
+.sg-brief p{margin:0;line-height:1.75}
+.sg-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:stretch}
+.sg-card{display:flex;flex-direction:column;min-width:0;background:#fff;border:1px solid #d4dbe0;border-radius:10px;overflow:hidden}
+.sg-card figure{margin:0;background:#e8edf0;border-bottom:1px solid #d4dbe0}
+.sg-card img{display:block;width:100%;height:205px;object-fit:contain;padding:12px}
+.sg-card figcaption{padding:7px 16px 12px;font-size:.76rem;color:#52616c}
+.sg-card-body{padding:24px;display:flex;flex-direction:column;flex:1;gap:12px}
+.sg-card h3{font-size:1.45rem;line-height:1.2;margin:0;color:#121c24}
+.sg-card p{line-height:1.65;margin:0}
+.sg-card .sg-brand{font-weight:800;color:#8c5a00;font-size:.83rem;letter-spacing:.03em}
+.sg-card .sg-spec{background:#f1f4f5;padding:14px;border-left:3px solid #e5a000;font-size:.91rem}
+.sg-card a{color:#845200;font-weight:750;text-decoration:underline;text-underline-offset:3px}
+.sg-card .sg-source{margin-top:auto}
+.sg-photo{margin:36px 0;display:grid;grid-template-columns:1.1fr 1fr;align-items:center;background:#fff;border:1px solid #d4dbe0;border-radius:10px;overflow:hidden}
+.sg-photo img{width:100%;height:330px;object-fit:cover;display:block}
+.sg-photo figcaption{padding:30px;line-height:1.75}
+.sg-photo h3{font-size:1.7rem;line-height:1.2;margin:0 0 14px}
+.sg-process{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:30px 0}
+.sg-process article{padding:24px;background:#fff;border-top:3px solid #e5a000}
+.sg-process span{font-size:1.6rem;font-weight:800;color:#946000}
+.sg-process h3{font-size:1.25rem;line-height:1.25}
+.sg-faq{margin:28px 0}
+.sg-faq details{background:#fff;border-bottom:1px solid #d4dbe0;padding:18px 22px}
+.sg-faq summary{font-weight:800;cursor:pointer}
+.sg-faq p{line-height:1.75}
+.sg-note{padding:20px 24px;background:#fff8e9;border-left:4px solid #e5a000;font-size:.92rem;line-height:1.7}
+.sg-references{margin-top:24px;line-height:1.8;font-size:.91rem}
+.sg-references a{color:#805000;text-decoration:underline}
+.sg-links{display:flex;flex-wrap:wrap;gap:10px 22px;margin:12px 0}
+.sg-next{display:flex;align-items:center;justify-content:space-between;gap:22px;margin-top:28px}
+.service-guide--editorial .sg-brief{grid-template-columns:1.35fr 1fr;border-top:0;border-left:5px solid #e5a000}
+.service-guide--showcase .sg-cards{grid-template-columns:1fr}
+.service-guide--showcase .sg-card{display:grid;grid-template-columns:280px 1fr}
+.service-guide--showcase .sg-card figure{border:0;border-right:1px solid #d4dbe0}
+.service-guide--showcase .sg-card img{height:230px}
+.service-guide--technical .sg-brief{background:#fff;color:#263540;border:1px solid #d4dbe0;border-left:5px solid #e5a000}
+.service-guide--technical .sg-brief h3{color:#111c25}
+.service-guide--technical .sg-card{border-top:4px solid #e5a000}
+@media(max-width:1000px){.complete-page .footer-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.sg-cards{gap:14px}.sg-card-body{padding:18px}}
+@media(max-width:760px){.sg-cards,.sg-brief,.sg-photo,.sg-process,.service-guide--editorial .sg-brief,.service-guide--showcase .sg-card{grid-template-columns:1fr}.sg-card img{height:220px}.sg-photo img{height:270px}.sg-next{align-items:stretch;flex-direction:column}.sg-next .btn{text-align:center}.service-guide{padding:48px 0}.sg-brief{padding:24px}.complete-page .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.complete-contact .contact-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.complete-page .footer-grid{grid-template-columns:1fr}.complete-page .local-hero h1,.complete-page .trade-hero h1{font-size:2.65rem}.sg-photo figcaption{padding:22px}}
+/* Stable local screenshots without changing production gallery behavior. */
+body[data-local-review] .gallery-slot.is-active { animation: none; }
+@media(max-width:760px){.complete-page .trade-overview-grid{grid-template-columns:minmax(0,1fr)}.complete-page .trade-overview-grid>div{min-width:0}.complete-page .trade-list{grid-template-columns:minmax(0,1fr);overflow-wrap:anywhere}}
+@media(max-width:480px){.complete-page h1,.complete-page h2,.complete-page h3{overflow-wrap:anywhere}.complete-page .trade-overview h2{font-size:clamp(2rem,9vw,3rem)}}

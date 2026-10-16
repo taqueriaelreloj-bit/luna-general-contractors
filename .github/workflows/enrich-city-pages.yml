@@ -66,6 +66,9 @@ jobs:
           print("Verified 36 enriched city pages.")
           PY
 
+      - name: Reapply authored service guides and complete page endings
+        run: node scripts/build-service-site.mjs
+
       - name: Commit enriched city pages
         shell: bash
         run: |

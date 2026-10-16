@@ -140,6 +140,9 @@ jobs:
           print(f'Validated mini-blog and unique FAQ coverage on {len(local_pages)} local pages.')
           PY
 
+      - name: Reapply authored service guides and complete page endings
+        run: node scripts/build-service-site.mjs
+
       - name: Commit enriched pages
         shell: bash
         run: |
