@@ -92,6 +92,9 @@ jobs:
           print(f'Validated projects index, {len(project_pages)} case studies and {len(linked_pages)} linked service pages.')
           PY
 
+      - name: Reapply authored service guides and complete page endings
+        run: node scripts/build-service-site.mjs
+
       - name: Commit generated project pages and local links
         run: |
           git config user.name "github-actions[bot]"

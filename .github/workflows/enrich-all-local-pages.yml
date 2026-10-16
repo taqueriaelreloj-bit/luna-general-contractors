@@ -3,6 +3,7 @@ name: Enrich All Local SEO Pages
 on:
   workflow_dispatch:
   push:
+    branches: [main]
     paths:
       - "scripts/enrich_all_local_pages.py"
       - "scripts/enrich_local_faqs.py"
@@ -139,6 +140,9 @@ jobs:
 
           print(f'Validated mini-blog and unique FAQ coverage on {len(local_pages)} local pages.')
           PY
+
+      - name: Reapply authored service guides and complete page endings
+        run: node scripts/build-service-site.mjs
 
       - name: Commit enriched pages
         shell: bash

@@ -66,7 +66,11 @@ for (const page of pages) {
   if (page.notes.length !== products.length) throw new Error(`Missing notes: ${page.slug}`);
   const path = resolve(root, `${page.slug}-roofing.html`);
   let html = await readFile(path, 'utf8');
-  html = replaceShowroom(html, showroom(page), '<section class="roofing-visit-guide"');
+  if (!html.includes(start) && !html.includes('<section class="roofing-visit-guide"')) {
+    const marker = '<section class="local-content"><div class="container">';
+    if (!html.includes(marker)) throw new Error(`Missing local roofing content: ${page.slug}`);
+    html = html.replace(marker, marker + '\n' + showroom(page));
+  } else html = replaceShowroom(html, showroom(page), '<section class="roofing-visit-guide"');
   html = stylesheet(html);
   html = html.replace(/src="script\.js(?:\?[^"<>]*)?"/g, `src="script.js?v=${version}"`);
   pending.push([path, html]);

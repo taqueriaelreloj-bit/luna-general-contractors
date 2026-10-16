@@ -1,0 +1,6 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>Local responsive review</title><style>body{margin:0;background:#cbd2d7;font:14px system-ui}header{padding:12px;background:#17232d;color:white}iframe{display:block;border:0;background:white;margin:0 auto}</style></head><body><header id="label">Responsive page review</header><iframe id="preview" title="Page under review" width="390" height="900"></iframe><script>
+const q=new URLSearchParams(location.search),file=q.get('file')||'mitigation.html',width=Number(q.get('width'))||390;
+if(!['localhost','127.0.0.1','::1'].includes(location.hostname)){document.body.textContent='This preview helper is available only on localhost.';}
+else if(/^[a-z0-9-]+\.html$/.test(file)&&width>=320&&width<=1600){const frame=document.querySelector('iframe');frame.width=width;document.querySelector('#label').textContent=file+' · '+width+'px viewport';frame.onload=()=>{const update=()=>{frame.height=Math.max(900,Math.ceil(frame.contentDocument.body.getBoundingClientRect().height));};update();new ResizeObserver(update).observe(frame.contentDocument.body);};frame.src='../'+file;}
+</script></body></html>
+
