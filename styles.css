@@ -2105,3 +2105,23 @@ body:has(.estimate-card #estimate-form, .hero #estimate-form, .hero-grid #estima
 body:has(.estimate-card #estimate-form, .hero #estimate-form, .hero-grid #estimate-form) .local-form form.estimate-form {
   display: none;
 }
+
+
+/* Keep roofing headlines inside the copy column when the estimate form sits beside them. */
+.trade-hero .global-estimate-hero .global-hero-copy {
+  min-width: 0;
+}
+
+.trade-hero .global-estimate-hero h1 {
+  width: 100%;
+  max-width: 100%;
+  font-size: clamp(3.25rem, 5.5vw, 6rem);
+  line-height: 0.92;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 900px) {
+  .trade-hero .global-estimate-hero h1 {
+    font-size: clamp(3rem, 11vw, 5.2rem);
+  }
+}
