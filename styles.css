@@ -2221,3 +2221,49 @@ body:has(.estimate-card #estimate-form, .hero #estimate-form, .hero-grid #estima
     padding: 18px;
   }
 }
+
+
+/* Example photos of shingle packaging, linked to their product listings. */
+.roof-package-figure {
+  width: 100%;
+  margin: 0;
+}
+
+.roof-package-figure > a {
+  display: grid;
+  place-items: center;
+  min-height: 190px;
+  overflow: hidden;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #e0e3e6;
+  border-radius: 6px;
+}
+
+.roof-package-figure img {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: contain;
+}
+
+.roof-package-figure figcaption {
+  margin-top: 7px;
+  color: #646a70;
+  font-size: 0.76rem;
+  line-height: 1.4;
+}
+
+.roof-package-figure figcaption a {
+  color: #8e5a00;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 800px) {
+  .roof-package-figure > a,
+  .roof-package-figure img {
+    height: 220px;
+  }
+}
