@@ -325,7 +325,9 @@ document.querySelectorAll("[data-gallery]").forEach((gallery) => {
       thumbnail.tabIndex = isActive ? 0 : -1;
     });
     if (currentLabel) currentLabel.textContent = String(activeIndex + 1);
-    thumbnails[activeIndex].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    // Only a visitor's gallery action may move the page; autoplay must not
+    // pull someone away from product information or the estimate form.
+    if (restartAutoplay) thumbnails[activeIndex].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
     if (restartAutoplay) startAutoplay();
   }
 
@@ -426,13 +428,15 @@ if (!isHomePage && !isPrivacyPage && !document.querySelector("#estimate-form")) 
   if (main) main.appendChild(globalEstimateSection);
 }
 
-// Put a page's single estimate form in its hero when that page has a hero.
+// Roofing location pages keep their form beside the bottom contact section.
+// Moving it into the hero would leave an empty section and duplicate anchor ID.
+// Other page types retain their existing hero-form layout.
 const pageMain = document.querySelector("main");
 const pageHero = pageMain?.querySelector(".city-hero, .local-hero, .seo-hero, .trade-hero, .service-hero, .hero");
 const heroContainer = pageHero?.querySelector(".container");
 const estimateAnchor = document.querySelector("#estimate-form");
 const pageEstimateForm = estimateAnchor?.matches("form") ? estimateAnchor : estimateAnchor?.querySelector("form");
-if (heroContainer && !pageHero.querySelector(".estimate-card") && pageEstimateForm) {
+if (!document.body.classList.contains("roofing-location-page") && heroContainer && !pageHero.querySelector(".estimate-card") && pageEstimateForm) {
   const existingCard = pageEstimateForm.closest(".estimate-card");
   const card = existingCard || document.createElement("aside");
   if (!existingCard) {
@@ -789,11 +793,11 @@ if (floatingCall) {
   floatingCall.dataset.label = isSpanishPage ? "Llamar ahora" : "Call now";
 }
 
-// Open every page at its beginning unless the user intentionally selected a homepage section.
+// Respect links to existing sections, including product and estimate anchors.
 window.addEventListener("load", () => {
   const hash = window.location.hash;
-  const intentionalHomeSection = isHomePage && hash && !["#home", "#page-top"].includes(hash);
-  if (!intentionalHomeSection) {
+  const intentionalSection = hash && document.getElementById(hash.slice(1));
+  if (!intentionalSection) {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }
 });
