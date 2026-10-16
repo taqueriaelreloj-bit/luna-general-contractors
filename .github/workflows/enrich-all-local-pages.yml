@@ -3,6 +3,7 @@ name: Enrich All Local SEO Pages
 on:
   workflow_dispatch:
   push:
+    branches: [main]
     paths:
       - "scripts/enrich_all_local_pages.py"
       - "scripts/enrich_local_faqs.py"
