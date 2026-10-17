@@ -1,0 +1,6 @@
+/* Focus on equipment in the existing project photographs without changing the files. */
+.service-guide .sg-equipment-window{display:block;position:relative;aspect-ratio:4/3;overflow:hidden;background:#e8edf0}
+.service-guide .sg-card .sg-equipment-window img{position:absolute;display:block;width:var(--photo-width);height:var(--photo-height);max-width:none;max-height:none;left:var(--photo-left);top:var(--photo-top);padding:0;object-fit:fill}
+.service-guide .sg-equipment-window span{position:absolute;right:12px;bottom:12px;z-index:1;padding:6px 10px;border-radius:4px;background:#101820;color:#fff;font-size:.73rem;font-weight:700;line-height:1.3}
+.service-guide .sg-equipment-window:focus-visible{outline:4px solid #e5a000;outline-offset:-4px}
+.service-guide .sg-equipment-window:hover span{background:#805000}
