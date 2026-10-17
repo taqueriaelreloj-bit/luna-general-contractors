@@ -1,0 +1,473 @@
+{
+  "project": {
+    "city": "Arlington",
+    "state": "Texas",
+    "contractor": "Luna General Contractors",
+    "initialInspection": "2026-10-01",
+    "followupInspection": "2026-10-15",
+    "credit": "Photographed Luna General Contractors project \u00b7 Arlington, Texas",
+    "source": "Owner-supplied dry-out and moisture report. Only extracted project photographs are published; personal client and street-address information is excluded."
+  },
+  "photos": [
+    {
+      "id": 2,
+      "src": "assets/mitigation-projects/arlington-dry-out/follow-up-check-01.jpg",
+      "group": "followup",
+      "title": "Follow-up moisture check 01",
+      "description": "A meter display recorded during the follow-up moisture inspection. The reading is part of the field documentation.",
+      "alt": "Follow-up moisture check 01 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 3,
+      "src": "assets/mitigation-projects/arlington-dry-out/follow-up-check-02.jpg",
+      "group": "followup",
+      "title": "Follow-up moisture check 02",
+      "description": "A meter display recorded during the follow-up moisture inspection. The reading is part of the field documentation.",
+      "alt": "Follow-up moisture check 02 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 4,
+      "src": "assets/mitigation-projects/arlington-dry-out/follow-up-check-03.jpg",
+      "group": "followup",
+      "title": "Follow-up moisture check 03",
+      "description": "A meter display recorded during the follow-up moisture inspection. The reading is part of the field documentation.",
+      "alt": "Follow-up moisture check 03 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 5,
+      "src": "assets/mitigation-projects/arlington-dry-out/follow-up-check-04.jpg",
+      "group": "followup",
+      "title": "Follow-up moisture check 04",
+      "description": "A meter display recorded during the follow-up moisture inspection. The reading is part of the field documentation.",
+      "alt": "Follow-up moisture check 04 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 6,
+      "src": "assets/mitigation-projects/arlington-dry-out/follow-up-check-05.jpg",
+      "group": "followup",
+      "title": "Follow-up moisture check 05",
+      "description": "A meter display recorded during the follow-up moisture inspection. The reading is part of the field documentation.",
+      "alt": "Follow-up moisture check 05 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1536,
+      "height": 1152
+    },
+    {
+      "id": 7,
+      "src": "assets/mitigation-projects/arlington-dry-out/follow-up-check-06.jpg",
+      "group": "followup",
+      "title": "Follow-up moisture check 06",
+      "description": "A meter display recorded during the follow-up moisture inspection. The reading is part of the field documentation.",
+      "alt": "Follow-up moisture check 06 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1536,
+      "height": 1152
+    },
+    {
+      "id": 8,
+      "src": "assets/mitigation-projects/arlington-dry-out/follow-up-check-07.jpg",
+      "group": "followup",
+      "title": "Follow-up moisture check 07",
+      "description": "A meter display recorded during the follow-up moisture inspection. The reading is part of the field documentation.",
+      "alt": "Follow-up moisture check 07 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 9,
+      "src": "assets/mitigation-projects/arlington-dry-out/follow-up-check-08.jpg",
+      "group": "followup",
+      "title": "Follow-up moisture check 08",
+      "description": "A meter display recorded during the follow-up moisture inspection. The reading is part of the field documentation.",
+      "alt": "Follow-up moisture check 08 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1536,
+      "height": 1152
+    },
+    {
+      "id": 10,
+      "src": "assets/mitigation-projects/arlington-dry-out/follow-up-check-09.jpg",
+      "group": "followup",
+      "title": "Follow-up moisture check 09",
+      "description": "A meter display recorded during the follow-up moisture inspection. The reading is part of the field documentation.",
+      "alt": "Follow-up moisture check 09 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 11,
+      "src": "assets/mitigation-projects/arlington-dry-out/follow-up-check-10.jpg",
+      "group": "followup",
+      "title": "Follow-up moisture check 10",
+      "description": "A meter display recorded during the follow-up moisture inspection. The reading is part of the field documentation.",
+      "alt": "Follow-up moisture check 10 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 12,
+      "src": "assets/mitigation-projects/arlington-dry-out/follow-up-check-11.jpg",
+      "group": "followup",
+      "title": "Follow-up moisture check 11",
+      "description": "A meter display recorded during the follow-up moisture inspection. The reading is part of the field documentation.",
+      "alt": "Follow-up moisture check 11 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 13,
+      "src": "assets/mitigation-projects/arlington-dry-out/follow-up-check-12.jpg",
+      "group": "followup",
+      "title": "Follow-up moisture check 12",
+      "description": "A meter display recorded during the follow-up moisture inspection. The reading is part of the field documentation.",
+      "alt": "Follow-up moisture check 12 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 14,
+      "src": "assets/mitigation-projects/arlington-dry-out/follow-up-check-13.jpg",
+      "group": "followup",
+      "title": "Follow-up moisture check 13",
+      "description": "A meter display recorded during the follow-up moisture inspection. The reading is part of the field documentation.",
+      "alt": "Follow-up moisture check 13 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 15,
+      "src": "assets/mitigation-projects/arlington-dry-out/follow-up-check-14.jpg",
+      "group": "followup",
+      "title": "Follow-up moisture check 14",
+      "description": "A meter display recorded during the follow-up moisture inspection. The reading is part of the field documentation.",
+      "alt": "Follow-up moisture check 14 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 16,
+      "src": "assets/mitigation-projects/arlington-dry-out/follow-up-check-15.jpg",
+      "group": "followup",
+      "title": "Follow-up moisture check 15",
+      "description": "A meter display recorded during the follow-up moisture inspection. The reading is part of the field documentation.",
+      "alt": "Follow-up moisture check 15 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 17,
+      "src": "assets/mitigation-projects/arlington-dry-out/follow-up-check-16.jpg",
+      "group": "followup",
+      "title": "Follow-up moisture check 16",
+      "description": "A meter display recorded during the follow-up moisture inspection. The reading is part of the field documentation.",
+      "alt": "Follow-up moisture check 16 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 18,
+      "src": "assets/mitigation-projects/arlington-dry-out/air-mover-label.jpg",
+      "group": "equipment",
+      "title": "Syclone Flowmaster air mover",
+      "description": "The equipment photograph records the Syclone Flowmaster name on the air mover.",
+      "alt": "Syclone Flowmaster air mover from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 19,
+      "src": "assets/mitigation-projects/arlington-dry-out/dehumidifier-label-one.jpg",
+      "group": "equipment",
+      "title": "Dehumidifier equipment label",
+      "description": "A manufacturer label photographed as part of the drying equipment record.",
+      "alt": "Dehumidifier equipment label from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 20,
+      "src": "assets/mitigation-projects/arlington-dry-out/dehumidifier-label-two.jpg",
+      "group": "equipment",
+      "title": "Dehumidifier identification detail",
+      "description": "An additional dehumidifier label from the project equipment photographs.",
+      "alt": "Dehumidifier identification detail from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 21,
+      "src": "assets/mitigation-projects/arlington-dry-out/phoenix-r250-front.jpg",
+      "group": "equipment",
+      "title": "Phoenix R250 dehumidifier",
+      "description": "The front label identifies a Phoenix R250 XL LGR dehumidifier.",
+      "alt": "Phoenix R250 dehumidifier from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 22,
+      "src": "assets/mitigation-projects/arlington-dry-out/initial-inspection-01.jpg",
+      "group": "initial",
+      "title": "Initial inspection view 01",
+      "description": "A FLIR meter and the inspected floor area or instrument display, photographed during the initial inspection record.",
+      "alt": "Initial inspection view 01 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1536,
+      "height": 1152
+    },
+    {
+      "id": 23,
+      "src": "assets/mitigation-projects/arlington-dry-out/initial-inspection-02.jpg",
+      "group": "initial",
+      "title": "Initial inspection view 02",
+      "description": "A FLIR meter and the inspected floor area or instrument display, photographed during the initial inspection record.",
+      "alt": "Initial inspection view 02 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1536,
+      "height": 1152
+    },
+    {
+      "id": 24,
+      "src": "assets/mitigation-projects/arlington-dry-out/initial-inspection-03.jpg",
+      "group": "initial",
+      "title": "Initial inspection view 03",
+      "description": "A FLIR meter and the inspected floor area or instrument display, photographed during the initial inspection record.",
+      "alt": "Initial inspection view 03 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1536,
+      "height": 1152
+    },
+    {
+      "id": 25,
+      "src": "assets/mitigation-projects/arlington-dry-out/initial-inspection-04.jpg",
+      "group": "initial",
+      "title": "Initial inspection view 04",
+      "description": "A FLIR meter and the inspected floor area or instrument display, photographed during the initial inspection record.",
+      "alt": "Initial inspection view 04 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1536,
+      "height": 1152
+    },
+    {
+      "id": 26,
+      "src": "assets/mitigation-projects/arlington-dry-out/initial-inspection-05.jpg",
+      "group": "initial",
+      "title": "Initial inspection view 05",
+      "description": "A FLIR meter and the inspected floor area or instrument display, photographed during the initial inspection record.",
+      "alt": "Initial inspection view 05 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1536,
+      "height": 1152
+    },
+    {
+      "id": 27,
+      "src": "assets/mitigation-projects/arlington-dry-out/initial-inspection-06.jpg",
+      "group": "initial",
+      "title": "Initial inspection view 06",
+      "description": "A FLIR meter and the inspected floor area or instrument display, photographed during the initial inspection record.",
+      "alt": "Initial inspection view 06 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 28,
+      "src": "assets/mitigation-projects/arlington-dry-out/initial-inspection-07.jpg",
+      "group": "initial",
+      "title": "Initial inspection view 07",
+      "description": "A FLIR meter and the inspected floor area or instrument display, photographed during the initial inspection record.",
+      "alt": "Initial inspection view 07 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1536,
+      "height": 1152
+    },
+    {
+      "id": 29,
+      "src": "assets/mitigation-projects/arlington-dry-out/initial-inspection-08.jpg",
+      "group": "initial",
+      "title": "Initial inspection view 08",
+      "description": "A FLIR meter and the inspected floor area or instrument display, photographed during the initial inspection record.",
+      "alt": "Initial inspection view 08 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1536,
+      "height": 1152
+    },
+    {
+      "id": 30,
+      "src": "assets/mitigation-projects/arlington-dry-out/initial-inspection-09.jpg",
+      "group": "initial",
+      "title": "Initial inspection view 09",
+      "description": "A FLIR meter and the inspected floor area or instrument display, photographed during the initial inspection record.",
+      "alt": "Initial inspection view 09 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 31,
+      "src": "assets/mitigation-projects/arlington-dry-out/initial-inspection-10.jpg",
+      "group": "initial",
+      "title": "Initial inspection view 10",
+      "description": "A FLIR meter and the inspected floor area or instrument display, photographed during the initial inspection record.",
+      "alt": "Initial inspection view 10 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 32,
+      "src": "assets/mitigation-projects/arlington-dry-out/initial-inspection-11.jpg",
+      "group": "initial",
+      "title": "Initial inspection view 11",
+      "description": "A FLIR meter and the inspected floor area or instrument display, photographed during the initial inspection record.",
+      "alt": "Initial inspection view 11 from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1152,
+      "height": 1536
+    },
+    {
+      "id": 33,
+      "src": "assets/mitigation-projects/arlington-dry-out/exposed-floor.jpg",
+      "group": "site",
+      "title": "Exposed floor surface",
+      "description": "Floor surface with residual adhesive and a visible crack, photographed after the floor covering was removed.",
+      "alt": "Exposed floor surface from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1350,
+      "height": 1800
+    },
+    {
+      "id": 34,
+      "src": "assets/mitigation-projects/arlington-dry-out/laundry-connections.jpg",
+      "group": "site",
+      "title": "Laundry connections",
+      "description": "Supply hoses, wall connections, the dryer duct and exposed flooring in the laundry area.",
+      "alt": "Laundry connections from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1350,
+      "height": 1800
+    },
+    {
+      "id": 35,
+      "src": "assets/mitigation-projects/arlington-dry-out/laundry-floor-doorway.jpg",
+      "group": "site",
+      "title": "Laundry floor and doorway",
+      "description": "The exposed floor and adhesive residue at the transition into the laundry area.",
+      "alt": "Laundry floor and doorway from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1350,
+      "height": 1800
+    },
+    {
+      "id": 36,
+      "src": "assets/mitigation-projects/arlington-dry-out/laundry-entrance.jpg",
+      "group": "site",
+      "title": "Laundry room entrance",
+      "description": "The doorway, appliances and remaining floor finish show how the work area connects to the adjoining space.",
+      "alt": "Laundry room entrance from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "id": 37,
+      "src": "assets/mitigation-projects/arlington-dry-out/lower-wall-corner.jpg",
+      "group": "site",
+      "title": "Lower wall corner",
+      "description": "A close view of the lower wall and floor edge with discoloration and material residue.",
+      "alt": "Lower wall corner from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "id": 38,
+      "src": "assets/mitigation-projects/arlington-dry-out/open-lower-wall.jpg",
+      "group": "site",
+      "title": "Open lower wall section",
+      "description": "An opened section at the wall base with exposed material and loose debris.",
+      "alt": "Open lower wall section from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "id": 39,
+      "src": "assets/mitigation-projects/arlington-dry-out/removed-wood-trim.jpg",
+      "group": "site",
+      "title": "Removed wood trim",
+      "description": "Removed trim pieces with nails and visible spotting on the wood, retained in the project photo record.",
+      "alt": "Removed wood trim from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1350,
+      "height": 1800
+    },
+    {
+      "id": 40,
+      "src": "assets/mitigation-projects/arlington-dry-out/wall-floor-transition.jpg",
+      "group": "site",
+      "title": "Wall-to-floor transition",
+      "description": "A close view of the lower wall edge and adjoining exposed floor.",
+      "alt": "Wall-to-floor transition from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1350,
+      "height": 1800
+    },
+    {
+      "id": 41,
+      "src": "assets/mitigation-projects/arlington-dry-out/room-drying-equipment.jpg",
+      "group": "site",
+      "title": "Room and drying equipment",
+      "description": "An exposed room floor with an air mover and a red drying unit positioned in the work area.",
+      "alt": "Room and drying equipment from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "id": 42,
+      "src": "assets/mitigation-projects/arlington-dry-out/floor-perimeter.jpg",
+      "group": "site",
+      "title": "Floor perimeter detail",
+      "description": "Adhesive residue and dark spotting visible along the exposed floor edge.",
+      "alt": "Floor perimeter detail from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1350,
+      "height": 1800
+    },
+    {
+      "id": 43,
+      "src": "assets/mitigation-projects/arlington-dry-out/hallway-dehumidifier.jpg",
+      "group": "site",
+      "title": "Hallway dehumidifier",
+      "description": "A blue dehumidifier positioned in the hallway on exposed flooring.",
+      "alt": "Hallway dehumidifier from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1350,
+      "height": 1800
+    },
+    {
+      "id": 44,
+      "src": "assets/mitigation-projects/arlington-dry-out/bedroom-air-mover.jpg",
+      "group": "site",
+      "title": "Bedroom air mover",
+      "description": "An air mover beside a bed frame, with the floor covering removed from the work area.",
+      "alt": "Bedroom air mover from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1350,
+      "height": 1800
+    },
+    {
+      "id": 45,
+      "src": "assets/mitigation-projects/arlington-dry-out/doorway-air-mover.jpg",
+      "group": "site",
+      "title": "Doorway and air mover",
+      "description": "An air mover and removed trim near the doorway and lower wall edge.",
+      "alt": "Doorway and air mover from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1350,
+      "height": 1800
+    },
+    {
+      "id": 46,
+      "src": "assets/mitigation-projects/arlington-dry-out/room-floor-trim.jpg",
+      "group": "site",
+      "title": "Room floor and removed trim",
+      "description": "The exposed floor, removed trim and an air mover are visible beside the room furnishings.",
+      "alt": "Room floor and removed trim from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1350,
+      "height": 1800
+    },
+    {
+      "id": 47,
+      "src": "assets/mitigation-projects/arlington-dry-out/interior-air-mover.jpg",
+      "group": "site",
+      "title": "Interior area and air mover",
+      "description": "Exposed flooring, an air mover and removed trim are visible near the fireplace.",
+      "alt": "Interior area and air mover from a Luna General Contractors dry-out project in Arlington, Texas",
+      "width": 1350,
+      "height": 1800
+    }
+  ]
+}
