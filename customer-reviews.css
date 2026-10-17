@@ -1,0 +1,18 @@
+/* The home-page review cards, adapted to full-width and article-width pages. */
+.shared-customer-reviews{padding:48px 0;scroll-margin-top:145px;color:#fff}
+.shared-customer-reviews .reviews-shell{padding:28px;min-width:0}
+.shared-customer-reviews .reviews-header{flex-wrap:wrap;gap:16px 24px}
+.shared-customer-reviews .reviews-header h2{color:#fff;line-height:1.2}
+.shared-customer-reviews .reviews-header p{color:#d6d8db}
+.shared-customer-reviews .reviews-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.shared-customer-reviews .review-card{min-width:0;text-align:left}
+.shared-customer-reviews .review-person{align-items:flex-start}
+.shared-customer-reviews .review-person .avatar{flex:0 0 38px}
+.shared-customer-reviews .review-person div{min-width:0}
+.shared-customer-reviews .review-person strong{color:#fff;overflow-wrap:anywhere}
+.shared-customer-reviews .review-card a{color:#ffc342;text-decoration:underline;text-underline-offset:3px}
+.shared-customer-reviews .review-card p{color:#e4e5e7;font-size:.9rem;line-height:1.65}
+.shared-customer-reviews .review-cta{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center;gap:20px;padding:20px 0 0;border-top:1px solid #3a4046}
+.shared-customer-reviews .review-cta h3{color:#fff;line-height:1.35;margin:0}
+.shared-customer-reviews .review-cta .btn{flex-shrink:0;text-decoration:none}
+@media(max-width:600px){.shared-customer-reviews{padding:32px 0;scroll-margin-top:125px}.shared-customer-reviews .reviews-shell{padding:20px 16px}.shared-customer-reviews .reviews-header{align-items:flex-start;flex-direction:column}.shared-customer-reviews .review-cta{flex-direction:column;align-items:stretch}.shared-customer-reviews .review-cta .btn{white-space:normal}}
