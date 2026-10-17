@@ -199,7 +199,7 @@ document.querySelectorAll(".service-card").forEach((card) => {
 
 /* Add a work slideshow related to each page while preserving the shared DFW gallery. */
 const pageMainForWork = document.querySelector("main");
-const pageHasItsOwnSlideshow = Boolean(pageMainForWork?.querySelector("[data-gallery]"));
+const pageHasItsOwnSlideshow = Boolean(pageMainForWork?.querySelector("[data-gallery], [data-mitigation-projects]"));
 const pageWorkContext = `${window.location.pathname} ${document.title} ${pageMainForWork?.querySelector("h1")?.textContent || ""}`.toLowerCase();
 const pageWorkCategory = [
   ["insurance", /insurance|claim|storm damage|damage documentation|scope review/],

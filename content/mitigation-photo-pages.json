@@ -1,0 +1,563 @@
+[
+  {
+    "file": "allen-water-damage-restoration.html",
+    "city": "Allen",
+    "projectCity": "Arlington",
+    "photos": [
+      41,
+      33,
+      22,
+      2,
+      18,
+      38
+    ]
+  },
+  {
+    "file": "arlington-water-damage-restoration.html",
+    "city": "Arlington",
+    "projectCity": "Arlington",
+    "photos": [
+      43,
+      34,
+      23,
+      3,
+      19,
+      39
+    ]
+  },
+  {
+    "file": "bedford-water-damage-restoration.html",
+    "city": "Bedford",
+    "projectCity": "Arlington",
+    "photos": [
+      44,
+      35,
+      24,
+      4,
+      20,
+      40
+    ]
+  },
+  {
+    "file": "carrollton-water-damage-restoration.html",
+    "city": "Carrollton",
+    "projectCity": "Arlington",
+    "photos": [
+      45,
+      36,
+      25,
+      5,
+      21,
+      41
+    ]
+  },
+  {
+    "file": "cedar-hill-water-damage-restoration.html",
+    "city": "Cedar Hill",
+    "projectCity": "Arlington",
+    "photos": [
+      46,
+      37,
+      26,
+      6,
+      18,
+      42
+    ]
+  },
+  {
+    "file": "colleyville-water-damage-restoration.html",
+    "city": "Colleyville",
+    "projectCity": "Arlington",
+    "photos": [
+      47,
+      38,
+      27,
+      7,
+      19,
+      43
+    ]
+  },
+  {
+    "file": "coppell-water-damage-restoration.html",
+    "city": "Coppell",
+    "projectCity": "Arlington",
+    "photos": [
+      41,
+      39,
+      28,
+      8,
+      20,
+      44
+    ]
+  },
+  {
+    "file": "dallas-water-damage-restoration.html",
+    "city": "Dallas",
+    "projectCity": "Arlington",
+    "photos": [
+      43,
+      40,
+      29,
+      9,
+      21,
+      45
+    ]
+  },
+  {
+    "file": "desoto-water-damage-restoration.html",
+    "city": "DeSoto",
+    "projectCity": "Arlington",
+    "photos": [
+      44,
+      41,
+      30,
+      10,
+      18,
+      46
+    ]
+  },
+  {
+    "file": "duncanville-water-damage-restoration.html",
+    "city": "Duncanville",
+    "projectCity": "Arlington",
+    "photos": [
+      45,
+      42,
+      31,
+      11,
+      19,
+      47
+    ]
+  },
+  {
+    "file": "euless-water-damage-restoration.html",
+    "city": "Euless",
+    "projectCity": "Arlington",
+    "photos": [
+      46,
+      33,
+      32,
+      12,
+      20
+    ]
+  },
+  {
+    "file": "farmers-branch-water-damage-restoration.html",
+    "city": "Farmers Branch",
+    "projectCity": "Arlington",
+    "photos": [
+      47,
+      34,
+      22,
+      13,
+      21
+    ]
+  },
+  {
+    "file": "fort-worth-water-damage-restoration.html",
+    "city": "Fort Worth",
+    "projectCity": "Arlington",
+    "photos": [
+      41,
+      35,
+      23,
+      14,
+      18
+    ]
+  },
+  {
+    "file": "frisco-water-damage-restoration.html",
+    "city": "Frisco",
+    "projectCity": "Arlington",
+    "photos": [
+      43,
+      36,
+      24,
+      15,
+      19
+    ]
+  },
+  {
+    "file": "garland-water-damage-restoration.html",
+    "city": "Garland",
+    "projectCity": "Arlington",
+    "photos": [
+      44,
+      37,
+      25,
+      16,
+      20
+    ]
+  },
+  {
+    "file": "glenn-heights-water-damage-restoration.html",
+    "city": "Glenn Heights",
+    "projectCity": "Arlington",
+    "photos": [
+      45,
+      38,
+      26,
+      17,
+      21
+    ]
+  },
+  {
+    "file": "grand-prairie-water-damage-restoration.html",
+    "city": "Grand Prairie",
+    "projectCity": "Arlington",
+    "photos": [
+      46,
+      39,
+      27,
+      2,
+      18
+    ]
+  },
+  {
+    "file": "grapevine-water-damage-restoration.html",
+    "city": "Grapevine",
+    "projectCity": "Arlington",
+    "photos": [
+      47,
+      40,
+      28,
+      3,
+      19
+    ]
+  },
+  {
+    "file": "hurst-water-damage-restoration.html",
+    "city": "Hurst",
+    "projectCity": "Arlington",
+    "photos": [
+      41,
+      29,
+      4,
+      20
+    ]
+  },
+  {
+    "file": "irving-water-damage-restoration.html",
+    "city": "Irving",
+    "projectCity": "Arlington",
+    "photos": [
+      43,
+      42,
+      30,
+      5,
+      21
+    ]
+  },
+  {
+    "file": "keller-water-damage-restoration.html",
+    "city": "Keller",
+    "projectCity": "Arlington",
+    "photos": [
+      44,
+      33,
+      31,
+      6,
+      18,
+      43
+    ]
+  },
+  {
+    "file": "lancaster-water-damage-restoration.html",
+    "city": "Lancaster",
+    "projectCity": "Arlington",
+    "photos": [
+      45,
+      34,
+      32,
+      7,
+      19,
+      44
+    ]
+  },
+  {
+    "file": "lewisville-water-damage-restoration.html",
+    "city": "Lewisville",
+    "projectCity": "Arlington",
+    "photos": [
+      46,
+      35,
+      22,
+      8,
+      20,
+      45
+    ]
+  },
+  {
+    "file": "mansfield-water-damage-restoration.html",
+    "city": "Mansfield",
+    "projectCity": "Arlington",
+    "photos": [
+      47,
+      36,
+      23,
+      9,
+      21,
+      46
+    ]
+  },
+  {
+    "file": "mckinney-water-damage-restoration.html",
+    "city": "McKinney",
+    "projectCity": "Arlington",
+    "photos": [
+      41,
+      37,
+      24,
+      10,
+      18,
+      47
+    ]
+  },
+  {
+    "file": "mesquite-water-damage-restoration.html",
+    "city": "Mesquite",
+    "projectCity": "Arlington",
+    "photos": [
+      43,
+      38,
+      25,
+      11,
+      19,
+      33
+    ]
+  },
+  {
+    "file": "midlothian-water-damage-restoration.html",
+    "city": "Midlothian",
+    "projectCity": "Arlington",
+    "photos": [
+      44,
+      39,
+      26,
+      12,
+      20,
+      34
+    ]
+  },
+  {
+    "file": "north-richland-hills-water-damage-restoration.html",
+    "city": "North Richland Hills",
+    "projectCity": "Arlington",
+    "photos": [
+      45,
+      40,
+      27,
+      13,
+      21,
+      35
+    ]
+  },
+  {
+    "file": "ovilla-water-damage-restoration.html",
+    "city": "Ovilla",
+    "projectCity": "Arlington",
+    "photos": [
+      46,
+      41,
+      28,
+      14,
+      18,
+      36
+    ]
+  },
+  {
+    "file": "plano-water-damage-restoration.html",
+    "city": "Plano",
+    "projectCity": "Arlington",
+    "photos": [
+      47,
+      42,
+      29,
+      15,
+      19,
+      37
+    ]
+  },
+  {
+    "file": "red-oak-water-damage-restoration.html",
+    "city": "Red Oak",
+    "projectCity": "Arlington",
+    "photos": [
+      41,
+      33,
+      30,
+      16,
+      20,
+      38
+    ]
+  },
+  {
+    "file": "richardson-water-damage-restoration.html",
+    "city": "Richardson",
+    "projectCity": "Arlington",
+    "photos": [
+      43,
+      34,
+      31,
+      17,
+      21,
+      39
+    ]
+  },
+  {
+    "file": "rockwall-water-damage-restoration.html",
+    "city": "Rockwall",
+    "projectCity": "Arlington",
+    "photos": [
+      44,
+      35,
+      32,
+      2,
+      18,
+      40
+    ]
+  },
+  {
+    "file": "rowlett-water-damage-restoration.html",
+    "city": "Rowlett",
+    "projectCity": "Arlington",
+    "photos": [
+      45,
+      36,
+      22,
+      3,
+      19,
+      41
+    ]
+  },
+  {
+    "file": "southlake-water-damage-restoration.html",
+    "city": "Southlake",
+    "projectCity": "Arlington",
+    "photos": [
+      46,
+      37,
+      23,
+      4,
+      20,
+      42
+    ]
+  },
+  {
+    "file": "waxahachie-water-damage-restoration.html",
+    "city": "Waxahachie",
+    "projectCity": "Arlington",
+    "photos": [
+      47,
+      38,
+      24,
+      5,
+      21,
+      43
+    ]
+  },
+  {
+    "file": "mitigation.html",
+    "city": "Dallas–Fort Worth",
+    "projectCity": "Arlington",
+    "photos": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  {
+    "file": "water-damage-rebuild-process-dallas.html",
+    "city": "Dallas–Fort Worth",
+    "projectCity": "Arlington",
+    "photos": [
+      43,
+      40,
+      26,
+      7,
+      19,
+      45
+    ]
+  },
+  {
+    "file": "drywall-repair-after-water-damage-grand-prairie.html",
+    "city": "Dallas–Fort Worth",
+    "projectCity": "Arlington",
+    "photos": [
+      44,
+      41,
+      27,
+      8,
+      20,
+      46
+    ]
+  },
+  {
+    "file": "water-damage-cabinet-repair-lewisville.html",
+    "city": "Dallas–Fort Worth",
+    "projectCity": "Arlington",
+    "photos": [
+      45,
+      42,
+      28,
+      9,
+      21,
+      47
+    ]
+  },
+  {
+    "file": "water-damage-insurance-claims-arlington.html",
+    "city": "Arlington",
+    "projectCity": "Arlington",
+    "photos": [
+      46,
+      33,
+      29,
+      10,
+      18
+    ]
+  }
+]
