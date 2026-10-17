@@ -1,0 +1,5053 @@
+{
+  "source": "index.html#reviews",
+  "totalPages": 1009,
+  "existingSections": 2,
+  "sharedSections": 1007,
+  "pages": [
+    {
+      "file": "addison.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "aledo.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "allen.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "arlington.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "articles.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bathroom-remodeling-cost-waxahachie.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bathroom-vanity-lighting-upgrade-duncanville.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bathroom-ventilation-bedford.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bathroom-waterproofing-frisco.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bathrooms.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "bedford.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "benbrook.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "best-flooring-for-pets-grand-prairie.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "best-general-contractor-midlothian.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "black-white-patterned-kitchen-backsplash-grand-prairie.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "carrollton.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "cedar-hill.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ceiling-drywall-repair-garland.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "colleyville.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "commercial-construction-planning-dallas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "commercial-office-remodel-richardson.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "commercial-tenant-improvement-planning-irving.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "commercial.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "contractor-estimate-comparison-carrollton.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "coppell.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "custom-tile-tub-shower-cedar-hill.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "dallas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "denton.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "desoto.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "drywall-repair-after-water-damage-grand-prairie.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "drywall-texture-matching-desoto.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "duncanville.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "es.html",
+      "language": "es",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "euless.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "exterior-paint-preparation-cedar-hill.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "exterior-paint-southlake.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "exterior-trim-carpentry-keller.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "farmers-branch.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fence-post-replacement-mesquite.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fence-replacement-cost-cedar-hill.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fireplace-framing-wood-slat-paneling-mansfield.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "flooring-options-mansfield.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "flooring-subfloor-preparation-allen.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "flower-mound.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "fort-worth.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "frisco.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "garland.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "glenn-heights.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grand-prairie.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "grapevine.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "gray-glass-mosaic-kitchen-backsplash-arlington.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "gray-subway-kitchen-backsplash-mansfield.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "gray-subway-metallic-accent-backsplash-midlothian.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "highland-village.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "home-v2-preview.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "hurst.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "index.html",
+      "language": "en",
+      "reviews": "existing"
+    },
+    {
+      "file": "insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "insurance-scope-review-rockwall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "irving.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "keller.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "kitchen-island-layout-mckinney.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "kitchen-remodel-planning-mansfield.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "kitchen-remodeling-ideas-texas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "kitchens.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lancaster.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "lewisville.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "luxury-master-bathroom-remodel-midlothian.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mansfield.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mckinney.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mesquite.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "midlothian.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "mitigation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "north-richland-hills.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "ovilla.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "plano.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "privacy.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "projects.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "proyecto-backsplash-cocina-mansfield.html",
+      "language": "es",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "red-oak.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "reviews.html",
+      "language": "en",
+      "reviews": "existing"
+    },
+    {
+      "file": "richardson-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "richardson.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rockwall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "roof-flashing-grapevine.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "roof-repair-vs-replacement-arlington.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "roof-replacement-cost-dallas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "roof-ventilation-plano.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "roofing-insurance-claim-fort-worth.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "rowlett.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "service-areas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "services-by-city.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "siding-repair-rowlett.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "southlake.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "storm-damage-documentation-fort-worth.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "walk-in-shower-cost-midlothian.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "water-damage-cabinet-repair-lewisville.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "water-damage-insurance-claims-arlington.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "water-damage-rebuild-process-dallas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-backsplash-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-bathroom-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-cabinet-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-carpentry.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-commercial-construction.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-concrete-driveways.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-door-installation.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-drywall.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-fencing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-flooring.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-foundation-repair.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-general-contractor.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-insurance-claims.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-kitchen-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-outdoor-living.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-painting.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-patio-covers.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-pergolas.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-roofing.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-room-additions.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-shower-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-siding.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-water-damage-restoration.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-whole-home-remodeling.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie-window-replacement.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "waxahachie.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "weatherford.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "white-hexagon-kitchen-backsplash-waxahachie.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "wood-fence-repair-vs-replacement-waxahachie.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    }
+  ]
+}
