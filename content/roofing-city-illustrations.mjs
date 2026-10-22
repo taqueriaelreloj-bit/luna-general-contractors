@@ -1,43 +1,5 @@
-// Representative roofing system illustrations for the main page and city-specific pages. These are not completed local projects.
+// City-specific representative roofing system illustrations. These are not completed local projects.
 export default [
-  {
-    "slug": "main",
-    "file": "roofing.html",
-    "heading": "Roofing materials and system examples",
-    "disclosure": "These representative illustrations show common roofing systems and material details. They are not photographs of completed Luna projects.",
-    "images": [
-      {
-        "file": "assets/images/illustrations/roofing/main-01-standing-seam-metal.webp",
-        "title": "Standing-seam metal roof",
-        "alt": "Representative standing-seam metal roofing illustration with raised seams and long roof panels.",
-        "caption": "Representative standing-seam metal roofing system."
-      },
-      {
-        "file": "assets/images/illustrations/roofing/main-02-white-tpo-roof.webp",
-        "title": "White single-ply roof membrane",
-        "alt": "Representative white single-ply TPO roof membrane on a low-slope roof.",
-        "caption": "Representative low-slope TPO roof membrane."
-      },
-      {
-        "file": "assets/images/illustrations/roofing/main-03-architectural-shingles.webp",
-        "title": "Architectural asphalt shingles",
-        "alt": "Representative architectural asphalt shingles on a residential roof.",
-        "caption": "Architectural asphalt shingle system example."
-      },
-      {
-        "file": "assets/images/illustrations/roofing/main-04-modified-bitumen.webp",
-        "title": "Granulated low-slope roofing",
-        "alt": "Representative granulated modified-bitumen surface on a low-slope roof.",
-        "caption": "Granulated low-slope roofing example."
-      },
-      {
-        "file": "assets/images/illustrations/roofing/main-05-roof-inspection-illustration.webp",
-        "title": "Illustrated roof components",
-        "alt": "Conceptual roof cutaway illustration showing layers and components, not installation specifications.",
-        "caption": "Conceptual roof components illustration; not an installation specification."
-      }
-    ]
-  },
   {
     "slug": "allen",
     "city": "Allen",
