@@ -409,5 +409,91 @@
         "caption": "A bathroom work area prepared for planning the next steps."
       }
     ]
+  },
+  {
+    "file": "fort-worth-water-damage-restoration.html",
+    "title": "Water mitigation: extraction, drying and repair planning",
+    "intro": "Water mitigation can involve inspection, extraction, structural drying and repair planning. The appropriate steps depend on the affected materials and conditions.",
+    "images": [
+      {
+        "path": "assets/images/illustrations/mitigation/fort-worth-01-extraction.webp",
+        "alt": "Water extraction equipment arranged across an interior floor.",
+        "title": "Water extraction",
+        "caption": "Equipment used to remove water from an interior floor."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/fort-worth-02-structural-drying.webp",
+        "alt": "Air movers and a dehumidifier arranged for structural drying.",
+        "title": "Structural drying",
+        "caption": "Drying equipment arranged to support air movement and moisture removal."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/fort-worth-03-moisture-inspection.webp",
+        "alt": "Moisture meter used to inspect a building surface.",
+        "title": "Moisture inspection",
+        "caption": "A meter used to check moisture at an affected building surface."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/fort-worth-04-contents-protection.webp",
+        "alt": "Household contents covered and protected near a mitigation work area.",
+        "title": "Contents protection",
+        "caption": "Belongings protected while work is planned around the affected area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/fort-worth-05-damage-assessment.webp",
+        "alt": "Interior wall and floor materials examined during a damage assessment.",
+        "title": "Damage assessment",
+        "caption": "Affected interior materials reviewed to clarify the repair scope."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/fort-worth-06-repair-preparation.webp",
+        "alt": "Cleared interior work area prepared for repair planning.",
+        "title": "Repair preparation",
+        "caption": "A cleared area ready for planning the next repair steps."
+      }
+    ]
+  },
+  {
+    "file": "farmers-branch-water-damage-restoration.html",
+    "title": "Water mitigation steps from extraction to repair planning",
+    "intro": "Water mitigation can include extraction, drying, moisture inspection and repair planning. The appropriate steps depend on the affected materials and conditions.",
+    "images": [
+      {
+        "path": "assets/images/illustrations/mitigation/farmers-branch-01-den-carpet-extraction.webp",
+        "alt": "Water extraction equipment arranged on den carpet.",
+        "title": "Carpet extraction in a den",
+        "caption": "Extraction equipment positioned on carpet in a den."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/farmers-branch-02-utility-drying.webp",
+        "alt": "Drying equipment set up in a utility room.",
+        "title": "Utility-room drying",
+        "caption": "Air-movement and drying equipment arranged in a utility room."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/farmers-branch-03-doorway-moisture-inspection.webp",
+        "alt": "Moisture inspection focused on a doorway and adjacent floor.",
+        "title": "Doorway moisture inspection",
+        "caption": "The doorway and adjacent flooring shown during a moisture check."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/farmers-branch-04-bookshelf-protection.webp",
+        "alt": "Bookshelf and nearby contents protected near a work area.",
+        "title": "Bookshelf contents protection",
+        "caption": "A bookshelf and nearby contents protected while work is planned."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/farmers-branch-05-wall-stain-assessment.webp",
+        "alt": "Interior wall stain shown during a water-damage assessment.",
+        "title": "Wall-stain assessment",
+        "caption": "A stained wall area shown for damage assessment."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/farmers-branch-06-floor-repair-preparation.webp",
+        "alt": "Floor repair materials staged in a cleared work area.",
+        "title": "Floor repair preparation",
+        "caption": "Materials staged in a cleared area for repair planning."
+      }
+    ]
   }
 ]
