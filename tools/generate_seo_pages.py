@@ -13,6 +13,55 @@ PHONE_LINK = "+18177845998"
 EMAIL = "lunabestcontractors@gmail.com"
 TODAY = date.today().isoformat()
 
+# The generator owns the city/service/article families below, but these routes
+# are separately maintained, indexable landing pages. Keep this small,
+# reviewed list in the regenerated sitemap so a city-page run cannot silently
+# drop them and force an unsafe noindex classification.
+PRESERVED_INDEXABLE_SITEMAP_PATHS = (
+    "bathroom-vanity-lighting-upgrade-duncanville.html",
+    "black-white-patterned-kitchen-backsplash-grand-prairie.html",
+    "commercial-construction-planning-dallas.html",
+    "custom-tile-tub-shower-cedar-hill.html",
+    "drywall-repair-after-water-damage-grand-prairie.html",
+    "es.html",
+    "fence-replacement-cost-cedar-hill.html",
+    "fireplace-framing-wood-slat-paneling-mansfield.html",
+    "gray-glass-mosaic-kitchen-backsplash-arlington.html",
+    "gray-subway-kitchen-backsplash-mansfield.html",
+    "gray-subway-metallic-accent-backsplash-midlothian.html",
+    "luxury-master-bathroom-remodel-midlothian.html",
+    "projects.html",
+    "proyecto-backsplash-cocina-mansfield.html",
+    "roofing-insurance-claim-fort-worth.html",
+    "services-by-city.html",
+    "weatherford.html",
+    "white-hexagon-kitchen-backsplash-waxahachie.html",
+)
+
+STATIC_SITEMAP_PATHS = (
+    "",
+    "roofing.html",
+    "mitigation.html",
+    "insurance-claims.html",
+    "kitchens.html",
+    "bathrooms.html",
+    "flooring.html",
+    "painting.html",
+    "drywall.html",
+    "siding.html",
+    "carpentry.html",
+    "fencing.html",
+    "commercial.html",
+    "articles.html",
+    "service-areas.html",
+    "flooring-options-mansfield.html",
+)
+
+
+def sitemap_paths(generated: list[str]) -> list[str]:
+    """Return the stable sitemap order without duplicate entries."""
+    return list(dict.fromkeys((*STATIC_SITEMAP_PATHS, *generated, *PRESERVED_INDEXABLE_SITEMAP_PATHS)))
+
 CITIES = [
     "Waxahachie", "Red Oak", "Ovilla", "Glenn Heights", "DeSoto", "Lancaster",
     "Cedar Hill", "Duncanville", "Grand Prairie", "Mansfield", "Arlington", "Dallas",
@@ -267,8 +316,7 @@ def main() -> None:
     ]
     for args in articles:
         write(args[0],article_page(*args)); generated.append(args[0])
-    static=["","roofing.html","mitigation.html","insurance-claims.html","kitchens.html","bathrooms.html","flooring.html","painting.html","drywall.html","siding.html","carpentry.html","fencing.html","commercial.html","articles.html","service-areas.html","flooring-options-mansfield.html"]
-    urls=[DOMAIN+("/" if not x else "/"+x) for x in static+generated]
+    urls=[DOMAIN+("/" if not path else "/"+path) for path in sitemap_paths(generated)]
     sitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{u}</loc><lastmod>{TODAY}</lastmod></url>\n' for u in urls)+'</urlset>\n'
     write("sitemap.xml",sitemap)
     write(
