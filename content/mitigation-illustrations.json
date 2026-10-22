@@ -151,5 +151,48 @@
         "caption": "A cleared area ready for planning the next repair steps."
       }
     ]
+  },
+  {
+    "file": "bedford-water-damage-restoration.html",
+    "title": "Steps in a water mitigation response",
+    "intro": "Water mitigation can involve inspection, extraction, structural drying and repair planning. The appropriate steps depend on the affected materials and conditions.",
+    "images": [
+      {
+        "path": "assets/images/illustrations/mitigation/bedford-01-water-extraction.webp",
+        "alt": "Water extraction equipment working across an interior floor.",
+        "title": "Water extraction",
+        "caption": "Equipment used to remove water from an interior floor."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/bedford-02-structural-drying.webp",
+        "alt": "Air movers and a dehumidifier arranged for structural drying.",
+        "title": "Structural drying",
+        "caption": "Drying equipment arranged to support air movement and moisture removal."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/bedford-03-moisture-inspection.webp",
+        "alt": "Moisture meter used to inspect a building surface.",
+        "title": "Moisture inspection",
+        "caption": "A meter used to check moisture at an affected building surface."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/bedford-04-contents-protection.webp",
+        "alt": "Household belongings covered and protected near a mitigation work area.",
+        "title": "Contents protection",
+        "caption": "Belongings protected while work is planned around the affected area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/bedford-05-damage-assessment.webp",
+        "alt": "Interior wall and floor materials examined during a damage assessment.",
+        "title": "Damage assessment",
+        "caption": "Affected interior materials reviewed to clarify the repair scope."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/bedford-06-repair-preparation.webp",
+        "alt": "Cleared interior work area prepared for repair planning.",
+        "title": "Repair preparation",
+        "caption": "A cleared area ready for planning the next repair steps."
+      }
+    ]
   }
 ]
