@@ -366,5 +366,48 @@
         "caption": "A cleared area ready for planning the next repair steps."
       }
     ]
+  },
+  {
+    "file": "coppell-water-damage-restoration.html",
+    "title": "Water mitigation steps for affected rooms",
+    "intro": "Water mitigation can involve extraction, structural drying, moisture inspection and repair planning. The appropriate steps depend on the affected materials and conditions.",
+    "images": [
+      {
+        "path": "assets/images/illustrations/mitigation/coppell-01-bedroom-extraction.webp",
+        "alt": "Water extraction equipment arranged in a bedroom work area.",
+        "title": "Bedroom extraction",
+        "caption": "Extraction equipment set up in a bedroom work area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/coppell-02-kitchen-drying.webp",
+        "alt": "Air movers and a dehumidifier arranged for drying in a kitchen.",
+        "title": "Kitchen drying setup",
+        "caption": "Drying equipment arranged to support airflow in a kitchen."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/coppell-03-framing-inspection.webp",
+        "alt": "Exposed framing shown during an inspection of an opened wall area.",
+        "title": "Framing inspection",
+        "caption": "Exposed framing and the opened wall area shown for inspection."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/coppell-04-bedroom-contents-protection.webp",
+        "alt": "Bedroom contents protected near a mitigation work area.",
+        "title": "Bedroom contents protection",
+        "caption": "Contents protected while work is planned around the affected area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/coppell-05-floor-damage-assessment.webp",
+        "alt": "Floor surfaces shown during an assessment of water damage.",
+        "title": "Floor damage assessment",
+        "caption": "Floor surfaces reviewed as part of a water-damage assessment."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/coppell-06-bathroom-preparation.webp",
+        "alt": "Bathroom work area prepared for mitigation and repair planning.",
+        "title": "Bathroom preparation",
+        "caption": "A bathroom work area prepared for planning the next steps."
+      }
+    ]
   }
 ]
