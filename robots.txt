@@ -8,3 +8,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://lunageneralcontractors.com/sitemap.xml
+Sitemap: https://lunageneralcontractors.com/image-sitemap.xml

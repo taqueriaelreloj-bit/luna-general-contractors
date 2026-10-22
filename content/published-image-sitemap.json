@@ -1,0 +1,106 @@
+{
+  "siteOrigin": "https://lunageneralcontractors.com",
+  "entries": [
+    {
+      "page": "index.html",
+      "canonical": "https://lunageneralcontractors.com/",
+      "images": [
+        "assets/images/illustrations/homepage/homepage-property-hero-representative-v1.png",
+        "assets/images/illustrations/interior-services-local-batch-v1/01-whole-home-living-dining-remodel.png",
+        "assets/images/illustrations/exterior-services-local-batch-v1/concrete-patio-drainage-01.png"
+      ]
+    },
+    {
+      "page": "kitchens.html",
+      "canonical": "https://lunageneralcontractors.com/kitchens.html",
+      "images": [
+        "assets/images/illustrations/kitchens/generated-kitchen-cabinetry-representative-illustration-v1.png",
+        "assets/images/illustrations/kitchens/generated-quartz-island-representative-illustration-v1.png",
+        "assets/images/illustrations/flooring/generated-porcelain-flooring-representative-illustration-v1.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/cabinetry-generated-illustration.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/quartz-generated-illustration.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/tile-flooring-generated-illustration.png",
+        "assets/images/illustrations/interior-services-local-batch-v1/03-tile-backsplash-craftsmanship.png"
+      ]
+    },
+    {
+      "page": "roofing.html",
+      "canonical": "https://lunageneralcontractors.com/roofing.html",
+      "images": [
+        "assets/images/illustrations/roofing-local-batch-v1/standing-seam-limestone-01.png",
+        "assets/images/illustrations/roofing-local-batch-v1/tpo-white-commercial-01.png",
+        "assets/images/illustrations/roofing-local-batch-v1/architectural-shingles-brick-01.png",
+        "assets/images/illustrations/roofing-local-batch-v1/modified-bitumen-commercial-01.png",
+        "assets/images/illustrations/roofing-local-batch-v1/concrete-tile-residential-01.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/luna-illustrative-clay-tile.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/luna-illustrative-standing-seam-metal.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/luna-illustrative-white-tpo.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/luna-illustrative-modified-bitumen.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/luna-illustrative-architectural-shingles.png"
+      ]
+    },
+    {
+      "page": "mitigation.html",
+      "canonical": "https://lunageneralcontractors.com/mitigation.html",
+      "images": [
+        "assets/images/illustrations/mitigation-local-batch-v1/01-living-room-water-extraction.png",
+        "assets/images/illustrations/mitigation-local-batch-v1/02-bedroom-controlled-drying.png",
+        "assets/images/illustrations/mitigation-local-batch-v1/03-kitchen-under-cabinet-drying.png",
+        "assets/images/illustrations/mitigation-local-batch-v1/04-hardwood-drying-mat-system.png",
+        "assets/images/illustrations/mitigation-local-batch-v1/05-laundry-isolated-leak.png",
+        "assets/images/illustrations/mitigation-local-batch-v1/06-moisture-meter-inspection.png",
+        "assets/images/illustrations/mitigation-local-batch-v1/07-controlled-lower-drywall-opening.png",
+        "assets/images/illustrations/mitigation-local-batch-v1/08-ceiling-leak-access-opening.png",
+        "assets/images/illustrations/mitigation-local-batch-v1/09-contained-hepa-work-zone.png",
+        "assets/images/illustrations/mitigation-local-batch-v1/10-commercial-corridor-drying.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/m01-carpet-extraction-generated.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/m02-bedroom-structural-drying-generated.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/m03-kitchen-cabinet-base-drying-generated.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/m04-hardwood-drying-mats-generated.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/m05-laundry-room-drying-generated.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/m06-moisture-assessment-generated.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/m07-controlled-wall-opening-generated.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/m08-ceiling-opening-mitigation-generated.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/m09-contained-remediation-generated.png",
+        "assets/images/illustrations/cloud-approved-batch-v1/m10-commercial-corridor-drying-generated.png"
+      ]
+    },
+    {
+      "page": "bathrooms.html",
+      "canonical": "https://lunageneralcontractors.com/bathrooms.html",
+      "images": [
+        "assets/images/illustrations/interior-services-local-batch-v1/02-bathroom-remodel-not-hero.png"
+      ]
+    },
+    {
+      "page": "carpentry.html",
+      "canonical": "https://lunageneralcontractors.com/carpentry.html",
+      "images": [
+        "assets/images/illustrations/interior-services-local-batch-v1/04-built-in-cabinetry-bookcases.png",
+        "assets/images/illustrations/exterior-services-local-batch-v1/covered-patio-structure-01.png",
+        "assets/images/illustrations/exterior-services-local-batch-v1/cedar-pergola-01.png"
+      ]
+    },
+    {
+      "page": "painting.html",
+      "canonical": "https://lunageneralcontractors.com/painting.html",
+      "images": [
+        "assets/images/illustrations/interior-services-local-batch-v1/05-finished-painted-room.png"
+      ]
+    },
+    {
+      "page": "siding.html",
+      "canonical": "https://lunageneralcontractors.com/siding.html",
+      "images": [
+        "assets/images/illustrations/exterior-services-local-batch-v1/siding-and-trim-house-01.png"
+      ]
+    },
+    {
+      "page": "fencing.html",
+      "canonical": "https://lunageneralcontractors.com/fencing.html",
+      "images": [
+        "assets/images/illustrations/exterior-services-local-batch-v1/cedar-privacy-fence-01.png"
+      ]
+    }
+  ]
+}

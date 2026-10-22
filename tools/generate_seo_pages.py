@@ -279,7 +279,8 @@ def main() -> None:
         "Allow: /\n\n"
         "User-agent: *\n"
         "Allow: /\n\n"
-        f"Sitemap: {DOMAIN}/sitemap.xml\n",
+        f"Sitemap: {DOMAIN}/sitemap.xml\n"
+        f"Sitemap: {DOMAIN}/image-sitemap.xml\n",
     )
     print(f"Generated {len(generated)} SEO pages and sitemap with {len(urls)} URLs")
 

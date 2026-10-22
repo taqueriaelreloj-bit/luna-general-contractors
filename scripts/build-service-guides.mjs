@@ -9,6 +9,8 @@ import equipmentPhotos from '../content/mitigation-equipment-photos.mjs';
 import {replacements as mitigationReplacements, question as mitigationQuestion, answer as mitigationAnswer} from '../content/mitigation-scope.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const check=process.argv.includes('--check');
+const onlyArg=process.argv.find(arg=>arg.startsWith('--only='));
+const onlyFile=onlyArg?.slice('--only='.length);
 const stale=[];
 const writeGenerated=async(path,content)=>{
  if(!check){await writeFile(path,content);return;}
@@ -18,6 +20,8 @@ const writeGenerated=async(path,content)=>{
 const e=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const cities=await Promise.all((await readdir(resolve(root,'luna_engine/content/cities'))).filter(n=>n.endsWith('.json')).sort().map(async n=>JSON.parse(await readFile(resolve(root,'luna_engine/content/cities',n),'utf8'))));
 const files=new Set((await readdir(root)).filter(n=>n.endsWith('.html')));
+if(onlyArg&&!onlyFile)throw new Error('The --only option needs an HTML filename.');
+if(onlyFile&&!files.has(onlyFile))throw new Error(`Missing selected guide ${onlyFile}`);
 const external=(url,label)=>`<a href="${e(url)}" target="_blank" rel="noopener noreferrer">${e(label)}</a>`;
 const start='<!-- service-guide:start -->',end='<!-- service-guide:end -->';
 const assignments=[];
@@ -37,15 +41,23 @@ function product(id,key){
  const p=products[id];if(!p)throw new Error(`Missing product ${id}`);
  return key==='water-damage-restoration'?{...p,...equipmentPhotos[id]}:p;
 }
-function card(id,key){
- const p=product(id,key);
+const kitchenHubScenes={
+ cabinet:{src:'assets/images/illustrations/kitchens/generated-kitchen-cabinetry-representative-illustration-v1.png',alt:'Representative generated illustration of custom-style cabinetry and a wood island for Dallas-Fort Worth kitchen remodeling planning',caption:'Representative generated illustration for Dallas-Fort Worth kitchen remodeling cabinetry planning; not a Luna project or a KraftMaid product photograph.',context:'Dallas-Fort Worth kitchen remodeling',width:1536,height:1024,className:'sg-card--scene sg-card--scene-cabinet'},
+ quartz:{src:'assets/images/illustrations/kitchens/generated-quartz-island-representative-illustration-v1.png',alt:'Representative generated illustration of a pale quartz-style island for Dallas-Fort Worth kitchen remodeling planning',caption:'Representative generated illustration for Dallas-Fort Worth kitchen remodeling countertop planning; not a Luna project or a Cambria product photograph.',context:'Dallas-Fort Worth kitchen remodeling',width:1672,height:941,className:'sg-card--scene sg-card--scene-quartz'},
+ tile:{src:'assets/images/illustrations/flooring/generated-porcelain-flooring-representative-illustration-v1.png',alt:'Representative generated illustration of large-format porcelain-style flooring for Dallas-Fort Worth kitchen remodeling planning',caption:'Representative generated illustration for Dallas-Fort Worth kitchen remodeling flooring planning; not a Luna project or a Daltile product photograph.',context:'Dallas-Fort Worth kitchen remodeling',width:1536,height:1024,className:'sg-card--scene sg-card--scene-porcelain'}
+};
+function card(id,a){
+ const p=product(id,a.key);
+ const scene=a.hub&&a.key==='kitchen-remodeling'?kitchenHubScenes[id]:null;
+ if(scene&&(!scene.alt.includes(scene.context)||!scene.caption.includes(scene.context)))throw new Error(`Kitchen scene metadata needs its regional service context: ${id}`);
  let visual=`<img src="assets/service-guides/${p.art}.svg" alt="Generic illustration of ${e(p.name.toLowerCase())}; not a photograph of the named brand" width="450" height="300" loading="lazy" decoding="async"><figcaption>Original category illustration · Model appearance varies</figcaption>`;
+ if(scene)visual=`<img src="${e(scene.src)}" alt="${e(scene.alt)}" width="${scene.width}" height="${scene.height}" loading="lazy" decoding="async"><figcaption>${e(scene.caption)}</figcaption>`;
  if(p.crop){
   const c=p.crop,percent=v=>`${Number((v*100).toFixed(4))}%`;
   const cropStyle=`--photo-width:${percent(p.width/c.width)};--photo-height:${percent(p.height/c.height)};--photo-left:${percent(-c.x/c.width)};--photo-top:${percent(-c.y/c.height)}`;
   visual=`<a class="sg-equipment-window" href="${e(p.src)}" target="_blank" rel="noopener noreferrer" aria-label="View full project photo: ${e(p.name)}" style="${cropStyle}"><img src="${e(p.src)}" alt="${e(p.alt)}" width="${p.width}" height="${p.height}" loading="lazy" decoding="async"><span aria-hidden="true">View full photo ↗</span></a><figcaption>${e(p.caption)}</figcaption>`;
  }
- return `<article class="sg-card"><figure>${visual}</figure><div class="sg-card-body"><p class="sg-brand">${e(p.brand)}</p><h3>${e(p.name)}</h3><p>${e(p.description)}</p><p class="sg-spec"><strong>Selection check</strong><br>${e(p.selection)}</p><details><summary>Coverage and scope</summary><p>${e(p.coverage)}</p></details><p class="sg-source">${external(p.url,p.linkLabel||'Official reference →')}</p></div></article>`;
+ return `<article class="sg-card${scene?` ${scene.className}`:''}"><figure>${visual}</figure><div class="sg-card-body"><p class="sg-brand">${e(p.brand)}</p><h3>${e(p.name)}</h3><p>${e(p.description)}</p><p class="sg-spec"><strong>Selection check</strong><br>${e(p.selection)}</p><details><summary>Coverage and scope</summary><p>${e(p.coverage)}</p></details><p class="sg-source">${external(p.url,p.linkLabel||'Official reference →')}</p></div></article>`;
 }
 function guide(a){
  const p=profiles[a.key], ti=a.index%6, ci=Math.floor(a.index/6)%6;
@@ -65,7 +77,7 @@ function guide(a){
 <section class="service-guide service-guide--${['catalog','editorial','technical','showcase'][a.index%4]}" id="service-materials" aria-labelledby="sg-title"><div class="container">
 <header class="sg-heading"><p class="sg-eyebrow">${e(p.name)} / ${e(a.city)}, Texas</p><h2 id="sg-title">${e(title)}</h2><p>${e(intro)}</p></header>
 <div class="sg-brief"><article><h3>${e(topic.title)}</h3><p>${e(topic.text)}</p></article><article><h3>${e(condition.title)}</h3><p>${e(condition.text)}</p></article></div>
-<h3>${a.key==='water-damage-restoration'?'Equipment from a Luna mitigation project':'Compare the components behind the finished work'}</h3><div class="sg-cards">${p.products.map(id=>card(id,a.key)).join('\n')}</div>
+<h3>${a.key==='water-damage-restoration'?'Equipment from a Luna mitigation project':'Compare the components behind the finished work'}</h3><div class="sg-cards">${p.products.map(id=>card(id,a)).join('\n')}</div>
 ${extra}
 <figure class="sg-photo shared-project-gallery"${substantivePhoto}><img src="${e(p.photo)}" alt="${e(alt)}" width="1188" height="891" loading="lazy" decoding="async"><figcaption><p class="sg-eyebrow">${photoLabel}</p><h3>${e(topic.check)}</h3><p>${e(photoNote)}</p><a href="projects.html">Explore documented project work →</a></figcaption></figure>
 ${process}
@@ -77,7 +89,9 @@ ${process}
 ${end}`;
 }
 const manifest=[];
-for(const a of assignments){
+const selectedAssignments=onlyFile?assignments.filter(a=>a.file===onlyFile):assignments;
+if(onlyFile&&!selectedAssignments.length)throw new Error(`No guide assignment for ${onlyFile}`);
+for(const a of selectedAssignments){
  let html=await readFile(resolve(root,a.file),'utf8');
  const section=guide(a);
  if(html.includes(start)){const from=html.indexOf(start),to=html.indexOf(end,from);if(to<0)throw new Error(`Unclosed guide ${a.file}`);html=html.slice(0,from)+section+html.slice(to+end.length);}
@@ -106,6 +120,6 @@ for(const a of assignments){
  await writeGenerated(resolve(root,a.file),html);
  manifest.push({...a,name:p.name,topic:t.title,condition:c.title,layout:['catalog','editorial','technical','showcase'][a.index%4],products:p.products});
 }
-await writeGenerated(resolve(root,'content/service-guide-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
+if(!onlyFile)await writeGenerated(resolve(root,'content/service-guide-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 if(check&&stale.length)throw new Error(`Service guides are stale (${stale.length} files): ${stale.slice(0,8).join(', ')}`);
-console.log(`${check?'Verified':'Built'} ${manifest.length} guides across ${Object.keys(profiles).length} service categories`);
+console.log(`${check?'Verified':'Built'} ${selectedAssignments.length}${onlyFile?` selected guide (${onlyFile})`:` guides across ${Object.keys(profiles).length} service categories`}`);

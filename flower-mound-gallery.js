@@ -1,9 +1,9 @@
 (() => {
   const page = window.location.pathname.split("/").pop() || "index.html";
-  if (!["kitchens.html", "carpentry.html"].includes(page)) return;
+  if (page !== "kitchens.html") return;
 
   const gallery = document.querySelector(".trade-gallery");
-  if (!gallery) return;
+  if (!gallery || gallery.dataset.flowerMoundGalleryEnhanced === "true") return;
 
   const readPhotoData = (parts) => parts.map((url) => {
     const request = new XMLHttpRequest();
@@ -60,10 +60,7 @@
     return figure;
   });
 
-  if (page === "carpentry.html") {
-    gallery.replaceChildren(...figures);
-  } else {
-    gallery.querySelector(".is-active")?.classList.remove("is-active");
-    gallery.prepend(...figures);
-  }
+  gallery.querySelector(".is-active")?.classList.remove("is-active");
+  gallery.prepend(...figures);
+  gallery.dataset.flowerMoundGalleryEnhanced = "true";
 })();
