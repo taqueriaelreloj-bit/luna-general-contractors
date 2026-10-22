@@ -3,7 +3,7 @@ import {createHash} from 'node:crypto';
 import {dirname,relative,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import profiles from '../content/service-guide-profiles.mjs';
-import serviceMedia,{targetServiceKeys} from '../content/service-guide-media.mjs';
+import serviceMedia,{cityGuideCaption,targetServiceKeys} from '../content/service-guide-media.mjs';
 
 // This validator owns the city-service imagery block.  It intentionally does
 // not invoke the broader guide generator, which has unrelated generated-page
@@ -12,8 +12,13 @@ import serviceMedia,{targetServiceKeys} from '../content/service-guide-media.mjs
 // Git blob SHA is declared in the media manifest.
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const allowRemoteBlobs=process.argv.includes('--allow-remote-blobs');
-const unexpectedArgs=process.argv.slice(2).filter(arg=>arg!=='--allow-remote-blobs');
+const requireCityContext=process.argv.includes('--require-city-context');
+const onlyServiceArg=process.argv.find(arg=>arg.startsWith('--only-service='));
+const onlyService=onlyServiceArg?.slice('--only-service='.length);
+const unexpectedArgs=process.argv.slice(2).filter(arg=>arg!=='--allow-remote-blobs'&&arg!=='--require-city-context'&&arg!==onlyServiceArg);
 if(unexpectedArgs.length)throw new Error(`Unknown argument(s): ${unexpectedArgs.join(', ')}`);
+if(onlyServiceArg&&!onlyService)throw new Error('The --only-service option needs a service key.');
+if(requireCityContext&&!onlyService)throw new Error('The --require-city-context option requires --only-service to prevent a broad validation claim.');
 
 const start='<!-- service-city-imagery:start -->';
 const end='<!-- service-city-imagery:end -->';
@@ -75,10 +80,14 @@ if(assignments.length!==828)fail(`Expected 828 city-service pages, found ${assig
 if(JSON.stringify(assignmentKeys)!==JSON.stringify(expectedKeys))fail('City-service assignments and service-media keys differ');
 if(new Set(assignments.map(item=>item.file)).size!==assignments.length)fail('Duplicate city-service assignment file');
 if(JSON.stringify(Object.keys(serviceMedia).sort())!==JSON.stringify(expectedKeys))fail('Service-media manifest has unexpected or missing service keys');
+if(onlyService&&!expectedKeys.includes(onlyService))fail(`Unknown service key for --only-service: ${onlyService}`);
+const selectedAssignments=onlyService?assignments.filter(assignment=>assignment.key===onlyService):assignments;
+if(!selectedAssignments.length)fail(`No city-service assignments for ${onlyService}`);
+const selectedKeys=onlyService?[onlyService]:expectedKeys;
 
 const mediaByKey=new Map;
 const deferredRemoteBlobSources=new Set;
-for(const key of expectedKeys){
+for(const key of selectedKeys){
  const entry=serviceMedia[key];
  if(!profiles[key]){fail(`Missing service profile for ${key}`);continue;}
  if(!entry||!Array.isArray(entry.items)||entry.items.length<5){fail(`Need at least five media items for ${key}`);continue;}
@@ -130,7 +139,7 @@ const checkSource=async(item,context)=>{
   fail(`Could not read local image dimensions: ${context}: ${src} (${error.message})`);
  }
 };
-for(const key of expectedKeys){
+for(const key of selectedKeys){
  for(const item of serviceMedia[key]?.items||[])await checkSource(item,`${key}/${item.id}`);
 }
 
@@ -141,6 +150,12 @@ const validatePage=(assignment,html)=>{
  const blocks=html.match(new RegExp(`${start.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\$&')}[\\s\\S]*?${end.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\$&')}`,'g'))||[];
  if(blocks.length!==1)return;
  const section=blocks[0];
+ const hasCaptionContext=section.includes('data-caption-context="service-city"');
+ const hasGeneratedSectionNotice=section.includes('data-generated-section-notice="true"');
+ // Scoped migrations use concise service-and-city captions. Keep validating
+ // those pages when the normal all-family check runs, while legacy galleries
+ // remain valid until their own bounded migration is prepared.
+ const usesCityContext=requireCityContext||assignment.key==='kitchen-remodeling'||hasCaptionContext||hasGeneratedSectionNotice;
  const cssMatches=html.match(/<link\b[^>]*\bhref="service-city-imagery\.css(?:\?[^\"]*)?"[^>]*>/gi)||[];
  if(cssMatches.length!==1)fail(`${prefix} expected exactly one city-imagery stylesheet link`);
  const sectionTag=section.match(/<section\b[^>]*\bclass="[^"]*\bservice-city-imagery\b[^"]*"[^>]*>/i)?.[0];
@@ -151,7 +166,13 @@ const validatePage=(assignment,html)=>{
  if(Number(attr(sectionTag,'data-media-count'))!==expected.size)fail(`${prefix} data-media-count does not match manifest`);
  if(count(section,'id="sci-title"')!==1||!section.includes('aria-labelledby="sci-title"'))fail(`${prefix} missing unique gallery heading relationship`);
  if(!normalize(section).includes(`imagery for ${assignment.city}`))fail(`${prefix} gallery heading does not identify ${assignment.city}`);
- if(!section.includes('Dallas-Fort Worth references rather than work in this page\'s city'))fail(`${prefix} missing city-safe gallery disclosure`);
+ if(usesCityContext){
+  if(!hasCaptionContext)fail(`${prefix} missing city-context caption marker`);
+  if(!hasGeneratedSectionNotice)fail(`${prefix} missing city-context generated-media notice`);
+  if(!section.includes('data-generated-section-notice="true"'))fail(`${prefix} missing city-context generated-media notice`);
+  if(!section.includes('not project photographs or product photographs'))fail(`${prefix} missing concise generated-media provenance notice`);
+  if(!/Dallas-Fort Worth references, not work in this page(?:'|’)s city\./.test(section))fail(`${prefix} missing city-safe portfolio context`);
+ }else if(!section.includes('Dallas-Fort Worth references rather than work in this page\'s city'))fail(`${prefix} missing city-safe gallery disclosure`);
  if((section.match(/<div\b[^>]*\bclass="[^"]*\bsci-grid\b[^"]*"[^>]*>/gi)||[]).length!==1)fail(`${prefix} expected one gallery grid`);
  const cards=extractCards(section);
  if(cards.length!==expected.size)fail(`${prefix} expected ${expected.size} media cards, found ${cards.length}`);
@@ -180,13 +201,25 @@ const validatePage=(assignment,html)=>{
   if(substantive!==expectedScene)fail(`${prefix} wrong substantive-scene type for ${id}`);
   if(/\.svg(?:$|[?#])/i.test(src)||src.includes('assets/service-guides/'))fail(`${prefix} non-substantive image emitted for ${id}`);
   const text=normalize(figure);
-  if(!text.includes(item.caption))fail(`${prefix} caption differs from manifest for ${id}`);
-  if(item.kind==='representative-illustration'){
-   if(!text.includes('Representative illustration'))fail(`${prefix} missing representative label for ${id}`);
-   if(!text.includes(`not a photograph of a Luna job or work completed in ${assignment.city}.`))fail(`${prefix} missing city/job disclaimer for ${id}`);
+  if(usesCityContext){
+   const expectedCaption=cityGuideCaption(profiles[assignment.key].name,assignment.city);
+   if(!text.includes(expectedCaption))fail(`${prefix} concise service-and-city caption missing for ${id}`);
+   if(!figure.includes('class="sci-caption" data-caption-context="service-city"'))fail(`${prefix} caption context marker missing for ${id}`);
+   if(item.kind==='representative-illustration'){
+    if(text.includes('Representative illustration'))fail(`${prefix} legacy representative caption remains for ${id}`);
+    if(text.includes(`not a photograph of a Luna job or work completed in ${assignment.city}.`))fail(`${prefix} legacy city/job disclaimer remains for ${id}`);
+   }else if(!text.includes(item.attribution)){
+    fail(`${prefix} portfolio attribution missing for ${id}`);
+   }
   }else{
-   if(!text.includes('Existing Luna portfolio photograph'))fail(`${prefix} missing portfolio label for ${id}`);
-   if(!text.includes('Dallas-Fort Worth')||!text.includes(`not represented as work completed in ${assignment.city}.`))fail(`${prefix} missing portfolio attribution/city disclaimer for ${id}`);
+   if(!text.includes(item.caption))fail(`${prefix} caption differs from manifest for ${id}`);
+   if(item.kind==='representative-illustration'){
+    if(!text.includes('Representative illustration'))fail(`${prefix} missing representative label for ${id}`);
+    if(!text.includes(`not a photograph of a Luna job or work completed in ${assignment.city}.`))fail(`${prefix} missing city/job disclaimer for ${id}`);
+   }else{
+    if(!text.includes('Existing Luna portfolio photograph'))fail(`${prefix} missing portfolio label for ${id}`);
+    if(!text.includes('Dallas-Fort Worth')||!text.includes(`not represented as work completed in ${assignment.city}.`))fail(`${prefix} missing portfolio attribution/city disclaimer for ${id}`);
+   }
   }
  }
  if(seenIds.size!==expected.size)fail(`${prefix} media IDs do not cover manifest`);
@@ -198,7 +231,7 @@ const validatePage=(assignment,html)=>{
  }
 };
 
-for(const assignment of assignments){
+for(const assignment of selectedAssignments){
  try{validatePage(assignment,await readFile(resolve(root,assignment.file),'utf8'));}
  catch(error){fail(`${assignment.file}: ${error.message}`);}
 }
@@ -258,4 +291,4 @@ if(!/width\s*:\s*100%/i.test(ruleBody('root','.sci-card img')))fail('Gallery ima
 if(errors.length){
  throw new Error(`Service-city imagery validation failed (${errors.length} issue${errors.length===1?'':'s'}):\n- ${errors.slice(0,40).join('\n- ')}${errors.length>40?`\n- … ${errors.length-40} more`:''}`);
 }
-console.log(`Validated ${assignments.length} city-service pages and ${expectedKeys.length} service families${allowRemoteBlobs?`; ${deferredRemoteBlobSources.size} remote illustration blobs are deferred to publish verification`:''}.`);
+console.log(`Validated ${selectedAssignments.length} city-service page${selectedAssignments.length===1?'':'s'} and ${selectedKeys.length} service ${selectedKeys.length===1?'family':'families'}${requireCityContext?' with concise service-and-city captions':''}${allowRemoteBlobs?`; ${deferredRemoteBlobSources.size} remote illustration blobs are deferred to publish verification`:''}.`);

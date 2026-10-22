@@ -39,6 +39,14 @@ const specialist=(serviceKey,id,file,sha,alt,caption,sceneTags,width,height)=>il
  id,file,alt,caption,[serviceKey],sceneTags,sha,width,height
 );
 
+// City captions name the service and page location without asserting that an
+// illustrative scene was photographed there. Portfolio provenance remains in
+// the card credit rendered by the city-image builder.
+export const cityGuideCaption=(serviceName,city)=>{
+ if(!serviceName||!city)throw new Error('City-guide media needs service and city context');
+ return `${serviceName} services — ${city}, Texas`;
+};
+
 export const targetServiceKeys=[
  'insurance-claims','kitchen-remodeling','bathroom-remodeling','flooring','painting',
  'drywall','siding','carpentry','fencing','commercial-construction',
