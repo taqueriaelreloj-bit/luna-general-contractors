@@ -1,0 +1,69 @@
+[
+  {
+    "file": "dallas-water-damage-restoration.html",
+    "title": "Water mitigation, from assessment to repair planning",
+    "intro": "Water mitigation can involve inspection, extraction, drying and repair planning. The appropriate steps depend on the affected materials and conditions.",
+    "images": [
+      {
+        "path": "assets/images/illustrations/mitigation/dallas-01-urban-home-extraction.webp",
+        "alt": "Water extraction equipment staged in a residential interior after a water release.",
+        "title": "Residential water extraction",
+        "caption": "Water extraction equipment staged in a residential interior."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/dallas-02-laundry-overflow-assessment.webp",
+        "alt": "Laundry area and nearby flooring shown during a water loss assessment.",
+        "title": "Laundry-area assessment",
+        "caption": "Laundry-area surfaces shown as part of an inspection after a water loss."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/dallas-03-cabinet-toekick-inspection.webp",
+        "alt": "Inspection focused on a cabinet toe-kick and the adjacent floor.",
+        "title": "Cabinet toe-kick inspection",
+        "caption": "A close inspection of the cabinet base and adjacent flooring."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/dallas-04-carpet-extraction.webp",
+        "alt": "Extraction equipment positioned on carpet during water removal.",
+        "title": "Carpet extraction",
+        "caption": "Water extraction equipment placed across a carpeted area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/dallas-05-hardwood-moisture-inspection.webp",
+        "alt": "Moisture inspection along a hardwood floor surface.",
+        "title": "Hardwood moisture inspection",
+        "caption": "A moisture check along the surface of a hardwood floor."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/dallas-06-protected-commercial-corridor.webp",
+        "alt": "Commercial corridor protected while mitigation work is underway.",
+        "title": "Commercial corridor protection",
+        "caption": "A protected commercial walkway beside an active work area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/dallas-07-wall-cavity-drying.webp",
+        "alt": "Drying equipment directed toward an opened wall cavity.",
+        "title": "Wall-cavity drying",
+        "caption": "Air movement directed toward an opened wall cavity."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/dallas-08-equipment-staging.webp",
+        "alt": "Water mitigation equipment staged for a planned drying setup.",
+        "title": "Drying equipment staging",
+        "caption": "Drying equipment grouped for a planned setup."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/dallas-09-measurement-documentation.webp",
+        "alt": "Tools and notes used to document a moisture inspection.",
+        "title": "Inspection documentation",
+        "caption": "Tools and notes used to record inspection observations."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/dallas-10-clean-repair-preparation.webp",
+        "alt": "Cleared interior work area with building materials ready for repair planning.",
+        "title": "Repair planning",
+        "caption": "A cleared work area prepared for planning the next repair steps."
+      }
+    ]
+  }
+]
