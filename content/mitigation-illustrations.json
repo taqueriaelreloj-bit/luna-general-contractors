@@ -839,5 +839,220 @@
         "caption": "A cleared area ready for planning the next repair steps."
       }
     ]
+  },
+  {
+    "file": "garland-water-damage-restoration.html",
+    "title": "Steps in a water mitigation response",
+    "intro": "Water mitigation can involve inspection, extraction, structural drying and repair planning. The appropriate steps depend on the affected materials and conditions.",
+    "images": [
+      {
+        "path": "assets/images/illustrations/mitigation/garland-01-hallway-extraction.webp",
+        "alt": "Water extraction equipment arranged in a hallway.",
+        "title": "Hallway water extraction",
+        "caption": "Equipment set up to remove water from a hallway floor."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/garland-02-bedroom-drying.webp",
+        "alt": "Air movers and a dehumidifier arranged for bedroom drying.",
+        "title": "Bedroom structural drying",
+        "caption": "Drying equipment arranged to support air movement and moisture removal."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/garland-03-bathroom-moisture-inspection.webp",
+        "alt": "Moisture meter used to inspect a bathroom surface.",
+        "title": "Bathroom moisture inspection",
+        "caption": "A meter used to check moisture at an affected bathroom surface."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/garland-04-table-contents-protection.webp",
+        "alt": "Household contents covered and protected near a mitigation work area.",
+        "title": "Contents protection",
+        "caption": "Belongings protected while work is planned around the affected area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/garland-05-trim-damage-assessment.webp",
+        "alt": "Interior trim shown during a water-damage assessment.",
+        "title": "Trim damage assessment",
+        "caption": "Affected trim reviewed to clarify the repair scope."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/garland-06-kitchen-repair-preparation.webp",
+        "alt": "Kitchen work area prepared for repair planning.",
+        "title": "Kitchen repair preparation",
+        "caption": "A cleared kitchen area ready for planning the next repair steps."
+      }
+    ]
+  },
+  {
+    "file": "grapevine-water-damage-restoration.html",
+    "title": "Steps in a water mitigation response",
+    "intro": "Water mitigation can involve inspection, extraction, structural drying and repair planning. The appropriate steps depend on the affected materials and conditions.",
+    "images": [
+      {
+        "path": "assets/images/illustrations/mitigation/grapevine-01-sunroom-extraction.webp",
+        "alt": "Water extraction equipment arranged in a sunroom.",
+        "title": "Sunroom water extraction",
+        "caption": "Equipment set up to remove water from a sunroom floor."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/grapevine-02-den-drying.webp",
+        "alt": "Two air movers arranged in a den for structural drying.",
+        "title": "Den air movement",
+        "caption": "Air movers arranged to support air circulation in an affected room."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/grapevine-03-window-moisture-check.webp",
+        "alt": "Moisture inspection focused near a window and adjacent interior surface.",
+        "title": "Window moisture inspection",
+        "caption": "A moisture check near a window opening."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/grapevine-04-cabinet-contents-protection.webp",
+        "alt": "Cabinet contents protected near a mitigation work area.",
+        "title": "Cabinet contents protection",
+        "caption": "Belongings protected while work is planned around the affected area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/grapevine-05-ceiling-corner-assessment.webp",
+        "alt": "Ceiling and wall corner shown during a water-damage assessment.",
+        "title": "Ceiling corner assessment",
+        "caption": "The ceiling corner reviewed as part of a damage assessment."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/grapevine-06-dining-repair-preparation.webp",
+        "alt": "Dining-area work space cleared for repair planning.",
+        "title": "Dining-area repair preparation",
+        "caption": "A cleared space ready for planning the next repair steps."
+      }
+    ]
+  },
+  {
+    "file": "irving-water-damage-restoration.html",
+    "title": "Steps in a water mitigation response",
+    "intro": "Water mitigation can involve inspection, extraction, structural drying and repair planning. The appropriate steps depend on the affected materials and conditions.",
+    "images": [
+      {
+        "path": "assets/images/illustrations/mitigation/irving-01-townhome-extraction.webp",
+        "alt": "Water extraction equipment arranged in a townhome interior.",
+        "title": "Townhome water extraction",
+        "caption": "Equipment set up to remove water from an interior floor."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/irving-02-office-drying.webp",
+        "alt": "Air movers and a dehumidifier arranged in an office.",
+        "title": "Office structural drying",
+        "caption": "Drying equipment arranged to support air movement and moisture removal."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/irving-03-vanity-moisture-inspection.webp",
+        "alt": "Moisture meter used to inspect a bathroom vanity area.",
+        "title": "Vanity moisture inspection",
+        "caption": "A meter used to check moisture near an affected vanity."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/irving-04-chair-contents-protection.webp",
+        "alt": "A chair and nearby household contents protected near a work area.",
+        "title": "Contents protection",
+        "caption": "Belongings protected while work is planned around the affected area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/irving-05-wall-bubble-assessment.webp",
+        "alt": "Raised wall finish shown during a water-damage assessment.",
+        "title": "Wall surface assessment",
+        "caption": "An affected wall surface reviewed to clarify repair needs."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/irving-06-hallway-repair-preparation.webp",
+        "alt": "Hallway work area cleared for repair planning.",
+        "title": "Hallway repair preparation",
+        "caption": "A cleared hallway area ready for planning the next repair steps."
+      }
+    ]
+  },
+  {
+    "file": "duncanville-water-damage-restoration.html",
+    "title": "Steps in a water mitigation response",
+    "intro": "Water mitigation can involve inspection, extraction, structural drying and repair planning. The appropriate steps depend on the affected materials and conditions.",
+    "images": [
+      {
+        "path": "assets/images/illustrations/mitigation/duncanville-01-water-extraction.webp",
+        "alt": "Water extraction equipment arranged across an interior floor.",
+        "title": "Water extraction",
+        "caption": "Equipment used to remove water from an interior floor."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/duncanville-02-structural-drying.webp",
+        "alt": "Air movers and a dehumidifier arranged for structural drying.",
+        "title": "Structural drying",
+        "caption": "Drying equipment arranged to support air movement and moisture removal."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/duncanville-03-moisture-inspection.webp",
+        "alt": "Moisture meter used to inspect an interior building surface.",
+        "title": "Moisture inspection",
+        "caption": "A meter used to check moisture at an affected building surface."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/duncanville-04-contents-protection.webp",
+        "alt": "Household contents covered near a mitigation work area.",
+        "title": "Contents protection",
+        "caption": "Belongings protected while work is planned around an affected area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/duncanville-05-damage-assessment.webp",
+        "alt": "Interior materials reviewed during a water-damage assessment.",
+        "title": "Damage assessment",
+        "caption": "Affected materials reviewed to clarify a repair scope."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/duncanville-06-repair-preparation.webp",
+        "alt": "Cleared interior work area prepared for repair planning.",
+        "title": "Repair preparation",
+        "caption": "A cleared area ready for planning the next repair steps."
+      }
+    ]
+  },
+  {
+    "file": "euless-water-damage-restoration.html",
+    "title": "Steps in a water mitigation response",
+    "intro": "Water mitigation can involve inspection, extraction, structural drying and repair planning. The appropriate steps depend on the affected materials and conditions.",
+    "images": [
+      {
+        "path": "assets/images/illustrations/mitigation/euless-01-water-extraction.webp",
+        "alt": "Water extraction equipment positioned across an interior floor.",
+        "title": "Water extraction",
+        "caption": "Equipment used to remove water from an interior floor."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/euless-02-structural-drying.webp",
+        "alt": "Air movers and a dehumidifier set up for structural drying.",
+        "title": "Structural drying",
+        "caption": "Drying equipment arranged to support air movement and moisture removal."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/euless-03-moisture-inspection.webp",
+        "alt": "Moisture meter used to inspect an affected building surface.",
+        "title": "Moisture inspection",
+        "caption": "A meter used to check moisture at an affected surface."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/euless-04-contents-protection.webp",
+        "alt": "Household belongings covered near an affected work area.",
+        "title": "Contents protection",
+        "caption": "Belongings protected while work is planned around the affected area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/euless-05-damage-assessment.webp",
+        "alt": "Interior materials shown during a water-damage assessment.",
+        "title": "Damage assessment",
+        "caption": "Affected materials reviewed to clarify the repair scope."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/euless-06-repair-preparation.webp",
+        "alt": "A cleared interior work area prepared for repair planning.",
+        "title": "Repair preparation",
+        "caption": "A cleared area ready for planning the next repair steps."
+      }
+    ]
   }
 ]
