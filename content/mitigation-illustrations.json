@@ -1394,8 +1394,9 @@
     ]
   },
   {
-    "city": "North Richland Hills",
-    "slug": "north-richland-hills",
+    "file": "north-richland-hills-water-damage-restoration.html",
+    "title": "Steps in a water mitigation response",
+    "intro": "Water mitigation can involve inspection, extraction, structural drying and repair planning. The appropriate steps depend on the affected materials and conditions.",
     "images": [
       {
         "path": "assets/images/illustrations/mitigation/north-richland-hills-01-water-extraction.webp",
@@ -1433,14 +1434,12 @@
         "title": "Repair preparation",
         "caption": "A cleared area ready for planning the next repair steps."
       }
-    ],
-    "file": "north-richland-hills-water-damage-restoration.html",
-    "title": "Steps in a water mitigation response",
-    "intro": "Water mitigation can involve inspection, extraction, structural drying and repair planning. The appropriate steps depend on the affected materials and conditions."
+    ]
   },
   {
-    "city": "Plano",
-    "slug": "plano",
+    "file": "plano-water-damage-restoration.html",
+    "title": "Steps in a water mitigation response",
+    "intro": "Water mitigation can involve inspection, extraction, structural drying and repair planning. The appropriate steps depend on the affected materials and conditions.",
     "images": [
       {
         "path": "assets/images/illustrations/mitigation/plano-01-water-extraction.webp",
@@ -1478,9 +1477,92 @@
         "title": "Repair preparation",
         "caption": "A cleared area ready for planning the next repair steps."
       }
-    ],
-    "file": "plano-water-damage-restoration.html",
+    ]
+  },
+  {
+    "file": "richardson-water-damage-restoration.html",
     "title": "Steps in a water mitigation response",
-    "intro": "Water mitigation can involve inspection, extraction, structural drying and repair planning. The appropriate steps depend on the affected materials and conditions."
+    "intro": "Water mitigation can involve inspection, extraction, structural drying and repair planning. The appropriate steps depend on the affected materials and conditions.",
+    "images": [
+      {
+        "path": "assets/images/illustrations/mitigation/richardson-01-water-extraction.webp",
+        "alt": "Water extraction equipment arranged across an interior floor.",
+        "title": "Water extraction",
+        "caption": "Equipment used to remove water from an interior floor."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/richardson-02-structural-drying.webp",
+        "alt": "Air movers arranged to support structural drying.",
+        "title": "Structural drying",
+        "caption": "Drying equipment arranged to support air movement through an affected area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/richardson-03-moisture-inspection.webp",
+        "alt": "Moisture meter used to inspect an interior building surface.",
+        "title": "Moisture inspection",
+        "caption": "A meter used to check moisture at an affected surface."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/richardson-04-contents-protection.webp",
+        "alt": "Household contents protected near a mitigation work area.",
+        "title": "Contents protection",
+        "caption": "Belongings protected while work is planned around the affected area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/richardson-05-damage-assessment.webp",
+        "alt": "Interior materials reviewed during a water-damage assessment.",
+        "title": "Damage assessment",
+        "caption": "Affected materials reviewed to clarify a repair scope."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/richardson-06-repair-preparation.webp",
+        "alt": "Cleared interior work area prepared for repair planning.",
+        "title": "Repair preparation",
+        "caption": "A cleared area ready for planning the next repair steps."
+      }
+    ]
+  },
+  {
+    "file": "rockwall-water-damage-restoration.html",
+    "title": "Steps in a water mitigation response",
+    "intro": "Water mitigation can involve inspection, extraction, structural drying and repair planning. The appropriate steps depend on the affected materials and conditions.",
+    "images": [
+      {
+        "path": "assets/images/illustrations/mitigation/rockwall-01-water-extraction.webp",
+        "alt": "Water extraction equipment arranged across an interior floor.",
+        "title": "Water extraction",
+        "caption": "Equipment used to remove water from an interior floor."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/rockwall-02-structural-drying.webp",
+        "alt": "Air movers arranged to support structural drying.",
+        "title": "Structural drying",
+        "caption": "Drying equipment arranged to support air movement through an affected area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/rockwall-03-moisture-inspection.webp",
+        "alt": "Moisture meter used to inspect an interior building surface.",
+        "title": "Moisture inspection",
+        "caption": "A meter used to check moisture at an affected surface."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/rockwall-04-contents-protection.webp",
+        "alt": "Household contents protected near a mitigation work area.",
+        "title": "Contents protection",
+        "caption": "Belongings protected while work is planned around the affected area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/rockwall-05-damage-assessment.webp",
+        "alt": "Open under-sink cabinet area shown during a water-damage assessment.",
+        "title": "Under-sink cabinet assessment",
+        "caption": "Cabinet base and adjacent surfaces shown for assessment."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/rockwall-06-repair-preparation.webp",
+        "alt": "Cleared interior work area prepared for repair planning.",
+        "title": "Repair preparation",
+        "caption": "A cleared area ready for planning the next repair steps."
+      }
+    ]
   }
 ]
