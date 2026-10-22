@@ -280,5 +280,91 @@
         "caption": "A cleared laundry area prepared for planning repair steps."
       }
     ]
+  },
+  {
+    "file": "colleyville-water-damage-restoration.html",
+    "title": "Steps in a water mitigation response",
+    "intro": "Water mitigation can involve inspection, extraction, structural drying and repair planning. The appropriate steps depend on the affected materials and conditions.",
+    "images": [
+      {
+        "path": "assets/images/illustrations/mitigation/colleyville-01-stone-floor-extraction.webp",
+        "alt": "Extraction equipment arranged on a stone floor during water removal.",
+        "title": "Stone-floor extraction",
+        "caption": "Extraction equipment positioned on a stone floor."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/colleyville-02-family-room-drying.webp",
+        "alt": "Air movers and dehumidification equipment arranged in a family-room drying setup.",
+        "title": "Family-room drying",
+        "caption": "Drying equipment arranged for air movement in a family room."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/colleyville-03-subfloor-moisture-check.webp",
+        "alt": "Moisture inspection focused on an exposed subfloor surface.",
+        "title": "Subfloor moisture check",
+        "caption": "A moisture check focused on the exposed subfloor."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/colleyville-04-dining-contents-protection.webp",
+        "alt": "Dining-area contents protected beside a mitigation work space.",
+        "title": "Dining-area contents protection",
+        "caption": "Contents protected near a dining-area work space."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/colleyville-05-window-leak-assessment.webp",
+        "alt": "Window and adjacent interior surfaces shown during a leak assessment.",
+        "title": "Window leak assessment",
+        "caption": "The window area and adjoining surfaces shown for inspection."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/colleyville-06-drywall-repair-staging.webp",
+        "alt": "Drywall materials and tools staged for repair planning.",
+        "title": "Drywall repair staging",
+        "caption": "Materials and tools arranged in a repair-planning area."
+      }
+    ]
+  },
+  {
+    "file": "grand-prairie-water-damage-restoration.html",
+    "title": "Water extraction, drying and repair planning",
+    "intro": "Water mitigation can involve extraction, structural drying, moisture inspection, contents protection and repair planning. The appropriate steps depend on the affected materials and conditions.",
+    "images": [
+      {
+        "path": "assets/images/illustrations/mitigation/grand-prairie-01-extraction.webp",
+        "alt": "Water extraction equipment arranged across an interior floor.",
+        "title": "Water extraction",
+        "caption": "Equipment used to remove water from an interior floor."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/grand-prairie-02-structural-drying.webp",
+        "alt": "Air movers and a dehumidifier arranged for structural drying.",
+        "title": "Structural drying",
+        "caption": "Drying equipment arranged to support air movement and moisture removal."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/grand-prairie-03-moisture-inspection.webp",
+        "alt": "Moisture meter used to inspect a building surface.",
+        "title": "Moisture inspection",
+        "caption": "A meter used to check moisture at an affected building surface."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/grand-prairie-04-contents-protection.webp",
+        "alt": "Household contents covered and protected near a mitigation work area.",
+        "title": "Contents protection",
+        "caption": "Belongings protected while work is planned around the affected area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/grand-prairie-05-damage-assessment.webp",
+        "alt": "Interior wall and floor materials examined during a damage assessment.",
+        "title": "Damage assessment",
+        "caption": "Affected interior materials reviewed to clarify the repair scope."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/grand-prairie-06-repair-preparation.webp",
+        "alt": "Cleared interior work area prepared for repair planning.",
+        "title": "Repair preparation",
+        "caption": "A cleared area ready for planning the next repair steps."
+      }
+    ]
   }
 ]
