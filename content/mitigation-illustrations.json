@@ -140,9 +140,9 @@
       },
       {
         "path": "assets/images/illustrations/mitigation/allen-05-damage-assessment.webp",
-        "alt": "Interior wall and floor materials examined during a damage assessment.",
-        "title": "Damage assessment",
-        "caption": "Affected interior materials reviewed to clarify the repair scope."
+        "alt": "Ceiling corner and adjacent window shown during a damage assessment.",
+        "title": "Ceiling and window-corner assessment",
+        "caption": "Ceiling and window corner shown for assessment."
       },
       {
         "path": "assets/images/illustrations/mitigation/allen-06-repair-preparation.webp",
@@ -226,9 +226,9 @@
       },
       {
         "path": "assets/images/illustrations/mitigation/arlington-05-damage-assessment.webp",
-        "alt": "Interior wall and floor materials examined during a damage assessment.",
-        "title": "Damage assessment",
-        "caption": "Affected interior materials reviewed to clarify the repair scope."
+        "alt": "Open cabinet beneath a sink shown during a water-damage assessment.",
+        "title": "Under-sink cabinet assessment",
+        "caption": "Under-sink cabinet area shown for assessment."
       },
       {
         "path": "assets/images/illustrations/mitigation/arlington-06-repair-preparation.webp",
@@ -294,9 +294,9 @@
       },
       {
         "path": "assets/images/illustrations/mitigation/colleyville-02-family-room-drying.webp",
-        "alt": "Air movers and dehumidification equipment arranged in a family-room drying setup.",
-        "title": "Family-room drying",
-        "caption": "Drying equipment arranged for air movement in a family room."
+        "alt": "Two air movers positioned in a family room to support air movement.",
+        "title": "Family-room air movers",
+        "caption": "Two air movers arranged for air movement in a family room."
       },
       {
         "path": "assets/images/illustrations/mitigation/colleyville-03-subfloor-moisture-check.webp",
@@ -662,6 +662,49 @@
       },
       {
         "path": "assets/images/illustrations/mitigation/ovilla-06-repair-preparation.webp",
+        "alt": "Cleared interior work area prepared for repair planning.",
+        "title": "Repair preparation",
+        "caption": "A cleared area ready for planning the next repair steps."
+      }
+    ]
+  },
+  {
+    "file": "rowlett-water-damage-restoration.html",
+    "title": "Steps in a water mitigation response",
+    "intro": "Water mitigation can involve inspection, extraction, structural drying and repair planning. The appropriate steps depend on the affected materials and conditions.",
+    "images": [
+      {
+        "path": "assets/images/illustrations/mitigation/rowlett-01-extraction.webp",
+        "alt": "Water extraction equipment arranged across an interior floor.",
+        "title": "Water extraction",
+        "caption": "Equipment used to remove water from an interior floor."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/rowlett-02-structural-drying.webp",
+        "alt": "Air movers and a dehumidifier arranged for structural drying.",
+        "title": "Structural drying",
+        "caption": "Drying equipment arranged to support air movement and moisture removal."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/rowlett-03-moisture-inspection.webp",
+        "alt": "Moisture meter used to inspect a building surface.",
+        "title": "Moisture inspection",
+        "caption": "A meter used to check moisture at an affected building surface."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/rowlett-04-contents-protection.webp",
+        "alt": "Household belongings covered and protected near a mitigation work area.",
+        "title": "Contents protection",
+        "caption": "Belongings protected while work is planned around the affected area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/rowlett-05-damage-assessment.webp",
+        "alt": "Interior materials reviewed during a water-damage assessment.",
+        "title": "Damage assessment",
+        "caption": "Affected materials reviewed to clarify a repair scope."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/rowlett-06-repair-preparation.webp",
         "alt": "Cleared interior work area prepared for repair planning.",
         "title": "Repair preparation",
         "caption": "A cleared area ready for planning the next repair steps."
