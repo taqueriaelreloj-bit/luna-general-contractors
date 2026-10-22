@@ -4,11 +4,11 @@
 import hubIllustrations from './service-hub-illustrations.mjs';
 
 const hubByKey=new Map(hubIllustrations.map(hub=>[hub.key,hub]));
-const illustration=(id,src,alt,caption,serviceKeys,sceneTags,sha)=>({
+const illustration=(id,src,alt,caption,serviceKeys,sceneTags,sha,width=1536,height=1024)=>({
  id,src,alt,caption,serviceKeys,sceneTags,sha,
  kind:'representative-illustration',
  attribution:'Original representative illustration; not a Luna project photograph.',
- substantive:true,width:1536,height:1024
+ substantive:true,width,height
 });
 const portfolio=(id,src,alt,caption,serviceKeys,sceneTags,width,height)=>({
  id,src,alt,caption,serviceKeys,sceneTags,
@@ -35,8 +35,8 @@ const hubItem=(serviceKey,hubKey,fileSuffix,caption)=>{
  if(!image)throw new Error(`Missing ${hubKey} illustration containing ${fileSuffix}`);
  return illustration(`${serviceKey}-${hubKey}-${fileSuffix}`,image.file,image.alt,caption,[serviceKey],[hubKey,'service-planning'],image.sha);
 };
-const specialist=(serviceKey,id,file,sha,alt,caption,sceneTags)=>illustration(
- id,file,alt,caption,[serviceKey],sceneTags,sha
+const specialist=(serviceKey,id,file,sha,alt,caption,sceneTags,width,height)=>illustration(
+ id,file,alt,caption,[serviceKey],sceneTags,sha,width,height
 );
 
 export const targetServiceKeys=[
@@ -99,7 +99,7 @@ const media={
 
  'concrete-driveways':{items:[
   specialist('concrete-driveways','concrete-driveways-finished-driveway','assets/images/illustrations/concrete-driveways/concrete-driveways-01-finished-driveway.webp','4ede2b7697b4791e464918e615a1b602aa7f2504','Illustration of a light-gray concrete driveway leading to a brick home\'s garage.','Finished concrete driveway with a broom-textured surface and control joints.',['driveway','concrete','finish']),
-  specialist('concrete-driveways','concrete-driveways-base-forms','assets/images/illustrations/concrete-driveways/concrete-driveways-02-base-and-forms.webp','b46243c77389f9437d619c27bc01578f3e9bf901','Illustration of a gravel driveway base enclosed by timber forms.','Aggregate base and edge forms prepared for a residential driveway.',['driveway','base','forms']),
+  specialist('concrete-driveways','concrete-driveways-base-forms','assets/images/illustrations/concrete-driveways/concrete-driveways-02-base-and-forms.webp','b46243c77389f9437d619c27bc01578f3e9bf901','Illustration of a gravel driveway base enclosed by timber forms.','Aggregate base and edge forms prepared for a residential driveway.',['driveway','base','forms'],1440,960),
   specialist('concrete-driveways','concrete-driveways-reinforcement','assets/images/illustrations/concrete-driveways/concrete-driveways-03-reinforcement-layout.webp','d8bcbeb4f9f365e2ff778bde58a2c5bd8ecda6c8','Illustration of steel reinforcement on supports within driveway forms.','Driveway reinforcement arranged before concrete placement; final design varies by project.',['driveway','reinforcement']),
   specialist('concrete-driveways','concrete-driveways-broom-finish','assets/images/illustrations/concrete-driveways/concrete-driveways-04-broom-finish-detail.webp','1c34450a2a8ef09af4c3acf20798a72840f8ae97','Illustration of broom-textured concrete with a finished edge and a joint.','Concrete finishing texture, edge detail, and a control joint.',['driveway','finish']),
   portfolio('concrete-driveways-commercial-sitework','dfw-commercial-concrete-sitework-2020.jpg','Related commercial concrete sitework from Luna\'s DFW portfolio.','Related DFW commercial concrete sitework reference; it is not a residential driveway.',['concrete-driveways'],['concrete','commercial-sitework'],1363,766)
@@ -119,7 +119,7 @@ const media={
   hubItem('window-replacement','carpentry','carpentry-02-trim-joint','Interior trim-joint reference for window finishing.')
  ]},
  'foundation-repair':{suppressLegacyPhoto:true,items:[
-  specialist('foundation-repair','foundation-repair-condition-documentation','assets/images/illustrations/foundation-repair/foundation-repair-01-condition-documentation.webp','87667c43cb2fce5b866cb51c5ebc71f9c39a66e5','Illustration of a brick wall and concrete foundation edge with a camera and notebook nearby.','Documenting visible conditions around a home\'s foundation perimeter; not a diagnosis.',['foundation','documentation']),
+  specialist('foundation-repair','foundation-repair-condition-documentation','assets/images/illustrations/foundation-repair/foundation-repair-01-condition-documentation.webp','87667c43cb2fce5b866cb51c5ebc71f9c39a66e5','Illustration of a brick wall and concrete foundation edge with a camera and notebook nearby.','Documenting visible conditions around a home\'s foundation perimeter; not a diagnosis.',['foundation','documentation'],1440,960),
   specialist('foundation-repair','foundation-repair-drainage-review','assets/images/illustrations/foundation-repair/foundation-repair-02-drainage-review.webp','da9e659ac89680bf6365f4ceae98e9a312d6c866','Illustration of a downspout extension and landscaping beside a concrete foundation edge.','Reviewing surface drainage and downspout routing near the foundation.',['foundation','drainage']),
   specialist('foundation-repair','foundation-repair-plan-review','assets/images/illustrations/foundation-repair/foundation-repair-03-plan-review.webp','12216e9d2696b852327c7297a2573049d0b7a226','Illustration of a simple foundation drawing, drafting tools, and a hard hat on a desk.','Foundation-plan review concept, not a stamped or project-specific engineering plan.',['foundation','plan-review']),
   specialist('foundation-repair','foundation-repair-support-model','assets/images/illustrations/foundation-repair/foundation-repair-04-support-concept-model.webp','c029c41e24190e5e21d505f656969a2597f91556','Conceptual tabletop cutaway model showing a concrete slab and a simplified vertical support.','Conceptual tabletop model of a generic slab-support arrangement, not a repair design or installation guide.',['foundation','concept-model']),

@@ -30,6 +30,42 @@ const decode=value=>String(value)
 const normalize=value=>decode(String(value).replace(/<[^>]*>/g,' ').replace(/\s+/g,' ')).trim();
 const isInsideRoot=path=>!relative(root,path).startsWith('..');
 const gitBlobSha=data=>createHash('sha1').update(Buffer.concat([Buffer.from(`blob ${data.length}\0`),data])).digest('hex');
+const imageDimensions=data=>{
+ if(data.length>=24&&data.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))&&data.toString('ascii',12,16)==='IHDR'){
+  return {width:data.readUInt32BE(16),height:data.readUInt32BE(20)};
+ }
+ if(data.length>=12&&data.toString('ascii',0,4)==='RIFF'&&data.toString('ascii',8,12)==='WEBP'){
+  for(let offset=12;offset+8<=data.length;){
+   const chunk=data.toString('ascii',offset,offset+4),size=data.readUInt32LE(offset+4),start=offset+8;
+   if(start+size>data.length)throw new Error('truncated WebP chunk');
+   if(chunk==='VP8X'&&size>=10)return {width:data.readUIntLE(start+4,3)+1,height:data.readUIntLE(start+7,3)+1};
+   if(chunk==='VP8 '&&size>=10&&data[start+3]===0x9d&&data[start+4]===0x01&&data[start+5]===0x2a)return {width:data.readUInt16LE(start+6)&0x3fff,height:data.readUInt16LE(start+8)&0x3fff};
+   if(chunk==='VP8L'&&size>=5&&data[start]===0x2f)return {width:(data[start+1]|((data[start+2]&0x3f)<<8))+1,height:(((data[start+2]&0xc0)>>6)|(data[start+3]<<2)|((data[start+4]&0x0f)<<10))+1};
+   offset=start+size+(size%2);
+  }
+  throw new Error('unsupported WebP bitstream');
+ }
+ if(data.length>=4&&data[0]===0xff&&data[1]===0xd8){
+  const sof=new Set([0xc0,0xc1,0xc2,0xc3,0xc5,0xc6,0xc7,0xc9,0xca,0xcb,0xcd,0xce,0xcf]);
+  for(let offset=2;offset<data.length;){
+   if(data[offset]!==0xff){offset++;continue;}
+   while(offset<data.length&&data[offset]===0xff)offset++;
+   const marker=data[offset++];
+   if(marker===0xd8||marker===0x01||(marker>=0xd0&&marker<=0xd7))continue;
+   if(marker===0xd9||marker===0xda)break;
+   if(offset+2>data.length)break;
+   const size=data.readUInt16BE(offset);
+   if(size<2||offset+size>data.length)throw new Error('truncated JPEG segment');
+   if(sof.has(marker)){
+    if(size<7)throw new Error('invalid JPEG frame segment');
+    return {width:data.readUInt16BE(offset+5),height:data.readUInt16BE(offset+3)};
+   }
+   offset+=size;
+  }
+  throw new Error('JPEG frame dimensions not found');
+ }
+ throw new Error('unsupported image format');
+};
 
 const generated=JSON.parse(await readFile(resolve(root,'content/service-guide-manifest.json'),'utf8'));
 const assignments=generated.filter(item=>item.slug&&!item.hub&&!item.article&&item.key!=='water-damage-restoration');
@@ -41,7 +77,6 @@ if(new Set(assignments.map(item=>item.file)).size!==assignments.length)fail('Dup
 if(JSON.stringify(Object.keys(serviceMedia).sort())!==JSON.stringify(expectedKeys))fail('Service-media manifest has unexpected or missing service keys');
 
 const mediaByKey=new Map;
-const remoteBlobSources=new Map;
 const deferredRemoteBlobSources=new Set;
 for(const key of expectedKeys){
  const entry=serviceMedia[key];
@@ -54,36 +89,49 @@ for(const key of expectedKeys){
   if(!item?.id||byId.has(item.id))fail(`Duplicate/missing media id in ${key}: ${item?.id||'(missing id)'}`);
   if(!item?.src||srcs.has(item.src))fail(`Duplicate/missing media source in ${key}: ${item?.src||'(missing src)'}`);
   if(!item?.serviceKeys?.includes(key))fail(`Media allowlist does not include ${key}: ${item?.id||'(missing id)'}`);
-  if(!item?.alt||!item?.caption||!item?.attribution||!Number.isFinite(item?.width)||!Number.isFinite(item?.height)||item.width<1||item.height<1)fail(`Incomplete metadata for ${key}: ${item?.id||'(missing id)'}`);
+  if(!item?.alt||!item?.caption||!item?.attribution||!Number.isSafeInteger(item?.width)||!Number.isSafeInteger(item?.height)||item.width<1||item.height<1)fail(`Incomplete metadata for ${key}: ${item?.id||'(missing id)'}`);
   if(/\.svg(?:$|[?#])/i.test(item?.src||'')||String(item?.src||'').includes('assets/service-guides/'))fail(`Non-scene asset declared substantive: ${key}/${item?.id||'(missing id)'}`);
   if(item?.sha&&!/^[a-f0-9]{40}$/.test(item.sha))fail(`Invalid Git blob SHA for ${key}/${item.id}`);
-  if(item?.sha)remoteBlobSources.set(item.src,item.sha);
   if(item?.id)byId.set(item.id,item);
   if(item?.src)srcs.add(item.src);
  }
  mediaByKey.set(key,byId);
 }
 
-const checkSource=async(src,sha,context)=>{
- const absolute=resolve(root,src);
+const checkSource=async(item,context)=>{
+ const {src,sha,width,height}=item,absolute=resolve(root,src);
  if(!isInsideRoot(absolute)){fail(`Image source escapes repository root: ${context}: ${src}`);return;}
+ let info;
  try{
-  const info=await stat(absolute);
-  if(!info.isFile()){fail(`Image source is not a file: ${context}: ${src}`);return;}
-  if(sha){
-   const actual=gitBlobSha(await readFile(absolute));
-   if(actual!==sha)fail(`Git blob SHA mismatch: ${context}: ${src}`);
-  }
- }catch{
-  if(!(allowRemoteBlobs&&sha&&/^[a-f0-9]{40}$/.test(sha))){
+  info=await stat(absolute);
+ }catch(error){
+  if((error.code==='ENOENT'||error.code==='ENOTDIR')&&allowRemoteBlobs&&sha&&/^[a-f0-9]{40}$/.test(sha)){
+   deferredRemoteBlobSources.add(src);
+  }else if(error.code==='ENOENT'||error.code==='ENOTDIR'){
    fail(`Missing image source: ${context}: ${src}`);
   }else{
-   deferredRemoteBlobSources.add(src);
+   fail(`Could not stat image source: ${context}: ${src} (${error.message})`);
   }
+  return;
+ }
+ if(!info.isFile()){fail(`Image source is not a file: ${context}: ${src}`);return;}
+ let data;
+ try{
+  data=await readFile(absolute);
+ }catch(error){
+  fail(`Could not read image source: ${context}: ${src} (${error.message})`);
+  return;
+ }
+ if(sha&&gitBlobSha(data)!==sha)fail(`Git blob SHA mismatch: ${context}: ${src}`);
+ try{
+  const actual=imageDimensions(data);
+  if(actual.width!==width||actual.height!==height)fail(`Image dimensions differ from manifest: ${context}: ${src} is ${actual.width}x${actual.height}, expected ${width}x${height}`);
+ }catch(error){
+  fail(`Could not read local image dimensions: ${context}: ${src} (${error.message})`);
  }
 };
 for(const key of expectedKeys){
- for(const item of serviceMedia[key]?.items||[])await checkSource(item.src,item.sha,`${key}/${item.id}`);
+ for(const item of serviceMedia[key]?.items||[])await checkSource(item,`${key}/${item.id}`);
 }
 
 const extractCards=section=>section.match(/<figure\b[^>]*\bclass="[^"]*\bsci-card\b[^"]*"[^>]*>[\s\S]*?<\/figure>/gi)||[];
