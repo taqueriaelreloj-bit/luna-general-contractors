@@ -19,7 +19,9 @@ const card=id=>{const p=photoById.get(id);return `<figure class="mp-card"><a cla
 const selections=a=>{
  if(a.hub)return catalog.photos.map(p=>p.id);
  const n=a.index;
- return [...new Set([[41,43,44,45,46,47][n%6],33+n%10,22+n%11,2+n%16,18+n%4,33+(n+5)%15])];
+ const selected=[...new Set([[41,43,44,45,46,47][n%6],33+n%10,22+n%11,2+n%16,18+n%4,33+(n+5)%15])];
+ if(a.slug==='hurst') selected.push(46); // Add a distinct authentic Arlington room photo to meet the substantive-scene minimum.
+ return selected;
 };
 const start='<!-- mitigation-projects:start -->',end='<!-- mitigation-projects:end -->';
 function gallery(a,ids){
