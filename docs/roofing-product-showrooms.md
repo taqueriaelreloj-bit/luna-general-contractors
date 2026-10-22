@@ -31,3 +31,11 @@ The user requested package photos and approved example images with linked source
 `script.js` leaves the existing form in `.local-form` on `roofing-location-page` pages. Other pages keep the existing relocation behavior. The city contact bar and footer remain in the static HTML; the products stylesheet also gives the lower form a readable panel and space above the floating call control. No forms are submitted as part of this change.
 
 The shared gallery previously called `scrollIntoView` on every 6.5-second autoplay tick, pulling readers back to the gallery. It now scrolls only after a visitor's gallery action. The initial-load handler also respects existing section anchors on internal pages, including `#roof-products` and `#estimate-form`.
+
+## Roofing system illustrations
+
+The main `roofing.html` page shows five distinct representative roofing-system illustrations. The city pages show two distinct scenes each for standing-seam metal and low-slope TPO. These are separate from the four credited reference photographs and do not claim local completed installations. The manifest and builder reapply marked blocks after the root roofing generators run.
+
+## City roofing system illustrations
+
+City roofing pages show two distinct representative scenes for standing-seam metal and low-slope TPO systems. These illustrations are separate from the four credited reference photographs and do not claim that the illustrated systems were installed in the named city. The manifest is `content/roofing-city-illustrations.mjs`; `scripts/build-roofing-city-illustrations.mjs` reapplies the marked blocks after root roofing generators run. The images use lazy loading and responsive two-column layouts on desktop.
