@@ -624,5 +624,48 @@
         "caption": "A cleared area ready for planning the next repair steps."
       }
     ]
+  },
+  {
+    "file": "ovilla-water-damage-restoration.html",
+    "title": "Water mitigation: steps from assessment to repair",
+    "intro": "Water mitigation may involve moisture inspection, extraction, structural drying and repair planning. The right sequence depends on affected materials and conditions.",
+    "images": [
+      {
+        "path": "assets/images/illustrations/mitigation/ovilla-01-extraction.webp",
+        "alt": "Water extraction equipment arranged across an interior floor.",
+        "title": "Water extraction",
+        "caption": "Equipment arranged to remove water from an interior floor."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/ovilla-02-structural-drying.webp",
+        "alt": "Air movers and a dehumidifier set up to support structural drying.",
+        "title": "Structural drying",
+        "caption": "Drying equipment arranged to support air movement and moisture removal."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/ovilla-03-moisture-inspection.webp",
+        "alt": "Moisture meter used to check an interior building surface.",
+        "title": "Moisture inspection",
+        "caption": "A meter used to check moisture at an affected surface."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/ovilla-04-contents-protection.webp",
+        "alt": "Household contents covered and protected near a mitigation work area.",
+        "title": "Contents protection",
+        "caption": "Belongings protected while work is planned around the affected area."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/ovilla-05-damage-assessment.webp",
+        "alt": "Interior materials reviewed during a water-damage assessment.",
+        "title": "Damage assessment",
+        "caption": "Affected materials reviewed to clarify a repair scope."
+      },
+      {
+        "path": "assets/images/illustrations/mitigation/ovilla-06-repair-preparation.webp",
+        "alt": "Cleared interior work area prepared for repair planning.",
+        "title": "Repair preparation",
+        "caption": "A cleared area ready for planning the next repair steps."
+      }
+    ]
   }
 ]
