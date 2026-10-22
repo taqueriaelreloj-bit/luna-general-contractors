@@ -432,4 +432,113 @@ export default [
       }
     ]
   }
+,
+{
+  "slug": "red-oak",
+  "city": "Red Oak",
+  "images": [
+    {
+      "file": "assets/images/illustrations/roofing/red-oak-01-residential-metal-roof.webp",
+      "title": "Standing-seam metal roof",
+      "alt": "Representative standing-seam metal roof illustration for Red Oak.",
+      "caption": "Representative residential standing-seam metal roof illustration."
+    },
+    {
+      "file": "assets/images/illustrations/roofing/red-oak-02-commercial-tpo-roof.webp",
+      "title": "Low-slope TPO roof",
+      "alt": "Representative low-slope TPO roof illustration for Red Oak.",
+      "caption": "Representative commercial low-slope TPO roof illustration."
+    }
+  ]
+},
+{
+  "slug": "richardson",
+  "city": "Richardson",
+  "images": [
+    {
+      "file": "assets/images/illustrations/roofing/richardson-01-residential-metal-roof.webp",
+      "title": "Standing-seam metal roof",
+      "alt": "Representative standing-seam metal roof illustration for Richardson.",
+      "caption": "Representative residential standing-seam metal roof illustration."
+    },
+    {
+      "file": "assets/images/illustrations/roofing/richardson-02-commercial-tpo-roof.webp",
+      "title": "Low-slope TPO roof",
+      "alt": "Representative low-slope TPO roof illustration for Richardson.",
+      "caption": "Representative commercial low-slope TPO roof illustration."
+    }
+  ]
+},
+{
+  "slug": "rockwall",
+  "city": "Rockwall",
+  "images": [
+    {
+      "file": "assets/images/illustrations/roofing/rockwall-01-residential-metal-roof.webp",
+      "title": "Standing-seam metal roof",
+      "alt": "Representative standing-seam metal roof illustration for Rockwall.",
+      "caption": "Representative residential standing-seam metal roof illustration."
+    },
+    {
+      "file": "assets/images/illustrations/roofing/rockwall-02-commercial-tpo-roof.webp",
+      "title": "Low-slope TPO roof",
+      "alt": "Representative low-slope TPO roof illustration for Rockwall.",
+      "caption": "Representative commercial low-slope TPO roof illustration."
+    }
+  ]
+},
+{
+  "slug": "rowlett",
+  "city": "Rowlett",
+  "images": [
+    {
+      "file": "assets/images/illustrations/roofing/rowlett-01-residential-metal-roof.webp",
+      "title": "Standing-seam metal roof",
+      "alt": "Representative standing-seam metal roof illustration for Rowlett.",
+      "caption": "Representative residential standing-seam metal roof illustration."
+    },
+    {
+      "file": "assets/images/illustrations/roofing/rowlett-02-commercial-tpo-roof.webp",
+      "title": "Low-slope TPO roof",
+      "alt": "Representative low-slope TPO roof illustration for Rowlett.",
+      "caption": "Representative commercial low-slope TPO roof illustration."
+    }
+  ]
+},
+{
+  "slug": "southlake",
+  "city": "Southlake",
+  "images": [
+    {
+      "file": "assets/images/illustrations/roofing/southlake-01-residential-metal-roof.webp",
+      "title": "Standing-seam metal roof",
+      "alt": "Representative standing-seam metal roof illustration for Southlake.",
+      "caption": "Representative residential standing-seam metal roof illustration."
+    },
+    {
+      "file": "assets/images/illustrations/roofing/southlake-02-commercial-tpo-roof.webp",
+      "title": "Low-slope TPO roof",
+      "alt": "Representative low-slope TPO roof illustration for Southlake.",
+      "caption": "Representative commercial low-slope TPO roof illustration."
+    }
+  ]
+},
+{
+  "slug": "waxahachie",
+  "city": "Waxahachie",
+  "images": [
+    {
+      "file": "assets/images/illustrations/roofing/waxahachie-01-residential-metal-roof.webp",
+      "title": "Standing-seam metal roof",
+      "alt": "Representative standing-seam metal roof illustration for Waxahachie.",
+      "caption": "Representative residential standing-seam metal roof illustration."
+    },
+    {
+      "file": "assets/images/illustrations/roofing/waxahachie-02-commercial-tpo-roof.webp",
+      "title": "Low-slope TPO roof",
+      "alt": "Representative low-slope TPO roof illustration for Waxahachie.",
+      "caption": "Representative commercial low-slope TPO roof illustration."
+    }
+  ]
+}
 ];
