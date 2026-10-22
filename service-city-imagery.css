@@ -1,0 +1,17 @@
+/* Substantive, labeled service imagery for generated city pages. */
+.service-city-imagery{margin:42px 0 48px;padding:clamp(1.35rem,3vw,2.25rem);background:#eef2f4;border:1px solid #d5dde2;border-top:4px solid #e5a000;border-radius:10px;color:#17242d}
+.sci-heading{max-width:860px;margin:0 auto 1.5rem;text-align:center}
+.sci-eyebrow{margin:0 0 .45rem;color:#8a5a00;font-size:.75rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+.sci-heading h3{margin:.1rem 0 .75rem;color:#111c25;font-size:clamp(1.55rem,3vw,2.35rem);line-height:1.14}
+.sci-heading>p{margin:.5rem auto;line-height:1.65}
+.sci-claim-note{max-width:760px;padding:.75rem 1rem;background:#fff8e9;border-left:3px solid #e5a000;text-align:left}
+.sci-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.sci-card{min-width:0;margin:0;overflow:hidden;background:#fff;border:1px solid #d4dbe0;border-radius:8px;box-shadow:0 7px 18px rgba(19,35,45,.07)}
+.sci-card img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;background:#dfe6e9}
+.sci-card[data-media-kind="genuine-portfolio-photo"] img{aspect-ratio:auto;object-fit:contain;background:#fff}
+.sci-card figcaption{padding:1rem 1rem 1.1rem;color:#32424d;font-size:.94rem;line-height:1.5}
+.sci-card figcaption p{margin:.45rem 0 0}
+.sci-card .sci-kind{margin:0;color:#845500;font-size:.75rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.sci-card .sci-disclosure{color:#5b6971;font-size:.84rem}
+@media(max-width:900px){.sci-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.service-city-imagery{margin:32px 0 38px;padding:1.15rem}.sci-heading{text-align:left}.sci-grid{grid-template-columns:1fr;gap:.85rem}.sci-card figcaption{padding:.9rem}.sci-claim-note{padding:.7rem .85rem}}

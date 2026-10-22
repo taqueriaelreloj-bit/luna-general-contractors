@@ -8,6 +8,13 @@ import mitigationNotes from '../content/mitigation-location-notes.mjs';
 import equipmentPhotos from '../content/mitigation-equipment-photos.mjs';
 import {replacements as mitigationReplacements, question as mitigationQuestion, answer as mitigationAnswer} from '../content/mitigation-scope.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
+const check=process.argv.includes('--check');
+const stale=[];
+const writeGenerated=async(path,content)=>{
+ if(!check){await writeFile(path,content);return;}
+ const existing=await readFile(path,'utf8');
+ if(existing!==content)stale.push(path);
+};
 const e=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const cities=await Promise.all((await readdir(resolve(root,'luna_engine/content/cities'))).filter(n=>n.endsWith('.json')).sort().map(async n=>JSON.parse(await readFile(resolve(root,'luna_engine/content/cities',n),'utf8'))));
 const files=new Set((await readdir(root)).filter(n=>n.endsWith('.html')));
@@ -47,6 +54,7 @@ function guide(a){
  const photoIsSpecific=['door-installation','window-replacement','foundation-repair','insurance-claims'].includes(a.key);
  const photoLabel=photoIsSpecific?'Related work from the DFW portfolio':'Luna project reference';
  const photoNote=photoIsSpecific?'This portfolio image illustrates related construction or documentation work. It is not represented as a photograph of a named product, a foundation repair, or work in this page’s city.':'Existing Luna portfolio photograph from Dallas–Fort Worth. It is not a product photograph or a claim that the work was completed in this page’s city.';
+ const substantivePhoto=a.slug&&a.key!=='water-damage-restoration'?' data-service-guide-portfolio="'+e(p.photo)+'" data-substantive-scene="portfolio-photo"':'';
  const intro=a.hub?p.intro:`For ${p.name.toLowerCase()} in ${a.city}, this guide focuses on ${topic.title.charAt(0).toLowerCase()+topic.title.slice(1)}. Use it to discuss the conditions at your property and compare the proposed work.`;
  const extra=a.key==='water-damage-restoration'?`<p class="sg-note"><strong>Water extraction, drying and reconstruction by Luna:</strong> Our team performs all three stages. We remove standing water, dry the affected areas with equipment selected for the conditions, and complete the agreed reconstruction after source correction and documented drying. Any required specialist assessment or remediation is identified separately in the scope. Equipment selection and drying duration depend on the property.</p>`:'';
  const process=a.key==='water-damage-restoration'?`<div class="sg-process"><article><span>01</span><h3>Extract the water</h3><p>Luna removes standing water from the affected areas. We review access, the reported source and site conditions to establish the extraction scope and any source-control or specialist work required.</p></article><article><span>02</span><h3>Dry and check moisture</h3><p>We perform structural drying with a plan for air movement, dehumidification and moisture checks suited to the materials and conditions. Readings guide the transition to reconstruction.</p></article><article><span>03</span><h3>Rebuild the affected areas</h3><p>After source correction and documented drying, Luna completes the agreed repairs to affected drywall, ceilings, trim, flooring, cabinets and other finishes. ${e(topic.check)}</p></article></div>`:`<div class="sg-process"><article><span>01</span><h3>Review the existing condition</h3><p>${e(topic.text.split('. ')[0]+'.')} Bring photographs, dimensions and any relevant previous repair records to the discussion.</p></article><article><span>02</span><h3>Define the complete selection</h3><p>Compare ${e(p.products.map(id=>products[id].name.toLowerCase()).join(', '))}. Specify the selected components and the preparation they require.</p></article><article><span>03</span><h3>Agree on the handoff</h3><p>${e(topic.check)} ${e(condition.text.split('. ').slice(-1)[0])}</p></article></div>`;
@@ -59,7 +67,7 @@ function guide(a){
 <div class="sg-brief"><article><h3>${e(topic.title)}</h3><p>${e(topic.text)}</p></article><article><h3>${e(condition.title)}</h3><p>${e(condition.text)}</p></article></div>
 <h3>${a.key==='water-damage-restoration'?'Equipment from a Luna mitigation project':'Compare the components behind the finished work'}</h3><div class="sg-cards">${p.products.map(id=>card(id,a.key)).join('\n')}</div>
 ${extra}
-<figure class="sg-photo shared-project-gallery"><img src="${e(p.photo)}" alt="${e(alt)}" width="1188" height="891" loading="lazy" decoding="async"><figcaption><p class="sg-eyebrow">${photoLabel}</p><h3>${e(topic.check)}</h3><p>${e(photoNote)}</p><a href="projects.html">Explore documented project work →</a></figcaption></figure>
+<figure class="sg-photo shared-project-gallery"${substantivePhoto}><img src="${e(p.photo)}" alt="${e(alt)}" width="1188" height="891" loading="lazy" decoding="async"><figcaption><p class="sg-eyebrow">${photoLabel}</p><h3>${e(topic.check)}</h3><p>${e(photoNote)}</p><a href="projects.html">Explore documented project work →</a></figcaption></figure>
 ${process}
 <div class="sg-faq"><h3>Questions for this project</h3>${scopeFaq}<details><summary>${e(condition.question)}</summary><p>${e(condition.answer)}</p></details><details><summary>What needs to be confirmed before ${e(p.name.toLowerCase())} begins?</summary><p>${e(topic.check)} The written scope should also identify the selected products, work boundaries, required trade coordination and approval steps for changes.</p></details><details><summary>Are the listed manufacturers included in every estimate?</summary><p>No. These are references for comparing product categories. Availability, suitability, the exact model and the actual supplier must be confirmed for the property. A reference does not imply certification, stock or a brand affiliation.</p></details></div>
 <p class="sg-note"><strong>Manufacturer coverage:</strong> Terms apply to the exact product and eligible application. Material coverage, complete-system programs and installation workmanship are different obligations. Request the current written warranty and care instructions; a warranty term is not a guaranteed service life.${a.key==='water-damage-restoration'?'':' Generic illustrations are original explanatory artwork, not branded packaging.'}</p>
@@ -95,8 +103,9 @@ for(const a of assignments){
  if(a.hub&&a.key==='commercial-construction'){
   // Existing commercial-roofing teaser is retained.
  }
- await writeFile(resolve(root,a.file),html);
+ await writeGenerated(resolve(root,a.file),html);
  manifest.push({...a,name:p.name,topic:t.title,condition:c.title,layout:['catalog','editorial','technical','showcase'][a.index%4],products:p.products});
 }
-await writeFile(resolve(root,'content/service-guide-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
-console.log(`Built ${manifest.length} guides across ${Object.keys(profiles).length} service categories`);
+await writeGenerated(resolve(root,'content/service-guide-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
+if(check&&stale.length)throw new Error(`Service guides are stale (${stale.length} files): ${stale.slice(0,8).join(', ')}`);
+console.log(`${check?'Verified':'Built'} ${manifest.length} guides across ${Object.keys(profiles).length} service categories`);
