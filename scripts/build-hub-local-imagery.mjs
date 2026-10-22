@@ -29,6 +29,11 @@ function gitBlobSha(bytes) {
 
 async function validateImage(image, hub) {
   if (!hub.context || !hub.serviceTerm || !hub.intro.includes(hub.context) || !hub.intro.includes(hub.serviceTerm)) throw new Error(`Missing regional service context for ${hub.key}.`);
+  const normalizedCaption = hub.visibleCaption?.replaceAll('–', '-').toLowerCase();
+  const captionHasService = hub.key === 'mitigation'
+    ? normalizedCaption?.includes('water damage mitigation')
+    : normalizedCaption?.includes(hub.serviceTerm);
+  if (!hub.visibleCaption || !normalizedCaption.includes(hub.context.toLowerCase()) || !captionHasService) throw new Error(`Missing concise regional service caption for ${hub.key}.`);
   if (!image.alt.includes(hub.context) || !image.alt.includes(hub.serviceTerm) || !image.caption.includes(hub.context) || !image.caption.includes(hub.serviceTerm)) throw new Error(`Image descriptions need the regional service context for ${image.file}.`);
   if (!image.file.startsWith('assets/images/illustrations/') || image.file.includes('..')) throw new Error(`Unsafe image path for ${hub.key}.`);
   const path = resolve(root, image.file);
@@ -47,7 +52,7 @@ async function validateImage(image, hub) {
 }
 
 function section(hub) {
-  const cards = hub.images.map(image => `<figure class="mi-card${image.className ? ` ${image.className}` : ''}" data-representative-generated-illustration="true"><img src="${escapeHtml(image.file)}" alt="${escapeHtml(image.alt)}" width="${image.width}" height="${image.height}" loading="lazy" decoding="async"><figcaption><h3>${escapeHtml(image.title)}</h3><p>${escapeHtml(image.caption)}</p></figcaption></figure>`).join('\n');
+  const cards = hub.images.map(image => `<figure class="mi-card${image.className ? ` ${image.className}` : ''}" data-representative-generated-illustration="true"><img src="${escapeHtml(image.file)}" alt="${escapeHtml(image.alt)}" width="${image.width}" height="${image.height}" loading="lazy" decoding="async"><figcaption><h3>${escapeHtml(image.title)}</h3><p>${escapeHtml(hub.visibleCaption)}</p></figcaption></figure>`).join('\n');
   return `${hub.start}\n<section class="mi-section" id="${escapeHtml(hub.sectionId)}" aria-labelledby="${escapeHtml(hub.key)}-imagery-title"><div class="container">\n  <header class="mi-heading"><div><p class="mi-eyebrow">${escapeHtml(hub.eyebrow)}</p><h2 id="${escapeHtml(hub.key)}-imagery-title">${escapeHtml(hub.title)}</h2></div>\n  <p class="mi-intro">${escapeHtml(hub.intro)}</p></header>\n  <div class="mi-grid">${cards}</div>\n</div></section>\n${hub.end}`;
 }
 

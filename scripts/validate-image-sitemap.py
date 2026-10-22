@@ -113,8 +113,8 @@ def main() -> None:
     required_hero_tokens = (
         "<picture class=\"hero-media\">",
         hero_source,
-        "Representative generated illustration of a broad residential property for Dallas-Fort Worth general contractor services; not a Luna project photo.",
-        "Representative generated illustration for Dallas-Fort Worth general contractor services",
+        "Generated illustration of a broad residential property for Dallas-Fort Worth general contractor services.",
+        "<p class=\"hero-image-disclosure\">General contractor services — Dallas–Fort Worth</p>",
     )
     if not all(token in hero for token in required_hero_tokens):
         fail("homepage hero lacks required accessible image markup")

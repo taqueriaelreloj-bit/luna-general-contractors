@@ -21,9 +21,10 @@ export default [
     end: '<!-- roofing-hub-illustrations:end -->',
     context: 'Dallas-Fort Worth',
     serviceTerm: 'roofing',
-    eyebrow: 'Representative generated illustrations',
+    eyebrow: 'Generated planning illustrations',
     title: 'Roofing Options for Different Building Conditions',
-    intro: 'These representative generated illustrations support Dallas-Fort Worth roofing planning by showing materials and building conditions. They are not Luna project photos, product endorsements, installation specifications, or evidence of work in a particular city. Actual selection depends on roof slope, drainage, deck condition and the written project scope.',
+    intro: 'Generated illustrations support Dallas-Fort Worth roofing planning. They are planning visuals, not project photographs or installation specifications; material selection depends on roof slope, drainage, deck condition and the written project scope.',
+    visibleCaption: 'Roofing services — Dallas–Fort Worth',
     images: [
       {
         file: 'assets/images/illustrations/roofing-local-batch-v1/standing-seam-limestone-01.png',
@@ -82,9 +83,10 @@ export default [
     end: '<!-- mitigation-illustrations:end -->',
     context: 'Dallas-Fort Worth',
     serviceTerm: 'water mitigation',
-    eyebrow: 'Representative generated illustrations',
+    eyebrow: 'Generated planning illustrations',
     title: 'What Water Mitigation Work Can Involve',
-    intro: 'These representative generated illustrations show possible Dallas-Fort Worth water mitigation planning and work areas. They are not Luna client photos and do not establish a diagnosis, scope, drying result, certification, or work in a particular city.',
+    intro: 'Generated illustrations show Dallas-Fort Worth water mitigation planning contexts. They are not client photos or a diagnosis, work scope, certification, or drying result; equipment and scope depend on site conditions.',
+    visibleCaption: 'Water damage mitigation — Dallas–Fort Worth',
     images: [
       {
         file: 'assets/images/illustrations/mitigation-local-batch-v1/01-living-room-water-extraction.png',

@@ -43,8 +43,8 @@ async function validateImage(image, page) {
 function section(page) {
   const start = `<!-- ${page.id}:start -->`;
   const end = `<!-- ${page.id}:end -->`;
-  const cards = page.images.map(image => `<figure class="generated-image-card" data-representative-generated-illustration="true"><img src="${escapeHtml(image.file)}" alt="${escapeHtml(image.alt)}" width="${image.width}" height="${image.height}" loading="lazy" decoding="async"><figcaption><h3>${escapeHtml(image.title)}</h3><p>${escapeHtml(image.caption)}</p></figcaption></figure>`).join('\n');
-  return `${start}\n<section class="section generated-image-section" id="${escapeHtml(page.id)}" aria-labelledby="${escapeHtml(page.id)}-title"><div class="container"><header class="generated-image-heading"><div><p class="eyebrow gold">Representative generated illustrations</p><h2 id="${escapeHtml(page.id)}-title">${escapeHtml(page.title)}</h2></div><p>${escapeHtml(page.intro)}</p></header><div class="generated-image-grid">${cards}</div></div></section>\n${end}`;
+  const cards = page.images.map(image => `<figure class="generated-image-card" data-representative-generated-illustration="true"><img src="${escapeHtml(image.file)}" alt="${escapeHtml(image.alt)}" width="${image.width}" height="${image.height}" loading="lazy" decoding="async"><figcaption><h3>${escapeHtml(image.title)}</h3><p>${escapeHtml(page.visibleCaption)}</p></figcaption></figure>`).join('\n');
+  return `${start}\n<section class="section generated-image-section" id="${escapeHtml(page.id)}" aria-labelledby="${escapeHtml(page.id)}-title"><div class="container"><header class="generated-image-heading"><div><p class="eyebrow gold">Generated planning illustrations</p><h2 id="${escapeHtml(page.id)}-title">${escapeHtml(page.title)}</h2></div><p>${escapeHtml(page.intro)}</p></header><div class="generated-image-grid">${cards}</div></div></section>\n${end}`;
 }
 
 function replaceSection(html, page, markup) {
@@ -65,6 +65,7 @@ function replaceSection(html, page, markup) {
 const stale = [];
 for (const page of pages) {
   assert(page.intro.includes('Dallas-Fort Worth') && page.intro.toLowerCase().includes(page.serviceTerm), `Missing regional service context: ${page.file}`);
+  assert(page.visibleCaption?.includes('Dallas–Fort Worth') && page.visibleCaption.toLowerCase().includes(page.serviceTerm), `Missing concise regional service caption: ${page.file}`);
   assert(page.images.length > 0, `No images configured: ${page.file}`);
   await Promise.all(page.images.map(image => validateImage(image, page)));
   const file = resolve(root, page.file);

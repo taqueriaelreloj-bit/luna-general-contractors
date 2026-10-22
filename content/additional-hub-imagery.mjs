@@ -26,8 +26,9 @@ export default [
     file: 'kitchens.html',
     id: 'additional-kitchen-imagery',
     serviceTerm: 'kitchen remodeling',
+    visibleCaption: 'Kitchen remodeling services — Dallas–Fort Worth',
     title: 'More Kitchen Remodeling Planning Scenes',
-    intro: 'These representative generated illustrations support Dallas-Fort Worth kitchen remodeling planning. They are not Luna project photos, product photographs, or evidence of work in a particular city.',
+    intro: 'Generated illustrations support Dallas-Fort Worth kitchen remodeling planning. They are planning visuals, not product photographs or completed-project evidence; brand names and links below are reference information.',
     images: [
       cloud('cabinetry-generated-illustration.png'),
       cloud('quartz-generated-illustration.png'),
@@ -47,8 +48,9 @@ export default [
     file: 'bathrooms.html',
     id: 'additional-bathroom-imagery',
     serviceTerm: 'bathroom remodeling',
+    visibleCaption: 'Bathroom remodeling services — Dallas–Fort Worth',
     title: 'Bathroom Remodeling Planning Scene',
-    intro: 'This representative generated illustration supports Dallas-Fort Worth bathroom remodeling planning. It is not a Luna project photo or evidence of work in a particular city.',
+    intro: 'Generated illustrations support Dallas-Fort Worth bathroom remodeling planning. They are planning visuals, not completed-project photographs.',
     images: [
       local({
         file: 'assets/images/illustrations/interior-services-local-batch-v1/02-bathroom-remodel-not-hero.png',
@@ -65,8 +67,9 @@ export default [
     file: 'carpentry.html',
     id: 'additional-carpentry-imagery',
     serviceTerm: 'carpentry',
+    visibleCaption: 'Carpentry services — Dallas–Fort Worth',
     title: 'Carpentry and Outdoor Structure Planning Scenes',
-    intro: 'These representative generated illustrations support Dallas-Fort Worth carpentry planning, including built-ins and exterior wood structures. They are not Luna project photos or evidence of work in a particular city.',
+    intro: 'Generated illustrations support Dallas-Fort Worth carpentry planning, including built-ins and exterior wood structures. They are planning visuals, not completed-project photographs.',
     images: [
       local({
         file: 'assets/images/illustrations/interior-services-local-batch-v1/04-built-in-cabinetry-bookcases.png',
@@ -101,8 +104,9 @@ export default [
     file: 'painting.html',
     id: 'additional-painting-imagery',
     serviceTerm: 'painting',
+    visibleCaption: 'Interior painting services — Dallas–Fort Worth',
     title: 'Interior Painting Planning Scene',
-    intro: 'This representative generated illustration supports Dallas-Fort Worth interior painting planning. It is not a Luna project photo or evidence of work in a particular city.',
+    intro: 'Generated illustrations support Dallas-Fort Worth interior painting planning. They are planning visuals, not completed-project photographs.',
     images: [
       local({
         file: 'assets/images/illustrations/interior-services-local-batch-v1/05-finished-painted-room.png',
@@ -119,8 +123,9 @@ export default [
     file: 'siding.html',
     id: 'additional-siding-imagery',
     serviceTerm: 'siding',
+    visibleCaption: 'Siding services — Dallas–Fort Worth',
     title: 'Siding and Trim Planning Scene',
-    intro: 'This representative generated illustration supports Dallas-Fort Worth siding planning. It is not a Luna project photo or evidence of work in a particular city.',
+    intro: 'Generated illustrations support Dallas-Fort Worth siding planning. They are planning visuals, not completed-project photographs.',
     images: [
       local({
         file: 'assets/images/illustrations/exterior-services-local-batch-v1/siding-and-trim-house-01.png',
@@ -137,8 +142,9 @@ export default [
     file: 'fencing.html',
     id: 'additional-fencing-imagery',
     serviceTerm: 'fencing',
+    visibleCaption: 'Fencing services — Dallas–Fort Worth',
     title: 'Cedar Fence Planning Scene',
-    intro: 'This representative generated illustration supports Dallas-Fort Worth fencing planning. It is not a Luna project photo or evidence of work in a particular city.',
+    intro: 'Generated illustrations support Dallas-Fort Worth fencing planning. They are planning visuals, not completed-project photographs.',
     images: [
       local({
         file: 'assets/images/illustrations/exterior-services-local-batch-v1/cedar-privacy-fence-01.png',
@@ -155,8 +161,9 @@ export default [
     file: 'index.html',
     id: 'additional-services-imagery',
     serviceTerm: 'general contracting',
+    visibleCaption: 'General contracting services — Dallas–Fort Worth',
     title: 'Additional General Contracting Planning Scenes',
-    intro: 'These representative generated illustrations support Dallas-Fort Worth general contracting planning. They are not Luna project photos or evidence of work in a particular city.',
+    intro: 'Generated illustrations support Dallas-Fort Worth general contracting planning. They are planning visuals, not completed-project photographs.',
     images: [
       local({
         file: 'assets/images/illustrations/interior-services-local-batch-v1/01-whole-home-living-dining-remodel.png',
