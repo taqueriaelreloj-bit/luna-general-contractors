@@ -21,9 +21,9 @@ export default [
     end: '<!-- roofing-hub-illustrations:end -->',
     context: 'Dallas-Fort Worth',
     serviceTerm: 'roofing',
-    eyebrow: 'Generated planning illustrations',
+    eyebrow: '',
     title: 'Roofing Options for Different Building Conditions',
-    intro: 'Generated illustrations support Dallas-Fort Worth roofing planning. They are planning visuals, not project photographs or installation specifications; material selection depends on roof slope, drainage, deck condition and the written project scope.',
+    intro: '',
     visibleCaption: 'Roofing services — Dallas–Fort Worth',
     images: [
       {

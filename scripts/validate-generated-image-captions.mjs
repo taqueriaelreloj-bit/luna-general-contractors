@@ -31,7 +31,13 @@ for (const [file, caption, expectedCount] of pages) {
   assert(captions.length === expectedCount, `${file}: expected ${expectedCount} generated card captions, got ${captions.length}.`);
   assert(captions.every(value => value === caption), `${file}: generated card caption does not match the concise service-and-region label.`);
   assert(!captions.some(value => /representative|not a Luna|product photograph|evidence of work/i.test(value)), `${file}: an old disclaimer remains in a generated card caption.`);
-  assert(html.includes('Generated planning illustrations'), `${file}: missing section-level generated-image notice.`);
+  if (file === 'roofing.html') {
+    const roofingSection = html.match(/<!-- roofing-hub-illustrations:start -->[\s\S]*?<!-- roofing-hub-illustrations:end -->/)?.[0] || '';
+    assert(!roofingSection.includes('Generated planning illustrations'), 'roofing.html: retired planning-illustration label remains.');
+    assert(!roofingSection.includes('Generated illustrations support Dallas-Fort Worth roofing planning.'), 'roofing.html: retired planning-visual paragraph remains.');
+  } else {
+    assert(html.includes('Generated planning illustrations'), `${file}: missing section-level generated-image notice.`);
+  }
   totalCards += captions.length;
 }
 

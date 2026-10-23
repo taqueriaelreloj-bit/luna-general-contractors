@@ -28,7 +28,8 @@ function gitBlobSha(bytes) {
 }
 
 async function validateImage(image, hub) {
-  if (!hub.context || !hub.serviceTerm || !hub.intro.includes(hub.context) || !hub.intro.includes(hub.serviceTerm)) throw new Error(`Missing regional service context for ${hub.key}.`);
+  if (!hub.context || !hub.serviceTerm) throw new Error(`Missing regional service context for ${hub.key}.`);
+  if (hub.intro && (!hub.intro.includes(hub.context) || !hub.intro.includes(hub.serviceTerm))) throw new Error(`Missing regional service context for ${hub.key}.`);
   const normalizedCaption = hub.visibleCaption?.replaceAll('–', '-').toLowerCase();
   const captionHasService = hub.key === 'mitigation'
     ? normalizedCaption?.includes('water damage mitigation')
@@ -53,7 +54,9 @@ async function validateImage(image, hub) {
 
 function section(hub) {
   const cards = hub.images.map(image => `<figure class="mi-card${image.className ? ` ${image.className}` : ''}" data-representative-generated-illustration="true"><img src="${escapeHtml(image.file)}" alt="${escapeHtml(image.alt)}" width="${image.width}" height="${image.height}" loading="lazy" decoding="async"><figcaption><h3>${escapeHtml(image.title)}</h3><p>${escapeHtml(hub.visibleCaption)}</p></figcaption></figure>`).join('\n');
-  return `${hub.start}\n<section class="mi-section" id="${escapeHtml(hub.sectionId)}" aria-labelledby="${escapeHtml(hub.key)}-imagery-title"><div class="container">\n  <header class="mi-heading"><div><p class="mi-eyebrow">${escapeHtml(hub.eyebrow)}</p><h2 id="${escapeHtml(hub.key)}-imagery-title">${escapeHtml(hub.title)}</h2></div>\n  <p class="mi-intro">${escapeHtml(hub.intro)}</p></header>\n  <div class="mi-grid">${cards}</div>\n</div></section>\n${hub.end}`;
+  const eyebrow = hub.eyebrow ? `<p class="mi-eyebrow">${escapeHtml(hub.eyebrow)}</p>` : '';
+  const intro = hub.intro ? `\n  <p class="mi-intro">${escapeHtml(hub.intro)}</p>` : '';
+  return `${hub.start}\n<section class="mi-section" id="${escapeHtml(hub.sectionId)}" aria-labelledby="${escapeHtml(hub.key)}-imagery-title"><div class="container">\n  <header class="mi-heading"><div>${eyebrow}<h2 id="${escapeHtml(hub.key)}-imagery-title">${escapeHtml(hub.title)}</h2></div>${intro}</header>\n  <div class="mi-grid">${cards}</div>\n</div></section>\n${hub.end}`;
 }
 
 function replaceSection(html, hub, markup) {
