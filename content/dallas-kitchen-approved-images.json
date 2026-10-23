@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "source": "GitHub Git Blob API",
+  "destination": "assets/images/illustrations/page-owned/v1/dallas-kitchen-remodeling",
+  "images": [
+    {
+      "filename": "scene-01.png",
+      "bytes": 2369374,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "9cb940f9733daa58d5af627bd33d28fbaf002717",
+      "sha256": "9991d4766f1caf0cad4ff3ed30a2dabad09f7f94b0bc0a866c6b5c739f80b21a",
+      "libraryFileId": "libfile_0ff094d9ec808191b79ee80b91e54417",
+      "service": "kitchen-remodeling",
+      "title": "Warm oak kitchen island",
+      "alt": "Kitchen with a warm oak island, pale stone countertop, and neutral cabinetry.",
+      "caption": "Kitchen remodeling · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    },
+    {
+      "filename": "scene-02.png",
+      "bytes": 2270249,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "caf8bcefb883c4077b6da8fd2fb9570bb8273aec",
+      "sha256": "4f3cb73f266c87e4636a2cea278bb538bb466e0c3ab87705a3144a6f1bfc877d",
+      "libraryFileId": "libfile_179f33db4a388191bb10a04a5ae4d711",
+      "service": "kitchen-remodeling",
+      "title": "White galley kitchen",
+      "alt": "White galley kitchen with a compact island and bright cabinetry.",
+      "caption": "Kitchen remodeling · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    },
+    {
+      "filename": "scene-03.png",
+      "bytes": 2486773,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "b2390fcd7aad72fbd7980fd3827b24a02b033dd4",
+      "sha256": "8a540d3c5d3bca5c9d9dd7b9d6b74ec22c5c59339fb168eb24276f8ec8f1fd08",
+      "libraryFileId": "libfile_0e3193514f0c8191abba91a227f3d8c4",
+      "service": "kitchen-remodeling",
+      "title": "Walnut kitchen with stone surfaces",
+      "alt": "Walnut kitchen with stone countertops and integrated storage.",
+      "caption": "Kitchen remodeling · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    },
+    {
+      "filename": "scene-04.png",
+      "bytes": 2185803,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "930a0487831b497d3be19558656f86fca869b8c6",
+      "sha256": "1be1d6dd8d504714c6aeac70f06200e6b6ed4f7b3808a7b04adf9d3b6ee0b37f",
+      "libraryFileId": "libfile_2a43c5e940b081918966adb5df220d70",
+      "service": "kitchen-remodeling",
+      "title": "Navy island kitchen",
+      "alt": "Kitchen with a navy island, light countertop, and neutral wall cabinetry.",
+      "caption": "Kitchen remodeling · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    },
+    {
+      "filename": "scene-05.png",
+      "bytes": 2029815,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "ba137a2b49dc1c1fc0c99b5812c3b2f3776724f7",
+      "sha256": "6beb510d5477bdb4974b009c8cfba2c5fa36f4398c2a56ea42b22ae2833b095e",
+      "libraryFileId": "libfile_47bcc90ad0508191913cf142737eb2e6",
+      "service": "kitchen-remodeling",
+      "title": "Compact sage kitchen",
+      "alt": "Compact sage kitchen with an L-shaped layout and neutral countertops.",
+      "caption": "Kitchen remodeling · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    }
+  ]
+}

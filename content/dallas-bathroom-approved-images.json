@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "source": "GitHub Git Blob API",
+  "destination": "assets/images/illustrations/page-owned/v1/dallas-bathroom-remodeling",
+  "images": [
+    {
+      "filename": "dallas-bathroom-remodeling-scene-01.png",
+      "bytes": 2415936,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "cf9fbbba4d7cf848050af8cfd6eb07f2e9a18722",
+      "sha256": "7480841b552d8d264fa2613ad8bfd008dfb12d9051d7445d97c782c1083d28c9",
+      "libraryFileId": "libfile_d228b0d1819481919d2a964e8283196c",
+      "service": "bathroom-remodeling",
+      "title": "Glass shower and wood vanity",
+      "alt": "Bathroom with a glass shower, a wood vanity, and a light stone countertop.",
+      "caption": "Bathroom remodeling · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    },
+    {
+      "filename": "dallas-bathroom-remodeling-scene-02.png",
+      "bytes": 1959644,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "f7bf1dd171d120b1cde8e64e89c65da7517b516a",
+      "sha256": "15762d0ec1a5e9b2804692d572ca8256ef4664cd49a69d2b03e04c1171d53377",
+      "libraryFileId": "libfile_f2a3b75508888191841128a0a0374464",
+      "service": "bathroom-remodeling",
+      "title": "Green vanity tub-and-shower bathroom",
+      "alt": "Bathroom with a green vanity, a tub-and-shower combination, and pale tile.",
+      "caption": "Bathroom remodeling · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    },
+    {
+      "filename": "dallas-bathroom-remodeling-scene-03.png",
+      "bytes": 2970663,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "c16d82ae1db6944c022d8006ccf838c7b8c9451b",
+      "sha256": "fdd99f6df55de686bedc63a390c6b0d86b7c8e76d3bf13df35eaf4d25da7192b",
+      "libraryFileId": "libfile_653252e515808191ab55a50c89c3dab9",
+      "service": "bathroom-remodeling",
+      "title": "Tiled shower niche detail",
+      "alt": "Tiled shower wall with a recessed niche and an exposed wall edge during finish work.",
+      "caption": "Bathroom remodeling · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    },
+    {
+      "filename": "dallas-bathroom-remodeling-scene-04.png",
+      "bytes": 2375700,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "4cdc8dc2564bed7dc6dc201ab081c3bd60b8799c",
+      "sha256": "e33cb3f2252e7184eb3df8b08717df9efe7b2d46c0989a81c96a28042c510e25",
+      "libraryFileId": "libfile_714bf20455b08191a5b340ac6b939b76",
+      "service": "bathroom-remodeling",
+      "title": "Freestanding tub and double vanity",
+      "alt": "Bathroom with a freestanding tub, double vanity, and glass shower enclosure.",
+      "caption": "Bathroom remodeling · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    },
+    {
+      "filename": "dallas-bathroom-remodeling-scene-05.png",
+      "bytes": 2660471,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "7fef4b86ec26f1485c5f14865cb927de37f82263",
+      "sha256": "23fadd3b0283c19f6db7a23227db2f9a9d09cc931f99044042677ea532602b17",
+      "libraryFileId": "libfile_65e064a889c48191a4ebe7b32f172d49",
+      "service": "bathroom-remodeling",
+      "title": "Dark tile shower enclosure",
+      "alt": "Dark tile shower with a glass enclosure, built-in bench, and recessed shelf.",
+      "caption": "Bathroom remodeling · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    }
+  ]
+}

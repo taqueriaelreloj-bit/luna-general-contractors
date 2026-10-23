@@ -4,6 +4,7 @@ import {dirname,relative,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import profiles from '../content/service-guide-profiles.mjs';
 import serviceMedia,{cityGuideCaption,targetServiceKeys} from '../content/service-guide-media.mjs';
+import pageOwnedCityMedia from '../content/page-owned-city-media.mjs';
 
 // This validator owns the city-service imagery block.  It intentionally does
 // not invoke the broader guide generator, which has unrelated generated-page
@@ -15,10 +16,14 @@ const allowRemoteBlobs=process.argv.includes('--allow-remote-blobs');
 const requireCityContext=process.argv.includes('--require-city-context');
 const onlyServiceArg=process.argv.find(arg=>arg.startsWith('--only-service='));
 const onlyService=onlyServiceArg?.slice('--only-service='.length);
-const unexpectedArgs=process.argv.slice(2).filter(arg=>arg!=='--allow-remote-blobs'&&arg!=='--require-city-context'&&arg!==onlyServiceArg);
+const onlyPageArg=process.argv.find(arg=>arg.startsWith('--only='));
+const onlyPage=onlyPageArg?.slice('--only='.length);
+const unexpectedArgs=process.argv.slice(2).filter(arg=>arg!=='--allow-remote-blobs'&&arg!=='--require-city-context'&&arg!==onlyServiceArg&&arg!==onlyPageArg);
 if(unexpectedArgs.length)throw new Error(`Unknown argument(s): ${unexpectedArgs.join(', ')}`);
 if(onlyServiceArg&&!onlyService)throw new Error('The --only-service option needs a service key.');
-if(requireCityContext&&!onlyService)throw new Error('The --require-city-context option requires --only-service to prevent a broad validation claim.');
+if(onlyPageArg&&!onlyPage)throw new Error('The --only option needs one city-service filename.');
+if(onlyPage&&onlyService)throw new Error('Use either --only or --only-service, not both.');
+if(requireCityContext&&!onlyService&&!onlyPage)throw new Error('The --require-city-context option requires --only-service or --only to prevent a broad validation claim.');
 
 const start='<!-- service-city-imagery:start -->';
 const end='<!-- service-city-imagery:end -->';
@@ -81,15 +86,29 @@ if(JSON.stringify(assignmentKeys)!==JSON.stringify(expectedKeys))fail('City-serv
 if(new Set(assignments.map(item=>item.file)).size!==assignments.length)fail('Duplicate city-service assignment file');
 if(JSON.stringify(Object.keys(serviceMedia).sort())!==JSON.stringify(expectedKeys))fail('Service-media manifest has unexpected or missing service keys');
 if(onlyService&&!expectedKeys.includes(onlyService))fail(`Unknown service key for --only-service: ${onlyService}`);
-const selectedAssignments=onlyService?assignments.filter(assignment=>assignment.key===onlyService):assignments;
-if(!selectedAssignments.length)fail(`No city-service assignments for ${onlyService}`);
-const selectedKeys=onlyService?[onlyService]:expectedKeys;
+if(onlyPage&&!pageOwnedCityMedia[onlyPage])fail(`The --only page has no declared page-owned media override: ${onlyPage}`);
+const selectedAssignments=onlyPage
+ ? assignments.filter(assignment=>assignment.file===onlyPage)
+ : onlyService?assignments.filter(assignment=>assignment.key===onlyService):assignments;
+if(!selectedAssignments.length)fail(`No city-service assignments for ${onlyPage||onlyService||'the requested selection'}`);
+const selectedServiceKeys=[...new Set(selectedAssignments.map(assignment=>assignment.key))];
+const entryFor=assignment=>pageOwnedCityMedia[assignment.file]||serviceMedia[assignment.key];
+const pageOwnedGeneratedSources=new Map;
+for(const [file,entry] of Object.entries(pageOwnedCityMedia)){
+ for(const item of entry?.items||[]){
+  if(item.kind!=='representative-illustration')continue;
+  const owner=pageOwnedGeneratedSources.get(item.src);
+  if(owner&&owner!==file)fail(`Page-owned generated scene is assigned to more than one page: ${item.src}`);
+  pageOwnedGeneratedSources.set(item.src,file);
+ }
+}
 
-const mediaByKey=new Map;
+const mediaByFile=new Map;
 const deferredRemoteBlobSources=new Set;
-for(const key of selectedKeys){
- const entry=serviceMedia[key];
+for(const assignment of selectedAssignments){
+ const {key,file}=assignment,entry=entryFor(assignment),override=pageOwnedCityMedia[file];
  if(!profiles[key]){fail(`Missing service profile for ${key}`);continue;}
+ if(override&&(!override.pageOwned||override.serviceKey!==key))fail(`Invalid page-owned media override for ${file}`);
  if(!entry||!Array.isArray(entry.items)||entry.items.length<5){fail(`Need at least five media items for ${key}`);continue;}
  const byId=new Map,srcs=new Set;
  for(const item of entry.items){
@@ -104,7 +123,7 @@ for(const key of selectedKeys){
   if(item?.id)byId.set(item.id,item);
   if(item?.src)srcs.add(item.src);
  }
- mediaByKey.set(key,byId);
+ mediaByFile.set(file,byId);
 }
 
 const checkSource=async(item,context)=>{
@@ -139,39 +158,52 @@ const checkSource=async(item,context)=>{
   fail(`Could not read local image dimensions: ${context}: ${src} (${error.message})`);
  }
 };
-for(const key of selectedKeys){
- for(const item of serviceMedia[key]?.items||[])await checkSource(item,`${key}/${item.id}`);
+const checkedSources=new Set;
+for(const assignment of selectedAssignments){
+ for(const item of entryFor(assignment)?.items||[]){
+  const sourceKey=`${item.src}|${item.sha||''}`;
+  if(checkedSources.has(sourceKey))continue;
+  checkedSources.add(sourceKey);
+  await checkSource(item,`${assignment.file}/${item.id}`);
+ }
 }
 
 const extractCards=section=>section.match(/<figure\b[^>]*\bclass="[^"]*\bsci-card\b[^"]*"[^>]*>[\s\S]*?<\/figure>/gi)||[];
 const validatePage=(assignment,html)=>{
  const prefix=`${assignment.file}:`;
+ const override=pageOwnedCityMedia[assignment.file];
+ const pageOwned=override?.pageOwned===true;
  if(count(html,start)!==1||count(html,end)!==1)fail(`${prefix} expected exactly one paired imagery marker`);
  const blocks=html.match(new RegExp(`${start.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\$&')}[\\s\\S]*?${end.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\$&')}`,'g'))||[];
  if(blocks.length!==1)return;
  const section=blocks[0];
  const hasCaptionContext=section.includes('data-caption-context="service-city"');
  const hasGeneratedSectionNotice=section.includes('data-generated-section-notice="true"');
- // Scoped migrations use concise service-and-city captions. Keep validating
- // those pages when the normal all-family check runs, while legacy galleries
- // remain valid until their own bounded migration is prepared.
- const usesCityContext=requireCityContext||assignment.key==='kitchen-remodeling'||hasCaptionContext||hasGeneratedSectionNotice;
+ const usesCityContext=pageOwned||requireCityContext||hasCaptionContext||hasGeneratedSectionNotice;
  const cssMatches=html.match(/<link\b[^>]*\bhref="service-city-imagery\.css(?:\?[^\"]*)?"[^>]*>/gi)||[];
  if(cssMatches.length!==1)fail(`${prefix} expected exactly one city-imagery stylesheet link`);
  const sectionTag=section.match(/<section\b[^>]*\bclass="[^"]*\bservice-city-imagery\b[^"]*"[^>]*>/i)?.[0];
  if(!sectionTag){fail(`${prefix} missing city-imagery section`);return;}
  if(!/\bdata-service-guide-media(?:\s|>)/i.test(sectionTag))fail(`${prefix} missing data-service-guide-media`);
  if(decode(attr(sectionTag,'data-service-key')||'')!==assignment.key)fail(`${prefix} wrong data-service-key`);
- const expected=mediaByKey.get(assignment.key);
+ if(pageOwned&&attr(sectionTag,'data-page-owned-city-media')!=='true')fail(`${prefix} missing page-owned city-media marker`);
+ const expected=mediaByFile.get(assignment.file);
+ if(!expected){fail(`${prefix} no media manifest resolved for this page`);return;}
  if(Number(attr(sectionTag,'data-media-count'))!==expected.size)fail(`${prefix} data-media-count does not match manifest`);
  if(count(section,'id="sci-title"')!==1||!section.includes('aria-labelledby="sci-title"'))fail(`${prefix} missing unique gallery heading relationship`);
  if(!normalize(section).includes(`imagery for ${assignment.city}`))fail(`${prefix} gallery heading does not identify ${assignment.city}`);
  if(usesCityContext){
   if(!hasCaptionContext)fail(`${prefix} missing city-context caption marker`);
-  if(!hasGeneratedSectionNotice)fail(`${prefix} missing city-context generated-media notice`);
-  if(!section.includes('data-generated-section-notice="true"'))fail(`${prefix} missing city-context generated-media notice`);
-  if(!section.includes('not project photographs or product photographs'))fail(`${prefix} missing concise generated-media provenance notice`);
-  if(!/Dallas-Fort Worth references, not work in this page(?:'|’)s city\./.test(section))fail(`${prefix} missing city-safe portfolio context`);
+  if(pageOwned){
+   if(hasGeneratedSectionNotice||section.includes('data-generated-section-notice="true"'))fail(`${prefix} legacy generated-media notice remains on page-owned gallery`);
+   if(section.includes('Representative illustration'))fail(`${prefix} legacy representative label remains on page-owned gallery`);
+   if(section.includes(`not a photograph of a Luna job or work completed in ${assignment.city}.`))fail(`${prefix} legacy city/job disclaimer remains on page-owned gallery`);
+  }else{
+   if(!hasGeneratedSectionNotice)fail(`${prefix} missing city-context generated-media notice`);
+   if(!section.includes('data-generated-section-notice="true"'))fail(`${prefix} missing city-context generated-media notice`);
+   if(!section.includes('not project photographs or product photographs'))fail(`${prefix} missing concise generated-media provenance notice`);
+   if(!/Dallas-Fort Worth references, not work in this page(?:'|')s city\./.test(section))fail(`${prefix} missing city-safe portfolio context`);
+  }
  }else if(!section.includes('Dallas-Fort Worth references rather than work in this page\'s city'))fail(`${prefix} missing city-safe gallery disclosure`);
  if((section.match(/<div\b[^>]*\bclass="[^"]*\bsci-grid\b[^"]*"[^>]*>/gi)||[]).length!==1)fail(`${prefix} expected one gallery grid`);
  const cards=extractCards(section);
@@ -202,7 +234,7 @@ const validatePage=(assignment,html)=>{
   if(/\.svg(?:$|[?#])/i.test(src)||src.includes('assets/service-guides/'))fail(`${prefix} non-substantive image emitted for ${id}`);
   const text=normalize(figure);
   if(usesCityContext){
-   const expectedCaption=cityGuideCaption(profiles[assignment.key].name,assignment.city);
+   const expectedCaption=item.displayCaption||cityGuideCaption(profiles[assignment.key].name,assignment.city);
    if(!text.includes(expectedCaption))fail(`${prefix} concise service-and-city caption missing for ${id}`);
    if(!figure.includes('class="sci-caption" data-caption-context="service-city"'))fail(`${prefix} caption context marker missing for ${id}`);
    if(item.kind==='representative-illustration'){
@@ -240,8 +272,11 @@ for(const assignment of selectedAssignments){
 // receive this city-service gallery or its stylesheet by accident.
 const targetFiles=new Set(assignments.map(item=>item.file));
 for(const file of (await readdir(root)).filter(name=>name.endsWith('.html'))){
- if(targetFiles.has(file))continue;
  const html=await readFile(resolve(root,file),'utf8');
+ for(const [source,owner] of pageOwnedGeneratedSources){
+  if(file!==owner&&html.includes(source))fail(`${file}: page-owned generated scene is reused from ${owner}: ${source}`);
+ }
+ if(targetFiles.has(file))continue;
  if(html.includes(start)||html.includes(end)||html.includes(cssHref))fail(`${file}: city-service imagery leaked outside the 828-page scope`);
 }
 
@@ -291,4 +326,4 @@ if(!/width\s*:\s*100%/i.test(ruleBody('root','.sci-card img')))fail('Gallery ima
 if(errors.length){
  throw new Error(`Service-city imagery validation failed (${errors.length} issue${errors.length===1?'':'s'}):\n- ${errors.slice(0,40).join('\n- ')}${errors.length>40?`\n- … ${errors.length-40} more`:''}`);
 }
-console.log(`Validated ${selectedAssignments.length} city-service page${selectedAssignments.length===1?'':'s'} and ${selectedKeys.length} service ${selectedKeys.length===1?'family':'families'}${requireCityContext?' with concise service-and-city captions':''}${allowRemoteBlobs?`; ${deferredRemoteBlobSources.size} remote illustration blobs are deferred to publish verification`:''}.`);
+console.log(`Validated ${selectedAssignments.length} city-service page${selectedAssignments.length===1?'':'s'} and ${selectedServiceKeys.length} service ${selectedServiceKeys.length===1?'family':'families'}${requireCityContext?' with concise service-and-city captions':''}${allowRemoteBlobs?`; ${deferredRemoteBlobSources.size} remote illustration blobs are deferred to publish verification`:''}.`);
