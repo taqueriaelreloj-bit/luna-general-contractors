@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "source": "GitHub Git Blob API",
+  "destination": "assets/images/illustrations/page-owned/v1/dallas-fencing",
+  "images": [
+    {
+      "filename": "01-cedar-board-on-board.png",
+      "bytes": 3529352,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "102e81f82a25388244ddcc61bd5db963753785d5",
+      "sha256": "a64e02e8be2ff138bc3e83ee1e3e2e3bb79d448b188de865f089eaff32bb5047",
+      "libraryFileId": "libfile_5e23d58bc0ac8191b63fa8aaa6f25eed",
+      "service": "fencing",
+      "title": "Cedar board-on-board fence",
+      "alt": "Cedar board-on-board privacy fence along a residential yard.",
+      "caption": "Fencing · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    },
+    {
+      "filename": "02-horizontal-wood.png",
+      "bytes": 2811852,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "f93ce2dfb1be08edbfc4eba0c97ce84e06c5c459",
+      "sha256": "c11603cc97fa4ee455d3fcd4dd2ad13b7db92998717a6752ab643bb18ac7b850",
+      "libraryFileId": "libfile_20588eb5b7bc8191a118ef8d48d2f119",
+      "service": "fencing",
+      "title": "Horizontal wood fence",
+      "alt": "Horizontal wood fence with dark posts bordering a landscaped yard.",
+      "caption": "Fencing · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    },
+    {
+      "filename": "03-ornamental-metal.png",
+      "bytes": 3391534,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "219425a3000843e041aa361b498ff109d1805563",
+      "sha256": "db6aef9a1018cf626ced6303fad1a499731006ccbd0a2c67b815c0c16084b65d",
+      "libraryFileId": "libfile_147e7910c56c8191ba5a2cb79f4ad621",
+      "service": "fencing",
+      "title": "Ornamental metal fence",
+      "alt": "Black ornamental metal fence defining a residential outdoor area.",
+      "caption": "Fencing · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    },
+    {
+      "filename": "04-racked-sloped-fence.png",
+      "bytes": 3572840,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "2e8d23646e5aced93c9958ff5ed463df3d490765",
+      "sha256": "f1d98d65b45c1503270e40c11e106795f9b582755534ae0cba03646be1a9a3b2",
+      "libraryFileId": "libfile_59b2517a6eb48191a12fbfee6b82d890",
+      "service": "fencing",
+      "title": "Racked sloped-yard fence",
+      "alt": "Fence panels following the slope of a landscaped residential yard.",
+      "caption": "Fencing · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    },
+    {
+      "filename": "05-double-driveway-gate.png",
+      "bytes": 2643943,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "1a6e14a2f00c2708802bc9ebfcdcc16e3e7a5342",
+      "sha256": "f06614df7a61d67f8e5ff72770ca0f10779dee3c01b1ff282e4ffcf671235578",
+      "libraryFileId": "libfile_f7a0783c7a908191aead3192c2171e27",
+      "service": "fencing",
+      "title": "Double driveway gate",
+      "alt": "Double driveway gate with substantial wood posts and dark hardware.",
+      "caption": "Fencing · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    }
+  ]
+}

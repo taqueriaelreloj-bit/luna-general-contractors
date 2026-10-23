@@ -94,12 +94,19 @@ if(!selectedAssignments.length)fail(`No city-service assignments for ${onlyPage|
 const selectedServiceKeys=[...new Set(selectedAssignments.map(assignment=>assignment.key))];
 const entryFor=assignment=>pageOwnedCityMedia[assignment.file]||serviceMedia[assignment.key];
 const pageOwnedGeneratedSources=new Map;
+// Source paths alone do not prove uniqueness: a byte-identical generated
+// scene can be copied under a new filename. Require every page-owned
+// illustration blob SHA to have exactly one page owner as well.
+const pageOwnedGeneratedBlobShas=new Map;
 for(const [file,entry] of Object.entries(pageOwnedCityMedia)){
  for(const item of entry?.items||[]){
   if(item.kind!=='representative-illustration')continue;
   const owner=pageOwnedGeneratedSources.get(item.src);
   if(owner&&owner!==file)fail(`Page-owned generated scene is assigned to more than one page: ${item.src}`);
   pageOwnedGeneratedSources.set(item.src,file);
+  const shaOwner=pageOwnedGeneratedBlobShas.get(item.sha);
+  if(shaOwner)fail(`Page-owned generated scene Git blob SHA is assigned more than once: ${item.sha} (${shaOwner} and ${file})`);
+  pageOwnedGeneratedBlobShas.set(item.sha,file);
  }
 }
 

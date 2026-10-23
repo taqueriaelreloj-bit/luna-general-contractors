@@ -64,6 +64,10 @@ const validateMedia=(key,entry,context=key)=>{
 };
 for(const key of expectedKeys)validateMedia(key,serviceMedia[key]);
 const pageOwnedGeneratedSources=new Map;
+// Page-owned media must be byte-distinct across pages as well as path-distinct.
+// A renamed copy of a generated scene has a different source path but the same
+// immutable Git blob SHA, so check both ownership dimensions before building.
+const pageOwnedGeneratedBlobShas=new Map;
 for(const [file,entry] of Object.entries(pageOwnedCityMedia)){
  const assignment=assignments.find(item=>item.file===file);
  if(!assignment)throw new Error(`Page-owned media override is not a city-service page: ${file}`);
@@ -75,6 +79,9 @@ for(const [file,entry] of Object.entries(pageOwnedCityMedia)){
   const owner=pageOwnedGeneratedSources.get(item.src);
   if(owner&&owner!==file)throw new Error(`Page-owned generated scene is assigned to more than one page: ${item.src}`);
   pageOwnedGeneratedSources.set(item.src,file);
+  const shaOwner=pageOwnedGeneratedBlobShas.get(item.sha);
+  if(shaOwner)throw new Error(`Page-owned generated scene Git blob SHA is assigned more than once: ${item.sha} (${shaOwner} and ${file})`);
+  pageOwnedGeneratedBlobShas.set(item.sha,file);
  }
 }
 const mediaFor=assignment=>pageOwnedCityMedia[assignment.file]||serviceMedia[assignment.key];

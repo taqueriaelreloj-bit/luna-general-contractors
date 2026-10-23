@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "source": "GitHub Git Blob API",
+  "destination": "assets/images/illustrations/page-owned/v1/dallas-painting",
+  "images": [
+    {
+      "filename": "01-exterior-house-painting.png",
+      "bytes": 3630105,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "99ac196127ed97ba3f261f8ed69f3b800337a307",
+      "sha256": "00d3ad9c750773d615795a4bb4d8a14f35fb4bc5832b8fdeea2ea8d831d3832d",
+      "libraryFileId": "libfile_d4d4c4f835008191bd4fd6aa1533b2ab",
+      "service": "painting",
+      "title": "Exterior house painting",
+      "alt": "Freshly painted residential exterior with coordinated trim and siding colors.",
+      "caption": "Painting · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    },
+    {
+      "filename": "02-interior-living-room-painting.png",
+      "bytes": 2327668,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "5d7c4340ab64652bde2fd8860e9dd8a48390b616",
+      "sha256": "ffda5be6899c19fdbed5da64ec3d48c1911048c942b00c6d0bf626d8affa28af",
+      "libraryFileId": "libfile_3440e0564adc8191bb68bdf58a024d7a",
+      "service": "painting",
+      "title": "Interior living-room painting",
+      "alt": "Bright living room with freshly painted walls, ceiling, and trim.",
+      "caption": "Painting · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    },
+    {
+      "filename": "03-commercial-interior-painting.png",
+      "bytes": 2854026,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "73ebf37a38bbd143343e19acde03f95283708fd5",
+      "sha256": "20aa4879ad81b3fcb41e08ef3213d059aadddfc9b88fe89c6c3bf0033c8a2074",
+      "libraryFileId": "libfile_7243731381a08191aaf7dfdd13f6e843",
+      "service": "painting",
+      "title": "Commercial interior painting",
+      "alt": "Clean commercial interior with freshly painted walls and trim.",
+      "caption": "Painting · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    },
+    {
+      "filename": "04-painted-trim-detail.png",
+      "bytes": 2349371,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "476bd8344d7e2ce1501bac9578ce8520d1f22f81",
+      "sha256": "75cf3ec5339c46247dc3c159cb23c677d2e442168dbda59a978f4831380051b3",
+      "libraryFileId": "libfile_db76cab613dc8191b6dde14e6f6fecde",
+      "service": "painting",
+      "title": "Painted trim detail",
+      "alt": "Close view of freshly painted interior trim and adjacent wall finish.",
+      "caption": "Painting · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    },
+    {
+      "filename": "05-painted-kitchen-cabinets.png",
+      "bytes": 1843130,
+      "width": 1536,
+      "height": 1024,
+      "blobSha": "cdab907044c0129f059fc914f6081f3b2528e401",
+      "sha256": "db915494be394c8191f0dc7925a2677a590bd447493111b591e91f8795b39402",
+      "libraryFileId": "libfile_b9242a1f789c819189b8038c3808e260",
+      "service": "painting",
+      "title": "Painted kitchen cabinetry",
+      "alt": "Kitchen with painted cabinetry, finished doors, and coordinated wall color.",
+      "caption": "Painting · Dallas",
+      "provenance": "AI-generated page-owned scene; internal provenance only."
+    }
+  ]
+}
