@@ -5,6 +5,7 @@ from html import escape
 from pathlib import Path
 import json
 import re
+from functools import lru_cache
 
 ROOT = Path(__file__).resolve().parents[1]
 DOMAIN = "https://lunageneralcontractors.com"
@@ -12,6 +13,8 @@ PHONE = "(817) 784-5998"
 PHONE_LINK = "+18177845998"
 EMAIL = "lunabestcontractors@gmail.com"
 TODAY = date.today().isoformat()
+INSURANCE_CLAIMS_SOURCE = ROOT / "luna_engine" / "content" / "services" / "insurance-claims.json"
+INSURANCE_DISCLAIMER = "coverage decisions and policy interpretation remain with the insurer and policyholder"
 
 # The generator owns the city/service/article families below, but these routes
 # are separately maintained, indexable landing pages. Keep this small,
@@ -235,6 +238,29 @@ def faq_schema(items: list[tuple[str,str]]) -> str:
     return '<script type="application/ld+json">'+json.dumps(data, separators=(",", ":"))+'</script>'
 
 
+@lru_cache(maxsize=1)
+def insurance_claims_faqs() -> list[tuple[str, str]]:
+    """Read the insurance FAQ/disclaimer from its reviewed service definition."""
+    source = json.loads(INSURANCE_CLAIMS_SOURCE.read_text(encoding="utf-8"))
+    raw_faqs = source.get("faqs")
+    if not isinstance(raw_faqs, list) or not raw_faqs:
+        raise ValueError("Insurance claims source must provide a non-empty FAQ list")
+
+    faqs: list[tuple[str, str]] = []
+    for item in raw_faqs:
+        if not isinstance(item, dict):
+            raise ValueError("Insurance claims FAQ entries must be objects")
+        question = item.get("question")
+        answer = item.get("answer")
+        if not isinstance(question, str) or not question.strip() or not isinstance(answer, str) or not answer.strip():
+            raise ValueError("Insurance claims FAQ entries need non-empty question and answer text")
+        faqs.append((question.strip(), answer.strip()))
+
+    if not any(INSURANCE_DISCLAIMER in answer for _, answer in faqs):
+        raise ValueError("Insurance claims FAQ source is missing the insurer/policyholder disclaimer")
+    return faqs
+
+
 def head(title: str, description: str, url: str, city: str, schema_html: str) -> str:
     return f'''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{escape(title)}</title><meta name="description" content="{escape(description)}"><meta name="robots" content="index, follow"><link rel="canonical" href="{url}"><meta property="og:type" content="website"><meta property="og:title" content="{escape(title)}"><meta property="og:description" content="{escape(description)}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Luna General Contractors"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="styles.css">{schema_html}<style>
 .local-hero{{min-height:520px;display:grid;align-items:center;background:radial-gradient(circle at 80% 25%,rgba(229,160,0,.18),transparent 32%),linear-gradient(120deg,#05080a 15%,#111820 70%,#05080a);color:#fff}}.local-hero .container{{padding-top:80px;padding-bottom:80px}}.local-hero h1{{font-size:clamp(2.8rem,7vw,6.5rem);line-height:.94;max-width:1050px;margin:.2em 0}}.local-hero p{{font-size:1.18rem;max-width:800px}}.breadcrumbs{{font-size:.9rem;margin-bottom:20px}}.breadcrumbs a{{color:#e5a000}}.local-content,.local-form{{padding:72px 0;background:#fff;color:#17191c}}.local-content h2,.local-form h2{{font-size:clamp(2rem,4vw,3.4rem)}}.local-grid{{display:grid;grid-template-columns:1.15fr .85fr;gap:42px}}.local-card{{background:#f3f4f5;border-left:5px solid #e5a000;padding:30px}}.local-services{{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:28px 0}}.local-services a{{display:block;padding:18px;background:#111820;color:#fff;text-decoration:none;font-weight:800;border-bottom:3px solid #e5a000}}.local-near a{{display:inline-block;margin:5px 10px 5px 0;color:#9a6200;font-weight:800}}.faq details{{border-bottom:1px solid #ddd;padding:16px 0}}.faq summary{{font-weight:800;cursor:pointer}}.estimate-form{{display:grid;gap:13px;background:#f3f4f5;padding:25px}}.estimate-form label{{font-weight:700;display:grid;gap:6px}}.estimate-form input,.estimate-form select,.estimate-form textarea{{width:100%;padding:13px;border:1px solid #bbb;background:#fff}}@media(max-width:800px){{.local-grid{{grid-template-columns:1fr}}.local-services{{grid-template-columns:1fr 1fr}}}}@media(max-width:520px){{.local-services{{grid-template-columns:1fr}}}}
@@ -266,7 +292,7 @@ def service_page(city: str, service_slug: str, service_name: str, scope: str) ->
     title = f"{service_name} in {city}, TX | Free Estimate"
     description = (f"Flooring installation and replacement in {city}, TX. View Luna General Contractors flooring work completed in {city}, Texas." if service_slug == "flooring" else f"Professional {service_name.lower()} in {city}, TX for {scope}. Call Luna General Contractors at {PHONE}.")
     detail = CITY_DETAILS.get(city, "residential and commercial properties throughout the DFW area")
-    faqs = [
+    faqs = insurance_claims_faqs() if service_slug == "insurance-claims" else [
         (f"Do you provide {service_name.lower()} in {city}?", f"Yes. Luna General Contractors provides {service_name.lower()} for residential and commercial properties in {city} and nearby communities."),
         (f"What is included in a {service_name.lower()} estimate?", "The estimate is based on the visible scope, access, measurements, selected finishes and any related repairs needed to complete the work properly."),
         ("How quickly can I schedule an inspection?", f"Call {PHONE} or submit the form. Scheduling depends on current project volume and the urgency of the work."),
