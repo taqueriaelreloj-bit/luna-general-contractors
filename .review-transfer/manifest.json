@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "purpose": "Public generated-image transfer pilot for local review; not production deployment.",
+  "base_commit": "905764191a5b6d1d609627f96c6f8a82904882c8",
+  "archives": [
+    {
+      "path": ".review-transfer/pilot-assets.zip",
+      "bytes": 273006,
+      "sha256": "9a4e91d8351e7480ed424bb85b568fb3e84777e7785b37fde3cb8005e29b1534",
+      "git_blob_sha": "cff68e0f6b187eae1e4939d29ef6528dfbb1a863",
+      "members": [
+        {
+          "path": "assets/images/illustrations/page-owned/dallas-roofing/dallas-roofing-scene-03.webp",
+          "sha256": "f56d656bf5bb5d9f4bc00204b08df4c4fc7087136532704df5a8297d0fadc3ef"
+        }
+      ]
+    }
+  ]
+}
