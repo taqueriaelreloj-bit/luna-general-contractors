@@ -1,56 +1,27 @@
 #!/usr/bin/env node
-import { readFile } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const pages = [
-  ['index.html', 'General contracting services — Dallas–Fort Worth', 2],
-  ['kitchens.html', 'Kitchen remodeling services — Dallas–Fort Worth', 4],
-  ['bathrooms.html', 'Bathroom remodeling services — Dallas–Fort Worth', 1],
-  ['carpentry.html', 'Carpentry services — Dallas–Fort Worth', 3],
-  ['painting.html', 'Interior painting services — Dallas–Fort Worth', 1],
-  ['siding.html', 'Siding services — Dallas–Fort Worth', 1],
-  ['fencing.html', 'Fencing services — Dallas–Fort Worth', 1],
-  ['roofing.html', 'Roofing services — Dallas–Fort Worth', 10],
-  ['mitigation.html', 'Water damage mitigation — Dallas–Fort Worth', 20]
-];
-
-function assert(condition, message) {
-  if (!condition) throw new Error(message);
+import {readFile} from 'node:fs/promises';
+import {dirname,resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
+const manifest=JSON.parse(await readFile(resolve(root,'content/page-owned-imagery.json'),'utf8'));
+let captions=0,slots=0;
+const plain=text=>text.replace(/<[^>]+>/g,' ').replace(/&amp;/g,'&').replace(/&#39;/g,"'").replace(/&quot;/g,'"').replace(/\s+/g,' ').trim();
+for(const [file,entry] of Object.entries(manifest)){
+ const html=await readFile(resolve(root,file),'utf8');
+ if(entry.images.length!==5||new Set(entry.images.map(i=>i.src)).size!==5)throw new Error(`Five distinct scenes required: ${file}`);
+ for(const i of entry.images){if(!html.includes(`src="${i.src}"`))throw new Error(`Missing assigned scene ${file}: ${i.src}`);slots++;}
+ for(const match of html.matchAll(/<figure\b[^>]*>[\s\S]*?<\/figure>/g)){
+  const source=match[0].match(/<img\b[^>]*\bsrc="([^"]+)"/)?.[1];
+  if(!source||!/^assets\/(?:images\/illustrations\/|service-guides\/|commercial-roofing\/.*\.svg$)/.test(source))continue;
+  const caption=match[0].match(/<figcaption\b[^>]*>([\s\S]*?)<\/figcaption>/)?.[1];
+  if(caption===undefined)continue;
+  const value=plain(caption),city=entry.city||'Dallas–Fort Worth';
+  if(value.length>100||!value.endsWith(` · ${city}`))throw new Error(`Caption must be short subject + city: ${file}: ${value}`);
+  if(/generated planning|original category|model appearance|not a|completed.project evidence/i.test(value))throw new Error(`Retired caption boilerplate: ${file}`);
+  const alt=match[0].match(/<img\b[^>]*\balt="([^"]+)"/)?.[1];
+  if(!alt?.trim())throw new Error(`Missing accessible image text: ${file}`);
+  captions++;
+ }
 }
-
-function generatedCardCaptions(html) {
-  return [...html.matchAll(/<figure\b[^>]*\bdata-representative-generated-illustration="true"[^>]*>[\s\S]*?<figcaption><h3>[^<]+<\/h3><p>([^<]+)<\/p><\/figcaption><\/figure>/g)].map(match => match[1]);
-}
-
-let totalCards = 0;
-for (const [file, caption, expectedCount] of pages) {
-  const html = await readFile(resolve(root, file), 'utf8');
-  const captions = generatedCardCaptions(html);
-  assert(captions.length === expectedCount, `${file}: expected ${expectedCount} generated card captions, got ${captions.length}.`);
-  assert(captions.every(value => value === caption), `${file}: generated card caption does not match the concise service-and-region label.`);
-  assert(!captions.some(value => /representative|not a Luna|product photograph|evidence of work/i.test(value)), `${file}: an old disclaimer remains in a generated card caption.`);
-  if (file === 'roofing.html') {
-    const roofingSection = html.match(/<!-- roofing-hub-illustrations:start -->[\s\S]*?<!-- roofing-hub-illustrations:end -->/)?.[0] || '';
-    assert(!roofingSection.includes('Generated planning illustrations'), 'roofing.html: retired planning-illustration label remains.');
-    assert(!roofingSection.includes('Generated illustrations support Dallas-Fort Worth roofing planning.'), 'roofing.html: retired planning-visual paragraph remains.');
-  } else {
-    assert(html.includes('Generated planning illustrations'), `${file}: missing section-level generated-image notice.`);
-  }
-  totalCards += captions.length;
-}
-
-const home = await readFile(resolve(root, 'index.html'), 'utf8');
-assert(home.includes('<p class="hero-image-disclosure">General contractor services — Dallas–Fort Worth</p>'), 'index.html: hero caption is not concise service-and-region copy.');
-assert(home.includes('alt="Generated illustration of a broad residential property for Dallas-Fort Worth general contractor services."'), 'index.html: hero alt is missing generated-image provenance.');
-
-const kitchens = await readFile(resolve(root, 'kitchens.html'), 'utf8');
-const kitchenSceneCaptions = [...kitchens.matchAll(/<article class="sg-card[^>]*\bsg-card--scene-[^"]*"[^>]*>[\s\S]*?<figcaption>([^<]+)<\/figcaption>/g)].map(match => match[1]);
-assert(kitchenSceneCaptions.length === 3, `kitchens.html: expected three generated service-guide cards, got ${kitchenSceneCaptions.length}.`);
-assert(kitchenSceneCaptions.every(value => value === 'Kitchen remodeling services — Dallas–Fort Worth'), 'kitchens.html: service-guide card captions are not concise kitchen-and-region copy.');
-assert(kitchens.includes('Generated planning illustrations shown above are not product photographs or completed-project evidence.'), 'kitchens.html: missing the one-time kitchen generated-image disclosure.');
-assert(kitchens.includes('<figure class="sg-photo shared-project-gallery"><img src="dfw-kitchen-remodel-quartz-island-2018.jpg"') && kitchens.includes('<p class="sg-eyebrow">Luna project reference</p>'), 'kitchens.html: genuine portfolio-photo provenance was removed.');
-
-assert(totalCards === 43, `Expected 43 generated card captions across the nine release pages, got ${totalCards}.`);
-console.log(`Validated ${totalCards + kitchenSceneCaptions.length + 1} concise generated-image captions across nine release pages.`);
+if(slots!==5045)throw new Error(`Expected 5045 assigned images, got ${slots}`);
+console.log(`Validated ${slots} assigned image slots and ${captions} concise image captions across ${Object.keys(manifest).length} pages.`);

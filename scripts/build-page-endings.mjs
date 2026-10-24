@@ -38,7 +38,8 @@ for(const name of (await readdir(root)).filter(n=>n.endsWith('.html')).sort()){
   if(!hasFloatingCall) html=html.replace('</body>','<a class="floating-call" href="tel:+18177845998" aria-label="Call Luna General Contractors" data-label="Call now">☎</a>\n</body>');
  }
  if(name==='es.html')html=html.replaceAll('href="#inicio"','href="#page-top"');
- html=html.replace(/[\t ]+$/gm,'').replace(/\n(?:[\t ]*\n){2,}/g,'\n\n').trimEnd()+'\n';
+ const eol=html.includes('\r\n')?'\r\n':'\n';
+ html=html.replace(/[\t ]+(?=\r?$)/gm,'').replace(/\r?\n(?:[\t ]*\r?\n){2,}/g,eol+eol).trimEnd()+eol;
  await writeFile(resolve(root,name),html);
  inventory.push({file:name,home:isHome,footer:true,estimate:/id="estimate-form"/.test(html)});
 }

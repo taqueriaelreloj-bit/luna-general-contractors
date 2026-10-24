@@ -14,7 +14,7 @@ const section=hub=>{
   : 'These representative service illustrations show materials, preparation, work details, and design concepts. They are not photographs of completed Luna client projects.';
  return `${start}\n<section class="service-hub-illustrations" id="service-illustrations" aria-labelledby="shi-title">
  <div class="shi-container"><header class="shi-heading"><p class="shi-eyebrow">Representative service imagery</p><h2 id="shi-title">${esc(heading)}</h2><p>${esc(disclosure)}</p></header>
- <div class="shi-grid">${hub.images.map(image=>`<figure class="shi-card"><img src="${esc(image.file)}" alt="${esc(image.alt)}" width="1536" height="1024" loading="lazy" decoding="async"><figcaption>${esc(image.caption)}</figcaption></figure>`).join('')}
+ <div class="shi-grid">${hub.images.map(image=>`<figure class="shi-card"><img src="${esc(image.file)}" alt="${esc(image.alt)}" width="${image.width}" height="${image.height}" loading="lazy" decoding="async"><figcaption>${esc(image.caption)}</figcaption></figure>`).join('')}
  </div></div></section>\n${end}`;
 };
 for(const hub of hubs){

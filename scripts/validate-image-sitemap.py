@@ -77,6 +77,9 @@ def main() -> None:
             if page == "index.html" and image == "assets/images/illustrations/homepage/homepage-property-hero-representative-v1.png":
                 if attributes.get("fetchpriority") != "high" or attributes.get("loading") == "lazy":
                     fail("homepage hero needs high priority and must not be lazy-loaded")
+            elif attributes.get("data-page-owned-hero") == "true":
+                if attributes.get("fetchpriority") != "high" or attributes.get("loading") == "lazy" or attributes.get("decoding") != "async":
+                    fail(f"{image} needs high-priority async hero markup in {page}")
             elif attributes.get("loading") != "lazy" or attributes.get("decoding") != "async":
                 fail(f"{image} needs lazy loading and async decoding in {page}")
             expected[canonical].append(f"{origin}/{image}")

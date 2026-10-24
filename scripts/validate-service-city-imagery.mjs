@@ -78,6 +78,11 @@ const imageDimensions=data=>{
 };
 
 const generated=JSON.parse(await readFile(resolve(root,'content/service-guide-manifest.json'),'utf8'));
+// The final page-owned imagery pass deliberately replaces the legacy
+// service-city card markup. Keep this validator useful after that final pass
+// by validating the equivalent page-owned contract rather than requiring
+// retired `.service-city-imagery` cards to reappear.
+const finalPageOwned=JSON.parse(await readFile(resolve(root,'content/page-owned-imagery.json'),'utf8'));
 const assignments=generated.filter(item=>item.slug&&!item.hub&&!item.article&&item.key!=='water-damage-restoration');
 const expectedKeys=[...targetServiceKeys].sort();
 const assignmentKeys=[...new Set(assignments.map(item=>item.key))].sort();
@@ -86,7 +91,7 @@ if(JSON.stringify(assignmentKeys)!==JSON.stringify(expectedKeys))fail('City-serv
 if(new Set(assignments.map(item=>item.file)).size!==assignments.length)fail('Duplicate city-service assignment file');
 if(JSON.stringify(Object.keys(serviceMedia).sort())!==JSON.stringify(expectedKeys))fail('Service-media manifest has unexpected or missing service keys');
 if(onlyService&&!expectedKeys.includes(onlyService))fail(`Unknown service key for --only-service: ${onlyService}`);
-if(onlyPage&&!pageOwnedCityMedia[onlyPage])fail(`The --only page has no declared page-owned media override: ${onlyPage}`);
+if(onlyPage&&!pageOwnedCityMedia[onlyPage]&&!finalPageOwned[onlyPage])fail(`The --only page has no declared page-owned media override: ${onlyPage}`);
 const selectedAssignments=onlyPage
  ? assignments.filter(assignment=>assignment.file===onlyPage)
  : onlyService?assignments.filter(assignment=>assignment.key===onlyService):assignments;
@@ -176,8 +181,41 @@ for(const assignment of selectedAssignments){
 }
 
 const extractCards=section=>section.match(/<figure\b[^>]*\bclass="[^"]*\bsci-card\b[^"]*"[^>]*>[\s\S]*?<\/figure>/gi)||[];
+const escapeRegex=value=>String(value).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+const finalImageTag=(html,src)=>html.match(new RegExp(`<img\\b[^>]*\\bsrc="${escapeRegex(src)}"[^>]*>`, 'i'))?.[0]||'';
+const validateFinalPageOwned=(assignment,html,entry)=>{
+ const prefix=`${assignment.file}:`;
+ if(!Array.isArray(entry?.images)||entry.images.length!==5||new Set(entry.images.map(item=>item.src)).size!==5){
+  fail(`${prefix} final page-owned manifest needs five unique images`);
+  return;
+ }
+ if(entry.city!==assignment.city)fail(`${prefix} final page-owned city differs from assignment`);
+ if(count(html,start)!==1||count(html,end)!==1)fail(`${prefix} expected exactly one paired imagery marker`);
+ if((html.match(/<link\b[^>]*\bhref="page-owned-imagery\.css(?:\?[^\"]*)?"[^>]*>/gi)||[]).length!==1)fail(`${prefix} expected exactly one page-owned imagery stylesheet link`);
+ if(!html.includes('data-page-owned-imagery="true"'))fail(`${prefix} missing final page-owned gallery marker`);
+ if(/Representative illustration|not a photograph of a Luna job|not project photographs or product photographs/i.test(html))fail(`${prefix} retired generated-media boilerplate remains`);
+ for(const image of entry.images){
+  const tag=finalImageTag(html,image.src);
+  if(!tag){fail(`${prefix} missing final page-owned source ${image.src}`);continue;}
+  const alt=decode(attr(tag,'alt')||'');
+  if(!alt.trim()||!alt.includes(entry.city))fail(`${prefix} missing concise city-aware alt text for ${image.src}`);
+  if(Number(attr(tag,'width'))!==image.width||Number(attr(tag,'height'))!==image.height)fail(`${prefix} intrinsic dimensions differ for ${image.src}`);
+  if(/\bdata-page-owned-hero="true"/i.test(tag)){
+   if(attr(tag,'fetchpriority')!=='high'||attr(tag,'decoding')!=='async'||attr(tag,'loading')==='lazy')fail(`${prefix} final hero needs high-priority async markup for ${image.src}`);
+  }else if(attr(tag,'loading')!=='lazy'||attr(tag,'decoding')!=='async')fail(`${prefix} final page-owned image needs lazy/async markup for ${image.src}`);
+ }
+ if(assignment.key==='insurance-claims'){
+  // Final page-owned galleries use short service-and-city captions. The
+  // durable insurance guardrail belongs in the canonical FAQ, rather than in
+  // a repeated visual-media disclaimer whose retired wording users removed.
+  if(!html.includes('Do you act as a public adjuster?'))fail(`${prefix} canonical public-adjuster FAQ was not preserved`);
+  if(!html.includes('coverage decisions and policy interpretation remain with the insurer and policyholder'))fail(`${prefix} pre-existing insurance disclaimer was not preserved`);
+ }
+};
 const validatePage=(assignment,html)=>{
  const prefix=`${assignment.file}:`;
+ const finalEntry=finalPageOwned[assignment.file];
+ if(finalEntry){validateFinalPageOwned(assignment,html,finalEntry);return;}
  const override=pageOwnedCityMedia[assignment.file];
  const pageOwned=override?.pageOwned===true;
  if(count(html,start)!==1||count(html,end)!==1)fail(`${prefix} expected exactly one paired imagery marker`);

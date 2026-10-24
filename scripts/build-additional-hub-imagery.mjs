@@ -13,7 +13,14 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-function pngDimensions(bytes) {
+function imageDimensions(bytes) {
+  if(bytes.subarray(0,4).toString()==='RIFF'&&bytes.subarray(8,12).toString()==='WEBP'){
+    const kind=bytes.subarray(12,16).toString();
+    if(kind==='VP8 '&&bytes.subarray(23,26).toString('hex')==='9d012a')return {width:bytes.readUInt16LE(26)&16383,height:bytes.readUInt16LE(28)&16383};
+    if(kind==='VP8X')return {width:1+bytes.readUIntLE(24,3),height:1+bytes.readUIntLE(27,3)};
+    if(kind==='VP8L'&&bytes[20]===47){const n=bytes.readUInt32LE(21);return {width:(n&16383)+1,height:((n>>>14)&16383)+1};}
+    throw new Error('Unsupported WebP dimensions');
+  }
   assert(bytes.subarray(0, 8).toString('hex') === '89504e470d0a1a0a', 'Expected a PNG signature.');
   assert(bytes.subarray(12, 16).toString('ascii') === 'IHDR', 'Expected a PNG IHDR chunk.');
   return { width: bytes.readUInt32BE(16), height: bytes.readUInt32BE(20) };
@@ -31,7 +38,7 @@ async function validateImage(image, page) {
   assert(image.alt.includes('Dallas-Fort Worth') && image.alt.toLowerCase().includes(page.serviceTerm), `Missing region/service alt context: ${image.file}`);
   assert(image.caption.includes('Dallas-Fort Worth') && image.caption.toLowerCase().includes(page.serviceTerm), `Missing region/service caption context: ${image.file}`);
   const bytes = await readFile(resolve(root, image.file));
-  const dimensions = pngDimensions(bytes);
+  const dimensions = imageDimensions(bytes);
   assert(dimensions.width === image.width && dimensions.height === image.height, `Dimension mismatch: ${image.file}`);
   if (image.sha256) {
     assert(createHash('sha256').update(bytes).digest('hex') === image.sha256, `SHA-256 mismatch: ${image.file}`);
@@ -63,7 +70,7 @@ function replaceSection(html, page, markup) {
 }
 
 const stale = [];
-for (const page of pages) {
+for (const page of pages.filter(page => page.file !== 'index.html')) {
   assert(page.intro.includes('Dallas-Fort Worth') && page.intro.toLowerCase().includes(page.serviceTerm), `Missing regional service context: ${page.file}`);
   assert(page.visibleCaption?.includes('Dallas–Fort Worth') && page.visibleCaption.toLowerCase().includes(page.serviceTerm), `Missing concise regional service caption: ${page.file}`);
   assert(page.images.length > 0, `No images configured: ${page.file}`);

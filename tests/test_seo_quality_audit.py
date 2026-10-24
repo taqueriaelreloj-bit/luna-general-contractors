@@ -119,7 +119,7 @@ class SEOAuditTests(unittest.TestCase):
                 self.assertIn('href="index.html#estimate-form"', page)
 
 
-    def test_projects_portfolio_uses_selected_real_photos(self):
+    def test_projects_gallery_uses_concepts_and_preserves_original_files(self):
         root = Path(__file__).resolve().parents[1]
         page = (root / "projects.html").read_text(encoding="utf-8")
         stylesheet = (root / "local-seo.css").read_text(encoding="utf-8")
@@ -136,11 +136,13 @@ class SEOAuditTests(unittest.TestCase):
         self.assertEqual(1, page.count("<h1>"))
         self.assertIn('href="local-seo.css?v=20260907"', page)
         self.assertIn('property="og:image"', page)
-        self.assertIn("Every image below shows actual completed work", page)
+        self.assertNotIn("Every image below shows actual completed work", page)
+        self.assertIn("Design concepts", page)
+        self.assertNotIn("Real Luna General Contractors Project Photos", page)
         self.assertIn(".portfolio-proof-grid", stylesheet)
         for photo in selected_photos:
             with self.subTest(photo=photo):
-                self.assertIn(f'src="{photo}"', page)
+                self.assertNotIn(f'src="{photo}"', page)
                 self.assertTrue((root / photo).exists())
 
 if __name__ == "__main__":

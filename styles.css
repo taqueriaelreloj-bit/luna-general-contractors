@@ -480,22 +480,30 @@ a {
 }
 
 .trust-icon {
-  width: 39px;
-  height: 39px;
+  width: 32px;
+  height: 32px;
   display: grid;
   place-items: center;
   color: var(--gold);
   border: 2px solid currentColor;
   border-radius: 50%;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 900;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.trust-icon .ui-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
   flex: 0 0 auto;
 }
 
 .trust-icon.google {
   border: 0;
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .trust-item div {
@@ -505,6 +513,12 @@ a {
 .trust-item strong {
   font-size: 0.7rem;
   text-transform: uppercase;
+}
+
+.google-stars {
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
 .trust-item small {
@@ -798,26 +812,26 @@ a {
 
 .kitchen-pair {
   background-image:
-    url("kitchen-project-one.jpg"),
-    url("kitchen-project-two.jpg");
+    none,
+    none;
 }
 
 .bath-pair {
   background-image:
-    url("bathroom-vanity-before.jpg"),
-    url("bathroom-vanity-after.jpg");
+    none,
+    none;
 }
 
 .roof-pair {
   background-image:
-    url("roofing-project-one.jpg"),
-    url("roofing-project-two.jpg");
+    none,
+    none;
 }
 
 .floor-pair {
   background-image:
-    url("flooring-before.jpg"),
-    url("flooring-after.jpg");
+    none,
+    none;
 }
 
 .before-label,
@@ -2335,7 +2349,7 @@ body.roofing-location-page .local-hero {
   isolation: isolate;
   background:
     linear-gradient(90deg, rgba(5, 8, 10, .94) 0%, rgba(5, 8, 10, .76) 52%, rgba(5, 8, 10, .28) 100%),
-    url("/dfw-roof-replacement-brick-home-2019.jpg") center 48% / cover no-repeat;
+    none center 48% / cover no-repeat;
 }
 body.roofing-location-page .local-hero .container { max-width: 1180px; }
 body.roofing-location-page .local-hero h1 { max-width: 720px; text-wrap: balance; }

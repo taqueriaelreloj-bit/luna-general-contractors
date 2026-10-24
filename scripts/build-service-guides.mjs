@@ -7,7 +7,7 @@ import conditions from '../content/service-project-conditions.mjs';
 import mitigationNotes from '../content/mitigation-location-notes.mjs';
 import equipmentPhotos from '../content/mitigation-equipment-photos.mjs';
 import {replacements as mitigationReplacements, question as mitigationQuestion, answer as mitigationAnswer} from '../content/mitigation-scope.mjs';
-import {cityKitchenCardScene} from '../content/city-kitchen-card-scenes.mjs';
+import {cityKitchenCardScene,kitchenCardScene} from '../content/city-kitchen-card-scenes.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const check=process.argv.includes('--check');
 const onlyArg=process.argv.find(arg=>arg.startsWith('--only='));
@@ -59,11 +59,7 @@ function product(id,key){
  const p=products[id];if(!p)throw new Error(`Missing product ${id}`);
  return key==='water-damage-restoration'?{...p,...equipmentPhotos[id]}:p;
 }
-const kitchenHubScenes={
- cabinet:{src:'assets/images/illustrations/kitchens/generated-kitchen-cabinetry-representative-illustration-v1.png',alt:'Representative generated illustration of custom-style cabinetry and a wood island for Dallas-Fort Worth kitchen remodeling planning',caption:'Kitchen remodeling services — Dallas–Fort Worth',context:'Dallas-Fort Worth kitchen remodeling',width:1536,height:1024,className:'sg-card--scene sg-card--scene-cabinet'},
- quartz:{src:'assets/images/illustrations/kitchens/generated-quartz-island-representative-illustration-v1.png',alt:'Representative generated illustration of a pale quartz-style island for Dallas-Fort Worth kitchen remodeling planning',caption:'Kitchen remodeling services — Dallas–Fort Worth',context:'Dallas-Fort Worth kitchen remodeling',width:1672,height:941,className:'sg-card--scene sg-card--scene-quartz'},
- tile:{src:'assets/images/illustrations/flooring/generated-porcelain-flooring-representative-illustration-v1.png',alt:'Representative generated illustration of large-format porcelain-style flooring for Dallas-Fort Worth kitchen remodeling planning',caption:'Kitchen remodeling services — Dallas–Fort Worth',context:'Dallas-Fort Worth kitchen remodeling',width:1536,height:1024,className:'sg-card--scene sg-card--scene-porcelain'}
-};
+const kitchenHubScenes=Object.fromEntries(['cabinet','quartz','tile'].map(id=>{const scene=kitchenCardScene(id,'kitchens.html');return [id,{...scene,alt:'AI-created illustrative concept for Dallas-Fort Worth kitchen remodeling; not an actual project or product photograph.',caption:'Kitchen remodeling services — Dallas–Fort Worth'}];}));
 function card(id,a){
  const p=product(id,a.key);
  const scene=(a.hub&&a.key==='kitchen-remodeling'?kitchenHubScenes[id]:null)

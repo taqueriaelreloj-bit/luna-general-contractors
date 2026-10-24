@@ -62,7 +62,7 @@ const validateMedia=(key,entry,context=key)=>{
   ids.add(item.id);srcs.add(item.src);
  }
 };
-for(const key of expectedKeys)validateMedia(key,serviceMedia[key]);
+// Every city is validated through its exact page-owned assignment below.
 const pageOwnedGeneratedSources=new Map;
 // Page-owned media must be byte-distinct across pages as well as path-distinct.
 // A renamed copy of a generated scene has a different source path but the same
@@ -84,7 +84,7 @@ for(const [file,entry] of Object.entries(pageOwnedCityMedia)){
   pageOwnedGeneratedBlobShas.set(item.sha,file);
  }
 }
-const mediaFor=assignment=>pageOwnedCityMedia[assignment.file]||serviceMedia[assignment.key];
+const mediaFor=assignment=>{const media=pageOwnedCityMedia[assignment.file];if(!media)throw new Error(`Missing page-owned city imagery: ${assignment.file}`);return media;};
 
 const card=(item,serviceName,city,useCityContext)=>{
  const illustration=item.kind==='representative-illustration';
