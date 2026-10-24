@@ -534,6 +534,54 @@ a {
   box-shadow: 0 24px 50px rgba(0,0,0,.4);
 }
 
+/* Homepage: keep the hero image clear, with estimates and reviews directly below. */
+.hero-grid.home-hero-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.estimate-reviews-section {
+  padding: clamp(36px, 5vw, 72px) 0;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(240, 169, 0, 0.1), transparent 42%),
+    #f7f8f9;
+}
+
+.estimate-reviews-layout {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.8fr) minmax(0, 1.7fr);
+  align-items: start;
+  gap: clamp(24px, 4vw, 54px);
+}
+
+.estimate-reviews-layout .estimate-card {
+  width: 100%;
+  max-width: 430px;
+  justify-self: start;
+  margin: 0;
+}
+
+.homepage-reviews {
+  min-width: 0;
+}
+
+.estimate-reviews-layout .reviews-section {
+  padding: 0;
+}
+
+.estimate-reviews-layout .reviews-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.estimate-reviews-layout .review-cta {
+  grid-column: 1 / -1;
+  min-height: auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+}
+
 .estimate-card h2 {
   margin: 0;
   font-size: 1.25rem;
@@ -1206,6 +1254,34 @@ a {
   }
 }
 
+@media (min-width: 1801px) {
+  .site-header .topbar {
+    width: min(calc(100% - 48px), 1680px);
+    grid-template-columns: 220px minmax(0, 1fr) 220px;
+    gap: 12px;
+  }
+
+  .site-header .main-nav {
+    min-width: 0;
+    gap: clamp(8px, 0.8vw, 13px);
+  }
+
+  .site-header .main-nav a {
+    font-size: 0.64rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .estimate-reviews-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .estimate-reviews-layout .estimate-card {
+    max-width: 520px;
+    justify-self: center;
+  }
+}
+
 @media (max-width: 1280px) {
   .topbar {
     grid-template-columns: 220px 1fr 210px;
@@ -1296,6 +1372,10 @@ a {
 
   .hero-grid {
     grid-template-columns: 1fr 310px;
+  }
+
+  .hero-grid.home-hero-grid {
+    grid-template-columns: 1fr;
   }
 
   .hero-copy {
@@ -1423,7 +1503,7 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .estimate-card {
+  .estimate-reviews-layout .estimate-card {
     margin-top: 6px;
   }
 
@@ -1480,6 +1560,12 @@ a {
 
   .reviews-grid {
     grid-template-columns: 1fr;
+  }
+
+  .estimate-reviews-layout .review-cta {
+    grid-column: auto;
+    display: flex;
+    text-align: center;
   }
 
   .review-cta {

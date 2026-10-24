@@ -385,6 +385,16 @@ if (!document.body.classList.contains("complete-page") && !document.body.classLi
   if (!document.querySelector("#contact")) card.id = "contact";
 }
 
+// On the homepage, present the existing reviews beside the existing estimate form.
+// Moving the node preserves its wording, source links, rating, and interaction behavior.
+if (isHomePage) {
+  const homepageReviewsMount = document.querySelector("[data-homepage-reviews]");
+  const homepageReviewsSection = document.querySelector(".reviews-section");
+  if (homepageReviewsMount && homepageReviewsSection && !homepageReviewsMount.contains(homepageReviewsSection)) {
+    homepageReviewsMount.append(homepageReviewsSection);
+  }
+}
+
 // Archived portfolio photos are not inserted into current concept galleries.
 // Track high-intent lead actions across every page.
 document.addEventListener("click", (event) => {
