@@ -1,0 +1,17 @@
+# Component illustration review transfer
+
+This is a media-only review transfer, not a deployable branch. Do not merge this branch into `main`, publish the ZIPs, or replace the existing page-owned gallery. Integrate only verified image members and the public metadata required by the website. The transfer starts from commit `912d92686a2bcd09cc0a66d3c22027363fe4a714`; the website editor must preserve any newer site changes.
+
+`manifest.json` maps 2,634 unique generated illustrations to three numbered component-card slots on 878 pages. `assets[].path` is the exact repository-relative image destination and ZIP member name. `archives[]` lists each ZIP's byte count, SHA-256 and Git blob SHA plus every member's path, size and SHA-256. Asset records also include dimensions and the corresponding original image SHA-256/dimensions. Originals are not included or changed. WebP derivatives use quality 78 and a maximum dimension of 1,280 pixels, preserving the complete original composition and aspect ratio.
+
+## Provenance and captions
+
+These are AI-generated generic material/equipment illustrations, not actual Luna project, customer, location or manufacturer photographs, nor insurance, warranty or engineering evidence. Retain accurate section/gallery context. Captions are short subject plus city when known. Null `city` or `service` and `required_metadata` fields must be resolved from the actual page before publishing; do not infer a location solely from an image. Do not alter official product-reference text or links to imply manufacturer ownership of the image. Keep the existing 5,045 page-gallery slots separate from these 2,634 technical illustrations.
+
+## Safe extraction and verification
+
+1. Fetch the exact completed transfer commit provided with the delivery receipt. Keep ZIPs outside the clean website integration worktree. Check `manifest.json` SHA-256 against the receipt; do not begin from a partially populated transfer branch.
+2. Require exactly 2,634 unique asset paths, original hashes and derivative hashes, 878 page names, and slots `[1,2,3]` once for every page. Reject unexpected ZIP files or members, duplicates, backslashes, absolute/drive paths, `..`, symlinks and destinations outside the worktree. Every image path must begin `assets/images/illustrations/component-owned/` and end `.webp`.
+3. Verify every archive byte count and SHA-256 before opening it. Require its member list to match `archives[].members` exactly. For every member, verify uncompressed byte count and SHA-256 against both the archive member record and its `assets[]` record before writing. Never overwrite a pre-existing path unless its bytes are already identical.
+4. Decode every extracted WebP and verify actual width and height against its asset record; do not assume 3:2. Use the supplied dimensions in HTML. Match cards by `page_file` and numeric `slot`, retaining their existing technical content and official reference links.
+5. The website editor owns code integration, generator persistence, caption completion, full page/gallery/browser testing and publication. Verify all 878 pages and 2,634 component slots, preserve the existing 5,045 gallery slots, test the combined gallery's separate technical-image type, and inspect the six nonstandard-aspect images without stretching/cropping. Publish only after the website's checks pass. Transfer archives and review README are not production site content.
