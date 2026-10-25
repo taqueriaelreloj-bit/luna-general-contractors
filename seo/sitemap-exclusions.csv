@@ -1,4 +1,5 @@
 path,classification,next_action,rationale
+"gallery.html","exclude-utility","keep-noindex","Browse interface for page-owned service imagery; individual owner pages retain canonical image context"
 "allen-backsplash-installation.html","hold-template-family","enrich-by-family","One of 12 repeated service-city families; keep out until uniqueness local proof and OG image coverage are validated"
 "allen-cabinet-installation.html","hold-template-family","enrich-by-family","One of 12 repeated service-city families; keep out until uniqueness local proof and OG image coverage are validated"
 "allen-concrete-driveways.html","hold-template-family","enrich-by-family","One of 12 repeated service-city families; keep out until uniqueness local proof and OG image coverage are validated"

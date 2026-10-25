@@ -16,3 +16,11 @@ execFileSync(process.env.PYTHON || 'python',[
   '--apply',
   '--removal-log',resolve(root,'tmp','page-owned-photo-removals.json'),
 ],{cwd:root,stdio:'inherit'});
+
+// Build the separate browse UI after the final page-owned pass. It deliberately
+// consumes the immutable ownership manifest without becoming a sixth placement
+// or an image-sitemap owner for any scene.
+execFileSync(process.env.PYTHON || 'python',[
+  resolve(root,'scripts/build-page-owned-general-gallery.py'),
+  '--apply',
+],{cwd:root,stdio:'inherit'});

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Apply noindex controls declared by seo/sitemap-exclusions.csv.
 
-Only hold-template-family and hold-low-content pages are changed. The script is
-idempotent and removes those URLs from sitemap.xml if a generator adds them.
+Held template/content pages and explicit browse utilities are changed. The script
+is idempotent and removes those URLs from sitemap.xml if a generator adds them.
 """
 
 from __future__ import annotations
@@ -18,7 +18,7 @@ INVENTORY = ROOT / "seo" / "sitemap-exclusions.csv"
 SITEMAP = ROOT / "sitemap.xml"
 DOMAIN = "https://lunageneralcontractors.com"
 SITEMAP_NS = "http://www.sitemaps.org/schemas/sitemap/0.9"
-HELD = {"hold-template-family", "hold-low-content"}
+HELD = {"hold-template-family", "hold-low-content", "exclude-utility"}
 ROBOTS_RE = re.compile(r"""<meta\b[^>]*\bname=["']robots["'][^>]*>""", re.I)
 NOINDEX_TAG = '<meta name="robots" content="noindex, follow">'
 

@@ -19,8 +19,9 @@ ALLOWED = {
     "hold-low-content",
     "hold-template-family",
     "exclude-preview",
+    "exclude-utility",
 }
-HELD = {"hold-low-content", "hold-template-family"}
+HELD = {"hold-low-content", "hold-template-family", "exclude-utility"}
 ROBOTS_RE = re.compile(r"""<meta\b[^>]*\bname=["']robots["'][^>]*>""", re.I)
 CONTENT_RE = re.compile(r"""\bcontent=["']([^"']*)["']""", re.I)
 

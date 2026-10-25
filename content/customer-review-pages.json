@@ -1,8 +1,8 @@
 {
   "source": "index.html#reviews",
-  "totalPages": 1009,
+  "totalPages": 1010,
   "existingSections": 2,
-  "sharedSections": 1007,
+  "sharedSections": 1008,
   "pages": [
     {
       "file": "addison.html",
@@ -2001,6 +2001,11 @@
     },
     {
       "file": "frisco.html",
+      "language": "en",
+      "reviews": "shared-home-section"
+    },
+    {
+      "file": "gallery.html",
       "language": "en",
       "reviews": "shared-home-section"
     },

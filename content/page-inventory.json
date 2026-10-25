@@ -2400,6 +2400,12 @@
     "estimate": true
   },
   {
+    "file": "gallery.html",
+    "home": false,
+    "footer": true,
+    "estimate": true
+  },
+  {
     "file": "garland-backsplash-installation.html",
     "home": false,
     "footer": true,

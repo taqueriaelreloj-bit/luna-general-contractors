@@ -255,6 +255,133 @@ document.querySelectorAll("[data-page-owned-gallery]").forEach((gallery) => {
   selectThumbnail(0);
 });
 
+// The dedicated gallery is a browse-only view of the page-owned manifest. It
+// fetches lightweight metadata only and creates no more than one 24-card page
+// of lazy images at a time. Individual service pages remain each scene's owner.
+const generalGallery = document.querySelector("[data-general-gallery]");
+if (generalGallery) {
+  const source = generalGallery.getAttribute("data-general-gallery-source");
+  const form = generalGallery.querySelector("[data-general-gallery-filters]");
+  const serviceSelect = generalGallery.querySelector("[data-general-gallery-service]");
+  const citySelect = generalGallery.querySelector("[data-general-gallery-city]");
+  const summary = generalGallery.querySelector("[data-general-gallery-summary]");
+  const results = generalGallery.querySelector("[data-general-gallery-results]");
+  const pagination = generalGallery.querySelector("[data-general-gallery-pagination]");
+  const previousButton = generalGallery.querySelector("[data-general-gallery-previous]");
+  const nextButton = generalGallery.querySelector("[data-general-gallery-next]");
+  const status = generalGallery.querySelector("[data-general-gallery-status]");
+  const pageSize = 24;
+
+  const valueText = (value) => String(value || "").trim();
+  const validRecord = (record) => record
+    && typeof record === "object"
+    && /^assets\/images\//.test(valueText(record.src))
+    && /^[^/]+\.html$/.test(valueText(record.ownerPage))
+    && /^[a-z0-9-]+$/.test(valueText(record.category))
+    && /^[a-z0-9-]+$/.test(valueText(record.serviceKey))
+    && Boolean(valueText(record.service))
+    && Boolean(valueText(record.city))
+    && Number.isInteger(record.slot)
+    && Number(record.width) > 0
+    && Number(record.height) > 0;
+
+  const makeOption = (value, label) => {
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = label;
+    return option;
+  };
+
+  const makeCard = (record) => {
+    const article = document.createElement("article");
+    article.className = "general-gallery__card";
+    article.dataset.generalGalleryCard = "true";
+    const link = document.createElement("a");
+    link.href = record.ownerPage;
+    link.setAttribute("aria-label", `View ${record.caption} service page`);
+    const image = document.createElement("img");
+    image.className = "general-gallery__image";
+    image.src = record.src;
+    image.alt = record.alt;
+    image.width = Number(record.width);
+    image.height = Number(record.height);
+    image.loading = "lazy";
+    image.decoding = "async";
+    const meta = document.createElement("span");
+    meta.className = "general-gallery__meta";
+    const caption = document.createElement("span");
+    caption.className = "general-gallery__caption";
+    caption.textContent = record.caption;
+    const owner = document.createElement("span");
+    owner.className = "general-gallery__owner";
+    owner.textContent = "View service page";
+    meta.append(caption, owner);
+    link.append(image, meta);
+    article.append(link);
+    return article;
+  };
+
+  const showLoadFailure = () => {
+    if (summary) summary.textContent = "The full gallery could not load. Please browse an individual service page.";
+    if (pagination) pagination.hidden = true;
+  };
+
+  if (!source || !form || !serviceSelect || !citySelect || !summary || !results || !pagination || !previousButton || !nextButton || !status) {
+    showLoadFailure();
+  } else {
+    fetch(source, { credentials: "same-origin" })
+      .then((response) => {
+        if (!response.ok) throw new Error(`Gallery data request failed: ${response.status}`);
+        return response.json();
+      })
+      .then((payload) => {
+        if (!Array.isArray(payload) || !payload.length || !payload.every(validRecord)) {
+          throw new Error("Gallery data is malformed");
+        }
+        const records = payload.slice();
+        const services = [...new Map(records.map((record) => [valueText(record.serviceKey), valueText(record.service)])).entries()]
+          .filter(([serviceKey, service]) => serviceKey && service)
+          .sort((left, right) => left[1].localeCompare(right[1]) || left[0].localeCompare(right[0]));
+        const cities = [...new Set(records.map((record) => valueText(record.city)))].filter(Boolean).sort((left, right) => left.localeCompare(right));
+        services.forEach(([serviceKey, service]) => serviceSelect.append(makeOption(serviceKey, service)));
+        cities.forEach((city) => citySelect.append(makeOption(city, city)));
+
+        let page = 1;
+        const render = () => {
+          const serviceKey = valueText(serviceSelect.value);
+          const city = valueText(citySelect.value);
+          const filtered = records.filter((record) => (!serviceKey || record.serviceKey === serviceKey) && (!city || record.city === city));
+          const pageCount = Math.max(1, Math.ceil(filtered.length / pageSize));
+          page = Math.min(Math.max(page, 1), pageCount);
+          const start = (page - 1) * pageSize;
+          const visible = filtered.slice(start, start + pageSize);
+          results.replaceChildren(...visible.map(makeCard));
+          const first = visible.length ? start + 1 : 0;
+          const last = start + visible.length;
+          summary.textContent = filtered.length
+            ? `Showing ${first}–${last} of ${filtered.length} images.`
+            : "No images match these filters.";
+          status.textContent = filtered.length ? `Page ${page} of ${pageCount}` : "No pages";
+          previousButton.disabled = page === 1 || !filtered.length;
+          nextButton.disabled = page === pageCount || !filtered.length;
+          pagination.hidden = false;
+        };
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          page = 1;
+          render();
+        });
+        serviceSelect.addEventListener("change", () => { page = 1; render(); });
+        citySelect.addEventListener("change", () => { page = 1; render(); });
+        previousButton.addEventListener("click", () => { page -= 1; render(); });
+        nextButton.addEventListener("click", () => { page += 1; render(); });
+        render();
+      })
+      .catch(showLoadFailure);
+  }
+}
+
 document.querySelectorAll("[data-gallery]").forEach((gallery) => {
   const slides = [...gallery.querySelectorAll(".gallery-slot")];
   const previousButton = gallery.querySelector(".showcase-prev");
