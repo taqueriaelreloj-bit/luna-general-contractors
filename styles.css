@@ -528,6 +528,7 @@ a {
 
 .estimate-card {
   padding: 22px;
+  color: #f4f6f8;
   background: linear-gradient(180deg, rgba(19,22,25,.98), rgba(8,10,12,.97));
   border: 1px solid rgba(255,255,255,.22);
   border-radius: 10px;
@@ -584,6 +585,7 @@ a {
 
 .estimate-card h2 {
   margin: 0;
+  color: #fff;
   font-size: 1.25rem;
   text-align: center;
   text-transform: uppercase;
@@ -625,6 +627,30 @@ a {
 
 .estimate-card select {
   color: #d2d4d6;
+}
+
+/* The estimate card now sits outside the hero, so give inherited form text an
+   explicit accessible light color instead of relying on the page background. */
+.estimate-card .photo-upload-field {
+  color: #f4f6f8;
+}
+
+.estimate-card .photo-upload-field > span small,
+.estimate-card .photo-upload-help {
+  color: #d9dfe5;
+  opacity: 1;
+}
+
+.estimate-card .privacy {
+  color: #d1d7dd;
+}
+
+.estimate-card .privacy a {
+  color: #f8c44e;
+}
+
+.estimate-card .btn-gold {
+  color: #111;
 }
 
 .privacy,
