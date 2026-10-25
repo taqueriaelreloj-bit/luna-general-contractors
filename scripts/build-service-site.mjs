@@ -18,6 +18,13 @@ execFileSync(process.env.PYTHON || 'python',[
   '--removal-log',resolve(root,'tmp','page-owned-photo-removals.json'),
 ],{cwd:root,stdio:'inherit'});
 
+// The final imagery pass also reparents the existing form, factual reviews, and
+// five owned thumbnails into the post-hero lead layout. Validate that contract
+// before a general-gallery build can consume the same page inventory.
+execFileSync(process.env.PYTHON || 'python',[
+  resolve(root,'scripts/validate-page-lead-layout.py'),
+],{cwd:root,stdio:'inherit'});
+
 // Component cards are separate from each page's five-gallery contract. Validate
 // them after the final imagery pass so aggregate rebuilds cannot restore an
 // old SVG or photo into a mapped card slot.

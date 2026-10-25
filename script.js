@@ -646,7 +646,11 @@ const pageHero = pageMain?.querySelector(".city-hero, .local-hero, .seo-hero, .t
 const heroContainer = pageHero?.querySelector(".container");
 const estimateAnchor = document.querySelector("#estimate-form");
 const pageEstimateForm = estimateAnchor?.matches("form") ? estimateAnchor : estimateAnchor?.querySelector("form");
-if (!document.body.classList.contains("complete-page") && !document.body.classList.contains("roofing-location-page") && heroContainer && !pageHero.querySelector(".estimate-card") && pageEstimateForm) {
+const hasLeadEstimateReviewsLayout = Boolean(document.querySelector("[data-estimate-reviews-layout='true']"));
+// The final page-owned imagery pass owns a post-hero lead layout. Retain the
+// legacy conversion only for an older page that lacks that durable wrapper;
+// otherwise moving the form back into the hero would split it from reviews.
+if (!hasLeadEstimateReviewsLayout && !document.body.classList.contains("complete-page") && !document.body.classList.contains("roofing-location-page") && heroContainer && !pageHero.querySelector(".estimate-card") && pageEstimateForm) {
   const existingCard = pageEstimateForm.closest(".estimate-card");
   const card = existingCard || document.createElement("aside");
   if (!existingCard) {
@@ -794,7 +798,9 @@ document.querySelectorAll('form[action*="formspree.io"]').forEach((form) => {
     else form.appendChild(photoField);
   }
 
-  if (!isHomePage) {
+  // Lead-layout pages already reuse the full factual review section beside the
+  // form. Do not add a second compact review card there.
+  if (!isHomePage && !form.closest("[data-estimate-reviews-layout='true']")) {
     const reviewCard = document.createElement("aside");
     reviewCard.className = "form-review-card";
     reviewCard.setAttribute("aria-label", "Customer review");

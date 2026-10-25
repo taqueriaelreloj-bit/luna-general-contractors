@@ -9,7 +9,9 @@ import argparse,html,json,re,sys
 from pathlib import Path
 
 START='<!-- page-owned-imagery:start -->';END='<!-- page-owned-imagery:end -->'
-STYLE='<link rel="stylesheet" href="page-owned-imagery.css?v=20261025-full-image-1">'
+REVIEW_START='<!-- shared-customer-reviews:start -->';REVIEW_END='<!-- shared-customer-reviews:end -->'
+LEAD_START='<!-- page-lead-layout:start -->';LEAD_END='<!-- page-lead-layout:end -->'
+STYLE='<link rel="stylesheet" href="page-owned-imagery.css?v=20261025-lead-layout-1">'
 CSS='''.page-owned-gallery{margin:32px auto;padding:clamp(16px,2.5vw,28px);background:#f4f4f1;color:#17191c;border-top:4px solid #e5a000}.page-owned-gallery__heading{margin:0 0 14px;font-size:clamp(1.3rem,2vw,1.8rem)}.page-owned-gallery__track{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.page-owned-gallery__item{min-width:0;margin:0;background:#fff;border:1px solid #deded8;border-radius:5px;overflow:hidden}.page-owned-gallery__thumbnail{display:block;width:100%;aspect-ratio:4/3;overflow:hidden;padding:0;border:3px solid transparent;background:#fff;color:inherit;cursor:pointer;text-align:inherit;transition:border-color .16s ease,box-shadow .16s ease}.page-owned-gallery__thumbnail[aria-current="true"]{border-color:#b87b00;box-shadow:0 0 0 2px rgba(184,123,0,.22)}.page-owned-gallery__thumbnail:focus-visible,.page-owned-gallery__control:focus-visible{outline:3px solid #005fcc;outline-offset:3px}.page-owned-gallery__thumbnail img{display:block;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}.page-owned-gallery__item figcaption{min-height:3.1em;padding:9px 10px;color:#17191c;font-size:.88rem;font-weight:700;line-height:1.35}.page-owned-gallery__controls{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:14px}.page-owned-gallery__control{min-width:44px;min-height:44px;padding:8px 14px;border:1px solid #24282c;border-radius:4px;background:#17191c;color:#fff;font:inherit;font-weight:700;cursor:pointer}.page-owned-gallery__control:disabled{opacity:.48;cursor:not-allowed}.page-owned-gallery__status{min-width:6.5em;margin-right:auto;color:#50545a;font-size:.9rem}.poi-notice{color:#50545a;line-height:1.5}.poi-roofing-page .mr-story,.poi-roofing-page .mr-detail-row,.poi-roofing-page .cr-assembly{display:block}
 .poi-hero{position:relative;isolation:isolate;overflow:hidden;background:#05080a}.poi-hero-image{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;object-fit:cover}.poi-hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(2,4,6,.94),rgba(2,4,6,.65) 55%,rgba(2,4,6,.25))}.poi-hero>.trade-hero-copy{position:relative;z-index:2}.poi-gallery-anchor{display:block;scroll-margin-top:1rem}
 @media(max-width:900px){.page-owned-gallery__track{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -17,6 +19,14 @@ CSS='''.page-owned-gallery{margin:32px auto;padding:clamp(16px,2.5vw,28px);backg
 .page-owned-gallery__all-link{display:inline-flex;align-items:center;min-height:44px;padding:8px 12px;color:#17252b;font-weight:800;text-decoration:underline;text-underline-offset:3px}.page-owned-gallery__all-link:hover{color:#8a5a00}.page-owned-gallery__all-link:focus-visible{outline:3px solid #005fcc;outline-offset:3px}
 @media(max-width:620px){.page-owned-gallery__controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));justify-content:stretch}.page-owned-gallery__status,.page-owned-gallery__all-link{grid-column:1/-1}.page-owned-gallery__all-link{width:max-content;padding-left:0}.page-owned-gallery__control{width:100%}}
 .page-owned-gallery__thumbnail{aspect-ratio:16/10;background:#111820}.page-owned-gallery__thumbnail img{object-fit:contain;background:#111820}
+/* The lead conversion reuses the actual form, review section and page-owned gallery.
+   It deliberately applies only to page content, never to gallery.html. */
+.page-estimate-reviews-section{padding:clamp(36px,5vw,72px) 0;background:radial-gradient(circle at 50% 0%,rgba(240,169,0,.10),transparent 42%),#f7f8f9}.page-estimate-reviews-section .estimate-reviews-layout{display:grid;grid-template-columns:minmax(300px,.8fr) minmax(0,1.7fr);align-items:start;gap:clamp(24px,4vw,54px)}.page-estimate-reviews__form,.page-estimate-reviews__content{min-width:0}.page-estimate-reviews__form>.local-form{padding:0;background:transparent;color:#17191c}.page-estimate-reviews__form>.local-form>.container{width:100%;max-width:none;padding:0}.page-estimate-reviews__form .estimate-form{width:100%;box-sizing:border-box}.page-estimate-reviews__form .local-form h2{margin-top:0}.page-estimate-reviews__content>.shared-customer-reviews{padding:0}.page-estimate-reviews__content>.page-owned-gallery{margin:32px 0 0}.page-estimate-reviews__content>.page-owned-gallery.container{max-width:none;padding-inline:0}
+@media(max-width:900px){.page-estimate-reviews-section .estimate-reviews-layout{grid-template-columns:1fr}.page-estimate-reviews__form{max-width:520px;width:100%;justify-self:center}}
+/* Slight visual lift for pointer devices only. Scaling the thumbnail surface avoids
+   grid reflow while its contained image remains fully visible. */
+@media(hover:hover) and (pointer:fine){.page-owned-gallery__item{position:relative;overflow:visible;z-index:0}.page-owned-gallery__thumbnail{transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease}.page-owned-gallery__thumbnail:hover,.page-owned-gallery__thumbnail:focus-visible{transform:scale(1.035);z-index:1;box-shadow:0 10px 24px rgba(5,8,11,.20)}}
+@media(prefers-reduced-motion:reduce){.page-owned-gallery__thumbnail{transition:none!important}.page-owned-gallery__thumbnail:hover,.page-owned-gallery__thumbnail:focus-visible{transform:none}}
 '''
 FIGURE=re.compile(r'<figure\b[^>]*>.*?</figure>',re.S|re.I)
 SRC=re.compile(r'<img\b[^>]*\bsrc="([^"]+)"',re.I)
@@ -124,6 +134,116 @@ def render_gallery(entry,images,genuine=()):
   cards.append(f'<figure class="page-owned-gallery__item" data-representative-generated-illustration="true" data-page-owned-slot="{slot}"><button class="page-owned-gallery__thumbnail" type="button" data-page-owned-gallery-thumbnail="true" aria-current="{str(i["slot"]==1).lower()}" aria-label="View {esc(caption)}"><img data-page-owned-gallery-image="true" src="{esc(i["src"])}" alt="{esc(alt)}" width="{int(i["width"])}" height="{int(i["height"])}" loading="lazy" decoding="async"></button><figcaption>{esc(caption)}</figcaption></figure>')
  controls='<div class="page-owned-gallery__controls" data-page-owned-gallery-controls hidden><span class="page-owned-gallery__status" data-page-owned-gallery-status aria-live="polite">Image 1 of 5</span><a class="page-owned-gallery__all-link" href="gallery.html" data-page-owned-gallery-all>View Full Gallery</a><button class="page-owned-gallery__control" type="button" data-page-owned-gallery-previous aria-label="Show previous image" disabled>Previous</button><button class="page-owned-gallery__control" type="button" data-page-owned-gallery-next aria-label="Show next image">Next</button></div>'
  return START+'<section class="page-owned-gallery container"'+gallery_id+' data-page-owned-gallery="true" data-page-owned-imagery="true" aria-labelledby="page-owned-gallery-title"><h2 class="page-owned-gallery__heading" id="page-owned-gallery-title">'+html.escape(heading)+'</h2><div class="page-owned-gallery__track" data-page-owned-gallery-track>'+''.join(cards+list(genuine))+'</div>'+controls+'</section>'+END
+
+
+SECTION_TAG=re.compile(r'</?section\b[^>]*>',re.I)
+
+def section_range(text,opening_start):
+ """Return one complete section range, including nested sections."""
+ depth=0
+ for tag in SECTION_TAG.finditer(text,opening_start):
+  closing=tag.group().lower().startswith('</')
+  if closing:
+   depth-=1
+   if depth==0:return opening_start,tag.end()
+  else:
+   depth+=1
+ raise ValueError('Unclosed section')
+
+def section_with(text,pattern):
+ match=re.search(pattern,text,re.I)
+ return section_range(text,match.start()) if match else None
+
+def element_range(text,opening_start,tag):
+ """Return a complete same-name element range, including nested elements."""
+ token=re.compile(r'</?'+re.escape(tag)+r'\b[^>]*>',re.I)
+ depth=0
+ for match in token.finditer(text,opening_start):
+  if match.group().lower().startswith('</'):
+   depth-=1
+   if depth==0:return opening_start,match.end()
+  else:depth+=1
+ raise ValueError('Unclosed '+tag)
+
+def estimate_form_range(text):
+ """Move the existing form container, not just its fields.
+
+ Most pages use a section with id=estimate-form. A small group of older city and
+ editorial templates instead places the same form inside an estimate-card aside.
+ Preserve its heading, privacy copy and validation by moving that smallest
+ containing section/aside/card rather than rebuilding a second form.
+ """
+ section=section_with(text,r'<section\b(?=[^>]*\bid=["\']estimate-form["\'])[^>]*>')
+ if section:return section
+ form=re.search(r'<form\b(?=[^>]*\bid=["\']estimate-form["\'])[^>]*>',text,re.I)
+ if not form:return None
+ candidates=[]
+ for tag in ('section','aside'):
+  for opening in re.finditer(r'<'+tag+r'\b[^>]*>',text,re.I):
+   if opening.start()>form.start():break
+   span=section_range(text,opening.start()) if tag=='section' else element_range(text,opening.start(),tag)
+   if span[0]<=form.start()<span[1]:candidates.append(span)
+ for opening in re.finditer(r'<div\b[^>]*\bclass=["\'][^"\']*(?:estimate-card|estimate-form|form-card)[^"\']*["\'][^>]*>',text,re.I):
+  if opening.start()>form.start():break
+  span=element_range(text,opening.start(),'div')
+  if span[0]<=form.start()<span[1]:candidates.append(span)
+ if candidates:return min(candidates,key=lambda span:span[1]-span[0])
+ return element_range(text,form.start(),'form')
+
+def first_main_section(text):
+ main=re.search(r'<main\b[^>]*>',text,re.I)
+ if not main:return None
+ opening=re.search(r'<section\b[^>]*>',text[main.end():],re.I)
+ if not opening:return None
+ return section_range(text,main.end()+opening.start())
+
+def remove_ranges(text,ranges):
+ unique=[]
+ for item in sorted((r for r in ranges if r),key=lambda r:(r[0],-(r[1]-r[0]))):
+  if unique and item[0]>=unique[-1][0] and item[1]<=unique[-1][1]:continue
+  if unique and item[0]<unique[-1][1]:raise ValueError('Overlapping lead-layout blocks')
+  unique.append(item)
+ for start,end in reversed(unique):text=text[:start]+text[end:]
+ return text
+
+def lead_wrapper(form,reviews,gallery):
+ return (LEAD_START+'\n<section class="estimate-reviews-section page-estimate-reviews-section" '
+         'data-estimate-reviews-layout="true" aria-label="Free estimate form and customer reviews">\n'
+         '<div class="container estimate-reviews-layout">\n'
+         '<div class="page-estimate-reviews__form">'+form+'</div>\n'
+         '<div class="page-estimate-reviews__content">'+reviews+'\n'+gallery+'</div>\n'
+         '</div>\n</section>\n'+LEAD_END)
+
+def arrange_page_lead_layout(text,page):
+ """Keep one existing form and factual review block beside the hero, then its gallery.
+
+ The root generators intentionally own the contents of each block. This final pass
+ only reparents those same blocks, so it cannot duplicate Formspree forms, reviews,
+ captions, or the five page-owned scenes.
+ """
+ if page in {'index.html','privacy.html','reviews.html'}:return text
+ gallery=block(text,START,END)
+ reviews=block(text,REVIEW_START,REVIEW_END)
+ form_range=estimate_form_range(text)
+ if not gallery or not reviews or not form_range:return text
+ layout_range=section_with(text,r'<section\b(?=[^>]*\bdata-estimate-reviews-layout=["\']true["\'])[^>]*>')
+ layout_marker=block(text,LEAD_START,LEAD_END)
+ gallery_markup=gallery.group();reviews_markup=reviews.group();form_markup=text[form_range[0]:form_range[1]]
+ if layout_marker:
+  if not layout_range or not (layout_marker.start() <= layout_range[0] and layout_range[1] <= layout_marker.end()):
+   raise ValueError('Malformed lead-layout markers')
+  removal=[layout_marker.span()]
+  if not (layout_marker.start() <= gallery.start() and gallery.end() <= layout_marker.end()):
+   removal.append(gallery.span())
+ else:
+  removal=[gallery.span(),reviews.span(),form_range]
+ without=remove_ranges(text,removal)
+ hero=first_main_section(without)
+ if not hero:return text
+ wrapper=lead_wrapper(form_markup,reviews_markup,gallery_markup)
+ before=without[:hero[1]].rstrip()
+ after=without[hero[1]:].lstrip()
+ return before+'\n\n'+wrapper+'\n\n'+after
 
 def insert_homepage_gallery(text,entry):
  gallery=render_gallery(entry,entry['images'])
@@ -248,6 +368,10 @@ def transform(original,entry,page):
     text=text[:offset]+gallery+text[offset:]
  text=ensure_gallery_anchor(text,entry)
  text=dedupe_assigned_figures(text,entry)
+ # Keep the lead conversion after every upstream insertion point has run. This
+ # makes a full regeneration and a standalone imagery pass produce the same
+ # post-hero form/reviews/gallery order.
+ text=arrange_page_lead_layout(text,page)
  # Every manifest page can render page-owned content in a legacy service block,
  # even when it has no generic gallery marker. Reinstall this stylesheet on all
  # transformed pages so the output never depends on a marker shape.
@@ -265,6 +389,10 @@ def transform(original,entry,page):
   if text.count('data-page-owned-hero="true"')!=1:raise ValueError('Expected one page-owned hero '+page)
   if SRC.findall(text).count(hero_src)!=2:raise ValueError('Expected hero and gallery thumbnail '+page)
  if text.count(START)>1:raise ValueError('Duplicate owned gallery')
+ # Some upstream blocks retain spacer-only lines after their deterministic
+ # replacement. Keep the final pass byte-stable without changing page content.
+ text=re.sub(r'[ \t]+(?=\n)','',text)
+ text=re.sub(r'\n{3,}','\n\n',text)
  return text
 
 # Confirmed work-photo placements are removed; source assets are never modified.
@@ -378,13 +506,12 @@ def strip_real_photos(text,assets,file):
 
 
 def concise_image_text(text,entry,page):
- text=re.sub(r'(src=["\']script\.js)(?:\?[^"\']*)?(["\'])',r'\1?v=20261025-page-owned-gallery\2',text)
+ text=re.sub(r'(src=["\']script\.js)(?:\?[^"\']*)?(["\'])',r'\1?v=20261025-lead-layout-1\2',text)
+ text=re.sub(r'(href=["\']styles\.css)(?:\?[^"\']*)?(["\'])',r'\1?v=20261025-lead-layout-1\2',text)
  # The aggregate service builders still emit this old preface on six hub
  # sections. The final ownership pass keeps the concise useful heading but
  # removes the redundant concept label so aggregate regeneration is stable.
  text=text.replace('<p class="eyebrow gold">Design concepts</p>','')
- if page=='index.html':
-  text=re.sub(r'(href=["\']styles\.css)(?:\?[^"\']*)?(["\'])',r'\1?v=20261024-home-trust-icons-1\2',text)
  city=entry.get('city') or 'Dallas–Fort Worth';label=entry['label']
  def short_figure(match):
   figure=match.group();sources=SRC.findall(figure)
