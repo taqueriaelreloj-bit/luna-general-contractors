@@ -388,6 +388,9 @@ def concise_image_text(text,entry,page):
  city=entry.get('city') or 'Dallas–Fort Worth';label=entry['label']
  def short_figure(match):
   figure=match.group();sources=SRC.findall(figure)
+  # Component cards have their own page/slot mapping and concise manifest
+  # captions.  The five-scene gallery pass must not rewrite them.
+  if 'data-component-card-image="true"' in figure:return figure
   if len(sources)!=1:return figure
   src=sources[0]
   technical=src.startswith('assets/service-guides/') or (src.startswith('assets/commercial-roofing/') and src.endswith('.svg'))

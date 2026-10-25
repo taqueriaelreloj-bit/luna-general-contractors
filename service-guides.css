@@ -28,6 +28,8 @@
 .sg-card--scene-cabinet img{object-position:50% 42%}
 .sg-card--scene-quartz img{object-position:50% 55%}
 .sg-card--scene-porcelain img{object-position:50% 70%}
+.sg-card--component-image .sg-card__component-visual{background:#111820}
+.sg-card--component-image .sg-card__component-visual img{object-fit:contain;padding:0;background:#111820}
 .sg-card figcaption{padding:7px 16px 12px;font-size:.76rem;color:#52616c}
 .sg-card-body{padding:24px;display:flex;flex-direction:column;flex:1;gap:12px}
 .sg-card h3{font-size:1.45rem;line-height:1.2;margin:0;color:#121c24}

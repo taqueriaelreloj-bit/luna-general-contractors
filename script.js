@@ -264,6 +264,7 @@ if (generalGallery) {
   const form = generalGallery.querySelector("[data-general-gallery-filters]");
   const serviceSelect = generalGallery.querySelector("[data-general-gallery-service]");
   const citySelect = generalGallery.querySelector("[data-general-gallery-city]");
+  const typeSelect = generalGallery.querySelector("[data-general-gallery-type]");
   const summary = generalGallery.querySelector("[data-general-gallery-summary]");
   const results = generalGallery.querySelector("[data-general-gallery-results]");
   const pagination = generalGallery.querySelector("[data-general-gallery-pagination]");
@@ -295,7 +296,12 @@ if (generalGallery) {
     && Boolean(valueText(record.city))
     && Number.isInteger(record.slot)
     && Number(record.width) > 0
-    && Number(record.height) > 0;
+    && Number(record.height) > 0
+    && (!typeSelect || (
+      ["page-owned-scene", "component-card"].includes(valueText(record.kind))
+      && ["service-design", "materials-equipment"].includes(valueText(record.mediaType))
+      && Boolean(valueText(record.typeLabel))
+    ));
 
   const makeOption = (value, label) => {
     const option = document.createElement("option");
@@ -332,11 +338,19 @@ if (generalGallery) {
     const caption = document.createElement("span");
     caption.className = "general-gallery__caption";
     caption.textContent = record.caption;
+    if (valueText(record.typeLabel)) {
+      const type = document.createElement("span");
+      type.className = "general-gallery__type";
+      type.textContent = record.typeLabel;
+      meta.append(caption, type);
+    } else {
+      meta.append(caption);
+    }
     const owner = document.createElement("a");
     owner.className = "general-gallery__owner";
     owner.href = record.ownerPage;
     owner.textContent = "View service page";
-    meta.append(caption, owner);
+    meta.append(owner);
     visual.append(image);
     article.append(visual, meta);
     return article;
@@ -381,7 +395,9 @@ if (generalGallery) {
           lightboxImage.alt = record.alt;
           lightboxImage.width = Number(record.width);
           lightboxImage.height = Number(record.height);
-          lightboxCaption.textContent = record.caption;
+          lightboxCaption.textContent = record.typeLabel
+            ? `${record.caption} — ${record.typeLabel}`
+            : record.caption;
           lightboxOwner.href = record.ownerPage;
           lightboxPrevious.disabled = lightboxIndex === 0;
           lightboxNext.disabled = lightboxIndex === filteredRecords.length - 1;
@@ -408,7 +424,12 @@ if (generalGallery) {
         const render = (preserveLightbox = false) => {
           const serviceKey = valueText(serviceSelect.value);
           const city = valueText(citySelect.value);
-          const filtered = records.filter((record) => (!serviceKey || record.serviceKey === serviceKey) && (!city || record.city === city));
+          const mediaType = valueText(typeSelect?.value);
+          const filtered = records.filter((record) => (
+            (!serviceKey || record.serviceKey === serviceKey)
+            && (!city || record.city === city)
+            && (!mediaType || record.mediaType === mediaType)
+          ));
           filteredRecords = filtered;
           if (!preserveLightbox) closeLightbox();
           const pageCount = Math.max(1, Math.ceil(filtered.length / pageSize));
@@ -434,6 +455,7 @@ if (generalGallery) {
         });
         serviceSelect.addEventListener("change", () => { page = 1; render(); });
         citySelect.addEventListener("change", () => { page = 1; render(); });
+        if (typeSelect) typeSelect.addEventListener("change", () => { page = 1; render(); });
         previousButton.addEventListener("click", () => { page -= 1; render(); });
         nextButton.addEventListener("click", () => { page += 1; render(); });
         results.addEventListener("click", (event) => {

@@ -1,4 +1,5 @@
 import {execFileSync} from 'node:child_process';
+import {existsSync} from 'node:fs';
 import {dirname,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
@@ -16,6 +17,15 @@ execFileSync(process.env.PYTHON || 'python',[
   '--apply',
   '--removal-log',resolve(root,'tmp','page-owned-photo-removals.json'),
 ],{cwd:root,stdio:'inherit'});
+
+// Component cards are separate from each page's five-gallery contract. Validate
+// them after the final imagery pass so aggregate rebuilds cannot restore an
+// old SVG or photo into a mapped card slot.
+if(existsSync(resolve(root,'content','component-card-imagery.json'))){
+ execFileSync(process.env.PYTHON || 'python',[
+  resolve(root,'scripts/validate-component-card-imagery.py'),
+ ],{cwd:root,stdio:'inherit'});
+}
 
 // Build the separate browse UI after the final page-owned pass. It deliberately
 // consumes the immutable ownership manifest without becoming a sixth placement

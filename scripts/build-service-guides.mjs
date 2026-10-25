@@ -55,19 +55,44 @@ for(const [key,profile] of Object.entries(profiles)){
 for(const file of ['water-damage-rebuild-process-dallas.html','drywall-repair-after-water-damage-grand-prairie.html','water-damage-cabinet-repair-lewisville.html']){
  if(files.has(file))assignments.push({file,key:'water-damage-restoration',city:'Dallas–Fort Worth',index:37+assignments.filter(x=>x.article).length,article:true});
 }
+// Component-card imagery is a separate three-slot mapping. It never reuses
+// the five scenes owned by each page's gallery.
+const componentCards=new Map();
+try{
+ const componentData=JSON.parse(await readFile(resolve(root,'content/component-card-imagery.json'),'utf8'));
+ if(componentData.schema_version!==1||componentData.page_count!==878||componentData.image_count!==2634||!Array.isArray(componentData.assets)||componentData.assets.length!==2634)throw new Error('Invalid component-card imagery manifest.');
+ const assignmentFiles=new Set(assignments.map(a=>a.file));
+ for(const item of componentData.assets){
+  if(!item||typeof item!=='object'||!assignmentFiles.has(item.page_file)||![1,2,3].includes(item.slot)||typeof item.path!=='string'||item.path.includes('\\')||item.path.includes(':')||item.path.includes('..')||!item.path.startsWith('assets/images/illustrations/component-owned/')||!item.path.endsWith('.webp')||!Number.isInteger(item.width)||item.width<=0||!Number.isInteger(item.height)||item.height<=0)throw new Error(`Invalid component-card assignment: ${item?.page_file||'unknown'}`);
+  for(const field of ['subject','service','city','caption','alt'])if(typeof item[field]!=='string'||!item[field].trim())throw new Error(`Component-card assignment lacks ${field}: ${item.page_file}`);
+  const page=componentCards.get(item.page_file)||new Map();
+  if(page.has(item.slot))throw new Error(`Duplicate component-card slot: ${item.page_file}#${item.slot}`);
+  page.set(item.slot,item);componentCards.set(item.page_file,page);
+ }
+ if(componentCards.size!==878||[...componentCards.values()].some(page=>page.size!==3))throw new Error('Component-card manifest does not cover every three-card guide.');
+}catch(error){
+ if(error?.code!=='ENOENT')throw error;
+}
+const componentCard=(assignment,slot)=>componentCards.get(assignment.file)?.get(slot)||null;
 function product(id,key){
  const p=products[id];if(!p)throw new Error(`Missing product ${id}`);
  return key==='water-damage-restoration'?{...p,...equipmentPhotos[id]}:p;
 }
 const kitchenHubScenes=Object.fromEntries(['cabinet','quartz','tile'].map(id=>{const scene=kitchenCardScene(id,'kitchens.html');return [id,{...scene,alt:'AI-created illustrative concept for Dallas-Fort Worth kitchen remodeling; not an actual project or product photograph.',caption:'Kitchen remodeling services — Dallas–Fort Worth'}];}));
-function card(id,a){
+function card(id,a,slot){
  const p=product(id,a.key);
- const scene=(a.hub&&a.key==='kitchen-remodeling'?kitchenHubScenes[id]:null)
-  ||(a.slug&&a.key==='kitchen-remodeling'?cityKitchenCardScene(id,a.city,a.index,p.brand):null);
+ const component=componentCard(a,slot);
+ const scene=component?null:((a.hub&&a.key==='kitchen-remodeling'?kitchenHubScenes[id]:null)
+  ||(a.slug&&a.key==='kitchen-remodeling'?cityKitchenCardScene(id,a.city,a.index,p.brand):null));
  if(scene&&a.hub&&(!scene.alt.includes(scene.context)||!/Dallas(?:-|–)Fort Worth/.test(scene.caption)||!scene.caption.toLowerCase().includes('kitchen remodeling')))throw new Error(`Kitchen hub scene metadata needs its regional service context: ${id}`);
  if(scene&&a.slug&&(!scene.caption.includes(`${a.city}, Texas`)||!scene.caption.toLowerCase().includes('kitchen remodeling')))throw new Error(`Kitchen city scene metadata needs its service and city context: ${id}`);
  let visual=`<img src="assets/service-guides/${p.art}.svg" alt="Generic illustration of ${e(p.name.toLowerCase())}; not a photograph of the named brand" width="450" height="300" loading="lazy" decoding="async"><figcaption>Original category illustration · Model appearance varies</figcaption>`;
  if(scene)visual=`<img src="${e(scene.src)}" alt="${e(scene.alt)}" width="${scene.width}" height="${scene.height}" loading="lazy" decoding="async"><figcaption>${e(scene.caption)}</figcaption>`;
+ if(component){
+  const visual=`<img data-component-card-image="true" src="${e(component.path)}" alt="${e(component.alt)}" width="${component.width}" height="${component.height}" loading="lazy" decoding="async"><figcaption>${e(component.caption)}</figcaption>`;
+  const linkLabel=p.linkLabel||'Official reference';
+  return `<article class="sg-card sg-card--component-image" data-component-card="true" data-component-card-slot="${slot}"><figure class="sg-card__component-visual" data-component-card-figure="true" data-component-card-slot="${slot}" data-component-card-kind="materials-equipment">${visual}</figure><div class="sg-card-body"><p class="sg-brand">${e(p.brand)}</p><h3>${e(p.name)}</h3><p>${e(p.description)}</p><p class="sg-spec"><strong>Selection check</strong><br>${e(p.selection)}</p><details><summary>Coverage and scope</summary><p>${e(p.coverage)}</p></details><p class="sg-source">${external(p.url,linkLabel)}</p></div></article>`;
+ }
  if(p.crop){
   const c=p.crop,percent=v=>`${Number((v*100).toFixed(4))}%`;
   const cropStyle=`--photo-width:${percent(p.width/c.width)};--photo-height:${percent(p.height/c.height)};--photo-left:${percent(-c.x/c.width)};--photo-top:${percent(-c.y/c.height)}`;
@@ -94,7 +119,7 @@ function guide(a){
 <section class="service-guide service-guide--${['catalog','editorial','technical','showcase'][a.index%4]}" id="service-materials" aria-labelledby="sg-title"><div class="container">
 <header class="sg-heading"><p class="sg-eyebrow">${e(p.name)} / ${e(a.city)}, Texas</p><h2 id="sg-title">${e(title)}</h2><p>${e(intro)}</p></header>
 <div class="sg-brief"><article><h3>${e(topic.title)}</h3><p>${e(topic.text)}</p></article><article><h3>${e(condition.title)}</h3><p>${e(condition.text)}</p></article></div>
-<h3>${a.key==='water-damage-restoration'?'Equipment from a Luna mitigation project':'Compare the components behind the finished work'}</h3><div class="sg-cards">${p.products.map(id=>card(id,a)).join('\n')}</div>${mediaDisclosure}
+<h3>${a.key==='water-damage-restoration'?'Equipment from a Luna mitigation project':'Compare the components behind the finished work'}</h3><div class="sg-cards">${p.products.map((id,slot)=>card(id,a,slot+1)).join('\n')}</div>${mediaDisclosure}
 ${extra}
 <figure class="sg-photo shared-project-gallery"${substantivePhoto}><img src="${e(p.photo)}" alt="${e(alt)}" width="1188" height="891" loading="lazy" decoding="async"><figcaption><p class="sg-eyebrow">${photoLabel}</p><h3>${e(topic.check)}</h3><p>${e(photoNote)}</p><a href="projects.html">Explore documented project work →</a></figcaption></figure>
 ${process}
@@ -130,7 +155,7 @@ const replaceCityKitchenCards=(html,a)=>{
  if(deckStart<0||deckStart>guideEnd)throw new Error(`Missing service-card deck in ${a.file}`);
  const deckEnd=matchingElementEnd(html,deckStart,'div',a.file);
  if(deckEnd>guideEnd)throw new Error(`Service-card deck escapes guide markers in ${a.file}`);
- const deck=`<div class="sg-cards">${profiles[a.key].products.map(id=>card(id,a)).join('\n')}</div>`;
+ const deck=`<div class="sg-cards">${profiles[a.key].products.map((id,slot)=>card(id,a,slot+1)).join('\n')}</div>`;
  const noticeStart=html.indexOf(cityKitchenNoticeStart,deckEnd);
  const noticeEnd=noticeStart<0?-1:html.indexOf(cityKitchenNoticeEnd,noticeStart);
  if(noticeStart>=0&&(noticeEnd<0||noticeEnd>guideEnd))throw new Error(`Unclosed city kitchen media notice in ${a.file}`);
@@ -175,6 +200,9 @@ for(const a of selectedAssignments){
   // Existing commercial-roofing teaser is retained.
  }
  }
+  // Component cards use a contained image frame. Version this stylesheet only
+  // on component targets so browsers do not retain an older card presentation.
+  if(componentCards.has(a.file))html=html.replace(/href="service-guides\.css(?:\?[^\"]*)?"/,'href="service-guides.css?v=20261025-component-cards-1"');
  await writeGenerated(resolve(root,a.file),html);
  const p=profiles[a.key],t=(a.key==='water-damage-restoration'&&a.slug?mitigationNotes[a.slug]:null)||p.topics[a.index%6],c=conditions[Math.floor(a.index/6)%6];
  manifest.push({...a,name:p.name,topic:t.title,condition:c.title,layout:['catalog','editorial','technical','showcase'][a.index%4],products:p.products});

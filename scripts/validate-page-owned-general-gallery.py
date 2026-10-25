@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import csv
+import importlib.util
 import json
 import re
 import sys
@@ -14,13 +15,21 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "content" / "page-owned-imagery.json"
 DATA = ROOT / "content" / "page-owned-gallery-data.json"
+COMPONENT_MANIFEST = ROOT / "content" / "component-card-imagery.json"
+COMPONENT_DATA = ROOT / "content" / "component-card-gallery-data.json"
+GENERAL_DATA = ROOT / "content" / "general-gallery-data.json"
 GALLERY = ROOT / "gallery.html"
+GALLERY_CSS = ROOT / "page-owned-general-gallery.css"
+PAGE_OWNED_CSS = ROOT / "page-owned-imagery.css"
+SITE_SCRIPT = ROOT / "script.js"
 EXCLUSIONS = ROOT / "seo" / "sitemap-exclusions.csv"
 SITEMAP = ROOT / "sitemap.xml"
 IMAGE_SITEMAP = ROOT / "image-sitemap.xml"
 DOMAIN = "https://lunageneralcontractors.com"
 PAGE_COUNT = 1009
 SCENE_COUNT = 5045
+COMPONENT_COUNT = 2634
+GENERAL_COUNT = SCENE_COUNT + COMPONENT_COUNT
 PAGE_SIZE = 24
 
 # Keep validation coupled to the builder's stable, human-readable service
@@ -61,6 +70,16 @@ SERVICE_LABELS = {
     "whole-home-remodeling": "Whole-Home Remodeling",
     "window-replacement": "Window Replacement",
 }
+
+
+def gallery_builder_module():
+    path = ROOT / "scripts" / "build-page-owned-general-gallery.py"
+    spec = importlib.util.spec_from_file_location("general_gallery_builder", path)
+    if spec is None or spec.loader is None:
+        fail("cannot load the general gallery builder")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def fail(message: str) -> None:
@@ -155,26 +174,86 @@ def main() -> None:
         if not (ROOT / source).is_file():
             fail(f"gallery data references missing asset: {source}")
 
-    document = GALLERY.read_text(encoding="utf-8")
-    required = (
+    builder = gallery_builder_module()
+    components = builder.build_component_records() if COMPONENT_MANIFEST.exists() else None
+    browse_records = expected
+    expected_source = "content/page-owned-gallery-data.json"
+    required = [
         '<meta name="robots" content="noindex, follow">',
         f'<link rel="canonical" href="{DOMAIN}/gallery.html">',
-        '<h1>Service &amp; Design Gallery</h1>',
-        'data-general-gallery-source="content/page-owned-gallery-data.json"',
         'data-general-gallery-service',
         'data-general-gallery-city',
         'data-general-gallery-previous',
         'data-general-gallery-next',
-    )
+        'data-general-gallery-lightbox',
+        'data-general-gallery-lightbox-image',
+        'data-general-gallery-lightbox-close',
+    ]
+    if components is not None:
+        component_data = json.loads(COMPONENT_DATA.read_text(encoding="utf-8"))
+        if component_data != components or len(component_data) != COMPONENT_COUNT:
+            fail("component gallery data is not an exact 2634-record manifest projection")
+        component_sources = [str(record.get("src", "")) for record in component_data if isinstance(record, dict)]
+        component_hashes = [str(record.get("sha256", "")) for record in component_data if isinstance(record, dict)]
+        if len(component_sources) != len(set(component_sources)) or len(component_hashes) != len(set(component_hashes)):
+            fail("component gallery data repeats an asset path or hash")
+        if any(record.get("kind") != "component-card" or record.get("mediaType") != "materials-equipment" for record in component_data):
+            fail("component gallery records lack their materials-equipment type")
+        browse_records = builder.combined_records(expected, components)
+        general_data = json.loads(GENERAL_DATA.read_text(encoding="utf-8"))
+        if general_data != browse_records or len(general_data) != GENERAL_COUNT:
+            fail("combined gallery data is not an exact 7679-record projection")
+        all_sources = [str(record.get("src", "")) for record in general_data if isinstance(record, dict)]
+        if len(all_sources) != len(set(all_sources)):
+            fail("combined gallery data repeats an asset source")
+        if any(record.get("kind") not in {"page-owned-scene", "component-card"} for record in general_data):
+            fail("combined gallery data has an unknown record kind")
+        expected_source = "content/general-gallery-data.json"
+        required.extend((
+            '<h1>Service &amp; Materials Gallery</h1>',
+            'data-general-gallery-source="content/general-gallery-data.json"',
+            'data-general-gallery-type',
+            'Materials &amp; equipment',
+            'general-gallery__filters--typed',
+            'page-owned-general-gallery.css?v=20261025-component-gallery-1',
+        ))
+    else:
+        required.extend((
+            '<h1>Service &amp; Design Gallery</h1>',
+            'data-general-gallery-source="content/page-owned-gallery-data.json"',
+            'page-owned-general-gallery.css?v=20261025-full-image-1',
+        ))
+
+    document = GALLERY.read_text(encoding="utf-8")
     if not all(token in document for token in required):
         fail("gallery document lacks required metadata or controls")
     if document.count('data-general-gallery-card="true"') != PAGE_SIZE:
         fail(f"gallery fallback must contain exactly {PAGE_SIZE} cards")
     fallback_sources = re.findall(r'<img\b[^>]*\bsrc="([^"]+)"', document, flags=re.I)
-    if fallback_sources != [record["src"] for record in data[:PAGE_SIZE]]:
+    if fallback_sources != [record["src"] for record in browse_records[:PAGE_SIZE]]:
         fail("gallery fallback cards do not match the first paginated records")
     if re.search(r"(?:completed project|before\s*(?:and|&amp;)\s*after|verified case study)", document, flags=re.I):
         fail("gallery makes an unsupported completed-project claim")
+    gallery_css = GALLERY_CSS.read_text(encoding="utf-8")
+    if (
+        ".general-gallery__image{width:100%;height:100%;aspect-ratio:auto;object-fit:contain" not in gallery_css
+        or ".general-gallery__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));" not in gallery_css
+        or "@media(max-width:900px){.general-gallery__grid{grid-template-columns:repeat(3,minmax(0,1fr))}" not in gallery_css
+        or ".general-gallery__grid{grid-template-columns:repeat(2,minmax(0,1fr));" not in gallery_css
+        or ".general-gallery__lightbox" not in gallery_css
+    ):
+        fail("general gallery no longer guarantees full-image responsive presentation")
+    page_owned_css = PAGE_OWNED_CSS.read_text(encoding="utf-8")
+    if ".page-owned-gallery__thumbnail img{object-fit:contain;background:#111820}" not in page_owned_css:
+        fail("shared five-scene gallery no longer guarantees contained thumbnails")
+    site_script = SITE_SCRIPT.read_text(encoding="utf-8")
+    if not all(token in site_script for token in (
+        "data-general-gallery-open",
+        "showModal",
+        "moveLightbox",
+        "data-general-gallery-lightbox-owner",
+    )):
+        fail("gallery script lacks accessible expanded-image navigation")
 
     with EXCLUSIONS.open(newline="", encoding="utf-8") as handle:
         rows = {row["path"].strip(): row["classification"].strip() for row in csv.DictReader(handle)}
@@ -185,7 +264,7 @@ def main() -> None:
         fail("gallery.html unexpectedly appears in sitemap.xml")
     if gallery_url in xml_locs(IMAGE_SITEMAP):
         fail("gallery.html unexpectedly appears in image-sitemap.xml")
-    print(f"Validated general gallery: {PAGE_COUNT} owners, {SCENE_COUNT} records, {PAGE_SIZE}-card pagination.")
+    print(f"Validated general gallery: {PAGE_COUNT} scene owners, {len(browse_records)} records, {PAGE_SIZE}-card pagination.")
 
 
 if __name__ == "__main__":
