@@ -270,7 +270,19 @@ if (generalGallery) {
   const previousButton = generalGallery.querySelector("[data-general-gallery-previous]");
   const nextButton = generalGallery.querySelector("[data-general-gallery-next]");
   const status = generalGallery.querySelector("[data-general-gallery-status]");
+  const lightbox = generalGallery.querySelector("[data-general-gallery-lightbox]");
+  const lightboxImage = generalGallery.querySelector("[data-general-gallery-lightbox-image]");
+  const lightboxCaption = generalGallery.querySelector("[data-general-gallery-lightbox-caption]");
+  const lightboxOwner = generalGallery.querySelector("[data-general-gallery-lightbox-owner]");
+  const lightboxClose = generalGallery.querySelector("[data-general-gallery-lightbox-close]");
+  const lightboxPrevious = generalGallery.querySelector("[data-general-gallery-lightbox-previous]");
+  const lightboxNext = generalGallery.querySelector("[data-general-gallery-lightbox-next]");
   const pageSize = 24;
+  const supportsLightbox = Boolean(
+    lightbox && typeof lightbox.showModal === "function"
+    && lightboxImage && lightboxCaption && lightboxOwner
+    && lightboxClose && lightboxPrevious && lightboxNext,
+  );
 
   const valueText = (value) => String(value || "").trim();
   const validRecord = (record) => record
@@ -292,13 +304,21 @@ if (generalGallery) {
     return option;
   };
 
-  const makeCard = (record) => {
+  const makeCard = (record, recordIndex) => {
     const article = document.createElement("article");
     article.className = "general-gallery__card";
     article.dataset.generalGalleryCard = "true";
-    const link = document.createElement("a");
-    link.href = record.ownerPage;
-    link.setAttribute("aria-label", `View ${record.caption} service page`);
+    const visual = document.createElement(supportsLightbox ? "button" : "a");
+    visual.className = "general-gallery__visual";
+    visual.setAttribute("aria-label", supportsLightbox
+      ? `Open ${record.caption} in the gallery`
+      : `View ${record.caption} service page`);
+    if (supportsLightbox) {
+      visual.type = "button";
+      visual.dataset.generalGalleryOpen = String(recordIndex);
+    } else {
+      visual.href = record.ownerPage;
+    }
     const image = document.createElement("img");
     image.className = "general-gallery__image";
     image.src = record.src;
@@ -312,12 +332,13 @@ if (generalGallery) {
     const caption = document.createElement("span");
     caption.className = "general-gallery__caption";
     caption.textContent = record.caption;
-    const owner = document.createElement("span");
+    const owner = document.createElement("a");
     owner.className = "general-gallery__owner";
+    owner.href = record.ownerPage;
     owner.textContent = "View service page";
     meta.append(caption, owner);
-    link.append(image, meta);
-    article.append(link);
+    visual.append(image);
+    article.append(visual, meta);
     return article;
   };
 
@@ -347,15 +368,54 @@ if (generalGallery) {
         cities.forEach((city) => citySelect.append(makeOption(city, city)));
 
         let page = 1;
-        const render = () => {
+        let filteredRecords = records;
+        let lightboxIndex = -1;
+        const closeLightbox = () => {
+          if (supportsLightbox && lightbox.open) lightbox.close();
+          lightboxIndex = -1;
+        };
+        const updateLightbox = () => {
+          if (!supportsLightbox || lightboxIndex < 0 || lightboxIndex >= filteredRecords.length) return;
+          const record = filteredRecords[lightboxIndex];
+          lightboxImage.src = record.src;
+          lightboxImage.alt = record.alt;
+          lightboxImage.width = Number(record.width);
+          lightboxImage.height = Number(record.height);
+          lightboxCaption.textContent = record.caption;
+          lightboxOwner.href = record.ownerPage;
+          lightboxPrevious.disabled = lightboxIndex === 0;
+          lightboxNext.disabled = lightboxIndex === filteredRecords.length - 1;
+        };
+        const openLightbox = (index) => {
+          if (!supportsLightbox || index < 0 || index >= filteredRecords.length) return;
+          lightboxIndex = index;
+          updateLightbox();
+          if (!lightbox.open) lightbox.showModal();
+          lightboxClose.focus();
+        };
+        const moveLightbox = (delta) => {
+          if (!supportsLightbox || lightboxIndex < 0) return;
+          const nextIndex = Math.min(Math.max(lightboxIndex + delta, 0), filteredRecords.length - 1);
+          if (nextIndex === lightboxIndex) return;
+          lightboxIndex = nextIndex;
+          const nextPage = Math.floor(nextIndex / pageSize) + 1;
+          if (nextPage !== page) {
+            page = nextPage;
+            render(true);
+          }
+          updateLightbox();
+        };
+        const render = (preserveLightbox = false) => {
           const serviceKey = valueText(serviceSelect.value);
           const city = valueText(citySelect.value);
           const filtered = records.filter((record) => (!serviceKey || record.serviceKey === serviceKey) && (!city || record.city === city));
+          filteredRecords = filtered;
+          if (!preserveLightbox) closeLightbox();
           const pageCount = Math.max(1, Math.ceil(filtered.length / pageSize));
           page = Math.min(Math.max(page, 1), pageCount);
           const start = (page - 1) * pageSize;
           const visible = filtered.slice(start, start + pageSize);
-          results.replaceChildren(...visible.map(makeCard));
+          results.replaceChildren(...visible.map((record, index) => makeCard(record, start + index)));
           const first = visible.length ? start + 1 : 0;
           const last = start + visible.length;
           summary.textContent = filtered.length
@@ -376,6 +436,26 @@ if (generalGallery) {
         citySelect.addEventListener("change", () => { page = 1; render(); });
         previousButton.addEventListener("click", () => { page -= 1; render(); });
         nextButton.addEventListener("click", () => { page += 1; render(); });
+        results.addEventListener("click", (event) => {
+          const control = event.target.closest("[data-general-gallery-open]");
+          if (!control) return;
+          const index = Number(control.dataset.generalGalleryOpen);
+          if (Number.isInteger(index)) openLightbox(index);
+        });
+        if (supportsLightbox) {
+          lightboxClose.addEventListener("click", closeLightbox);
+          lightboxPrevious.addEventListener("click", () => moveLightbox(-1));
+          lightboxNext.addEventListener("click", () => moveLightbox(1));
+          lightbox.addEventListener("click", (event) => {
+            if (event.target === lightbox) closeLightbox();
+          });
+          lightbox.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowLeft") { event.preventDefault(); moveLightbox(-1); }
+            else if (event.key === "ArrowRight") { event.preventDefault(); moveLightbox(1); }
+            else if (event.key === "Home") { event.preventDefault(); openLightbox(0); }
+            else if (event.key === "End") { event.preventDefault(); openLightbox(filteredRecords.length - 1); }
+          });
+        }
         render();
       })
       .catch(showLoadFailure);

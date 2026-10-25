@@ -66,6 +66,8 @@ SERVICE_LABELS = {
 }
 
 
+CROP_FIX_CSS = """.general-gallery__grid{align-items:start}.general-gallery__card{display:grid;grid-template-rows:auto 1fr}.general-gallery__visual{display:block;width:100%;aspect-ratio:4/3;overflow:hidden;padding:0;border:0;background:#111820;color:inherit;cursor:zoom-in}.general-gallery__visual:focus-visible,.general-gallery__owner:focus-visible,.general-gallery__page:focus-visible,.general-gallery__lightbox button:focus-visible{outline:3px solid #005fcc;outline-offset:3px}.general-gallery__image{width:100%;height:100%;aspect-ratio:auto;object-fit:contain;background:#111820}.general-gallery__meta{align-content:start}.general-gallery__owner{display:inline-flex;width:max-content;min-height:44px;align-items:center;color:#1c4650;font-size:.9rem;font-weight:800;line-height:1.35;text-decoration:underline;text-underline-offset:3px}.general-gallery__lightbox{width:min(100vw - 32px,1080px);max-width:1080px;margin:auto;padding:0;border:0;border-radius:10px;background:#10181c;color:#fff;box-shadow:0 24px 70px rgba(0,0,0,.55)}.general-gallery__lightbox::backdrop{background:rgba(0,0,0,.78)}.general-gallery__lightbox-content{display:grid;gap:12px;padding:14px}.general-gallery__lightbox-top{display:flex;justify-content:flex-end}.general-gallery__lightbox-close,.general-gallery__lightbox-nav{min-width:44px;min-height:44px;border:1px solid rgba(255,255,255,.7);border-radius:4px;background:#17252b;color:#fff;font:700 1rem/1 Inter,system-ui,sans-serif;cursor:pointer}.general-gallery__lightbox-stage{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px}.general-gallery__lightbox-figure{min-width:0;margin:0;text-align:center}.general-gallery__lightbox-image{display:block;max-width:100%;width:100%;max-height:min(72vh,760px);margin:auto;object-fit:contain;background:#05080a}.general-gallery__lightbox-caption{display:block;margin-top:10px;font-weight:800;line-height:1.4}.general-gallery__lightbox-owner{display:inline-flex;width:max-content;min-height:44px;align-items:center;color:#f3c35d;font-weight:800;text-decoration:underline;text-underline-offset:3px}.general-gallery__lightbox-nav:disabled{opacity:.45;cursor:not-allowed}@media(max-width:680px){.general-gallery__lightbox-stage{grid-template-columns:1fr}.general-gallery__lightbox-nav{width:100%}.general-gallery__lightbox-stage [data-general-gallery-lightbox-previous]{grid-row:2}.general-gallery__lightbox-stage [data-general-gallery-lightbox-next]{grid-row:3}}"""
+
 CSS = """.general-gallery-page{background:#f5f3ee;color:#17252b}.general-gallery-hero{padding:clamp(42px,7vw,84px) 0 38px;background:linear-gradient(135deg,#0b1519,#183038);color:#fff}.general-gallery-hero .eyebrow{color:#e5b24b;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.general-gallery-hero h1{max-width:820px;margin:10px 0;font:800 clamp(2.5rem,6vw,4.8rem)/.96 "Barlow Condensed",sans-serif}.general-gallery-hero p{max-width:780px;margin:0;color:#dbe5e7;line-height:1.65}.general-gallery{padding:clamp(28px,5vw,60px) 0 72px}.general-gallery__filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) auto;gap:14px;align-items:end;margin:0 0 22px;padding:18px;background:#fff;border:1px solid #d7dad7;border-radius:8px;box-shadow:0 8px 24px rgba(20,34,39,.08)}.general-gallery__filter{display:grid;gap:7px;font-weight:800}.general-gallery__filter select{min-height:44px;border:1px solid #7e898d;border-radius:4px;padding:8px 10px;background:#fff;color:#17252b;font:inherit}.general-gallery__apply{min-height:44px;white-space:nowrap}.general-gallery__summary{margin:0 0 18px;color:#435359;font-weight:700}.general-gallery__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.general-gallery__card{min-width:0;overflow:hidden;background:#fff;border:1px solid #d7dad7;border-radius:7px;box-shadow:0 8px 20px rgba(20,34,39,.08)}.general-gallery__card a{display:block;color:inherit;text-decoration:none}.general-gallery__card a:focus-visible,.general-gallery__page:focus-visible{outline:3px solid #005fcc;outline-offset:3px}.general-gallery__image{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#dce3e2}.general-gallery__meta{display:grid;gap:4px;padding:12px 13px 14px}.general-gallery__caption{font-weight:800;line-height:1.35}.general-gallery__owner{color:#53636a;font-size:.9rem;line-height:1.35}.general-gallery__pagination{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:28px}.general-gallery__page{min-width:44px;min-height:44px;border:1px solid #1a2b30;border-radius:4px;background:#17252b;color:#fff;font:700 1rem/1 Inter,system-ui,sans-serif;cursor:pointer}.general-gallery__page:disabled{opacity:.48;cursor:not-allowed}.general-gallery__status{min-width:12rem;text-align:center;color:#435359;font-weight:700}.general-gallery__nojs{margin:0 0 18px;color:#435359}.general-gallery__filters select:focus-visible{outline:3px solid #005fcc;outline-offset:2px}@media(max-width:900px){.general-gallery__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:680px){.general-gallery-hero{padding:42px 0 34px}.general-gallery__filters{grid-template-columns:1fr;align-items:stretch}.general-gallery__apply{width:100%}.general-gallery__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.general-gallery__meta{padding:10px}.general-gallery__caption{font-size:.93rem}.general-gallery__owner{font-size:.82rem}.general-gallery__pagination{gap:8px}.general-gallery__status{min-width:0;font-size:.86rem}}@media(max-width:390px){.general-gallery__grid{grid-template-columns:1fr}}"""
 
 
@@ -156,13 +158,13 @@ def esc(value: object) -> str:
 def card(record: dict[str, object]) -> str:
     return (
         '<article class="general-gallery__card" data-general-gallery-card="true">'
-        f'<a href="{esc(record["ownerPage"])}" aria-label="View {esc(record["caption"])} service page">'
+        f'<a class="general-gallery__visual" href="{esc(record["ownerPage"])}" aria-label="View {esc(record["caption"])} service page">'
         f'<img class="general-gallery__image" src="{esc(record["src"])}" alt="{esc(record["alt"])}" '
         f'width="{record["width"]}" height="{record["height"]}" loading="lazy" decoding="async">'
-        '<span class="general-gallery__meta">'
+        '</a><span class="general-gallery__meta">'
         f'<span class="general-gallery__caption">{esc(record["caption"])}</span>'
-        '<span class="general-gallery__owner">View service page</span>'
-        '</span></a></article>'
+        f'<a class="general-gallery__owner" href="{esc(record["ownerPage"])}">View service page</a>'
+        '</span></article>'
     )
 
 
@@ -192,7 +194,7 @@ def build_html(records: list[dict[str, object]]) -> str:
       <div class="container">
         <p class="eyebrow">Luna General Contractors</p>
         <h1>Service &amp; Design Gallery</h1>
-        <p>Browse service and design images by service and Dallas-Fort Worth area. Select an image to visit its service page.</p>
+        <p>Browse service and design images by service and Dallas-Fort Worth area. Open an image to view it in the gallery, or use its service-page link for details.</p>
       </div>
     </section>
     <section class="general-gallery container" data-general-gallery="true" data-general-gallery-source="content/page-owned-gallery-data.json" aria-labelledby="general-gallery-title">
@@ -218,10 +220,20 @@ def build_html(records: list[dict[str, object]]) -> str:
         <span class="general-gallery__status" data-general-gallery-status aria-live="polite">Page 1</span>
         <button class="general-gallery__page" type="button" data-general-gallery-next aria-label="Show next gallery page">Next</button>
       </div>
+      <dialog class="general-gallery__lightbox" data-general-gallery-lightbox aria-labelledby="general-gallery-lightbox-caption">
+        <div class="general-gallery__lightbox-content">
+          <div class="general-gallery__lightbox-top"><button class="general-gallery__lightbox-close" type="button" data-general-gallery-lightbox-close aria-label="Close image viewer">Close</button></div>
+          <div class="general-gallery__lightbox-stage">
+            <button class="general-gallery__lightbox-nav" type="button" data-general-gallery-lightbox-previous aria-label="Previous image">Previous</button>
+            <figure class="general-gallery__lightbox-figure"><img class="general-gallery__lightbox-image" data-general-gallery-lightbox-image alt="" decoding="async"><figcaption id="general-gallery-lightbox-caption" class="general-gallery__lightbox-caption" data-general-gallery-lightbox-caption></figcaption><a class="general-gallery__lightbox-owner" data-general-gallery-lightbox-owner href="#">View service page</a></figure>
+            <button class="general-gallery__lightbox-nav" type="button" data-general-gallery-lightbox-next aria-label="Next image">Next</button>
+          </div>
+        </div>
+      </dialog>
     </section>
   </main>
   <footer></footer>
-  <script src="script.js?v=20261025-page-owned-gallery"></script>
+  <script src="script.js?v=20261025-gallery-lightbox-1"></script>
 </body>
 </html>
 '''
@@ -252,7 +264,7 @@ def main() -> int:
     stale: list[str] = []
     write_or_check(OUTPUT_DATA, data_json(records), args.check, stale)
     write_or_check(OUTPUT_HTML, build_html(records), args.check, stale)
-    write_or_check(OUTPUT_CSS, CSS + "\n", args.check, stale)
+    write_or_check(OUTPUT_CSS, CSS + CROP_FIX_CSS + "\n", args.check, stale)
     if stale:
         print("General gallery outputs are stale: " + ", ".join(stale), file=sys.stderr)
         return 1

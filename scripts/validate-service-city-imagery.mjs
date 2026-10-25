@@ -316,10 +316,13 @@ for(const assignment of selectedAssignments){
 // No other page family—including completed mitigation and roofing pages—may
 // receive this city-service gallery or its stylesheet by accident.
 const targetFiles=new Set(assignments.map(item=>item.file));
+const pageOwnedGalleryViewers=new Set(['gallery.html']);
 for(const file of (await readdir(root)).filter(name=>name.endsWith('.html'))){
  const html=await readFile(resolve(root,file),'utf8');
- for(const [source,owner] of pageOwnedGeneratedSources){
-  if(file!==owner&&html.includes(source))fail(`${file}: page-owned generated scene is reused from ${owner}: ${source}`);
+ if(!pageOwnedGalleryViewers.has(file)){
+  for(const [source,owner] of pageOwnedGeneratedSources){
+   if(file!==owner&&html.includes(source))fail(`${file}: page-owned generated scene is reused from ${owner}: ${source}`);
+  }
  }
  if(targetFiles.has(file))continue;
  if(html.includes(start)||html.includes(end)||html.includes(cssHref))fail(`${file}: city-service imagery leaked outside the 828-page scope`);
