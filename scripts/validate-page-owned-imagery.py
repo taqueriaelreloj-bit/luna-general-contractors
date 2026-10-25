@@ -62,7 +62,7 @@ def main():
  data=json.loads((ROOT/'content/page-owned-imagery.json').read_text(encoding='utf-8'));photo_data=json.loads((ROOT/'content/real-job-photo-placements.json').read_text(encoding='utf-8'));photos=photo_data if isinstance(photo_data,list) else photo_data['assets'];owners=defaultdict(set);assigned={};content_owners=defaultdict(set);errors=[]
  for page,e in data.items():
   h=(ROOT/page).read_text(encoding='utf-8');parser=Images();parser.feed(h);srcs={i.get('src') for i in parser.items}
-  if h.count('<link rel="stylesheet" href="page-owned-imagery.css">')!=1:
+  if len(re.findall(r'<link rel="stylesheet" href="page-owned-imagery\.css(?:\?v=[^"]+)?">',h))!=1:
    errors.append(page+': page-owned stylesheet link is missing or duplicated')
   errors.extend(gallery_errors(page,e,h))
   if len(e['images'])!=5 or len({i['src'] for i in e['images']})!=5:errors.append(page+': five unique assignments required')
