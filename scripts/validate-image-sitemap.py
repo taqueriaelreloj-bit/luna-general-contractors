@@ -64,9 +64,14 @@ def main() -> None:
             if not isinstance(image, str) or not (ROOT / image).is_file():
                 fail(f"missing asset: {image}")
             matching = [attributes for attributes in parser.images if attributes.get("src") == image]
-            if len(matching) != 1:
-                fail(f"{image} is not a normal img source in {page}")
-            attributes = matching[0]
+            gallery_matching = [attributes for attributes in matching if attributes.get("data-page-owned-gallery-image") == "true"]
+            if len(gallery_matching) != 1:
+                fail(f"{image} must have exactly one static page-owned gallery thumbnail in {page}")
+            attributes = gallery_matching[0]
+            is_home_hero = page == "index.html" and image == "assets/images/illustrations/homepage/homepage-property-hero-representative-v1.png"
+            hero_matching = [attributes for attributes in matching if attributes.get("data-page-owned-hero") == "true" or (is_home_hero and attributes.get("fetchpriority") == "high")]
+            if hero_matching and len(hero_matching) != 1:
+                fail(f"{image} needs exactly one high-priority same-page hero in {page}")
             if not attributes.get("alt", "").strip():
                 fail(f"{image} needs meaningful alt text in {page}")
             try:
@@ -74,13 +79,15 @@ def main() -> None:
                     fail(f"{image} needs positive width and height in {page}")
             except ValueError:
                 fail(f"{image} has non-numeric dimensions in {page}")
-            if page == "index.html" and image == "assets/images/illustrations/homepage/homepage-property-hero-representative-v1.png":
-                if attributes.get("fetchpriority") != "high" or attributes.get("loading") == "lazy":
+            if is_home_hero:
+                hero_attributes = hero_matching[0]
+                if hero_attributes.get("fetchpriority") != "high" or hero_attributes.get("loading") == "lazy":
                     fail("homepage hero needs high priority and must not be lazy-loaded")
-            elif attributes.get("data-page-owned-hero") == "true":
-                if attributes.get("fetchpriority") != "high" or attributes.get("loading") == "lazy" or attributes.get("decoding") != "async":
+            elif hero_matching:
+                hero_attributes = hero_matching[0]
+                if hero_attributes.get("fetchpriority") != "high" or hero_attributes.get("loading") == "lazy" or hero_attributes.get("decoding") != "async":
                     fail(f"{image} needs high-priority async hero markup in {page}")
-            elif attributes.get("loading") != "lazy" or attributes.get("decoding") != "async":
+            if attributes.get("loading") != "lazy" or attributes.get("decoding") != "async":
                 fail(f"{image} needs lazy loading and async decoding in {page}")
             expected[canonical].append(f"{origin}/{image}")
 

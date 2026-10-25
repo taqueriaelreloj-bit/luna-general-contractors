@@ -10,9 +10,10 @@ from pathlib import Path
 
 START='<!-- page-owned-imagery:start -->';END='<!-- page-owned-imagery:end -->'
 STYLE='<link rel="stylesheet" href="page-owned-imagery.css">'
-CSS='''.poi-gallery{margin:32px auto;padding:clamp(20px,3vw,36px);background:#f4f4f1;color:#17191c;border-top:4px solid #e5a000}.poi-gallery h2,.poi-gallery h3{margin:0 0 16px}.poi-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.poi-grid figure{margin:0;background:#fff;border:1px solid #deded8;border-radius:4px;overflow:hidden}.poi-grid img{display:block;width:100%;height:auto;max-height:640px;object-fit:contain}.poi-grid figcaption{padding:14px 16px;color:#17191c;font-weight:700}.poi-notice{color:#50545a;line-height:1.5}.poi-roofing-page .mr-story,.poi-roofing-page .mr-detail-row,.poi-roofing-page .cr-assembly{display:block}
+CSS='''.page-owned-gallery{margin:32px auto;padding:clamp(16px,2.5vw,28px);background:#f4f4f1;color:#17191c;border-top:4px solid #e5a000}.page-owned-gallery__heading{margin:0 0 14px;font-size:clamp(1.3rem,2vw,1.8rem)}.page-owned-gallery__track{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.page-owned-gallery__item{min-width:0;margin:0;background:#fff;border:1px solid #deded8;border-radius:5px;overflow:hidden}.page-owned-gallery__thumbnail{display:block;width:100%;aspect-ratio:4/3;overflow:hidden;padding:0;border:3px solid transparent;background:#fff;color:inherit;cursor:pointer;text-align:inherit;transition:border-color .16s ease,box-shadow .16s ease}.page-owned-gallery__thumbnail[aria-current="true"]{border-color:#b87b00;box-shadow:0 0 0 2px rgba(184,123,0,.22)}.page-owned-gallery__thumbnail:focus-visible,.page-owned-gallery__control:focus-visible{outline:3px solid #005fcc;outline-offset:3px}.page-owned-gallery__thumbnail img{display:block;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}.page-owned-gallery__item figcaption{min-height:3.1em;padding:9px 10px;color:#17191c;font-size:.88rem;font-weight:700;line-height:1.35}.page-owned-gallery__controls{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:14px}.page-owned-gallery__control{min-width:44px;min-height:44px;padding:8px 14px;border:1px solid #24282c;border-radius:4px;background:#17191c;color:#fff;font:inherit;font-weight:700;cursor:pointer}.page-owned-gallery__control:disabled{opacity:.48;cursor:not-allowed}.page-owned-gallery__status{min-width:6.5em;margin-right:auto;color:#50545a;font-size:.9rem}.poi-notice{color:#50545a;line-height:1.5}.poi-roofing-page .mr-story,.poi-roofing-page .mr-detail-row,.poi-roofing-page .cr-assembly{display:block}
 .poi-hero{position:relative;isolation:isolate;overflow:hidden;background:#05080a}.poi-hero-image{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;object-fit:cover}.poi-hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(2,4,6,.94),rgba(2,4,6,.65) 55%,rgba(2,4,6,.25))}.poi-hero>.trade-hero-copy{position:relative;z-index:2}.poi-gallery-anchor{display:block;scroll-margin-top:1rem}
-@media(max-width:760px){.poi-grid{grid-template-columns:1fr}.poi-hero-image{object-position:center}}
+@media(max-width:900px){.page-owned-gallery__track{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:620px){.page-owned-gallery{padding:16px}.page-owned-gallery__track{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,72vw);grid-template-columns:none;overflow-x:auto;padding-bottom:4px;scroll-snap-type:x mandatory;scrollbar-width:thin}.page-owned-gallery__item{scroll-snap-align:start}.page-owned-gallery__item figcaption{font-size:.84rem}.page-owned-gallery__controls{justify-content:space-between}.page-owned-gallery__status{margin-right:0}.poi-hero-image{object-position:center}}
 '''
 FIGURE=re.compile(r'<figure\b[^>]*>.*?</figure>',re.S|re.I)
 SRC=re.compile(r'<img\b[^>]*\bsrc="([^"]+)"',re.I)
@@ -43,6 +44,14 @@ def remove_obsolete_home_project_cards(text):
  # cards until truthful page-specific replacements exist.
  text=bounded(r'<section class="section projects-section" id="projects">.*?</section>','',text,{0,1})
  return text.replace('href="#projects"','href="projects.html"')
+
+def remove_home_legacy_gallery_blocks(text):
+ # Homepage slots 02--03 used to live near the footer while slots 04--05
+ # used the shared marker. The reusable component owns all five slots beside
+ # reviews, so remove only those deterministic legacy containers.
+ m=block(text,'<!-- additional-services-imagery:start -->','<!-- additional-services-imagery:end -->')
+ if m:text=text[:m.start()]+text[m.end():]
+ return text
 
 def replace_preview_advantage(text,entry):
  # The preview formerly paired this block with a removed portfolio photo and a
@@ -105,8 +114,15 @@ def render_gallery(entry,images,genuine=()):
   subject=i.get('caption_subject',label)
   caption=f'{subject} · {city}'
   alt=f'{subject if "concept" in subject.lower() else subject+" design concept"} · {city}'
-  cards.append(f'<figure data-representative-generated-illustration="true" data-page-owned-slot="{int(i["slot"]):02}"><img src="{esc(i["src"])}" alt="{esc(alt)}" width="{int(i["width"])}" height="{int(i["height"])}" loading="lazy" decoding="async"><figcaption>{esc(caption)}</figcaption></figure>')
- return START+'<section class="poi-gallery container"'+gallery_id+' data-page-owned-imagery="true" aria-labelledby="poi-title"><h2 id="poi-title">'+html.escape(heading)+'</h2><div class="poi-grid">'+''.join(cards+list(genuine))+'</div></section>'+END
+  slot=f'{int(i["slot"]):02}'
+  cards.append(f'<figure class="page-owned-gallery__item" data-representative-generated-illustration="true" data-page-owned-slot="{slot}"><button class="page-owned-gallery__thumbnail" type="button" data-page-owned-gallery-thumbnail="true" aria-current="{str(i["slot"]==1).lower()}" aria-label="View {esc(caption)}"><img data-page-owned-gallery-image="true" src="{esc(i["src"])}" alt="{esc(alt)}" width="{int(i["width"])}" height="{int(i["height"])}" loading="lazy" decoding="async"><span class="sr-only">Select {esc(caption)}</span></button><figcaption>{esc(caption)}</figcaption></figure>')
+ controls='<div class="page-owned-gallery__controls" data-page-owned-gallery-controls hidden><span class="page-owned-gallery__status" data-page-owned-gallery-status aria-live="polite">Image 1 of 5</span><button class="page-owned-gallery__control" type="button" data-page-owned-gallery-previous aria-label="Show previous image" disabled>Previous</button><button class="page-owned-gallery__control" type="button" data-page-owned-gallery-next aria-label="Show next image">Next</button></div>'
+ return START+'<section class="page-owned-gallery container"'+gallery_id+' data-page-owned-gallery="true" data-page-owned-imagery="true" aria-labelledby="page-owned-gallery-title"><h2 class="page-owned-gallery__heading" id="page-owned-gallery-title">'+html.escape(heading)+'</h2><div class="page-owned-gallery__track" data-page-owned-gallery-track>'+''.join(cards+list(genuine))+'</div>'+controls+'</section>'+END
+
+def insert_homepage_gallery(text,entry):
+ gallery=render_gallery(entry,entry['images'])
+ pattern=r'(<div\b[^>]*\bdata-homepage-reviews\b[^>]*>)(.*?)(</div>)'
+ return bounded(pattern,lambda m:m[1]+gallery+m[3],text,{1})
 
 def keep_genuine(markup):
  genuine=[]
@@ -155,6 +171,15 @@ def replace_root_hub_gallery(text,entry,page,images):
  return text[:old.start()]+marker[0]+gallery+marker[1]+text[old.end():],True
 
 def dedupe_assigned_figures(text,entry):
+ # The gallery intentionally repeats every owned scene as a compact thumbnail.
+ # Protect that deterministic marker block while removing legacy duplicate
+ # figures elsewhere on the same page.
+ gallery=block(text,START,END)
+ protected='__PAGE_OWNED_GALLERY__'
+ gallery_markup=''
+ if gallery:
+  gallery_markup=gallery.group()
+  text=text[:gallery.start()]+protected+text[gallery.end():]
  assigned={item['src'] for item in entry['images']}
  # A hero is intentionally outside a figure. Treat it as already owned before
  # walking figures so its old gallery card is removed rather than duplicated.
@@ -171,50 +196,50 @@ def dedupe_assigned_figures(text,entry):
  # regenerated blocks. Normalize them once at the final ownership boundary so
  # repeated aggregate builds are byte-stable without changing semantics.
  text=re.sub(r'[ \t]+(?=\n)','',text)
- return re.sub(r'\n{3,}','\n\n',text)
+ text=re.sub(r'\n{3,}','\n\n',text)
+ return text.replace(protected,gallery_markup)
 
 def transform(original,entry,page):
  # Recover genuine gallery figures before clearing previous owned markup.
  prior=block(original,START,END);prior_genuine=keep_genuine(prior.group()) if prior else []
  text=remove_previous(original)
- if page=='index.html':text=remove_obsolete_home_project_cards(text)
+ if page=='index.html':
+  text=remove_obsolete_home_project_cards(text)
+  text=remove_home_legacy_gallery_blocks(text)
  if page=='home-v2-preview.html':text=replace_preview_advantage(text,entry)
  if page=='roofing.html':text=transform_roof(text,entry,hub=True)
  text,hero=insert_owned_hero(text,entry,page)
  hero_src=hero['src'] if hero else None
  city=block(text,'<!-- service-city-imagery:start -->','<!-- service-city-imagery:end -->')
  roofing=entry['category']=='roofing' and page.endswith('-roofing.html')
- if roofing:text=transform_roof(text,entry)
+ if page=='index.html':
+  # Slot 01 remains the accessible homepage hero. The same page-owned scene
+  # is also a compact thumbnail so visitors can inspect all five scenes below
+  # the moved reviews without borrowing media from another URL.
+  text=insert_homepage_gallery(text,entry)
+ elif roofing:text=transform_roof(text,entry)
  elif city:
   genuine=keep_genuine(city.group())+prior_genuine
   genuine=list(dict.fromkeys(genuine))
-  outside_city=text[:city.start()]+text[city.end():]
-  gallery_images=[i for i in entry['images'] if i['src'] not in set(SRC.findall(outside_city))]
-  text=text[:city.start()]+'<!-- service-city-imagery:start -->'+render_gallery(entry,gallery_images,genuine)+'<!-- service-city-imagery:end -->'+text[city.end():]
+  text=text[:city.start()]+'<!-- service-city-imagery:start -->'+render_gallery(entry,entry['images'],genuine)+'<!-- service-city-imagery:end -->'+text[city.end():]
   text=clean_basic_service_art(text)
  else:
-  gallery_images=[i for i in entry['images'] if i['src']!=hero_src]
-  text,replaced_root_gallery=replace_root_hub_gallery(text,entry,page,gallery_images)
+  text,replaced_root_gallery=replace_root_hub_gallery(text,entry,page,entry['images'])
   if not replaced_root_gallery:
-   hub=None if page=='index.html' else block(text,'<!-- service-hub-illustrations:start -->','<!-- service-hub-illustrations:end -->')
+   hub=block(text,'<!-- service-hub-illustrations:start -->','<!-- service-hub-illustrations:end -->')
    if hub:
     if not all(s.startswith('assets/images/illustrations/') for s in SRC.findall(hub.group())):raise ValueError('Unclassified hub image')
-    outside_hub=text[:hub.start()]+text[hub.end():]
-    gallery_images=[i for i in gallery_images if i['src'] not in set(SRC.findall(outside_hub))]
-    gallery=render_gallery(entry,gallery_images,prior_genuine) if gallery_images or prior_genuine else ''
+    gallery=render_gallery(entry,entry['images'],prior_genuine)
     text=text[:hub.start()]+'<!-- service-hub-illustrations:start -->'+gallery+'<!-- service-hub-illustrations:end -->'+text[hub.end():]
    else:
-    # Existing assigned hero/cards stay in place; add only missing mapped images.
-    already=set(SRC.findall(text));missing=[i for i in gallery_images if i['src'] not in already]
-    if missing or prior_genuine:
-     gallery=render_gallery(entry,missing,prior_genuine)
-     anchor='<!-- shared-customer-reviews:start -->' if '<!-- shared-customer-reviews:start -->' in text else '</main>'
-     if anchor in text:offset=text.index(anchor)
-     else:
-      m=re.search(r'<footer\b',text,re.I)
-      if not m:raise ValueError('No safe gallery insertion anchor')
-      offset=m.start()
-     text=text[:offset]+gallery+text[offset:]
+    gallery=render_gallery(entry,entry['images'],prior_genuine)
+    anchor='<!-- shared-customer-reviews:start -->' if '<!-- shared-customer-reviews:start -->' in text else '</main>'
+    if anchor in text:offset=text.index(anchor)
+    else:
+     m=re.search(r'<footer\b',text,re.I)
+     if not m:raise ValueError('No safe gallery insertion anchor')
+     offset=m.start()
+    text=text[:offset]+gallery+text[offset:]
  text=ensure_gallery_anchor(text,entry)
  text=dedupe_assigned_figures(text,entry)
  # Every manifest page can render page-owned content in a legacy service block,
@@ -232,7 +257,7 @@ def transform(original,entry,page):
   if i['src'] not in SRC.findall(text):raise ValueError('Assigned image absent: '+i['src'])
  if hero:
   if text.count('data-page-owned-hero="true"')!=1:raise ValueError('Expected one page-owned hero '+page)
-  if SRC.findall(text).count(hero_src)!=1:raise ValueError('Hero source repeated '+page)
+  if SRC.findall(text).count(hero_src)!=2:raise ValueError('Expected hero and gallery thumbnail '+page)
  if text.count(START)>1:raise ValueError('Duplicate owned gallery')
  return text
 
@@ -347,7 +372,13 @@ def strip_real_photos(text,assets,file):
 
 
 def concise_image_text(text,entry,page):
- text=re.sub(r'(src=["\']script\.js)(?:\?[^"\']*)?(["\'])',r'\1?v=20261024-concepts\2',text)
+ text=re.sub(r'(src=["\']script\.js)(?:\?[^"\']*)?(["\'])',r'\1?v=20261025-page-owned-gallery\2',text)
+ # The aggregate service builders still emit this old preface on six hub
+ # sections. The final ownership pass keeps the concise useful heading but
+ # removes the redundant concept label so aggregate regeneration is stable.
+ text=text.replace('<p class="eyebrow gold">Design concepts</p>','')
+ if page=='index.html':
+  text=re.sub(r'(href=["\']styles\.css)(?:\?[^"\']*)?(["\'])',r'\1?v=20261024-home-trust-icons-1\2',text)
  city=entry.get('city') or 'Dallas–Fort Worth';label=entry['label']
  def short_figure(match):
   figure=match.group();sources=SRC.findall(figure)

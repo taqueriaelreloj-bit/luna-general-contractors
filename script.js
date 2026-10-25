@@ -199,6 +199,62 @@ document.querySelectorAll(".service-card").forEach((card) => {
 
 // Page-specific concept galleries are rendered in HTML; do not inject archived work photos.
 
+// The five page-owned scenes are present in the HTML for a meaningful no-JS
+// fallback. JavaScript only adds compact thumbnail navigation; it never adds
+// a shared image or changes page ownership.
+document.querySelectorAll("[data-page-owned-gallery]").forEach((gallery) => {
+  const track = gallery.querySelector("[data-page-owned-gallery-track]");
+  const items = [...gallery.querySelectorAll("[data-page-owned-slot]")];
+  const thumbnails = [...gallery.querySelectorAll("[data-page-owned-gallery-thumbnail]")];
+  const controls = gallery.querySelector("[data-page-owned-gallery-controls]");
+  const previousButton = gallery.querySelector("[data-page-owned-gallery-previous]");
+  const nextButton = gallery.querySelector("[data-page-owned-gallery-next]");
+  const status = gallery.querySelector("[data-page-owned-gallery-status]");
+  if (!track || items.length !== 5 || thumbnails.length !== 5 || !previousButton || !nextButton) return;
+
+  let activeIndex = 0;
+  if (controls) controls.hidden = false;
+
+  const selectThumbnail = (index, shouldScroll = false) => {
+    activeIndex = Math.max(0, Math.min(items.length - 1, index));
+    thumbnails.forEach((thumbnail, thumbnailIndex) => {
+      const isActive = thumbnailIndex === activeIndex;
+      thumbnail.setAttribute("aria-current", String(isActive));
+      thumbnail.closest("[data-page-owned-slot]")?.classList.toggle("is-active", isActive);
+    });
+    previousButton.disabled = activeIndex === 0;
+    nextButton.disabled = activeIndex === items.length - 1;
+    if (status) status.textContent = `Image ${activeIndex + 1} of ${items.length}`;
+    if (shouldScroll) thumbnails[activeIndex].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  };
+
+  thumbnails.forEach((thumbnail, index) => {
+    thumbnail.addEventListener("click", () => selectThumbnail(index, true));
+  });
+  previousButton.addEventListener("click", () => selectThumbnail(activeIndex - 1, true));
+  nextButton.addEventListener("click", () => selectThumbnail(activeIndex + 1, true));
+  gallery.addEventListener("keydown", (event) => {
+    if (!event.target.closest("[data-page-owned-gallery-thumbnail], [data-page-owned-gallery-previous], [data-page-owned-gallery-next]")) return;
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      selectThumbnail(activeIndex - 1, true);
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      selectThumbnail(activeIndex + 1, true);
+    }
+    if (event.key === "Home") {
+      event.preventDefault();
+      selectThumbnail(0, true);
+    }
+    if (event.key === "End") {
+      event.preventDefault();
+      selectThumbnail(items.length - 1, true);
+    }
+  });
+  selectThumbnail(0);
+});
+
 document.querySelectorAll("[data-gallery]").forEach((gallery) => {
   const slides = [...gallery.querySelectorAll(".gallery-slot")];
   const previousButton = gallery.querySelector(".showcase-prev");
@@ -391,7 +447,9 @@ if (isHomePage) {
   const homepageReviewsMount = document.querySelector("[data-homepage-reviews]");
   const homepageReviewsSection = document.querySelector(".reviews-section");
   if (homepageReviewsMount && homepageReviewsSection && !homepageReviewsMount.contains(homepageReviewsSection)) {
-    homepageReviewsMount.append(homepageReviewsSection);
+    const gallery = homepageReviewsMount.querySelector("[data-page-owned-gallery]");
+    if (gallery) homepageReviewsMount.insertBefore(homepageReviewsSection, gallery);
+    else homepageReviewsMount.append(homepageReviewsSection);
   }
 }
 
