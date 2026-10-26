@@ -13,3 +13,7 @@
    grid reflow while its contained image remains fully visible. */
 @media(hover:hover) and (pointer:fine){.page-owned-gallery__item{position:relative;overflow:visible;z-index:0}.page-owned-gallery__thumbnail{transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease}.page-owned-gallery__thumbnail:hover,.page-owned-gallery__thumbnail:focus-visible{transform:scale(1.035);z-index:1;box-shadow:0 10px 24px rgba(5,8,11,.20)}}
 @media(prefers-reduced-motion:reduce){.page-owned-gallery__thumbnail{transition:none!important}.page-owned-gallery__thumbnail:hover,.page-owned-gallery__thumbnail:focus-visible{transform:none}}
+/* Editorial pages receive the lead section outside their article grid. These
+   guards keep each reused block shrinkable if an upstream template changes. */
+.page-estimate-reviews-section,.page-estimate-reviews-section .container,.page-estimate-reviews-section .estimate-reviews-layout,.page-estimate-reviews__gallery,.page-estimate-reviews__gallery>.page-owned-gallery{min-width:0;max-width:100%;box-sizing:border-box}
+@media(max-width:900px){.page-estimate-reviews-section,.page-estimate-reviews-section .container,.page-estimate-reviews-section .estimate-reviews-layout,.page-estimate-reviews__gallery,.page-estimate-reviews__gallery>.page-owned-gallery{width:100%}}

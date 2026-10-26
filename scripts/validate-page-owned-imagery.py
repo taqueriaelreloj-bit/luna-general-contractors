@@ -12,6 +12,7 @@ ROOT_HERO_PAGES={
 GALLERY=re.compile(r'<section\b(?=[^>]*\bdata-page-owned-gallery="true")[^>]*>.*?</section>',re.I|re.S)
 GALLERY_FIGURE=re.compile(r'<figure\b[^>]*\bdata-page-owned-slot="(\d{2})"[^>]*>(.*?)</figure>',re.I|re.S)
 LEGACY_ADDITIONAL=re.compile(r'<!--\s*additional-[a-z0-9-]+-imagery:start\s*-->',re.I)
+TRADE_BAR=re.compile(r'<nav\b(?=[^>]*\bclass=["\'][^"\']*\btrade-bar\b[^"\']*["\'])[^>]*>',re.I)
 class Images(HTMLParser):
  def __init__(self):super().__init__();self.items=[]
  def handle_starttag(self,t,a):
@@ -67,6 +68,7 @@ def main():
    errors.append(page+': page-owned stylesheet link is missing or duplicated')
   errors.extend(gallery_errors(page,e,h))
   if LEGACY_ADDITIONAL.search(h):errors.append(page+': legacy additional planning-scene block remains')
+  if len(TRADE_BAR.findall(h))!=1:errors.append(page+': expected exactly one canonical trade bar')
   if h.count('id="gallery"')>1:errors.append(page+': duplicate gallery id remains')
   if len(e['images'])!=5 or len({i['src'] for i in e['images']})!=5:errors.append(page+': five unique assignments required')
   for src in srcs:owners[src].add(page)

@@ -76,6 +76,11 @@ def main():
         main_at = text.find('<main')
         if main_at < 0 or start < main_at:
             errors.append(f'{page}: lead wrapper is not inside main')
+        article_grid_at = text.find('class="container seo-article-layout"')
+        if article_grid_at >= 0:
+            hero_at = text.find('class="seo-hero"')
+            if hero_at < 0 or not (hero_at < start < article_grid_at):
+                errors.append(f'{page}: editorial lead must sit after its SEO hero and before the article grid')
         covered += 1
 
     gallery = (ROOT / 'gallery.html').read_text(encoding='utf-8')

@@ -84,6 +84,30 @@ class PageOwnedGalleryTests(unittest.TestCase):
         self.assertLess(lead.index('id="estimate-form"'), lead.index(BUILDER.REVIEW_START))
         self.assertLess(lead.index(BUILDER.REVIEW_START), lead.index('<div class="page-estimate-reviews__gallery">'))
         self.assertEqual(lead.count('data-page-owned-gallery-thumbnail="true"'), 5)
+        self.assertNotIn('<article class="review-card"', lead)
+        self.assertIn('<div class="review-card"', lead)
+
+    def test_editorial_lead_sits_after_hero_outside_article_grid(self):
+        page = "roofing-insurance-claim-fort-worth.html"
+        entry = self.manifest[page]
+        original = (ROOT / page).read_text(encoding="utf-8")
+        output = BUILDER.transform(original, entry, page)
+        self.assertEqual(BUILDER.transform(output, entry, page), output)
+        self.assertLess(output.index('class="seo-hero"'), output.index(BUILDER.LEAD_START))
+        self.assertLess(output.index(BUILDER.LEAD_START), output.index('class="container seo-article-layout"'))
+        lead = output.split(BUILDER.LEAD_START, 1)[1].split(BUILDER.LEAD_END, 1)[0]
+        self.assertEqual(lead.count('data-page-owned-gallery-thumbnail="true"'), 5)
+        self.assertNotIn('<article class="review-card"', lead)
+
+    def test_duplicate_trade_bar_is_removed_without_touching_breadcrumb_navigation(self):
+        fixture = (
+            '<header><nav class="trade-bar"><a href="roofing.html">Roofing</a></nav></header>'
+            '<nav aria-label="Breadcrumb"><a href="index.html">Home</a></nav>'
+            '<nav class="trade-bar" aria-label="Services"><a href="kitchens.html">Kitchen</a></nav>'
+        )
+        output = BUILDER.remove_duplicate_trade_bars(fixture)
+        self.assertEqual(output.count('class="trade-bar"'), 1)
+        self.assertIn('aria-label="Breadcrumb"', output)
 
 
 if __name__ == "__main__":

@@ -212,6 +212,7 @@ document.querySelectorAll("[data-page-owned-gallery]").forEach((gallery) => {
   const status = gallery.querySelector("[data-page-owned-gallery-status]");
   if (!track || items.length !== 5 || thumbnails.length !== 5 || !previousButton || !nextButton) return;
 
+  const galleryIsSpanish = document.documentElement.lang.toLowerCase().startsWith("es");
   let activeIndex = 0;
   if (controls) controls.hidden = false;
 
@@ -224,7 +225,9 @@ document.querySelectorAll("[data-page-owned-gallery]").forEach((gallery) => {
     });
     previousButton.disabled = activeIndex === 0;
     nextButton.disabled = activeIndex === items.length - 1;
-    if (status) status.textContent = `Image ${activeIndex + 1} of ${items.length}`;
+    if (status) status.textContent = galleryIsSpanish
+      ? `Imagen ${activeIndex + 1} de ${items.length}`
+      : `Image ${activeIndex + 1} of ${items.length}`;
     if (shouldScroll) thumbnails[activeIndex].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
   };
 
@@ -1013,6 +1016,42 @@ if (isLocalPreview) {
 const floatingCall = document.querySelector(".floating-call");
 if (floatingCall) {
   floatingCall.dataset.label = isSpanishPage ? "Llamar ahora" : "Call now";
+
+  // On narrow screens, lift the fixed call action only while it would cover
+  // the per-page gallery controls. This keeps both controls operable without
+  // reserving blank space throughout every page.
+  let floatingCallFrame = 0;
+  const placeFloatingCall = () => {
+    floatingCallFrame = 0;
+    const mobile = window.matchMedia("(max-width: 760px)").matches;
+    const controls = [...document.querySelectorAll("[data-page-owned-gallery-controls]")];
+    if (!mobile || !controls.length) {
+      floatingCall.style.removeProperty("--gallery-controls-clearance");
+      return;
+    }
+    const rect = floatingCall.getBoundingClientRect();
+    const baseBottom = 18;
+    const baseTop = window.innerHeight - baseBottom - rect.height;
+    const baseRight = window.innerWidth - 18;
+    let clearance = 0;
+    for (const control of controls) {
+      const bounds = control.getBoundingClientRect();
+      const overlapsHorizontally = bounds.left < baseRight && bounds.right > baseRight - rect.width;
+      const overlapsVertically = bounds.bottom > baseTop && bounds.top < window.innerHeight - baseBottom;
+      if (overlapsHorizontally && overlapsVertically) {
+        clearance = Math.max(clearance, Math.ceil(window.innerHeight - bounds.top + 12 - baseBottom));
+      }
+    }
+    if (clearance > 0) floatingCall.style.setProperty("--gallery-controls-clearance", `${clearance}px`);
+    else floatingCall.style.removeProperty("--gallery-controls-clearance");
+  };
+  const scheduleFloatingCall = () => {
+    if (!floatingCallFrame) floatingCallFrame = window.requestAnimationFrame(placeFloatingCall);
+  };
+  window.addEventListener("resize", scheduleFloatingCall);
+  window.addEventListener("scroll", scheduleFloatingCall, { passive: true });
+  window.addEventListener("load", scheduleFloatingCall, { once: true });
+  scheduleFloatingCall();
 }
 
 // Respect links to existing sections, including product and estimate anchors.

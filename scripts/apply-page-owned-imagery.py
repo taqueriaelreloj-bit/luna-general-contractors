@@ -12,7 +12,7 @@ START='<!-- page-owned-imagery:start -->';END='<!-- page-owned-imagery:end -->'
 REVIEW_START='<!-- shared-customer-reviews:start -->';REVIEW_END='<!-- shared-customer-reviews:end -->'
 LEAD_START='<!-- page-lead-layout:start -->';LEAD_END='<!-- page-lead-layout:end -->'
 ADDITIONAL_START=re.compile(r'<!-- (additional-[a-z0-9-]+-imagery):start -->',re.I)
-STYLE='<link rel="stylesheet" href="page-owned-imagery.css?v=20261026-compact-lead-1">'
+STYLE='<link rel="stylesheet" href="page-owned-imagery.css?v=20261026-visual-audit-1">'
 CSS='''.page-owned-gallery{margin:32px auto;padding:clamp(16px,2.5vw,28px);background:#f4f4f1;color:#17191c;border-top:4px solid #e5a000}.page-owned-gallery__heading{margin:0 0 14px;font-size:clamp(1.3rem,2vw,1.8rem)}.page-owned-gallery__track{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.page-owned-gallery__item{min-width:0;margin:0;background:#fff;border:1px solid #deded8;border-radius:5px;overflow:hidden}.page-owned-gallery__thumbnail{display:block;width:100%;aspect-ratio:4/3;overflow:hidden;padding:0;border:3px solid transparent;background:#fff;color:inherit;cursor:pointer;text-align:inherit;transition:border-color .16s ease,box-shadow .16s ease}.page-owned-gallery__thumbnail[aria-current="true"]{border-color:#b87b00;box-shadow:0 0 0 2px rgba(184,123,0,.22)}.page-owned-gallery__thumbnail:focus-visible,.page-owned-gallery__control:focus-visible{outline:3px solid #005fcc;outline-offset:3px}.page-owned-gallery__thumbnail img{display:block;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}.page-owned-gallery__item figcaption{min-height:3.1em;padding:9px 10px;color:#17191c;font-size:.88rem;font-weight:700;line-height:1.35}.page-owned-gallery__controls{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:14px}.page-owned-gallery__control{min-width:44px;min-height:44px;padding:8px 14px;border:1px solid #24282c;border-radius:4px;background:#17191c;color:#fff;font:inherit;font-weight:700;cursor:pointer}.page-owned-gallery__control:disabled{opacity:.48;cursor:not-allowed}.page-owned-gallery__status{min-width:6.5em;margin-right:auto;color:#50545a;font-size:.9rem}.poi-notice{color:#50545a;line-height:1.5}.poi-roofing-page .mr-story,.poi-roofing-page .mr-detail-row,.poi-roofing-page .cr-assembly{display:block}
 .poi-hero{position:relative;isolation:isolate;overflow:hidden;background:#05080a}.poi-hero-image{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;object-fit:cover}.poi-hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(2,4,6,.94),rgba(2,4,6,.65) 55%,rgba(2,4,6,.25))}.poi-hero>.trade-hero-copy{position:relative;z-index:2}.poi-gallery-anchor{display:block;scroll-margin-top:1rem}
 @media(max-width:900px){.page-owned-gallery__track{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -28,6 +28,10 @@ CSS='''.page-owned-gallery{margin:32px auto;padding:clamp(16px,2.5vw,28px);backg
    grid reflow while its contained image remains fully visible. */
 @media(hover:hover) and (pointer:fine){.page-owned-gallery__item{position:relative;overflow:visible;z-index:0}.page-owned-gallery__thumbnail{transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease}.page-owned-gallery__thumbnail:hover,.page-owned-gallery__thumbnail:focus-visible{transform:scale(1.035);z-index:1;box-shadow:0 10px 24px rgba(5,8,11,.20)}}
 @media(prefers-reduced-motion:reduce){.page-owned-gallery__thumbnail{transition:none!important}.page-owned-gallery__thumbnail:hover,.page-owned-gallery__thumbnail:focus-visible{transform:none}}
+/* Editorial pages receive the lead section outside their article grid. These
+   guards keep each reused block shrinkable if an upstream template changes. */
+.page-estimate-reviews-section,.page-estimate-reviews-section .container,.page-estimate-reviews-section .estimate-reviews-layout,.page-estimate-reviews__gallery,.page-estimate-reviews__gallery>.page-owned-gallery{min-width:0;max-width:100%;box-sizing:border-box}
+@media(max-width:900px){.page-estimate-reviews-section,.page-estimate-reviews-section .container,.page-estimate-reviews-section .estimate-reviews-layout,.page-estimate-reviews__gallery,.page-estimate-reviews__gallery>.page-owned-gallery{width:100%}}
 '''
 FIGURE=re.compile(r'<figure\b[^>]*>.*?</figure>',re.S|re.I)
 SRC=re.compile(r'<img\b[^>]*\bsrc="([^"]+)"',re.I)
@@ -85,6 +89,18 @@ def remove_legacy_additional_imagery(text):
   prefix=re.sub(r'<span\s+id="gallery"\s+class="poi-gallery-anchor"\s+aria-hidden="true"></span>\s*$', '', text[:legacy.start()], flags=re.I)
   text=prefix+text[legacy.end():]
 
+TRADE_BAR=re.compile(r'<nav\b(?=[^>]*\bclass=["\'][^"\']*\btrade-bar\b[^"\']*["\'])[^>]*>.*?</nav>',re.I|re.S)
+
+def remove_duplicate_trade_bars(text):
+ """Keep the canonical header rail and remove only stale copied rails.
+
+ Breadcrumb navigation never uses ``trade-bar`` and remains untouched.
+ """
+ matches=list(TRADE_BAR.finditer(text))
+ for match in reversed(matches[1:]):
+  text=text[:match.start()]+text[match.end():]
+ return text
+
 def replace_preview_advantage(text,entry):
  # The preview formerly paired this block with a removed portfolio photo and a
  # "Real Luna project" label. Keep the layout useful with its own page-owned
@@ -136,10 +152,27 @@ def ensure_gallery_anchor(text,entry):
  anchor='<span id="gallery" class="poi-gallery-anchor" aria-hidden="true"></span>'
  return text[:marker.start()]+anchor+text[marker.start():]
 
-def render_gallery(entry,images,genuine=()):
+def render_gallery(entry,images,genuine=(),language='en'):
  label=entry['label'];city=entry.get('city') or 'Dallas–Fort Worth'
  gallery_id=' id="gallery"' if hero_image(entry) else ''
  heading=entry.get('gallery_title') or ('Planning & design ideas' if entry['category']=='project-case-studies' else f'{label} · {city}')
+ strings={
+  'all':'Ver galería completa',
+  'image':'Imagen',
+  'next':'Siguiente',
+  'previous':'Anterior',
+  'show_next':'Mostrar la siguiente imagen',
+  'show_previous':'Mostrar la imagen anterior',
+  'view':'Ver',
+ } if language=='es' else {
+  'all':'View Full Gallery',
+  'image':'Image',
+  'next':'Next',
+  'previous':'Previous',
+  'show_next':'Show next image',
+  'show_previous':'Show previous image',
+  'view':'View',
+ }
  cards=[]
  for i in sorted(images,key=lambda x:x['slot']):
   esc=lambda v:html.escape(str(v),quote=True)
@@ -150,8 +183,8 @@ def render_gallery(entry,images,genuine=()):
   # The button's aria-label already names the action. Avoid an additional
   # absolutely positioned screen-reader span: five such spans in the mobile
   # horizontal track can enlarge the document's scroll width in Chromium.
-  cards.append(f'<figure class="page-owned-gallery__item" data-representative-generated-illustration="true" data-page-owned-slot="{slot}"><button class="page-owned-gallery__thumbnail" type="button" data-page-owned-gallery-thumbnail="true" aria-current="{str(i["slot"]==1).lower()}" aria-label="View {esc(caption)}"><img data-page-owned-gallery-image="true" src="{esc(i["src"])}" alt="{esc(alt)}" width="{int(i["width"])}" height="{int(i["height"])}" loading="lazy" decoding="async"></button><figcaption>{esc(caption)}</figcaption></figure>')
- controls='<div class="page-owned-gallery__controls" data-page-owned-gallery-controls hidden><span class="page-owned-gallery__status" data-page-owned-gallery-status aria-live="polite">Image 1 of 5</span><a class="page-owned-gallery__all-link" href="gallery.html" data-page-owned-gallery-all>View Full Gallery</a><button class="page-owned-gallery__control" type="button" data-page-owned-gallery-previous aria-label="Show previous image" disabled>Previous</button><button class="page-owned-gallery__control" type="button" data-page-owned-gallery-next aria-label="Show next image">Next</button></div>'
+  cards.append(f'<figure class="page-owned-gallery__item" data-representative-generated-illustration="true" data-page-owned-slot="{slot}"><button class="page-owned-gallery__thumbnail" type="button" data-page-owned-gallery-thumbnail="true" aria-current="{str(i["slot"]==1).lower()}" aria-label="{strings["view"]} {esc(caption)}"><img data-page-owned-gallery-image="true" src="{esc(i["src"])}" alt="{esc(alt)}" width="{int(i["width"])}" height="{int(i["height"])}" loading="lazy" decoding="async"></button><figcaption>{esc(caption)}</figcaption></figure>')
+ controls=f'<div class="page-owned-gallery__controls" data-page-owned-gallery-controls hidden><span class="page-owned-gallery__status" data-page-owned-gallery-status aria-live="polite">{strings["image"]} 1 {"de" if language=="es" else "of"} 5</span><a class="page-owned-gallery__all-link" href="gallery.html" data-page-owned-gallery-all>{strings["all"]}</a><button class="page-owned-gallery__control" type="button" data-page-owned-gallery-previous aria-label="{strings["show_previous"]}" disabled>{strings["previous"]}</button><button class="page-owned-gallery__control" type="button" data-page-owned-gallery-next aria-label="{strings["show_next"]}">{strings["next"]}</button></div>'
  return START+'<section class="page-owned-gallery container"'+gallery_id+' data-page-owned-gallery="true" data-page-owned-imagery="true" aria-labelledby="page-owned-gallery-title"><h2 class="page-owned-gallery__heading" id="page-owned-gallery-title">'+html.escape(heading)+'</h2><div class="page-owned-gallery__track" data-page-owned-gallery-track>'+''.join(cards+list(genuine))+'</div>'+controls+'</section>'+END
 
 
@@ -216,6 +249,22 @@ def first_main_section(text):
  if not opening:return None
  return section_range(text,main.end()+opening.start())
 
+def lead_insertion_anchor(text):
+ """Prefer the direct SEO hero boundary on editorial article templates.
+
+ These templates place a header.seo-hero immediately before a two-column
+ article grid. The former generic nested-section anchor placed the conversion
+ row inside that grid, which made it too narrow on desktop and overflowed at
+ 375px. Service templates retain the existing section anchor.
+ """
+ main=re.search(r'<main\b[^>]*>',text,re.I)
+ if not main:return None
+ main_end=text.find('</main>',main.end())
+ boundary=len(text) if main_end<0 else main_end
+ hero=re.search(r'<header\b(?=[^>]*\bclass=["\'][^"\']*\bseo-hero\b[^"\']*["\'])[^>]*>',text[main.end():boundary],re.I)
+ if hero:return element_range(text,main.end()+hero.start(),'header')
+ return first_main_section(text)
+
 def remove_ranges(text,ranges):
  unique=[]
  for item in sorted((r for r in ranges if r),key=lambda r:(r[0],-(r[1]-r[0]))):
@@ -235,6 +284,24 @@ def lead_wrapper(form,reviews,gallery):
          '<div class="page-estimate-reviews__gallery">'+gallery+'</div>\n'
          '</section>\n'+LEAD_END)
 
+REVIEW_CARD_ARTICLE=re.compile(r'<article(\b[^>]*\bclass=["\'][^"\']*\breview-card\b[^"\']*["\'][^>]*)>',re.I)
+
+def normalize_review_card_elements(markup):
+ """Keep lead-layout review cards from implicitly closing the page article.
+
+ HTML does not permit an ``article`` nested directly inside another open
+ ``article`` without parser recovery. The legacy review cards were only
+ presentational containers, so retain their class and contents while using
+ ``div`` in the post-hero layout. This keeps the form, reviews and gallery in
+ one deterministic document-order wrapper on every regenerated page.
+ """
+ opens=len(REVIEW_CARD_ARTICLE.findall(markup))
+ if not opens:return markup
+ closes=len(re.findall(r'</article\s*>',markup,re.I))
+ if closes!=opens:raise ValueError('Unexpected review-card article structure')
+ markup=REVIEW_CARD_ARTICLE.sub(lambda m:'<div'+m[1]+'>',markup)
+ return re.sub(r'</article\s*>','</div>',markup,flags=re.I)
+
 def arrange_page_lead_layout(text,page):
  """Keep one existing form and factual review block beside the hero, then its gallery.
 
@@ -249,7 +316,7 @@ def arrange_page_lead_layout(text,page):
  if not gallery or not reviews or not form_range:return text
  layout_range=section_with(text,r'<section\b(?=[^>]*\bdata-estimate-reviews-layout=["\']true["\'])[^>]*>')
  layout_marker=block(text,LEAD_START,LEAD_END)
- gallery_markup=gallery.group();reviews_markup=reviews.group();form_markup=text[form_range[0]:form_range[1]]
+ gallery_markup=gallery.group();reviews_markup=normalize_review_card_elements(reviews.group());form_markup=text[form_range[0]:form_range[1]]
  if layout_marker:
   if not layout_range or not (layout_marker.start() <= layout_range[0] and layout_range[1] <= layout_marker.end()):
    raise ValueError('Malformed lead-layout markers')
@@ -259,15 +326,15 @@ def arrange_page_lead_layout(text,page):
  else:
   removal=[gallery.span(),reviews.span(),form_range]
  without=remove_ranges(text,removal)
- hero=first_main_section(without)
+ hero=lead_insertion_anchor(without)
  if not hero:return text
  wrapper=lead_wrapper(form_markup,reviews_markup,gallery_markup)
  before=without[:hero[1]].rstrip()
  after=without[hero[1]:].lstrip()
  return before+'\n\n'+wrapper+'\n\n'+after
 
-def insert_homepage_gallery(text,entry):
- gallery=render_gallery(entry,entry['images'])
+def insert_homepage_gallery(text,entry,language='en'):
+ gallery=render_gallery(entry,entry['images'],language=language)
  pattern=r'(<div\b[^>]*\bdata-homepage-reviews\b[^>]*>)(.*?)(</div>)'
  return bounded(pattern,lambda m:m[1]+gallery+m[3],text,{1})
 
@@ -282,7 +349,7 @@ def clean_basic_service_art(text):
  # Component illustrations remain until the separate three-card replacement batch.
  return text
 
-def transform_roof(text,entry,hub=False):
+def transform_roof(text,entry,hub=False,language='en'):
  for name in ['roofing-products','metal-roofing','commercial-roofing']:
   if not block(text,f'<!-- {name}:start -->',f'<!-- {name}:end -->'):raise ValueError('Missing roof guide '+name)
  # Retain brand text/links; never put generated generic scenes inside brand cards.
@@ -297,7 +364,7 @@ def transform_roof(text,entry,hub=False):
   if re.search(r'<img[^>]*src="(?:https?://|assets/metal-roofing/|assets/commercial-roofing/(?:membrane-work.jpg|epdm-roof.jpg))',text):raise ValueError('Unclassified remaining roofing hub reference')
   return text
  old=block(text,'<!-- roofing-city-illustrations:start -->','<!-- roofing-city-illustrations:end -->')
- gallery=render_gallery(entry,entry['images'])
+ gallery=render_gallery(entry,entry['images'],language=language)
  if old:text=text[:old.start()]+text[old.end():]
  anchor='<!-- commercial-roofing:end -->';text=text.replace(anchor,anchor+gallery,1)
  if not re.search(r'<body\b[^>]*\bclass=',text):text=text.replace('<body','<body class="poi-roofing-page"',1)
@@ -305,7 +372,7 @@ def transform_roof(text,entry,hub=False):
  if re.search(r'<img[^>]*src="(?:https?://|assets/metal-roofing/|assets/commercial-roofing/(?:membrane-work.jpg|epdm-roof.jpg))',text):raise ValueError('Unclassified remaining roof reference image')
  return text
 
-def replace_root_hub_gallery(text,entry,page,images):
+def replace_root_hub_gallery(text,entry,page,images,language='en'):
  markers={
   'roofing.html':('<!-- roofing-hub-illustrations:start -->','<!-- roofing-hub-illustrations:end -->'),
   'mitigation.html':('<!-- mitigation-illustrations:start -->','<!-- mitigation-illustrations:end -->'),
@@ -314,7 +381,7 @@ def replace_root_hub_gallery(text,entry,page,images):
  if not marker:return text,False
  old=block(text,*marker)
  if not old:raise ValueError('Missing root hub illustration marker '+page)
- gallery=render_gallery(entry,images)
+ gallery=render_gallery(entry,images,language=language)
  return text[:old.start()]+marker[0]+gallery+marker[1]+text[old.end():],True
 
 def dedupe_assigned_figures(text,entry):
@@ -350,12 +417,14 @@ def transform(original,entry,page):
  # Recover genuine gallery figures before clearing previous owned markup.
  prior=block(original,START,END);prior_genuine=keep_genuine(prior.group()) if prior else []
  text=remove_previous(original)
+ language='es' if re.search(r'<html\b[^>]*\blang=["\']es(?:[-_][^"\']*)?["\']',text,re.I) else 'en'
+ text=remove_duplicate_trade_bars(text)
  text=remove_legacy_additional_imagery(text)
  if page=='index.html':
   text=remove_obsolete_home_project_cards(text)
   text=remove_home_legacy_gallery_blocks(text)
  if page=='home-v2-preview.html':text=replace_preview_advantage(text,entry)
- if page=='roofing.html':text=transform_roof(text,entry,hub=True)
+ if page=='roofing.html':text=transform_roof(text,entry,hub=True,language=language)
  text,hero=insert_owned_hero(text,entry,page)
  hero_src=hero['src'] if hero else None
  city=block(text,'<!-- service-city-imagery:start -->','<!-- service-city-imagery:end -->')
@@ -364,23 +433,23 @@ def transform(original,entry,page):
   # Slot 01 remains the accessible homepage hero. The same page-owned scene
   # is also a compact thumbnail so visitors can inspect all five scenes below
   # the moved reviews without borrowing media from another URL.
-  text=insert_homepage_gallery(text,entry)
- elif roofing:text=transform_roof(text,entry)
+  text=insert_homepage_gallery(text,entry,language=language)
+ elif roofing:text=transform_roof(text,entry,language=language)
  elif city:
   genuine=keep_genuine(city.group())+prior_genuine
   genuine=list(dict.fromkeys(genuine))
-  text=text[:city.start()]+'<!-- service-city-imagery:start -->'+render_gallery(entry,entry['images'],genuine)+'<!-- service-city-imagery:end -->'+text[city.end():]
+  text=text[:city.start()]+'<!-- service-city-imagery:start -->'+render_gallery(entry,entry['images'],genuine,language=language)+'<!-- service-city-imagery:end -->'+text[city.end():]
   text=clean_basic_service_art(text)
  else:
-  text,replaced_root_gallery=replace_root_hub_gallery(text,entry,page,entry['images'])
+  text,replaced_root_gallery=replace_root_hub_gallery(text,entry,page,entry['images'],language=language)
   if not replaced_root_gallery:
    hub=block(text,'<!-- service-hub-illustrations:start -->','<!-- service-hub-illustrations:end -->')
    if hub:
     if not all(s.startswith('assets/images/illustrations/') for s in SRC.findall(hub.group())):raise ValueError('Unclassified hub image')
-    gallery=render_gallery(entry,entry['images'],prior_genuine)
+    gallery=render_gallery(entry,entry['images'],prior_genuine,language=language)
     text=text[:hub.start()]+'<!-- service-hub-illustrations:start -->'+gallery+'<!-- service-hub-illustrations:end -->'+text[hub.end():]
    else:
-    gallery=render_gallery(entry,entry['images'],prior_genuine)
+    gallery=render_gallery(entry,entry['images'],prior_genuine,language=language)
     anchor='<!-- shared-customer-reviews:start -->' if '<!-- shared-customer-reviews:start -->' in text else '</main>'
     if anchor in text:offset=text.index(anchor)
     else:

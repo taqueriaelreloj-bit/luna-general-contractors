@@ -1618,6 +1618,8 @@ a {
 
   .floating-call {
     display: grid;
+    bottom: calc(18px + var(--gallery-controls-clearance, 0px));
+    transition: bottom .16s ease;
   }
 }
 
