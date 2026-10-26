@@ -11,6 +11,7 @@ from pathlib import Path
 START='<!-- page-owned-imagery:start -->';END='<!-- page-owned-imagery:end -->'
 REVIEW_START='<!-- shared-customer-reviews:start -->';REVIEW_END='<!-- shared-customer-reviews:end -->'
 LEAD_START='<!-- page-lead-layout:start -->';LEAD_END='<!-- page-lead-layout:end -->'
+ADDITIONAL_START=re.compile(r'<!-- (additional-[a-z0-9-]+-imagery):start -->',re.I)
 STYLE='<link rel="stylesheet" href="page-owned-imagery.css?v=20261025-lead-layout-1">'
 CSS='''.page-owned-gallery{margin:32px auto;padding:clamp(16px,2.5vw,28px);background:#f4f4f1;color:#17191c;border-top:4px solid #e5a000}.page-owned-gallery__heading{margin:0 0 14px;font-size:clamp(1.3rem,2vw,1.8rem)}.page-owned-gallery__track{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.page-owned-gallery__item{min-width:0;margin:0;background:#fff;border:1px solid #deded8;border-radius:5px;overflow:hidden}.page-owned-gallery__thumbnail{display:block;width:100%;aspect-ratio:4/3;overflow:hidden;padding:0;border:3px solid transparent;background:#fff;color:inherit;cursor:pointer;text-align:inherit;transition:border-color .16s ease,box-shadow .16s ease}.page-owned-gallery__thumbnail[aria-current="true"]{border-color:#b87b00;box-shadow:0 0 0 2px rgba(184,123,0,.22)}.page-owned-gallery__thumbnail:focus-visible,.page-owned-gallery__control:focus-visible{outline:3px solid #005fcc;outline-offset:3px}.page-owned-gallery__thumbnail img{display:block;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}.page-owned-gallery__item figcaption{min-height:3.1em;padding:9px 10px;color:#17191c;font-size:.88rem;font-weight:700;line-height:1.35}.page-owned-gallery__controls{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:14px}.page-owned-gallery__control{min-width:44px;min-height:44px;padding:8px 14px;border:1px solid #24282c;border-radius:4px;background:#17191c;color:#fff;font:inherit;font-weight:700;cursor:pointer}.page-owned-gallery__control:disabled{opacity:.48;cursor:not-allowed}.page-owned-gallery__status{min-width:6.5em;margin-right:auto;color:#50545a;font-size:.9rem}.poi-notice{color:#50545a;line-height:1.5}.poi-roofing-page .mr-story,.poi-roofing-page .mr-detail-row,.poi-roofing-page .cr-assembly{display:block}
 .poi-hero{position:relative;isolation:isolate;overflow:hidden;background:#05080a}.poi-hero-image{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;object-fit:cover}.poi-hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(2,4,6,.94),rgba(2,4,6,.65) 55%,rgba(2,4,6,.25))}.poi-hero>.trade-hero-copy{position:relative;z-index:2}.poi-gallery-anchor{display:block;scroll-margin-top:1rem}
@@ -65,6 +66,24 @@ def remove_home_legacy_gallery_blocks(text):
  m=block(text,'<!-- additional-services-imagery:start -->','<!-- additional-services-imagery:end -->')
  if m:text=text[:m.start()]+text[m.end():]
  return text
+
+def remove_legacy_additional_imagery(text):
+ # The reusable five-scene gallery now owns each page's generated-image
+ # presentation. Retire only the old marker-bounded planning-scene sections;
+ # keep the existing #gallery anchor so hero links still target the owned
+ # gallery above.
+ while True:
+  marker=ADDITIONAL_START.search(text)
+  if not marker:return text
+  identifier=marker.group(1)
+  start=f'<!-- {identifier}:start -->';end=f'<!-- {identifier}:end -->'
+  legacy=block(text,start,end)
+  if not legacy:raise ValueError('Missing legacy additional imagery end marker: '+identifier)
+  # Earlier builds placed a second #gallery anchor immediately before this
+  # section. The reusable gallery now has that id itself, so drop only this
+  # directly-adjacent duplicate anchor along with the retired section.
+  prefix=re.sub(r'<span\s+id="gallery"\s+class="poi-gallery-anchor"\s+aria-hidden="true"></span>\s*$', '', text[:legacy.start()], flags=re.I)
+  text=prefix+text[legacy.end():]
 
 def replace_preview_advantage(text,entry):
  # The preview formerly paired this block with a removed portfolio photo and a
@@ -329,6 +348,7 @@ def transform(original,entry,page):
  # Recover genuine gallery figures before clearing previous owned markup.
  prior=block(original,START,END);prior_genuine=keep_genuine(prior.group()) if prior else []
  text=remove_previous(original)
+ text=remove_legacy_additional_imagery(text)
  if page=='index.html':
   text=remove_obsolete_home_project_cards(text)
   text=remove_home_legacy_gallery_blocks(text)

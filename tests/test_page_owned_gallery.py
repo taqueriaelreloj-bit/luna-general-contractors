@@ -39,6 +39,29 @@ class PageOwnedGalleryTests(unittest.TestCase):
         for image in entry["images"]:
             self.assertIn(f'src="{image["src"]}"', output)
 
+    def test_transform_removes_legacy_additional_imagery_and_duplicate_anchor(self):
+        entry = self.manifest["kitchens.html"]
+        original = (ROOT / "kitchens.html").read_text(encoding="utf-8")
+        legacy = (
+            '<span id="gallery" class="poi-gallery-anchor" aria-hidden="true"></span>'
+            '<!-- additional-test-imagery:start -->'
+            '<section id="legacy-planning-scene">legacy planning scene</section>'
+            '<!-- additional-test-imagery:end -->'
+        )
+        fixture = original.replace('<!-- page-owned-imagery:end -->', '<!-- page-owned-imagery:end -->' + legacy, 1)
+        output = BUILDER.transform(fixture, entry, "kitchens.html")
+        self.assertNotIn('additional-test-imagery', output)
+        self.assertNotIn('legacy-planning-scene', output)
+        self.assertEqual(output.count('id="gallery"'), 1)
+        self.assertEqual(BUILDER.transform(output, entry, "kitchens.html"), output)
+
+    def test_hub_pages_have_only_the_owned_five_image_gallery(self):
+        for page in ("kitchens.html", "bathrooms.html", "carpentry.html", "painting.html", "siding.html", "fencing.html"):
+            output = (ROOT / page).read_text(encoding="utf-8")
+            self.assertNotRegex(output, r"additional-[a-z0-9-]+-imagery")
+            self.assertEqual(output.count('data-page-owned-slot="'), 5, page)
+            self.assertEqual(output.count('id="gallery"'), 1, page)
+
     def test_root_hero_is_kept_and_repeated_only_as_its_own_thumbnail(self):
         entry = self.manifest["roofing.html"]
         original = (ROOT / "roofing.html").read_text(encoding="utf-8")
