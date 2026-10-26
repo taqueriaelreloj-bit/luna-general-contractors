@@ -1025,8 +1025,12 @@ if (floatingCall) {
     floatingCallFrame = 0;
     const mobile = window.matchMedia("(max-width: 760px)").matches;
     const controls = [...document.querySelectorAll("[data-page-owned-gallery-controls]")];
-    if (!mobile || !controls.length) {
+    const galleries = [...document.querySelectorAll("[data-page-owned-gallery]")];
+    const blockers = [...controls, ...galleries];
+    if (!mobile || !blockers.length) {
       floatingCall.style.removeProperty("--gallery-controls-clearance");
+      floatingCall.style.removeProperty("visibility");
+      floatingCall.removeAttribute("aria-hidden");
       return;
     }
     const rect = floatingCall.getBoundingClientRect();
@@ -1034,16 +1038,27 @@ if (floatingCall) {
     const baseTop = window.innerHeight - baseBottom - rect.height;
     const baseRight = window.innerWidth - 18;
     let clearance = 0;
-    for (const control of controls) {
-      const bounds = control.getBoundingClientRect();
+    for (const blocker of blockers) {
+      const bounds = blocker.getBoundingClientRect();
       const overlapsHorizontally = bounds.left < baseRight && bounds.right > baseRight - rect.width;
       const overlapsVertically = bounds.bottom > baseTop && bounds.top < window.innerHeight - baseBottom;
       if (overlapsHorizontally && overlapsVertically) {
         clearance = Math.max(clearance, Math.ceil(window.innerHeight - bounds.top + 12 - baseBottom));
       }
     }
-    if (clearance > 0) floatingCall.style.setProperty("--gallery-controls-clearance", `${clearance}px`);
-    else floatingCall.style.removeProperty("--gallery-controls-clearance");
+    const maxVisibleClearance = Math.max(0, Math.floor(window.innerHeight - baseBottom - rect.height));
+    if (clearance > maxVisibleClearance) {
+      // If a gallery reaches the top of the viewport there is no safe place for
+      // a fixed call action. Hide it temporarily rather than covering a photo.
+      floatingCall.style.setProperty("--gallery-controls-clearance", `${maxVisibleClearance}px`);
+      floatingCall.style.visibility = "hidden";
+      floatingCall.setAttribute("aria-hidden", "true");
+    } else {
+      floatingCall.style.removeProperty("visibility");
+      floatingCall.removeAttribute("aria-hidden");
+      if (clearance > 0) floatingCall.style.setProperty("--gallery-controls-clearance", `${clearance}px`);
+      else floatingCall.style.removeProperty("--gallery-controls-clearance");
+    }
   };
   const scheduleFloatingCall = () => {
     if (!floatingCallFrame) floatingCallFrame = window.requestAnimationFrame(placeFloatingCall);

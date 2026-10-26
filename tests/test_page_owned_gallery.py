@@ -109,6 +109,12 @@ class PageOwnedGalleryTests(unittest.TestCase):
         self.assertEqual(output.count('class="trade-bar"'), 1)
         self.assertIn('aria-label="Breadcrumb"', output)
 
+    def test_mobile_call_action_accounts_for_the_full_page_gallery(self):
+        script = (ROOT / "script.js").read_text(encoding="utf-8")
+        self.assertIn('document.querySelectorAll("[data-page-owned-gallery]")', script)
+        self.assertIn('maxVisibleClearance', script)
+        self.assertIn('floatingCall.setAttribute("aria-hidden", "true")', script)
+
 
 if __name__ == "__main__":
     unittest.main()

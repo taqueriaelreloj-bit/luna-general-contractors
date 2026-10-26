@@ -597,7 +597,7 @@ def strip_real_photos(text,assets,file):
 
 
 def concise_image_text(text,entry,page):
- text=re.sub(r'(src=["\']script\.js)(?:\?[^"\']*)?(["\'])',r'\1?v=20261026-compact-lead-1\2',text)
+ text=re.sub(r'(src=["\']script\.js)(?:\?[^"\']*)?(["\'])',r'\1?v=20261026-mobile-cta-1\2',text)
  text=re.sub(r'(href=["\']styles\.css)(?:\?[^"\']*)?(["\'])',r'\1?v=20261026-compact-lead-1\2',text)
  # The aggregate service builders still emit this old preface on six hub
  # sections. The final ownership pass keeps the concise useful heading but
