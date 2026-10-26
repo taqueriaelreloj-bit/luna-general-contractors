@@ -64,15 +64,22 @@ def main():
         form_at = lead.find('id="estimate-form"')
         reviews_at = lead.find(REVIEWS_START)
         gallery_at = lead.find(IMAGERY_START)
+        row_at = lead.find('<div class="container estimate-reviews-layout">')
+        reviews_wrapper_at = lead.find('<div class="page-estimate-reviews__reviews">')
+        gallery_wrapper_at = lead.find('<div class="page-estimate-reviews__gallery">')
         if min(form_at, reviews_at, gallery_at) < 0 or not (form_at < reviews_at < gallery_at):
             errors.append(f'{page}: lead order is not form -> reviews -> gallery')
+        if min(row_at, reviews_wrapper_at, gallery_wrapper_at) < 0 or not (row_at < reviews_wrapper_at < gallery_wrapper_at):
+            errors.append(f'{page}: expected a form/reviews row followed by a full-width gallery')
+        if 'page-estimate-reviews__content' in lead:
+            errors.append(f'{page}: gallery remains nested in the reviews column')
         main_at = text.find('<main')
         if main_at < 0 or start < main_at:
             errors.append(f'{page}: lead wrapper is not inside main')
         covered += 1
 
     gallery = (ROOT / 'gallery.html').read_text(encoding='utf-8')
-    if LEAD_START in gallery or 'data-estimate-reviews-layout' in gallery:
+    if LEAD_START in gallery or 'data-estimate-reviews-layout' in gallery or 'page-estimate-reviews__gallery' in gallery:
         errors.append('gallery.html: general gallery was changed by lead layout')
     if 'data-general-gallery-source' not in gallery:
         errors.append('gallery.html: general-gallery data source missing')

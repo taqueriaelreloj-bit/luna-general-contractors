@@ -12,7 +12,7 @@ START='<!-- page-owned-imagery:start -->';END='<!-- page-owned-imagery:end -->'
 REVIEW_START='<!-- shared-customer-reviews:start -->';REVIEW_END='<!-- shared-customer-reviews:end -->'
 LEAD_START='<!-- page-lead-layout:start -->';LEAD_END='<!-- page-lead-layout:end -->'
 ADDITIONAL_START=re.compile(r'<!-- (additional-[a-z0-9-]+-imagery):start -->',re.I)
-STYLE='<link rel="stylesheet" href="page-owned-imagery.css?v=20261025-lead-layout-1">'
+STYLE='<link rel="stylesheet" href="page-owned-imagery.css?v=20261026-compact-lead-1">'
 CSS='''.page-owned-gallery{margin:32px auto;padding:clamp(16px,2.5vw,28px);background:#f4f4f1;color:#17191c;border-top:4px solid #e5a000}.page-owned-gallery__heading{margin:0 0 14px;font-size:clamp(1.3rem,2vw,1.8rem)}.page-owned-gallery__track{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.page-owned-gallery__item{min-width:0;margin:0;background:#fff;border:1px solid #deded8;border-radius:5px;overflow:hidden}.page-owned-gallery__thumbnail{display:block;width:100%;aspect-ratio:4/3;overflow:hidden;padding:0;border:3px solid transparent;background:#fff;color:inherit;cursor:pointer;text-align:inherit;transition:border-color .16s ease,box-shadow .16s ease}.page-owned-gallery__thumbnail[aria-current="true"]{border-color:#b87b00;box-shadow:0 0 0 2px rgba(184,123,0,.22)}.page-owned-gallery__thumbnail:focus-visible,.page-owned-gallery__control:focus-visible{outline:3px solid #005fcc;outline-offset:3px}.page-owned-gallery__thumbnail img{display:block;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}.page-owned-gallery__item figcaption{min-height:3.1em;padding:9px 10px;color:#17191c;font-size:.88rem;font-weight:700;line-height:1.35}.page-owned-gallery__controls{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:14px}.page-owned-gallery__control{min-width:44px;min-height:44px;padding:8px 14px;border:1px solid #24282c;border-radius:4px;background:#17191c;color:#fff;font:inherit;font-weight:700;cursor:pointer}.page-owned-gallery__control:disabled{opacity:.48;cursor:not-allowed}.page-owned-gallery__status{min-width:6.5em;margin-right:auto;color:#50545a;font-size:.9rem}.poi-notice{color:#50545a;line-height:1.5}.poi-roofing-page .mr-story,.poi-roofing-page .mr-detail-row,.poi-roofing-page .cr-assembly{display:block}
 .poi-hero{position:relative;isolation:isolate;overflow:hidden;background:#05080a}.poi-hero-image{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;object-fit:cover}.poi-hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(2,4,6,.94),rgba(2,4,6,.65) 55%,rgba(2,4,6,.25))}.poi-hero>.trade-hero-copy{position:relative;z-index:2}.poi-gallery-anchor{display:block;scroll-margin-top:1rem}
 @media(max-width:900px){.page-owned-gallery__track{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -22,8 +22,8 @@ CSS='''.page-owned-gallery{margin:32px auto;padding:clamp(16px,2.5vw,28px);backg
 .page-owned-gallery__thumbnail{aspect-ratio:16/10;background:#111820}.page-owned-gallery__thumbnail img{object-fit:contain;background:#111820}
 /* The lead conversion reuses the actual form, review section and page-owned gallery.
    It deliberately applies only to page content, never to gallery.html. */
-.page-estimate-reviews-section{padding:clamp(36px,5vw,72px) 0;background:radial-gradient(circle at 50% 0%,rgba(240,169,0,.10),transparent 42%),#f7f8f9}.page-estimate-reviews-section .estimate-reviews-layout{display:grid;grid-template-columns:minmax(300px,.8fr) minmax(0,1.7fr);align-items:start;gap:clamp(24px,4vw,54px)}.page-estimate-reviews__form,.page-estimate-reviews__content{min-width:0}.page-estimate-reviews__form>.local-form{padding:0;background:transparent;color:#17191c}.page-estimate-reviews__form>.local-form>.container{width:100%;max-width:none;padding:0}.page-estimate-reviews__form .estimate-form{width:100%;box-sizing:border-box}.page-estimate-reviews__form .local-form h2{margin-top:0}.page-estimate-reviews__content>.shared-customer-reviews{padding:0}.page-estimate-reviews__content>.page-owned-gallery{margin:32px 0 0}.page-estimate-reviews__content>.page-owned-gallery.container{max-width:none;padding-inline:0}
-@media(max-width:900px){.page-estimate-reviews-section .estimate-reviews-layout{grid-template-columns:1fr}.page-estimate-reviews__form{max-width:520px;width:100%;justify-self:center}}
+.page-estimate-reviews-section{padding:clamp(24px,3.5vw,48px) 0;background:radial-gradient(circle at 50% 0%,rgba(240,169,0,.10),transparent 42%),#f7f8f9}.page-estimate-reviews-section .estimate-reviews-layout{display:grid;grid-template-columns:minmax(280px,.78fr) minmax(0,1.22fr);align-items:start;gap:clamp(18px,2.5vw,32px)}.page-estimate-reviews__form,.page-estimate-reviews__reviews,.page-estimate-reviews__gallery{min-width:0}.page-estimate-reviews__form>.local-form{padding:0;background:transparent;color:#17191c}.page-estimate-reviews__form>.local-form>.container{width:100%;max-width:none;padding:0}.page-estimate-reviews__form .estimate-form{width:100%;box-sizing:border-box;gap:10px;padding:18px}.page-estimate-reviews__form .estimate-form input:not([type="file"]),.page-estimate-reviews__form .estimate-form select{min-height:44px;padding:10px 11px}.page-estimate-reviews__form .estimate-form textarea{padding:10px 11px}.page-estimate-reviews__form .estimate-form input[type="file"]{min-height:44px;padding:8px 10px}.page-estimate-reviews__form .local-form h2{margin-top:0;font-size:clamp(1.35rem,2.25vw,2rem)}.page-estimate-reviews__reviews>.shared-customer-reviews{padding:0}.page-estimate-reviews__reviews .reviews-shell{padding:18px}.page-estimate-reviews__reviews .reviews-header{gap:10px 16px;margin-bottom:12px}.page-estimate-reviews__reviews .reviews-header h2{font-size:1.45rem}.page-estimate-reviews__reviews .reviews-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.page-estimate-reviews__reviews .review-card{min-height:0;padding:12px}.page-estimate-reviews__reviews .review-card p{font-size:.84rem;line-height:1.5}.page-estimate-reviews__reviews .review-cta{gap:12px;padding-top:14px}.page-estimate-reviews__gallery{margin:clamp(20px,3vw,30px) 0 0}.page-estimate-reviews__gallery>.page-owned-gallery{margin:0 auto}
+@media(max-width:900px){.page-estimate-reviews-section .estimate-reviews-layout{grid-template-columns:1fr}.page-estimate-reviews__form{max-width:520px;width:100%;justify-self:center}.page-estimate-reviews__reviews .reviews-grid{grid-template-columns:1fr}}
 /* Slight visual lift for pointer devices only. Scaling the thumbnail surface avoids
    grid reflow while its contained image remains fully visible. */
 @media(hover:hover) and (pointer:fine){.page-owned-gallery__item{position:relative;overflow:visible;z-index:0}.page-owned-gallery__thumbnail{transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease}.page-owned-gallery__thumbnail:hover,.page-owned-gallery__thumbnail:focus-visible{transform:scale(1.035);z-index:1;box-shadow:0 10px 24px rgba(5,8,11,.20)}}
@@ -230,8 +230,10 @@ def lead_wrapper(form,reviews,gallery):
          'data-estimate-reviews-layout="true" aria-label="Free estimate form and customer reviews">\n'
          '<div class="container estimate-reviews-layout">\n'
          '<div class="page-estimate-reviews__form">'+form+'</div>\n'
-         '<div class="page-estimate-reviews__content">'+reviews+'\n'+gallery+'</div>\n'
-         '</div>\n</section>\n'+LEAD_END)
+         '<div class="page-estimate-reviews__reviews">'+reviews+'</div>\n'
+         '</div>\n'
+         '<div class="page-estimate-reviews__gallery">'+gallery+'</div>\n'
+         '</section>\n'+LEAD_END)
 
 def arrange_page_lead_layout(text,page):
  """Keep one existing form and factual review block beside the hero, then its gallery.
@@ -526,8 +528,8 @@ def strip_real_photos(text,assets,file):
 
 
 def concise_image_text(text,entry,page):
- text=re.sub(r'(src=["\']script\.js)(?:\?[^"\']*)?(["\'])',r'\1?v=20261025-lead-layout-1\2',text)
- text=re.sub(r'(href=["\']styles\.css)(?:\?[^"\']*)?(["\'])',r'\1?v=20261025-lead-layout-1\2',text)
+ text=re.sub(r'(src=["\']script\.js)(?:\?[^"\']*)?(["\'])',r'\1?v=20261026-compact-lead-1\2',text)
+ text=re.sub(r'(href=["\']styles\.css)(?:\?[^"\']*)?(["\'])',r'\1?v=20261026-compact-lead-1\2',text)
  # The aggregate service builders still emit this old preface on six hub
  # sections. The final ownership pass keeps the concise useful heading but
  # removes the redundant concept label so aggregate regeneration is stable.

@@ -71,6 +71,20 @@ class PageOwnedGalleryTests(unittest.TestCase):
         self.assertEqual(output.count(hero["src"]), 2)
         self.assertEqual(output.count('data-page-owned-gallery-thumbnail="true"'), 5)
 
+    def test_normal_page_places_full_width_gallery_after_compact_form_reviews_row(self):
+        entry = self.manifest["dallas-roofing.html"]
+        original = (ROOT / "dallas-roofing.html").read_text(encoding="utf-8")
+        output = BUILDER.transform(original, entry, "dallas-roofing.html")
+        self.assertEqual(BUILDER.transform(output, entry, "dallas-roofing.html"), output)
+        lead = output.split(BUILDER.LEAD_START, 1)[1].split(BUILDER.LEAD_END, 1)[0]
+        self.assertIn('<div class="container estimate-reviews-layout">', lead)
+        self.assertIn('<div class="page-estimate-reviews__reviews">', lead)
+        self.assertIn('<div class="page-estimate-reviews__gallery">', lead)
+        self.assertNotIn('page-estimate-reviews__content', lead)
+        self.assertLess(lead.index('id="estimate-form"'), lead.index(BUILDER.REVIEW_START))
+        self.assertLess(lead.index(BUILDER.REVIEW_START), lead.index('<div class="page-estimate-reviews__gallery">'))
+        self.assertEqual(lead.count('data-page-owned-gallery-thumbnail="true"'), 5)
+
 
 if __name__ == "__main__":
     unittest.main()
