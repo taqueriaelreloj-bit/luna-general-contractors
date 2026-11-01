@@ -1,0 +1,11 @@
+/* Supplemental selected-project photo gallery. Separate from the illustrative planning gallery. */
+.real-project-gallery{margin:32px auto;padding:clamp(16px,2.5vw,28px);background:#f4f4f1;color:#17191c;border-top:4px solid #e5a000}
+.real-project-gallery__intro{max-width:72ch;color:#50545a;line-height:1.55}
+.real-project-gallery__groups{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
+.real-project-gallery__group{min-width:0;padding:16px;background:#fff;border:1px solid #deded8;border-radius:5px}
+.real-project-gallery__group h3{margin:0 0 12px;font-size:1.08rem}
+.real-project-gallery__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px}
+.real-project-gallery__item{min-width:0;margin:0;border:1px solid #deded8;border-radius:4px;overflow:hidden}
+.real-project-gallery__item img{display:block;width:100%;height:clamp(220px,27vw,360px);object-fit:contain;background:#111820}
+.real-project-gallery__item figcaption{padding:9px 10px;color:#17191c;font-size:.88rem;line-height:1.4}
+@media(max-width:620px){.real-project-gallery{padding:16px}.real-project-gallery__group{padding:12px}.real-project-gallery__grid{grid-template-columns:1fr}.real-project-gallery__item img{height:280px}}
