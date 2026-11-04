@@ -177,8 +177,8 @@ def render_gallery(entry,images,genuine=(),language='en'):
  for i in sorted(images,key=lambda x:x['slot']):
   esc=lambda v:html.escape(str(v),quote=True)
   subject=i.get('caption_subject',label)
-  caption=f'{subject} · {city}'
-  alt=f'{subject if "concept" in subject.lower() else subject+" design concept"} · {city}'
+  caption=i.get('caption') or f'{subject} · {city}'
+  alt=i.get('alt') or f'{subject if "concept" in subject.lower() else subject+" design concept"} · {city}'
   slot=f'{int(i["slot"]):02}'
   # The button's aria-label already names the action. Avoid an additional
   # absolutely positioned screen-reader span: five such spans in the mobile
@@ -614,13 +614,14 @@ def concise_image_text(text,entry,page):
   technical=src.startswith('assets/service-guides/') or (src.startswith('assets/commercial-roofing/') and src.endswith('.svg'))
   concept=src.startswith('assets/images/illustrations/')
   if not (technical or concept):return figure
-  subject=next((i.get('caption_subject',label) for i in entry.get('images',[]) if i['src']==src),label)
+  image_data=next((i for i in entry.get('images',[]) if i['src']==src),None)
+  subject=(image_data or {}).get('caption_subject',label)
   if technical:
    subject=Path(src).stem.replace('-reference','').replace('-',' ').capitalize()
    subject={'Tpo':'TPO','Pvc':'PVC','Epdm':'EPDM','Gypsum':'Drywall'}.get(subject,subject)
-  caption=html.escape(subject+' · '+city)
+  caption=html.escape((image_data or {}).get('caption') or subject+' · '+city)
   figure=re.sub(r'<figcaption\b[^>]*>.*?</figcaption>',lambda m:'<figcaption>'+caption+'</figcaption>',figure,flags=re.S)
-  alt=html.escape(subject+(' illustration' if technical else ' concept')+' · '+city,quote=True)
+  alt=html.escape((image_data or {}).get('alt') or subject+(' illustration' if technical else ' concept')+' · '+city,quote=True)
   figure=re.sub(r'(<img\b[^>]*\balt=")[^"]*',lambda m:m[1]+alt,figure,count=1)
   return figure
  text=FIGURE.sub(short_figure,text)
@@ -636,7 +637,7 @@ def concise_image_text(text,entry,page):
  text=re.sub(r'<meta\b(?=[^>]*(?:property|name)=["\'](?:og:image(?::[^"\']*)?|twitter:image(?::[^"\']*)?|twitter:card)["\'])[^>]*>','',text,flags=re.I)
  if not entry.get('placement_hold') and entry.get('images'):
   image=entry['images'][0];url='https://lunageneralcontractors.com/'+image['src']
-  alt=html.escape((label if 'concept' in label.lower() else label+' design concept')+' · '+city,quote=True)
+  alt=html.escape(image.get('alt') or (label if 'concept' in label.lower() else label+' design concept')+' · '+city,quote=True)
   card='<meta name="twitter:card" content="summary_large_image">'
   meta='<meta property="og:image" content="'+html.escape(url,quote=True)+'"><meta property="og:image:width" content="'+str(image['width'])+'"><meta property="og:image:height" content="'+str(image['height'])+'"><meta property="og:image:alt" content="'+alt+'"><meta name="twitter:image" content="'+html.escape(url,quote=True)+'"><meta name="twitter:image:alt" content="'+alt+'">'+card
   text=text.replace('</head>',meta+'</head>',1)

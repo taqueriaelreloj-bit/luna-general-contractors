@@ -37,6 +37,9 @@ jobs:
       - name: Link projects from city service pages
         run: python luna_engine/link_projects_to_service_pages.py
 
+      - name: Reapply authored service guides and complete page endings
+        run: node scripts/build-service-site.mjs
+
       - name: Preserve bilingual Mansfield case
         run: python scripts/preserve_bilingual_mansfield_case.py
 
@@ -69,7 +72,8 @@ jobs:
               if not path.exists():
                   raise SystemExit(f'Missing project page: {name}')
               html = path.read_text(encoding='utf-8')
-              for token in ('<title>', '<h1>', 'Article', 'BreadcrumbList', 'ImageGallery', 'rel="canonical"', 'tel:+18177845998'):
+              schema_type = 'WebPage' if name == 'gray-subway-kitchen-backsplash-mansfield.html' else 'Article'
+              for token in ('<title>', '<h1>', schema_type, 'BreadcrumbList', 'ImageGallery', 'rel="canonical"', 'tel:+18177845998'):
                   if token not in html:
                       raise SystemExit(f'{name}: missing {token}')
               if f'href="{name}"' not in index_html:
@@ -91,9 +95,6 @@ jobs:
 
           print(f'Validated projects index, {len(project_pages)} case studies and {len(linked_pages)} linked service pages.')
           PY
-
-      - name: Reapply authored service guides and complete page endings
-        run: node scripts/build-service-site.mjs
 
       - name: Commit generated project pages and local links
         run: |

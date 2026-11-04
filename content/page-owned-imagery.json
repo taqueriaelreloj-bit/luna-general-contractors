@@ -38857,38 +38857,49 @@
   },
   "gray-subway-kitchen-backsplash-mansfield.html": {
     "category": "project-case-studies",
-    "label": "Kitchen backsplash",
-    "city": "Mansfield",
+    "label": "Kitchen Backsplash",
+    "city": "Mansfield, Texas",
+    "gallery_title": "Kitchen Backsplash, Mansfield, Texas",
     "images": [
       {
         "slot": 1,
         "src": "assets/images/illustrations/page-owned/gray-subway-kitchen-backsplash-mansfield/gray-subway-kitchen-backsplash-mansfield-scene-01.webp",
         "width": 1280,
-        "height": 853
+        "height": 853,
+        "caption": "Kitchen Backsplash, Mansfield, Texas",
+        "alt": "Kitchen backsplash, Mansfield, Texas"
       },
       {
         "slot": 2,
         "src": "assets/images/illustrations/page-owned/gray-subway-kitchen-backsplash-mansfield/gray-subway-kitchen-backsplash-mansfield-scene-02.webp",
         "width": 1280,
-        "height": 853
+        "height": 853,
+        "caption": "Kitchen Backsplash, Mansfield, Texas",
+        "alt": "Kitchen backsplash, Mansfield, Texas"
       },
       {
         "slot": 3,
         "src": "assets/images/illustrations/page-owned/gray-subway-kitchen-backsplash-mansfield/gray-subway-kitchen-backsplash-mansfield-scene-03.webp",
         "width": 1280,
-        "height": 853
+        "height": 853,
+        "caption": "Kitchen Backsplash, Mansfield, Texas",
+        "alt": "Kitchen backsplash, Mansfield, Texas"
       },
       {
         "slot": 4,
         "src": "assets/images/illustrations/page-owned/gray-subway-kitchen-backsplash-mansfield/gray-subway-kitchen-backsplash-mansfield-scene-04.webp",
         "width": 1280,
-        "height": 853
+        "height": 853,
+        "caption": "Kitchen Backsplash, Mansfield, Texas",
+        "alt": "Kitchen backsplash, Mansfield, Texas"
       },
       {
         "slot": 5,
         "src": "assets/images/illustrations/page-owned/gray-subway-kitchen-backsplash-mansfield/gray-subway-kitchen-backsplash-mansfield-scene-05.webp",
         "width": 1280,
-        "height": 853
+        "height": 853,
+        "caption": "Kitchen Backsplash, Mansfield, Texas",
+        "alt": "Kitchen backsplash, Mansfield, Texas"
       }
     ],
     "placement_hold": false,

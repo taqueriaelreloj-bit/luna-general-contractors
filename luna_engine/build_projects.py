@@ -113,7 +113,18 @@ def main() -> None:
     names: list[str] = []
     for project in projects:
         name = f"{project['slug']}.html"
-        (ROOT / name).write_text(render_project(project), encoding="utf-8")
+        path = ROOT / name
+        presentation_mode = project.get("presentation_mode", "project")
+        if presentation_mode == "neutral_service_city":
+            # This page has a dedicated, neutral service-and-city presentation
+            # with its own page-owned imagery. Do not replace it with the
+            # generic project template or its legacy project assertions.
+            if not path.is_file():
+                raise SystemExit(f"Missing preserved neutral page: {name}")
+        elif presentation_mode == "project":
+            path.write_text(render_project(project), encoding="utf-8")
+        else:
+            raise SystemExit(f"{name}: unknown presentation mode {presentation_mode!r}")
         names.append(name)
     (ROOT / "projects.html").write_text(render_index(projects), encoding="utf-8")
     (ROOT / "luna_engine" / "project-manifest.txt").write_text("\n".join(names) + ("\n" if names else ""), encoding="utf-8")
