@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the noindex browse gallery from the page-owned imagery manifest.
+"""Build the indexable browse gallery from the page-owned imagery manifest.
 
 The browse page is intentionally a UI over the five images owned by every
 existing public page. It does not become an additional owner in the image
@@ -344,7 +344,7 @@ def build_html(records: list[dict[str, object]], component_enabled: bool) -> str
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title} | Luna General Contractors</title>
   <meta name="description" content="{description}">
-  <meta name="robots" content="noindex, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="{DOMAIN}/gallery.html">
   <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">

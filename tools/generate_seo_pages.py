@@ -4,6 +4,7 @@ from datetime import date
 from html import escape
 from pathlib import Path
 import json
+import csv
 import re
 from functools import lru_cache
 
@@ -62,8 +63,15 @@ STATIC_SITEMAP_PATHS = (
 
 
 def sitemap_paths(generated: list[str]) -> list[str]:
-    """Return the stable sitemap order without duplicate entries."""
-    return list(dict.fromkeys((*STATIC_SITEMAP_PATHS, *generated, *PRESERVED_INDEXABLE_SITEMAP_PATHS)))
+    """Preserve all published root pages and the explicit preview exclusion."""
+    with (ROOT / "seo" / "sitemap-exclusions.csv").open(newline="", encoding="utf-8") as handle:
+        excluded = {row["path"].strip() for row in csv.DictReader(handle)}
+    existing = [path.name for path in sorted(ROOT.glob("*.html"))]
+    candidates = (*STATIC_SITEMAP_PATHS, *generated, *PRESERVED_INDEXABLE_SITEMAP_PATHS, *existing)
+    return list(dict.fromkeys(
+        "" if path == "index.html" else path
+        for path in candidates if (path or "index.html") not in excluded
+    ))
 
 CITIES = [
     "Waxahachie", "Red Oak", "Ovilla", "Glenn Heights", "DeSoto", "Lancaster",

@@ -5,6 +5,8 @@ from __future__ import annotations
 
 import csv
 import re
+import subprocess
+import sys
 from collections import Counter
 from pathlib import Path
 from urllib.parse import unquote, urlparse
@@ -21,7 +23,7 @@ ALLOWED = {
     "exclude-preview",
     "exclude-utility",
 }
-HELD = {"hold-low-content", "hold-template-family", "exclude-utility"}
+HELD = {"hold-low-content", "hold-template-family", "exclude-utility", "exclude-preview"}
 ROBOTS_RE = re.compile(r"""<meta\b[^>]*\bname=["']robots["'][^>]*>""", re.I)
 CONTENT_RE = re.compile(r"""\bcontent=["']([^"']*)["']""", re.I)
 
@@ -68,6 +70,7 @@ def robots_directives(path: Path) -> set[str]:
 
 
 def main() -> None:
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "reconcile_sitemap.py"), "--check"], check=True)
     indexed = sitemap_paths()
     root_html = {path.name for path in ROOT.glob("*.html")}
     omitted = root_html - indexed

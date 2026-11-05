@@ -179,7 +179,7 @@ def main() -> None:
     browse_records = expected
     expected_source = "content/page-owned-gallery-data.json"
     required = [
-        '<meta name="robots" content="noindex, follow">',
+        '<meta name="robots" content="index, follow, max-image-preview:large">',
         f'<link rel="canonical" href="{DOMAIN}/gallery.html">',
         'data-general-gallery-service',
         'data-general-gallery-city',
@@ -257,11 +257,11 @@ def main() -> None:
 
     with EXCLUSIONS.open(newline="", encoding="utf-8") as handle:
         rows = {row["path"].strip(): row["classification"].strip() for row in csv.DictReader(handle)}
-    if rows.get("gallery.html") != "exclude-utility":
-        fail("gallery.html lacks the required exclude-utility classification")
+    if "gallery.html" in rows:
+        fail("gallery.html must not be excluded from the page sitemap")
     gallery_url = f"{DOMAIN}/gallery.html"
-    if gallery_url in xml_locs(SITEMAP):
-        fail("gallery.html unexpectedly appears in sitemap.xml")
+    if gallery_url not in xml_locs(SITEMAP):
+        fail("gallery.html is missing from sitemap.xml")
     if gallery_url in xml_locs(IMAGE_SITEMAP):
         fail("gallery.html unexpectedly appears in image-sitemap.xml")
     print(f"Validated general gallery: {PAGE_COUNT} scene owners, {len(browse_records)} records, {PAGE_SIZE}-card pagination.")

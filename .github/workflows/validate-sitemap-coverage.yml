@@ -1,0 +1,29 @@
+name: Validate sitemap coverage
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run sitemap regression tests
+        run: python -m unittest -v tests.test_sitemap_coverage tests.test_generate_seo_pages tests.test_seo_quality_audit
+      - name: Check complete canonical coverage
+        run: python scripts/validate_sitemap_exclusions.py
+      - name: Check existing SEO contracts
+        run: python scripts/validate_seo.py
+      - name: Confirm validation made no changes
+        run: git diff --exit-code

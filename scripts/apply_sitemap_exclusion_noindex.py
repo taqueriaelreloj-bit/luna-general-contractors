@@ -9,6 +9,8 @@ from __future__ import annotations
 
 import csv
 import re
+import subprocess
+import sys
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 import xml.etree.ElementTree as ET
@@ -18,7 +20,7 @@ INVENTORY = ROOT / "seo" / "sitemap-exclusions.csv"
 SITEMAP = ROOT / "sitemap.xml"
 DOMAIN = "https://lunageneralcontractors.com"
 SITEMAP_NS = "http://www.sitemaps.org/schemas/sitemap/0.9"
-HELD = {"hold-template-family", "hold-low-content", "exclude-utility"}
+HELD = {"hold-template-family", "hold-low-content", "exclude-utility", "exclude-preview"}
 ROBOTS_RE = re.compile(r"""<meta\b[^>]*\bname=["']robots["'][^>]*>""", re.I)
 NOINDEX_TAG = '<meta name="robots" content="noindex, follow">'
 
@@ -76,6 +78,7 @@ def main() -> None:
     targets = held_pages()
     changed = sum(apply_noindex(relative) for relative in sorted(targets))
     removed = remove_from_sitemap(targets)
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "reconcile_sitemap.py"), "--apply"], check=True)
     print(
         f"Enforced noindex, follow on {len(targets)} held pages "
         f"({changed} HTML updates; {removed} sitemap removals)."
