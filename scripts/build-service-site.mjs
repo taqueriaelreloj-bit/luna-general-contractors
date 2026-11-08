@@ -38,6 +38,11 @@ if(existsSync(resolve(root,'content','component-card-imagery.json'))){
  ],{cwd:root,stdio:'inherit'});
 }
 
+// Preserve the prepared descriptions after all upstream image and copy builders.
+execFileSync(process.env.PYTHON || 'python',[
+  resolve(root,'scripts/image_alt_text.py'),
+],{cwd:root,stdio:'inherit'});
+
 // Build the separate browse UI after the final page-owned pass. It deliberately
 // consumes the immutable ownership manifest without becoming a sixth placement
 // or an image-sitemap owner for any scene.
@@ -45,3 +50,4 @@ execFileSync(process.env.PYTHON || 'python',[
   resolve(root,'scripts/build-page-owned-general-gallery.py'),
   '--apply',
 ],{cwd:root,stdio:'inherit'});
+

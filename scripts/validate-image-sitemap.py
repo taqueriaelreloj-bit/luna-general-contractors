@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from image_alt_text import embedded_alt
 import sys
 import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
@@ -123,11 +124,15 @@ def main() -> None:
     required_hero_tokens = (
         "<picture class=\"hero-media\">",
         hero_source,
-        "Generated illustration of a broad residential property for Dallas-Fort Worth general contractor services.",
         "<p class=\"hero-image-disclosure\">General contractor services — Dallas–Fort Worth</p>",
     )
     if not all(token in hero for token in required_hero_tokens):
         fail("homepage hero lacks required accessible image markup")
+    parser = Images()
+    parser.feed(hero)
+    hero_images = [a for a in parser.images if a.get("src") == hero_source and a.get("fetchpriority") == "high"]
+    if len(hero_images) != 1 or hero_images[0].get("alt") != embedded_alt(ROOT / hero_source):
+        fail("homepage hero alt must match the prepared image description")
     styles = (ROOT / "styles.css").read_text(encoding="utf-8")
     required_style_tokens = (".hero-media img", "object-fit: cover", "object-position: 63% center")
     if not all(token in styles for token in required_style_tokens):
@@ -140,3 +145,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
