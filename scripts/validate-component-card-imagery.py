@@ -10,6 +10,8 @@ photo placements into the three material-card slots.
 from __future__ import annotations
 
 import hashlib
+import html
+from image_alt_text import embedded_alt
 import json
 import re
 import sys
@@ -59,7 +61,7 @@ def webp_dimensions(path: Path) -> tuple[int, int]:
 
 
 def attrs(tag: str) -> dict[str, str]:
-    return {name.lower(): value for name, value in ATTR.findall(tag)}
+    return {name.lower(): html.unescape(value) for name, value in ATTR.findall(tag)}
 
 
 def safe_component_path(value: object, owner: str) -> str:
@@ -145,9 +147,9 @@ def main() -> None:
         city = required_text(raw.get("city"), "city", page)
         caption = required_text(raw.get("caption"), "caption", page)
         alt = required_text(raw.get("alt"), "alt", page)
-        if city.casefold() not in caption.casefold() or city.casefold() not in alt.casefold():
-            fail(f"{page}: caption and alt must include the page city or region")
-        if any(len(value) > maximum for value, maximum in ((subject, 120), (caption, 120), (alt, 160))):
+        if city.casefold() not in caption.casefold():
+            fail(f"{page}: caption must include the page city or region")
+        if any(len(value) > maximum for value, maximum in ((subject, 120), (caption, 120), (alt, 400))):
             fail(f"{page}: subject/caption/alt is too long")
         if re.search(r"\b(?:completed project|before\s*(?:and|&)\s*after|verified case study|luna project|actual project)\b", f"{subject} {caption} {alt}", re.I):
             fail(f"{page}: component copy makes a project claim")
@@ -157,6 +159,9 @@ def main() -> None:
         asset = ROOT / source
         if asset.is_symlink() or not asset.is_file() or asset.stat().st_size != byte_count:
             fail(f"{page}: component bytes missing or wrong size")
+        prepared_alt = embedded_alt(asset)
+        if prepared_alt and alt != prepared_alt:
+            fail(f"{page}: alt must match the image description in XMP")
         actual_hash = sha256(asset)
         if actual_hash != declared_hash or webp_dimensions(asset) != (width, height):
             fail(f"{page}: component integrity mismatch")
@@ -203,3 +208,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

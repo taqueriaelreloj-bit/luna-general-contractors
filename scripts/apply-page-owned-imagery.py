@@ -110,7 +110,7 @@ def replace_preview_advantage(text,entry):
  figure=(f'<figure class="v2-advantage-image" data-page-owned-inline="true" '
          f'data-page-owned-slot="{int(image["slot"]):02}">'
          f'<img data-page-owned-inline="true" src="{html.escape(image["src"],quote=True)}" '
-         f'alt="Material selections and design concepts · Dallas–Fort Worth" '
+         f'alt="{html.escape(image.get("alt") or "Material selections and design concepts · Dallas–Fort Worth",quote=True)}" '
          f'width="{int(image["width"])}" height="{int(image["height"])}" '
          f'loading="lazy" decoding="async"><figcaption>{caption}</figcaption></figure>')
  return bounded(r'<(div|figure)\b[^>]*\bclass="v2-advantage-image"[^>]*>.*?</\1>',figure,text,{1})
@@ -137,7 +137,7 @@ def insert_owned_hero(text,entry,page):
   return 'class="'+' '.join(classes)+'"'
  opening=re.sub(r'class="([^"]*)"',add_class,opening,count=1,flags=re.I)
  city=entry.get('city') or 'Dallas-Fort Worth';subject=image.get('caption_subject',entry['label'])
- alt=html.escape(f'{subject} - {city}',quote=True)
+ alt=html.escape(image.get('alt') or f'{subject} - {city}',quote=True)
  markup=(f'<img class="poi-hero-image" data-page-owned-hero="true" src="{html.escape(image["src"],quote=True)}" '
          f'alt="{alt}" width="{int(image["width"])}" height="{int(image["height"])}" decoding="async" fetchpriority="high">')
  return text[:match.start()]+opening+markup+text[match.end():],image
@@ -736,3 +736,4 @@ def main():
  if args.check and (prepared or css_stale):sys.exit(1)
 
 if __name__=='__main__':main()
+

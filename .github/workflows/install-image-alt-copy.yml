@@ -1,0 +1,72 @@
+name: Apply image descriptions and useful service copy
+on:
+  push:
+    branches: [codex/seo-alt-prepare-20261108]
+    paths: [.github/workflows/install-image-alt-copy.yml]
+permissions:
+  contents: write
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: input
+          sparse-checkout: |
+            scripts
+            content/service-search-copy.json
+            seo/service-search-intent-2026-11-08.json
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: website
+      - name: Install authored source and publish image alt into HTML
+        working-directory: website
+        run: |
+          test "$(git rev-parse HEAD)" = a3ab81c74f1916d095ccc50e1b27ee5e0e07906d
+          for f in image_alt_text.py build-page-owned-general-gallery.py validate-page-owned-general-gallery.py validate-component-card-imagery.py apply-page-owned-imagery.py build-service-site.mjs; do
+            cp "../input/scripts/$f" "scripts/$f"
+          done
+          cp ../input/content/service-search-copy.json content/service-search-copy.json
+          cp ../input/seo/service-search-intent-2026-11-08.json seo/service-search-intent-2026-11-08.json
+          python scripts/image_alt_text.py --report /tmp/image-alt-copy-report.json
+          python scripts/build-page-owned-general-gallery.py --apply
+      - name: Validate published descriptions and existing site contracts
+        working-directory: website
+        run: |
+          python scripts/image_alt_text.py --check
+          python scripts/validate-component-card-imagery.py
+          python scripts/validate-page-owned-imagery.py
+          python scripts/validate-page-owned-general-gallery.py
+          python scripts/validate-page-lead-layout.py
+          python scripts/validate-image-sitemap.py
+          python scripts/validate_seo.py
+          python scripts/validate_sitemap_exclusions.py
+          test -z "$(git diff --name-only -- assets)"
+      - name: Commit verified source and HTML
+        working-directory: website
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --stat > /tmp/image-alt-copy-stat.txt
+          git commit -m 'Publish per-image alt descriptions and useful service search copy'
+          git push origin HEAD:refs/heads/codex/seo-alt-installed-20261108
+          git rev-parse HEAD > /tmp/image-alt-copy-commit.txt
+      - name: Save validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: image-alt-copy-verification
+          path: /tmp/image-alt-copy-*.txt
+          retention-days: 7
+      - name: Save change report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: image-alt-copy-report
+          path: /tmp/image-alt-copy-report.json
+          retention-days: 7
