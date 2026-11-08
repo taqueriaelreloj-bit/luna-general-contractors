@@ -1,0 +1,55 @@
+name: Verify published WebP image bytes
+on:
+  push:
+    branches: [codex/webp-metadata-20261108]
+    paths: [.github/workflows/verify-live-webp.yml]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Check public image bytes and metadata
+        shell: python
+        run: |
+          from pathlib import Path
+          from concurrent.futures import ThreadPoolExecutor
+          from urllib.request import Request,urlopen
+          from urllib.error import HTTPError
+          import hashlib,json,subprocess,time
+          files=[p for p in Path('assets/images/illustrations').rglob('*.webp')]
+          selected=set(files[::250])
+          for p in files:
+              if '/v1/' in p.as_posix() or 'local-batch-v1' in p.as_posix() or 'cloud-approved-batch-v1' in p.as_posix(): selected.add(p)
+          selected.update([Path('assets/images/illustrations/component-owned/allen-backsplash-installation/allen-backsplash-installation-component-01.webp')])
+          def check(p):
+              local=p.read_bytes();expected=hashlib.sha256(local).hexdigest()
+              url='https://lunageneralcontractors.com/'+p.as_posix()+'?v='+expected[:12]
+              with urlopen(Request(url,headers={'Cache-Control':'no-cache'}),timeout=30) as response:
+                  data=response.read();content_type=response.headers.get('Content-Type','')
+              assert hashlib.sha256(data).hexdigest()==expected, str(p)+' does not match deployed source'
+              assert data[:4]==b'RIFF' and data[8:12]==b'WEBP'
+              assert 'image/webp' in content_type,content_type
+              return {'path':p.as_posix(),'sha256':expected,'bytes':len(data),'content_type':content_type,'alt_text_embedded':b'AltTextAccessibility' in data}
+          results=[]
+          for attempt in range(6):
+              try:
+                  with ThreadPoolExecutor(max_workers=6) as pool:results=list(pool.map(check,sorted(selected)))
+                  break
+              except (AssertionError,HTTPError) as error:
+                  if attempt==5:raise
+                  print('Waiting for publication propagation:',error,flush=True);time.sleep(30)
+          assert not list(Path('assets').rglob('*.png'))
+          report={'source_commit':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'public_images_verified':len(results),'bytes_sha256_match':True,'png_files_remaining_in_site':0,'images':results}
+          Path('/tmp/live-webp-verification.json').write_text(json.dumps(report,indent=2))
+          print(json.dumps({k:v for k,v in report.items() if k!='images'}))
+      - uses: actions/upload-artifact@v4
+        with:
+          name: live-webp-verification
+          path: /tmp/live-webp-verification.json
+          retention-days: 7
