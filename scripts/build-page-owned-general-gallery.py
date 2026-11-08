@@ -152,7 +152,7 @@ def build_records() -> list[dict[str, object]]:
                 "width": width,
                 "height": height,
                 "caption": caption,
-                "alt": f"{service} service design in {city}.",
+                "alt": image.get("alt") or f"{service} service design in {city}.",
             })
     if len(records) != SCENE_COUNT or len(sources) != SCENE_COUNT:
         fail(f"expected {SCENE_COUNT} unique assignment records")
@@ -446,3 +446,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

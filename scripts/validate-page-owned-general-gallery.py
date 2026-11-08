@@ -133,7 +133,7 @@ def expected_records(manifest: dict[str, object]) -> list[dict[str, object]]:
                 "width": image.get("width"),
                 "height": image.get("height"),
                 "caption": f"{service} · {city}",
-                "alt": f"{service} service design in {city}.",
+                "alt": image.get("alt") or f"{service} service design in {city}.",
             })
     return sorted(records, key=lambda item: (str(item["service"]).lower(), str(item["city"]).lower(), str(item["ownerPage"]), int(item["slot"])))
 
@@ -269,3 +269,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
