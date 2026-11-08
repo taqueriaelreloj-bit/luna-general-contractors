@@ -31,7 +31,9 @@ def migrate(root, manifest_path, require_all=True):
         assert r['path'].startswith('images/assets/images/') and r['path'].endswith('.png')
         assert '..' not in Path(r['path']).parts
         assert r['source_path'] not in replacements
-        replacements[r['source_path']] = PUBLIC_ORIGIN + '/' + r['path']
+        public_url = r.get('public_url', PUBLIC_ORIGIN + '/' + r['path'])
+        assert public_url in [origin + '/' + r['path'] for origin in [PUBLIC_ORIGIN, 'https://luna-public-png-images-part-2.taqueriaelreloj.chatgpt.site']]
+        replacements[r['source_path']] = public_url
     files = [p for p in root.iterdir() if p.is_file() and p.suffix in {'.html', '.css', '.js', '.xml'}]
     files += [root / p for p in ['content/general-gallery-data.json', 'content/component-card-gallery-data.json', 'content/page-owned-gallery-data.json']]
     changed = []
