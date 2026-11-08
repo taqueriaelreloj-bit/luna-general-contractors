@@ -1,0 +1,38 @@
+name: Prepare PNG image migration source
+on:
+  push:
+    branches: [codex/png-image-migration-20261108]
+    paths: [.github/workflows/prepare-png-image-migration.yml]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: a826581144536d9c1ac6a8d567d1dac11c866477
+          persist-credentials: false
+      - name: Package public website text for the image update
+        shell: python
+        run: |
+          from pathlib import Path
+          import json, hashlib, zipfile
+          root=Path(".")
+          paths=[p for p in root.iterdir() if p.is_file() and p.suffix in {".html",".css",".js",".xml"}]
+          paths += [Path(p) for p in ["content/general-gallery-data.json","content/component-card-gallery-data.json","content/page-owned-gallery-data.json"]]
+          manifest={}
+          with zipfile.ZipFile("/tmp/luna-website-source-text.zip","w",zipfile.ZIP_DEFLATED) as z:
+              for p in sorted(paths):
+                  data=p.read_bytes()
+                  blob=hashlib.sha1(b"blob "+str(len(data)).encode()+b"\0"+data).hexdigest()
+                  manifest[str(p)]={"sha":blob,"bytes":len(data)}
+                  z.writestr(str(p),data)
+              z.writestr("source-snapshot.json",json.dumps({"commit":"a826581144536d9c1ac6a8d567d1dac11c866477","files":manifest},indent=2))
+          print(f"Prepared {len(manifest)} public source files.")
+      - uses: actions/upload-artifact@v4
+        with:
+          name: luna-website-source-text
+          path: /tmp/luna-website-source-text.zip
+          retention-days: 3
+          if-no-files-found: error
