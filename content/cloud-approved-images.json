@@ -4,7 +4,7 @@
   "destination": "assets/images/illustrations/cloud-approved-batch-v1",
   "images": [
     {
-      "filename": "luna-illustrative-clay-tile.png",
+      "filename": "luna-illustrative-clay-tile.webp",
       "bytes": 2955179,
       "width": 1536,
       "height": 1024,
@@ -17,7 +17,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "luna-illustrative-standing-seam-metal.png",
+      "filename": "luna-illustrative-standing-seam-metal.webp",
       "bytes": 2441491,
       "width": 1536,
       "height": 1024,
@@ -30,7 +30,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "luna-illustrative-white-tpo.png",
+      "filename": "luna-illustrative-white-tpo.webp",
       "bytes": 1960563,
       "width": 1672,
       "height": 941,
@@ -43,7 +43,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "luna-illustrative-modified-bitumen.png",
+      "filename": "luna-illustrative-modified-bitumen.webp",
       "bytes": 4176199,
       "width": 1536,
       "height": 1024,
@@ -56,7 +56,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "luna-illustrative-architectural-shingles.png",
+      "filename": "luna-illustrative-architectural-shingles.webp",
       "bytes": 3136068,
       "width": 1536,
       "height": 1024,
@@ -69,7 +69,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "m01-carpet-extraction-generated.png",
+      "filename": "m01-carpet-extraction-generated.webp",
       "bytes": 2896963,
       "width": 1536,
       "height": 1024,
@@ -82,7 +82,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "m02-bedroom-structural-drying-generated.png",
+      "filename": "m02-bedroom-structural-drying-generated.webp",
       "bytes": 3045102,
       "width": 1536,
       "height": 1024,
@@ -95,7 +95,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "m03-kitchen-cabinet-base-drying-generated.png",
+      "filename": "m03-kitchen-cabinet-base-drying-generated.webp",
       "bytes": 2298239,
       "width": 1536,
       "height": 1024,
@@ -108,7 +108,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "m04-hardwood-drying-mats-generated.png",
+      "filename": "m04-hardwood-drying-mats-generated.webp",
       "bytes": 2507459,
       "width": 1536,
       "height": 1024,
@@ -121,7 +121,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "m05-laundry-room-drying-generated.png",
+      "filename": "m05-laundry-room-drying-generated.webp",
       "bytes": 2110094,
       "width": 1536,
       "height": 1024,
@@ -134,7 +134,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "m06-moisture-assessment-generated.png",
+      "filename": "m06-moisture-assessment-generated.webp",
       "bytes": 2133401,
       "width": 1536,
       "height": 1024,
@@ -147,7 +147,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "m07-controlled-wall-opening-generated.png",
+      "filename": "m07-controlled-wall-opening-generated.webp",
       "bytes": 2145938,
       "width": 1536,
       "height": 1024,
@@ -160,7 +160,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "m08-ceiling-opening-mitigation-generated.png",
+      "filename": "m08-ceiling-opening-mitigation-generated.webp",
       "bytes": 1982358,
       "width": 1448,
       "height": 1086,
@@ -173,7 +173,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "m09-contained-remediation-generated.png",
+      "filename": "m09-contained-remediation-generated.webp",
       "bytes": 2092139,
       "width": 1536,
       "height": 1024,
@@ -186,7 +186,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "m10-commercial-corridor-drying-generated.png",
+      "filename": "m10-commercial-corridor-drying-generated.webp",
       "bytes": 2644045,
       "width": 1536,
       "height": 1024,
@@ -199,7 +199,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "quartz-generated-illustration.png",
+      "filename": "quartz-generated-illustration.webp",
       "bytes": 2373078,
       "width": 1536,
       "height": 1024,
@@ -212,7 +212,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "cabinetry-generated-illustration.png",
+      "filename": "cabinetry-generated-illustration.webp",
       "bytes": 2504804,
       "width": 1536,
       "height": 1024,
@@ -225,7 +225,7 @@
       "provenance": "AI-generated representative illustration; not evidence of Luna jobs, locations, inspections, or insurance claims."
     },
     {
-      "filename": "tile-flooring-generated-illustration.png",
+      "filename": "tile-flooring-generated-illustration.webp",
       "bytes": 2628327,
       "width": 1536,
       "height": 1024,
