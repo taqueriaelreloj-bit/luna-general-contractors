@@ -27,7 +27,7 @@ jobs:
         working-directory: website
         run: |
           test "$(git rev-parse HEAD)" = a3ab81c74f1916d095ccc50e1b27ee5e0e07906d
-          for f in image_alt_text.py build-page-owned-general-gallery.py validate-page-owned-general-gallery.py validate-component-card-imagery.py apply-page-owned-imagery.py build-service-site.mjs; do
+          for f in image_alt_text.py build-page-owned-general-gallery.py validate-page-owned-general-gallery.py validate-component-card-imagery.py apply-page-owned-imagery.py build-service-site.mjs validate-image-sitemap.py; do
             cp "../input/scripts/$f" "scripts/$f"
           done
           cp ../input/content/service-search-copy.json content/service-search-copy.json
