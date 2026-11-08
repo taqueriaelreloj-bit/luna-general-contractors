@@ -1,0 +1,31 @@
+name: Verify published image descriptions and service copy
+on:
+  push:
+    branches: [codex/seo-alt-prepare-20261108]
+    paths: [.github/workflows/verify-live-alt-copy.yml]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: input
+          sparse-checkout: tools
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: website
+          persist-credentials: false
+      - name: Verify live HTML and gallery data against published source
+        working-directory: website
+        run: python ../input/tools/verify_live_alt_copy.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-alt-copy-verification
+          path: /tmp/Luna_Alt_Text_SEO_Verificado_2026-11-08.json
+          retention-days: 7
