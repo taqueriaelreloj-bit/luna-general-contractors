@@ -32,6 +32,7 @@ jobs:
           cp ../input/tools/apply_webp_metadata.py tools/apply_webp_metadata.py
           python tools/apply_webp_metadata.py ../input/tools/webp-metadata /tmp/webp-migration-report.json
           rm tools/apply_webp_metadata.py
+          python scripts/build-page-owned-general-gallery.py --apply
       - name: Validate image ownership, galleries, and SEO
         working-directory: website
         run: |

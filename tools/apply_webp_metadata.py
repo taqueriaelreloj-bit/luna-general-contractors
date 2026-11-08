@@ -48,7 +48,7 @@ def apply():
             else:parts.append(base64.b64decode(c))
         body=b'WEBP'+b''.join(parts);new=b'RIFF'+struct.pack('<I',len(body))+body
         assert sha(new)==r['target_sha256'],f'Prepared file differs: {r["target"]}'
-        image=Image.open(io.BytesIO(new));image.load();xmp=image.info.get('xmp',b'')
+        image=Image.open(io.BytesIO(new));xmp=image.info.get('xmp',b'')
         assert b'AltTextAccessibility' in xmp and b'PinterestDescription' in xmp and b'dc:subject' in xmp
         if src.suffix=='.png': assert before.convert('RGBA').tobytes()==image.convert('RGBA').tobytes()
         dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(new)
