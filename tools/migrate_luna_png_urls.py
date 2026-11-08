@@ -6,6 +6,7 @@ unmapped references intact. Run only after the complete image host is live.
 from pathlib import Path
 import argparse
 import hashlib
+import gzip
 import json
 import re
 
@@ -17,9 +18,13 @@ REFERENCE = re.compile(
     r'(?![A-Za-z0-9_.-])'
 )
 
-def migrate(root, manifest_path):
-    rows = json.loads(manifest_path.read_text())
-    assert len(rows) == 7657
+def migrate(root, manifest_path, require_all=True):
+    if manifest_path.suffix == '.gz':
+        with gzip.open(manifest_path, 'rt', encoding='utf-8') as stream:
+            rows = json.load(stream)
+    else:
+        rows = json.loads(manifest_path.read_text())
+    assert isinstance(rows, list) and rows
     replacements = {}
     for r in rows:
         assert r['source_path'].startswith('assets/images/')
@@ -58,7 +63,8 @@ def migrate(root, manifest_path):
             changed.append({'path': str(p.relative_to(root)), 'replacements': count,
                             'before_sha256': hashlib.sha256(original.encode()).hexdigest(),
                             'after_sha256': hashlib.sha256(updated.encode()).hexdigest()})
-    assert used == set(replacements), f'{len(set(replacements)-used)} prepared images are absent from website references'
+    if require_all:
+        assert used == set(replacements), f'{len(set(replacements)-used)} prepared images are absent from website references'
     return {'origin': PUBLIC_ORIGIN, 'prepared_images': len(rows), 'unique_images_referenced': len(used),
             'changed_files': changed, 'total_references_replaced': total,
             'unmapped_image_references_preserved': sorted(untouched),
@@ -68,9 +74,11 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('--root', type=Path, required=True)
     ap.add_argument('--manifest', type=Path, required=True)
-    ap.add_argument('--report', type=Path, required=True)
+    ap.add_argument('--report', type=Path)
+    ap.add_argument('--allow-unused-mappings', action='store_true', help='For recurring builds that already contain published PNG URLs.')
     args = ap.parse_args()
-    report = migrate(args.root, args.manifest)
-    args.report.parent.mkdir(parents=True, exist_ok=True)
-    args.report.write_text(json.dumps(report, indent=2))
+    report = migrate(args.root, args.manifest, require_all=not args.allow_unused_mappings)
+    if args.report:
+        args.report.parent.mkdir(parents=True, exist_ok=True)
+        args.report.write_text(json.dumps(report, indent=2))
     print(json.dumps({k: v for k, v in report.items() if k not in {'changed_files', 'unmapped_image_references_preserved'}} | {'changed_file_count': len(report['changed_files'])}))
