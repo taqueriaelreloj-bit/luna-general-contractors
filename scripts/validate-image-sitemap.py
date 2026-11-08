@@ -68,7 +68,7 @@ def main() -> None:
             if len(gallery_matching) != 1:
                 fail(f"{image} must have exactly one static page-owned gallery thumbnail in {page}")
             attributes = gallery_matching[0]
-            is_home_hero = page == "index.html" and image == "assets/images/illustrations/homepage/homepage-property-hero-representative-v1.png"
+            is_home_hero = page == "index.html" and image == "assets/images/illustrations/homepage/homepage-property-hero-representative-v1.webp"
             hero_matching = [attributes for attributes in matching if attributes.get("data-page-owned-hero") == "true" or (is_home_hero and attributes.get("fetchpriority") == "high")]
             if hero_matching and len(hero_matching) != 1:
                 fail(f"{image} needs exactly one high-priority same-page hero in {page}")
@@ -119,7 +119,7 @@ def main() -> None:
         fail("robots.txt does not advertise image-sitemap.xml")
 
     hero = (ROOT / "index.html").read_text(encoding="utf-8")
-    hero_source = "assets/images/illustrations/homepage/homepage-property-hero-representative-v1.png"
+    hero_source = "assets/images/illustrations/homepage/homepage-property-hero-representative-v1.webp"
     required_hero_tokens = (
         "<picture class=\"hero-media\">",
         hero_source,

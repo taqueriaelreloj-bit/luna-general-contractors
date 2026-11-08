@@ -4,7 +4,7 @@
   "destination": "assets/images/illustrations/page-owned/v1/dallas-painting",
   "images": [
     {
-      "filename": "01-exterior-house-painting.png",
+      "filename": "01-exterior-house-painting.webp",
       "bytes": 3630105,
       "width": 1536,
       "height": 1024,
@@ -18,7 +18,7 @@
       "provenance": "AI-generated page-owned scene; internal provenance only."
     },
     {
-      "filename": "02-interior-living-room-painting.png",
+      "filename": "02-interior-living-room-painting.webp",
       "bytes": 2327668,
       "width": 1536,
       "height": 1024,
@@ -32,7 +32,7 @@
       "provenance": "AI-generated page-owned scene; internal provenance only."
     },
     {
-      "filename": "03-commercial-interior-painting.png",
+      "filename": "03-commercial-interior-painting.webp",
       "bytes": 2854026,
       "width": 1536,
       "height": 1024,
@@ -46,7 +46,7 @@
       "provenance": "AI-generated page-owned scene; internal provenance only."
     },
     {
-      "filename": "04-painted-trim-detail.png",
+      "filename": "04-painted-trim-detail.webp",
       "bytes": 2349371,
       "width": 1536,
       "height": 1024,
@@ -60,7 +60,7 @@
       "provenance": "AI-generated page-owned scene; internal provenance only."
     },
     {
-      "filename": "05-painted-kitchen-cabinets.png",
+      "filename": "05-painted-kitchen-cabinets.webp",
       "bytes": 1843130,
       "width": 1536,
       "height": 1024,
