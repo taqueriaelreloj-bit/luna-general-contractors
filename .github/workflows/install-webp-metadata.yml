@@ -1,0 +1,63 @@
+name: Install prepared WebP metadata and remove PNG copies
+on:
+  push:
+    branches: [codex/webp-metadata-20261108]
+    paths: [.github/workflows/install-webp-metadata.yml]
+permissions:
+  contents: write
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out verified metadata input
+        uses: actions/checkout@v4
+        with:
+          path: input
+          sparse-checkout: tools
+          persist-credentials: false
+      - name: Check out current website
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: website
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install matching lossless encoder
+        run: python -m pip install Pillow==13.0.0
+      - name: Install exact prepared files and replace PNG references
+        working-directory: website
+        run: |
+          cp ../input/tools/apply_webp_metadata.py tools/apply_webp_metadata.py
+          python tools/apply_webp_metadata.py ../input/tools/webp-metadata /tmp/webp-migration-report.json
+          rm tools/apply_webp_metadata.py
+      - name: Validate image ownership, galleries, and SEO
+        working-directory: website
+        run: |
+          python scripts/validate-component-card-imagery.py
+          python scripts/validate-page-owned-imagery.py
+          python scripts/validate-page-owned-general-gallery.py
+          python scripts/validate-page-lead-layout.py
+          python scripts/validate-image-sitemap.py
+          python scripts/validate_seo.py
+          python scripts/validate_sitemap_exclusions.py
+      - name: Commit verified website update
+        working-directory: website
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --stat > /tmp/webp-change-stat.txt
+          git commit -m 'Use prepared WebP metadata and remove redundant PNG assets'
+          git push origin HEAD:refs/heads/codex/webp-metadata-installed-20261108
+      - name: Save verification report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: webp-migration-verification
+          path: |
+            /tmp/webp-migration-report.json
+            /tmp/webp-change-stat.txt
+          retention-days: 7
+          if-no-files-found: ignore
