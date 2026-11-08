@@ -1,0 +1,24 @@
+name: Audit all public image metadata
+on:
+  push:
+    branches: [codex/webp-metadata-20261108]
+    paths: [.github/workflows/audit-live-metadata.yml]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: tools
+          persist-credentials: false
+      - name: Read all 7657 public WebP files and their page alt attributes
+        run: python tools/audit_live_metadata.py --patch-dir tools/webp-metadata --output /tmp/Luna_Auditoria_Metadatos_Web_2026-11-08.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: luna-live-metadata-audit
+          path: /tmp/Luna_Auditoria_Metadatos_Web_2026-11-08.json
+          retention-days: 7
+          if-no-files-found: error
