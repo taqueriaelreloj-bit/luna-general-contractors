@@ -1,6 +1,7 @@
 import {readFile,writeFile,readdir} from 'node:fs/promises';
 import {dirname,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {removeRepeatedLocalIntro} from './local-service-content.mjs';
 import profiles from '../content/service-guide-profiles.mjs';
 import products from '../content/service-products.mjs';
 import conditions from '../content/service-project-conditions.mjs';
@@ -203,6 +204,7 @@ for(const a of selectedAssignments){
   // Component cards use a contained image frame. Version this stylesheet only
   // on component targets so browsers do not retain an older card presentation.
   if(componentCards.has(a.file))html=html.replace(/href="service-guides\.css(?:\?[^\"]*)?"/,'href="service-guides.css?v=20261025-component-cards-1"');
+ html=removeRepeatedLocalIntro(html);
  await writeGenerated(resolve(root,a.file),html);
  const p=profiles[a.key],t=(a.key==='water-damage-restoration'&&a.slug?mitigationNotes[a.slug]:null)||p.topics[a.index%6],c=conditions[Math.floor(a.index/6)%6];
  manifest.push({...a,name:p.name,topic:t.title,condition:c.title,layout:['catalog','editorial','technical','showcase'][a.index%4],products:p.products});

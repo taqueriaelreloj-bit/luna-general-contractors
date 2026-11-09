@@ -125,6 +125,19 @@ if (!isHomePage) {
   }
 }
 
+// Anchor targets must clear both rows of the sticky header at every breakpoint.
+const stickyHeader = document.querySelector("header.site-header");
+const syncAnchorOffset = () => {
+  const height = stickyHeader?.getBoundingClientRect().height || 0;
+  document.documentElement.style.setProperty("--site-header-height", `${Math.ceil(height)}px`);
+};
+syncAnchorOffset();
+if (stickyHeader && typeof ResizeObserver !== "undefined") {
+  new ResizeObserver(syncAnchorOffset).observe(stickyHeader);
+} else {
+  window.addEventListener("resize", syncAnchorOffset);
+}
+
 // Links to another HTML page always open at that page's beginning.
 document.querySelectorAll('a[href*=".html#"]').forEach((link) => {
   const rawHref = link.getAttribute("href");
@@ -1071,9 +1084,12 @@ if (floatingCall) {
 
 // Respect links to existing sections, including product and estimate anchors.
 window.addEventListener("load", () => {
+  syncAnchorOffset();
   const hash = window.location.hash;
   const intentionalSection = hash && document.getElementById(hash.slice(1));
-  if (!intentionalSection) {
+  if (intentionalSection) {
+    intentionalSection.scrollIntoView({ block: "start", behavior: "instant" });
+  } else {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }
 });
