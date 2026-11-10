@@ -67,11 +67,12 @@ def estimate_form(city: str, service: str) -> str:
 <form action="https://formspree.io/f/xzzvgpoy" method="POST" class="estimate-form">
 <input type="hidden" name="page" value="{escape(city)} - {escape(service)}">
 <label>Full Name<input name="name" required autocomplete="name"></label>
-<label>Phone Number<input name="phone" required autocomplete="tel"></label>
+<label>Phone Number<input type="tel" name="phone" required autocomplete="tel"></label>
 <label>Email Address<input type="email" name="email" required autocomplete="email"></label>
-<label>Project Address<input name="address" required autocomplete="street-address"></label>
+<label>Project Address (Optional)<input name="address" autocomplete="street-address"></label>
 <label>Project Details<textarea name="message" rows="5" required></textarea></label>
 <button class="btn btn-gold" type="submit">Request Your Estimate</button>
+<small>How we use your contact information and photos: <a href="privacy.html">Privacy notice</a>.</small>
 </form></div></section>'''
 
 
@@ -156,3 +157,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

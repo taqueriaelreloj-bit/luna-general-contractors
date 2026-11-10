@@ -216,7 +216,7 @@ def nav() -> str:
 
 def form(city: str, service: str = "General Contractor") -> str:
     return f'''<section class="local-form" id="estimate-form"><div class="container"><div class="local-grid"><div><p class="eyebrow gold">Free Estimate</p><h2>Tell Us About Your {escape(service)} Project in {escape(city)}</h2><p>Share the project address, service needed and a short description. Our team will contact you to discuss the next step.</p><p><a class="btn btn-gold" href="tel:{PHONE_LINK}">☎ Call {PHONE}</a></p></div>
-<form action="https://formspree.io/f/xzzvgpoy" method="POST" class="estimate-form"><input type="hidden" name="page" value="{escape(city)} - {escape(service)}"><label>Full Name<input name="name" required autocomplete="name"></label><label>Phone Number<input name="phone" required autocomplete="tel"></label><label>Email Address<input type="email" name="email" required autocomplete="email"></label><label>Project Address<input name="address" required autocomplete="street-address"></label><label>Service Needed<select name="service" required><option>{escape(service)}</option><option>Roofing</option><option>Bathroom Remodeling</option><option>Kitchen Remodeling</option><option>Water Damage Restoration</option><option>Insurance Claims</option><option>Other</option></select></label><label>Project Details<textarea name="message" rows="5" required></textarea></label><button class="btn btn-gold" type="submit">Request Your Estimate</button></form></div></div></section>'''
+<form action="https://formspree.io/f/xzzvgpoy" method="POST" class="estimate-form"><input type="hidden" name="page" value="{escape(city)} - {escape(service)}"><label>Full Name<input name="name" required autocomplete="name"></label><label>Phone Number<input type="tel" name="phone" required autocomplete="tel"></label><label>Email Address<input type="email" name="email" required autocomplete="email"></label><label>Project Address (Optional)<input name="address" autocomplete="street-address"></label><label>Service Needed<select name="service" required><option>{escape(service)}</option><option>Roofing</option><option>Bathroom Remodeling</option><option>Kitchen Remodeling</option><option>Water Damage Restoration</option><option>Insurance Claims</option><option>Other</option></select></label><label>Project Details<textarea name="message" rows="5" required></textarea></label><button class="btn btn-gold" type="submit">Request Your Estimate</button><small>How we use your contact information and photos: <a href="privacy.html">Privacy notice</a>.</small></form></div></div></section>'''
 
 
 def footer() -> str:
@@ -368,3 +368,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

@@ -20,7 +20,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 92px;
+  scroll-padding-top: var(--header-scroll-offset, 150px);
 }
 
 body {
@@ -2616,3 +2616,4 @@ body.roofing-location-page .roofing-floating-call {
   body.roofing-location-page .roofing-location-footer nav { gap: 12px; }
   body.roofing-location-page .roofing-floating-call { right: 12px; bottom: 12px; }
 }
+

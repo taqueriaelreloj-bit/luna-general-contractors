@@ -15,7 +15,7 @@ const translations=[
  ['View on Nextdoor →','Ver en Nextdoor →'],
  ['Real Customer Reviews','Reseñas de nuestros clientes'],
  ['5.0 Google Rating','Calificación de 5.0 en Google'],
- ['Based on 38 reviews','Basado en 38 reseñas'],
+ ['Based on 39 reviews · Checked Nov. 10, 2026','Basado en 39 reseñas · Verificado el 10 de noviembre de 2026'],
  ['View Our Google Profile →','Ver nuestro perfil de Google →'],
  ['Google review','Reseña en Google'],
  ['Professional, reliable and detail-oriented from planning through completion. The craftsmanship and finished work exceeded expectations.','Profesionales, confiables y atentos a los detalles desde la planificación hasta la entrega. La calidad y el resultado del trabajo superaron las expectativas.'],
@@ -70,3 +70,4 @@ const inventory={source:'index.html#reviews',totalPages:pages.length,existingSec
 await writeFile(resolve(root,'content/customer-review-pages.json'),JSON.stringify(inventory,null,2)+'\n');
 console.log(`Customer reviews: ${inventory.totalPages} pages covered; ${inventory.existingSections} existing sections and ${inventory.sharedSections} shared sections.`);
 await import('./build-nextdoor-award.mjs');
+

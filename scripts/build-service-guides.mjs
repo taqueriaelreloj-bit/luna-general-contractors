@@ -3,6 +3,7 @@ import {dirname,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import profiles from '../content/service-guide-profiles.mjs';
 import products from '../content/service-products.mjs';
+import {correctPage, fenceConcreteSelection, fenceConcreteCoverage, paintingSelection} from './apply-audit-corrections.mjs';
 import conditions from '../content/service-project-conditions.mjs';
 import mitigationNotes from '../content/mitigation-location-notes.mjs';
 import equipmentPhotos from '../content/mitigation-equipment-photos.mjs';
@@ -76,6 +77,8 @@ try{
 const componentCard=(assignment,slot)=>componentCards.get(assignment.file)?.get(slot)||null;
 function product(id,key){
  const p=products[id];if(!p)throw new Error(`Missing product ${id}`);
+ if(key==='fencing'&&id==='concrete')return {...p,selection:fenceConcreteSelection,coverage:fenceConcreteCoverage};
+ if(key==='painting'&&id==='paint')return {...p,selection:paintingSelection};
  return key==='water-damage-restoration'?{...p,...equipmentPhotos[id]}:p;
 }
 const kitchenHubScenes=Object.fromEntries(['cabinet','quartz','tile'].map(id=>{const scene=kitchenCardScene(id,'kitchens.html');return [id,{...scene,alt:'AI-created illustrative concept for Dallas-Fort Worth kitchen remodeling; not an actual project or product photograph.',caption:'Kitchen remodeling services — Dallas–Fort Worth'}];}));
@@ -103,12 +106,12 @@ function card(id,a,slot){
 function guide(a){
  const p=profiles[a.key], ti=a.index%6, ci=Math.floor(a.index/6)%6;
  const topic=(a.key==='water-damage-restoration'&&a.slug?mitigationNotes[a.slug]:null)||p.topics[ti],condition=conditions[ci];
- const title=a.hub?`${p.name}: materials, methods and a clear scope.`:`${topic.title}. ${condition.title}.`;
+ const title=a.hub?`${p.name}: materials, methods and a clear scope.`:`${p.name} in ${a.city}: planning the work`;
  const photoIsSpecific=['door-installation','window-replacement','foundation-repair','insurance-claims'].includes(a.key);
  const photoLabel=photoIsSpecific?'Related work from the DFW portfolio':'Luna project reference';
  const photoNote=photoIsSpecific?'This portfolio image illustrates related construction or documentation work. It is not represented as a photograph of a named product, a foundation repair, or work in this page’s city.':'Existing Luna portfolio photograph from Dallas–Fort Worth. It is not a product photograph or a claim that the work was completed in this page’s city.';
  const substantivePhoto=a.slug&&a.key!=='water-damage-restoration'?' data-service-guide-portfolio="'+e(p.photo)+'" data-substantive-scene="portfolio-photo"':'';
- const intro=a.hub?p.intro:`For ${p.name.toLowerCase()} in ${a.city}, this guide focuses on ${topic.title.charAt(0).toLowerCase()+topic.title.slice(1)}. Use it to discuss the conditions at your property and compare the proposed work.`;
+ const intro=a.hub?p.intro:`Planning ${p.name.toLowerCase()} in ${a.city}? ${topic.title}. Use the guidance below to review the proposed work and the conditions at your property.`;
  const extra=a.key==='water-damage-restoration'?`<p class="sg-note"><strong>Water extraction, drying and reconstruction by Luna:</strong> Our team performs all three stages. We remove standing water, dry the affected areas with equipment selected for the conditions, and complete the agreed reconstruction after source correction and documented drying. Any required specialist assessment or remediation is identified separately in the scope. Equipment selection and drying duration depend on the property.</p>`:'';
  const process=a.key==='water-damage-restoration'?`<div class="sg-process"><article><span>01</span><h3>Extract the water</h3><p>Luna removes standing water from the affected areas. We review access, the reported source and site conditions to establish the extraction scope and any source-control or specialist work required.</p></article><article><span>02</span><h3>Dry and check moisture</h3><p>We perform structural drying with a plan for air movement, dehumidification and moisture checks suited to the materials and conditions. Readings guide the transition to reconstruction.</p></article><article><span>03</span><h3>Rebuild the affected areas</h3><p>After source correction and documented drying, Luna completes the agreed repairs to affected drywall, ceilings, trim, flooring, cabinets and other finishes. ${e(topic.check)}</p></article></div>`:`<div class="sg-process"><article><span>01</span><h3>Review the existing condition</h3><p>${e(topic.text.split('. ')[0]+'.')} Bring photographs, dimensions and any relevant previous repair records to the discussion.</p></article><article><span>02</span><h3>Define the complete selection</h3><p>Compare ${e(p.products.map(id=>products[id].name.toLowerCase()).join(', '))}. Specify the selected components and the preparation they require.</p></article><article><span>03</span><h3>Agree on the handoff</h3><p>${e(topic.check)} ${e(condition.text.split('. ').slice(-1)[0])}</p></article></div>`;
  const scopeFaq=a.key==='water-damage-restoration'&&!a.slug?`<details><summary>${e(mitigationQuestion)}</summary><p>${e(mitigationAnswer)}</p></details>`:'';
@@ -186,7 +189,7 @@ for(const a of selectedAssignments){
  const p=profiles[a.key],t=(a.key==='water-damage-restoration'&&a.slug?mitigationNotes[a.slug]:null)||p.topics[a.index%6],c=conditions[Math.floor(a.index/6)%6];
  // Replace only the known old generic introduction; preserve curated case studies and city evidence.
  html=html.replace(/(<h2>Local [^<]+ Services<\/h2>)<p>[^<]+<\/p><p>We evaluate the property, discuss priorities, document the scope and coordinate the work so the project is based on actual site conditions rather than a generic online estimate\.<\/p>/,
- `$1<p>${e(t.text)}</p><p>${e(c.text)}</p>`);
+ '$1');
  // Preserve the owner's confirmed service scope after every legacy generation pass.
  if(a.key==='water-damage-restoration'){
   if(!html.includes('mitigation-equipment.css'))html=html.replace('</head>','<link rel="stylesheet" href="mitigation-equipment.css?v=20261017-equipment-1">\n</head>');
@@ -203,10 +206,11 @@ for(const a of selectedAssignments){
   // Component cards use a contained image frame. Version this stylesheet only
   // on component targets so browsers do not retain an older card presentation.
   if(componentCards.has(a.file))html=html.replace(/href="service-guides\.css(?:\?[^\"]*)?"/,'href="service-guides.css?v=20261025-component-cards-1"');
- await writeGenerated(resolve(root,a.file),html);
+ await writeGenerated(resolve(root,a.file),correctPage(html,a.file));
  const p=profiles[a.key],t=(a.key==='water-damage-restoration'&&a.slug?mitigationNotes[a.slug]:null)||p.topics[a.index%6],c=conditions[Math.floor(a.index/6)%6];
  manifest.push({...a,name:p.name,topic:t.title,condition:c.title,layout:['catalog','editorial','technical','showcase'][a.index%4],products:p.products});
 }
 if(!onlyFile&&!onlyService)await writeGenerated(resolve(root,'content/service-guide-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 if(check&&stale.length)throw new Error(`Service guides are stale (${stale.length} files): ${stale.slice(0,8).join(', ')}`);
 console.log(`${check?'Verified':'Built'} ${selectedAssignments.length}${onlyFile?` selected guide (${onlyFile})`:onlyService?` selected ${onlyService} guides`:` guides across ${Object.keys(profiles).length} service categories`}${cardsOnly?' (cards only)':''}`);
+

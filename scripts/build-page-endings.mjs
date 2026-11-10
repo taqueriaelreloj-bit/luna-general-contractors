@@ -1,6 +1,7 @@
 import {readFile, writeFile, readdir, mkdir} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import {dirname, resolve} from 'node:path';
+import {correctPage} from './apply-audit-corrections.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const home=await readFile(resolve(root,'index.html'),'utf8');
 const footerMatch=home.match(/<footer class="site-footer"[\s\S]*?<\/footer>/);
@@ -40,9 +41,10 @@ for(const name of (await readdir(root)).filter(n=>n.endsWith('.html')).sort()){
  if(name==='es.html')html=html.replaceAll('href="#inicio"','href="#page-top"');
  const eol=html.includes('\r\n')?'\r\n':'\n';
  html=html.replace(/[\t ]+(?=\r?$)/gm,'').replace(/\r?\n(?:[\t ]*\r?\n){2,}/g,eol+eol).trimEnd()+eol;
- await writeFile(resolve(root,name),html);
+ await writeFile(resolve(root,name),correctPage(html,name));
  inventory.push({file:name,home:isHome,footer:true,estimate:/id="estimate-form"/.test(html)});
 }
 await mkdir(resolve(root,'content'),{recursive:true});
 await writeFile(resolve(root,'content/page-inventory.json'),JSON.stringify(inventory,null,2)+'\n');
 console.log(`Complete static page endings: ${inventory.filter(p=>p.footer).length}; skipped: ${inventory.filter(p=>p.skipped).length}`);
+

@@ -51,3 +51,7 @@ execFileSync(process.env.PYTHON || 'python',[
   '--apply',
 ],{cwd:root,stdio:'inherit'});
 
+// Keep audited copy, form fields and shared asset versions after all generators.
+execFileSync(process.execPath,[resolve(root,'scripts','apply-audit-corrections.mjs')],{cwd:root,stdio:'inherit'});
+
+

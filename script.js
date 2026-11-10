@@ -125,6 +125,18 @@ if (!isHomePage) {
   }
 }
 
+// Keep anchor destinations below the actual fixed header at every breakpoint.
+const anchorHeader = document.querySelector('header.site-header');
+function updateAnchorOffset() {
+  const height = anchorHeader ? Math.ceil(anchorHeader.getBoundingClientRect().height) : 0;
+  document.documentElement.style.setProperty('--header-scroll-offset', `${height + 16}px`);
+}
+updateAnchorOffset();
+if (anchorHeader && typeof ResizeObserver !== 'undefined') {
+  new ResizeObserver(updateAnchorOffset).observe(anchorHeader);
+}
+window.addEventListener('resize', updateAnchorOffset, { passive: true });
+
 // Links to another HTML page always open at that page's beginning.
 document.querySelectorAll('a[href*=".html#"]').forEach((link) => {
   const rawHref = link.getAttribute("href");
@@ -289,6 +301,7 @@ if (generalGallery) {
   );
 
   const valueText = (value) => String(value || "").trim();
+  const cityLabel = (value) => valueText(value).replace(/,\s*(?:Texas|TX)$/i, '').trim();
   const validRecord = (record) => record
     && typeof record === "object"
     && /^assets\/images\//.test(valueText(record.src))
@@ -380,7 +393,7 @@ if (generalGallery) {
         const services = [...new Map(records.map((record) => [valueText(record.serviceKey), valueText(record.service)])).entries()]
           .filter(([serviceKey, service]) => serviceKey && service)
           .sort((left, right) => left[1].localeCompare(right[1]) || left[0].localeCompare(right[0]));
-        const cities = [...new Set(records.map((record) => valueText(record.city)))].filter(Boolean).sort((left, right) => left.localeCompare(right));
+        const cities = [...new Set(records.map((record) => cityLabel(record.city)))].filter(Boolean).sort((left, right) => left.localeCompare(right));
         services.forEach(([serviceKey, service]) => serviceSelect.append(makeOption(serviceKey, service)));
         cities.forEach((city) => citySelect.append(makeOption(city, city)));
 
@@ -430,7 +443,7 @@ if (generalGallery) {
           const mediaType = valueText(typeSelect?.value);
           const filtered = records.filter((record) => (
             (!serviceKey || record.serviceKey === serviceKey)
-            && (!city || record.city === city)
+            && (!city || cityLabel(record.city) === city)
             && (!mediaType || record.mediaType === mediaType)
           ));
           filteredRecords = filtered;
@@ -1071,9 +1084,13 @@ if (floatingCall) {
 
 // Respect links to existing sections, including product and estimate anchors.
 window.addEventListener("load", () => {
+  updateAnchorOffset();
   const hash = window.location.hash;
   const intentionalSection = hash && document.getElementById(hash.slice(1));
-  if (!intentionalSection) {
+  if (intentionalSection) {
+    intentionalSection.scrollIntoView({ block: 'start', behavior: 'instant' });
+  } else {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }
 });
+
