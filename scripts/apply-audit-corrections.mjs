@@ -12,6 +12,9 @@ export const paintingSelection = 'This reference is for interior surfaces only. 
 export function correctPage(source, file) {
   let html = source;
   const spanish = /<html\b[^>]*lang=["']es(?:-[^"']*)?["']/i.test(html);
+  // Legacy articles repeat their hero summary immediately above the first section.
+  html = html.replace(/<p class="seo-article-lead">([^<]+)<\/p>/g, (paragraph, text) =>
+    html.includes(`<p>${text}</p>`) ? '' : paragraph);
   html = html.replace(/(<p class="sg-eyebrow">)([^<]+) \/ ([^<]+), Texas(<\/p><h2 id="sg-title">)([^<]+)(<\/h2>)/g,
     (all, open, service, city, middle, title, close) => city === 'Dallas–Fort Worth' ? all : `${open}${service} / ${city}, Texas${middle}${service} in ${city}: planning the work${close}`);
   html = html.replace(/(<p>)For ([^<]+), this guide focuses on ([^<]+)\. Use it to discuss the conditions at your property and compare the proposed work\.<\/p>/g,
