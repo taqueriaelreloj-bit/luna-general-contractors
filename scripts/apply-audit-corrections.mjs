@@ -26,7 +26,7 @@ export function correctPage(source, file) {
     heading + paragraphs.replace(/\s*<p>([^<]+)<\/p>/g, (paragraph, text) => guideParagraphs.has(text) ? '' : paragraph));
 
   html = html.replace(/<form\b[^>]*>[\s\S]*?<\/form>/g, form => {
-    if (!/(?:class="[^"]*\bestimate-form\b|id="estimate-form")/.test(form)) return form;
+    if (!/(?:class="[^"]*\bestimate-form\b|id="estimate-form"|action="https:\/\/formspree\.io\/)/.test(form)) return form;
     form = form.replace(/<input\b[^>]*\bname="phone"[^>]*>/g, input =>
       /\btype=/.test(input) ? input.replace(/\btype="(?:text|tel)"/, 'type="tel"') : input.replace('<input', '<input type="tel"'));
     form = form.replace(/<input\b[^>]*\bname="address"[^>]*>/g, input => input.replace(/\srequired(?:=(?:"[^"]*"|'[^']*'|[^\s>]+))?/g, '').replace('placeholder="Project Address*"', 'placeholder="Project Address (Optional)"'));
@@ -37,6 +37,12 @@ export function correctPage(source, file) {
       form = form.replace('</form>', `<small class="form-privacy">${notice}</small></form>`);
     }
     return form;
+  });
+  // Include the heading when a legacy estimate card is the anchor destination.
+  html = html.replace(/<aside\b([^>]*)>([\s\S]*?)<\/aside>/g, (aside, attributes, contents) => {
+    if (/\bid=/.test(attributes) || !/<form\b[^>]*\bid="estimate-form"/.test(contents)) return aside;
+    const body = contents.replace(/(<form\b[^>]*?)\s+id="estimate-form"/, '$1');
+    return `<aside${attributes} id="estimate-form">${body}</aside>`;
   });
 
   html = html.replaceAll('Water extraction, drying, mold remediation, fire and smoke damage.', 'Water extraction, structural drying and reconstruction of water-damaged areas.')
