@@ -50,6 +50,9 @@ export function correctPage(source, file) {
   if (file === 'painting.html' || file.endsWith('-painting.html')) {
     html = html.replaceAll('Select sheen, primer where required, color samples and repair boundaries. A paint-and-primer label does not eliminate every separate primer step.', paintingSelection);
   }
+  if (file === 'insurance-claims.html') {
+    html = html.replaceAll('href="#damage-documentation">View Damage Documentation', 'href="#service-materials">Review Documentation Guidance');
+  }
   // Google Maps profile verified on November 10, 2026: 5.0 from 39 reviews.
   html = html.replaceAll('Based on 38 reviews', 'Based on 39 reviews · Checked Nov. 10, 2026')
     .replaceAll('Based on 38 Google reviews', 'Based on 39 Google reviews · Checked Nov. 10, 2026')
