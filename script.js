@@ -823,7 +823,7 @@ document.querySelectorAll('form[action*="formspree.io"]').forEach((form) => {
     reviewCard.innerHTML = `
       <p class="eyebrow gold">Real Customer Review</p>
       <div class="form-review-rating"><strong>5.0</strong><span>★★★★★</span></div>
-      <p class="form-review-count">Google rating · 38 reviews</p>
+      <p class="form-review-count">Google rating · 39 reviews · Checked Nov. 10, 2026</p>
       <blockquote>“Fair price for great work. Definitely recommend them for general repairs and maintenance.”</blockquote>
       <p class="form-review-author">— Nextdoor Neighbor, Grand Prairie, TX</p>
       <a class="btn btn-outline-light" href="reviews.html">Read More Reviews →</a>

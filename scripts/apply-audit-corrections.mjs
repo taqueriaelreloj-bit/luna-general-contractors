@@ -46,6 +46,7 @@ export function correctPage(source, file) {
   });
 
   html = html.replaceAll('Water extraction, drying, mold remediation, fire and smoke damage.', 'Water extraction, structural drying and reconstruction of water-damaged areas.')
+    .replaceAll('Water • Fire • Storm damage', 'Water • Roofing • Storm damage')
     .replaceAll('Extracción de agua, secado, reparación por moho y restauración por fuego o humo.', 'Extracción de agua, secado estructural y reconstrucción de áreas dañadas por agua.')
     .replaceAll('coordinated framing, waterproofing and inward drainage', 'coordinated framing, waterproofing and drainage details consistent with the selected waterproofing system')
     .replaceAll('https://www.lpcorp.com/pbs', 'https://www.lpcorp.com/products/siding-trim/product-specifications');
@@ -61,6 +62,8 @@ export function correctPage(source, file) {
   }
   // Google Maps profile verified on November 10, 2026: 5.0 from 39 reviews.
   html = html.replaceAll('Based on 38 reviews', 'Based on 39 reviews · Checked Nov. 10, 2026')
+    .replaceAll('38 Reviews · View Profile', '39 Reviews · View Profile')
+    .replaceAll('38 reseñas · Ver perfil', '39 reseñas · Ver perfil')
     .replaceAll('Based on 38 Google reviews', 'Based on 39 Google reviews · Checked Nov. 10, 2026')
     .replaceAll('Basado en 38 reseñas', 'Basado en 39 reseñas · Verificado el 10 de noviembre de 2026')
     .replace(/("reviewCount"\s*:\s*)"38"/g, '$1"39"');
