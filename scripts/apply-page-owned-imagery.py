@@ -227,6 +227,8 @@ def estimate_form_range(text):
  """
  section=section_with(text,r'<section\b(?=[^>]*\bid=["\']estimate-form["\'])[^>]*>')
  if section:return section
+ aside=re.search(r'<aside\b(?=[^>]*\bid=["\']estimate-form["\'])[^>]*>',text,re.I)
+ if aside:return element_range(text,aside.start(),'aside')
  form=re.search(r'<form\b(?=[^>]*\bid=["\']estimate-form["\'])[^>]*>',text,re.I)
  if not form:return None
  candidates=[]
@@ -736,4 +738,5 @@ def main():
  if args.check and (prepared or css_stale):sys.exit(1)
 
 if __name__=='__main__':main()
+
 
