@@ -10,6 +10,9 @@ const start='<!-- shared-customer-reviews:start -->';
 const end='<!-- shared-customer-reviews:end -->';
 const css='<link rel="stylesheet" href="customer-reviews.css?v=20261017-reviews-1">';
 const translations=[
+ ['2024 Neighborhood Fave','Favorito del vecindario 2024'],
+ ['Recognized by our neighbors','Reconocimiento de nuestros vecinos'],
+ ['View on Nextdoor →','Ver en Nextdoor →'],
  ['Real Customer Reviews','Reseñas de nuestros clientes'],
  ['5.0 Google Rating','Calificación de 5.0 en Google'],
  ['Based on 38 reviews','Basado en 38 reseñas'],
@@ -66,3 +69,4 @@ for(const file of (await readdir(root)).filter(file=>file.endsWith('.html')).sor
 const inventory={source:'index.html#reviews',totalPages:pages.length,existingSections:pages.filter(p=>p.reviews==='existing').length,sharedSections:pages.filter(p=>p.reviews==='shared-home-section').length,pages};
 await writeFile(resolve(root,'content/customer-review-pages.json'),JSON.stringify(inventory,null,2)+'\n');
 console.log(`Customer reviews: ${inventory.totalPages} pages covered; ${inventory.existingSections} existing sections and ${inventory.sharedSections} shared sections.`);
+await import('./build-nextdoor-award.mjs');

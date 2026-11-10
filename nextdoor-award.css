@@ -1,0 +1,83 @@
+/* Keep the historical Nextdoor award beside the review summary, separate from ratings. */
+.reviews-header.reviews-header-with-award {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.reviews-header-with-award .reviews-heading {
+  display: grid;
+  flex: 1 1 240px;
+  min-width: 0;
+  justify-items: start;
+  gap: 10px;
+}
+.nextdoor-fave-award {
+  display: flex;
+  flex: 0 1 280px;
+  align-items: center;
+  gap: 4px;
+  width: 280px;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 8px 14px 8px 0;
+  border: 1px solid #d7e6df;
+  border-radius: 10px;
+  background: #fff;
+  color: #064d3b;
+  text-align: left;
+  text-decoration: none;
+}
+.nextdoor-fave-award:hover {
+  border-color: #8bc400;
+  background: #f5faef;
+}
+.nextdoor-fave-award:focus-visible {
+  outline: 3px solid #f5b82e;
+  outline-offset: 4px;
+}
+.nextdoor-fave-award img {
+  display: block;
+  flex: 0 0 112px;
+  width: 112px;
+  height: 112px;
+  max-width: 43%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.nextdoor-fave-award__copy {
+  display: grid;
+  min-width: 0;
+  gap: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #335d4e;
+}
+.nextdoor-fave-award__copy strong {
+  color: #064d3b;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+.nextdoor-fave-award__link {
+  color: #064d3b;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.review-award-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px 40px;
+  margin: 24px auto 0;
+}
+.review-award-summary .rating-summary { margin-top: 0; }
+@media (max-width: 600px) {
+  .reviews-header-with-award .reviews-heading { flex-basis: 100%; }
+  .reviews-header.reviews-header-with-award { align-items: flex-start; }
+  .reviews-header-with-award .nextdoor-fave-award { flex-basis: 280px; }
+}
