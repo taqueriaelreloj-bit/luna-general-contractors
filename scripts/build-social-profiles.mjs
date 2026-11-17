@@ -8,7 +8,7 @@ export const profiles=[
  ['youtube','YouTube','Project videos','Videos de proyectos','https://www.youtube.com/@lunageneralcontractors','▶'],
  ['instagram','Instagram','Project photos','Fotos de proyectos','https://www.instagram.com/lunageneralcontractors/','◎'],
  ['yelp','Yelp','Customer reviews','Reseñas de clientes','https://www.yelp.com/biz/luna-general-contractors-grand-prairie','✳'],
- ['google','Google Business Profile','Reviews & information','Reseñas e información','https://www.google.com/maps/search/?api=1&query=Luna%20General%20Contractors%2C%204906%20Red%20River%20Trail%2C%20Grand%20Prairie%2C%20TX%2075052','G'],
+ ['google','Google Business Profile','Reviews & information','Reseñas e información','https://www.google.com/maps/place/Luna+general+Contractors/@32.6546538,-97.0347791,17z/data=!3m1!4b1!4m6!3m5!1s0x864e89ec7a7b50e7:0xcc66b3bf2bc95eca!8m2!3d32.6546538!4d-97.0347791!16s%2Fg%2F11j65h1_vv','G'],
  ['pinterest','Pinterest','Ideas & project photos','Ideas y fotos','https://www.pinterest.com/lunabestcontractors/','P'],
  ['x','X','News & updates','Noticias y novedades','https://x.com/lunabestgc','𝕏'],
  ['yellowpages','Yellow Pages','Business information','Información del negocio',null,'YP'],
@@ -33,7 +33,7 @@ for(const f of (await readdir(root)).filter(f=>f.endsWith('.html'))){
    let data;try{data=JSON.parse(json)}catch{return all}let changed=false;
    function visit(n){if(!n||typeof n!=='object')return;
     const types=[n['@type']].flat();if(types.some(t=>['LocalBusiness','GeneralContractor','HomeAndConstructionBusiness','Organization'].includes(t))&&(/Luna/i.test(n.name||'')||String(n['@id']||'').startsWith('https://lunageneralcontractors.com/'))){
-     const previous=[n.sameAs||[]].flat();const old=previous.filter(url=>!/^https:\/\/(?:www\.)?yellowpages\.com\//.test(url));const next=[...new Set([...old,...profiles.map(p=>p[4]).filter(Boolean)])];if(JSON.stringify(previous)!==JSON.stringify(next)){n.sameAs=next;changed=true;schemas++;}
+     const previous=[n.sameAs||[]].flat();const old=previous.filter(url=>url!=="https://www.google.com/maps/search/?api=1&query=Luna%20General%20Contractors%2C%204906%20Red%20River%20Trail%2C%20Grand%20Prairie%2C%20TX%2075052"&&!/^https:\/\/(?:www\.)?yellowpages\.com\//.test(url));const next=[...new Set([...old,...profiles.map(p=>p[4]).filter(Boolean)])];if(JSON.stringify(previous)!==JSON.stringify(next)){n.sameAs=next;changed=true;schemas++;}
     }for(const v of Object.values(n))if(typeof v==='object')if(Array.isArray(v))v.forEach(visit);else visit(v);
    }visit(data);return changed?open+'\n'+JSON.stringify(data,null,2)+'\n'+close:all;
  });

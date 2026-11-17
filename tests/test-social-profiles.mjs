@@ -25,6 +25,8 @@ for(const f of files){
  assert(JSON.stringify(sections(old.replaceAll("\r\n","\n")))===JSON.stringify(sections(h.replaceAll("\r\n","\n"))),f+': changed review');
  for(const re of [/<title>[\s\S]*?<\/title>/g,/<link[^>]*rel="canonical"[^>]*>/g,/<meta[^>]*name="robots"[^>]*>/g,/<h1\b[^>]*>[\s\S]*?<\/h1>/g])assert(JSON.stringify(old.match(re))===JSON.stringify(h.match(re)),f+': metadata');
  const a=schema(old),b=schema(h);assert(!JSON.stringify(b).includes('yellowpages.com'),f+': Yellow Pages schema');assert(JSON.stringify(stripSame(a))===JSON.stringify(stripSame(b)),f+': schema changed beyond sameAs');
+ assert(block.includes('0xcc66b3bf2bc95eca')&&!block.includes('maps/search'),f+': direct Google profile');
+ assert(!JSON.stringify(b).includes('maps/search'),f+': Google schema must be direct');
  assert(!h.includes('Jeff Weizen'),f+': AI text');
  covered++;
 }
