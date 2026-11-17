@@ -55,3 +55,6 @@ execFileSync(process.env.PYTHON || 'python',[
 execFileSync(process.execPath,[resolve(root,'scripts','apply-audit-corrections.mjs')],{cwd:root,stdio:'inherit'});
 
 
+
+// Preserve approved social links after all page generators.
+execFileSync(process.execPath,[resolve(root,'scripts','build-social-profiles.mjs')],{cwd:root,stdio:'inherit'});
