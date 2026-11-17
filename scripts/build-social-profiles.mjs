@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 export const profiles=[
  ['facebook','Facebook','Latest updates','Novedades','https://www.facebook.com/profile.php?id=61593674657367','f'],
- ['tiktok','TikTok','On-site videos','Videos de obra','https://www.tiktok.com/@luna.general.cont','♪'],
+ ['tiktok','TikTok','On-site videos','Videos de obra','https://www.tiktok.com/@lunageneralcontractors','♪'],
  ['youtube','YouTube','Project videos','Videos de proyectos','https://www.youtube.com/@lunageneralcontractors','▶'],
  ['instagram','Instagram','Project photos','Fotos de proyectos','https://www.instagram.com/lunageneralcontractors/','◎'],
  ['yelp','Yelp','Customer reviews','Reseñas de clientes','https://www.yelp.com/biz/luna-general-contractors-grand-prairie','✳'],
@@ -33,7 +33,7 @@ for(const f of (await readdir(root)).filter(f=>f.endsWith('.html'))){
    let data;try{data=JSON.parse(json)}catch{return all}let changed=false;
    function visit(n){if(!n||typeof n!=='object')return;
     const types=[n['@type']].flat();if(types.some(t=>['LocalBusiness','GeneralContractor','HomeAndConstructionBusiness','Organization'].includes(t))&&(/Luna/i.test(n.name||'')||String(n['@id']||'').startsWith('https://lunageneralcontractors.com/'))){
-     const previous=[n.sameAs||[]].flat();const old=previous.filter(url=>url!=="https://www.google.com/maps/search/?api=1&query=Luna%20General%20Contractors%2C%204906%20Red%20River%20Trail%2C%20Grand%20Prairie%2C%20TX%2075052"&&!/^https:\/\/(?:www\.)?yellowpages\.com\//.test(url));const next=[...new Set([...old,...profiles.map(p=>p[4]).filter(Boolean)])];if(JSON.stringify(previous)!==JSON.stringify(next)){n.sameAs=next;changed=true;schemas++;}
+     const previous=[n.sameAs||[]].flat();const old=previous.filter(url=>url!=="https://www.tiktok.com/@luna.general.cont"&&url!=="https://www.google.com/maps/search/?api=1&query=Luna%20General%20Contractors%2C%204906%20Red%20River%20Trail%2C%20Grand%20Prairie%2C%20TX%2075052"&&!/^https:\/\/(?:www\.)?yellowpages\.com\//.test(url));const next=[...new Set([...old,...profiles.map(p=>p[4]).filter(Boolean)])];if(JSON.stringify(previous)!==JSON.stringify(next)){n.sameAs=next;changed=true;schemas++;}
     }for(const v of Object.values(n))if(typeof v==='object')if(Array.isArray(v))v.forEach(visit);else visit(v);
    }visit(data);return changed?open+'\n'+JSON.stringify(data,null,2)+'\n'+close:all;
  });
