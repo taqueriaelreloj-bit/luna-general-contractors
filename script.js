@@ -12,6 +12,46 @@ if (!isLocalPreview) {
   gtag("config", "G-3MGPLXSG14");
 }
 
+// Send one count for each link activation, including links added by the gallery.
+function countLunaLinkClick(link) {
+  if (isLocalPreview) return;
+
+  const isWeb = link.protocol === "https:" || link.protocol === "http:";
+  // Query strings and contact-link payloads can contain personal information.
+  const destination = isWeb ? link.origin + link.pathname + link.hash : link.protocol;
+  const region = link.closest("nav, header, footer, aside, section");
+  const regionName = region?.id || region?.getAttribute("aria-label") ||
+    region?.classList[0] || region?.localName || "página";
+  const position = Array.prototype.indexOf.call(document.links, link) + 1;
+  const cardTitle = link.closest(".service-card")?.querySelector("h3")?.textContent;
+  let label = link.getAttribute("aria-label") || link.textContent.trim() ||
+    link.querySelector("img")?.alt || (isWeb ? link.pathname : link.protocol);
+  if (link.protocol === "mailto:") label = "Correo";
+  if (link.protocol === "tel:") label = "Llamar";
+  if (link.protocol === "sms:") label = "Mensaje";
+  if (cardTitle) label = cardTitle + " · " + label;
+  label = label.replace(/\s+/g, " ").trim();
+
+  gtag("event", "luna_link_click", {
+    send_to: "G-3MGPLXSG14",
+    luna_link: (position + " · " + regionName + " · " + label).slice(0, 100),
+    link_id: link.id || "link-" + position,
+    link_text: label.slice(0, 100),
+    link_url: destination,
+    transport_type: "beacon"
+  });
+}
+
+function countLunaAnchorEvent(event) {
+  const link = event.target.closest?.("a[href], area[href]");
+  if (link) countLunaLinkClick(link);
+}
+
+document.addEventListener("click", countLunaAnchorEvent, true);
+document.addEventListener("auxclick", (event) => {
+  if (event.button === 1) countLunaAnchorEvent(event);
+}, true);
+
 const isSpanishPage = document.documentElement.lang.toLowerCase().startsWith("es");
 const isPrivacyPage = window.location.pathname.endsWith("/privacy.html");
 const formCopy = isSpanishPage
@@ -193,6 +233,7 @@ document.querySelectorAll(".service-card").forEach((card) => {
   card.setAttribute("aria-label", `Open ${card.querySelector("h3")?.textContent || "service"} page`);
 
   const openServicePage = () => {
+    countLunaLinkClick(destination);
     window.location.href = destination.href.split("#")[0];
   };
 
@@ -202,7 +243,7 @@ document.querySelectorAll(".service-card").forEach((card) => {
   });
 
   card.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
+    if (event.target === card && (event.key === "Enter" || event.key === " ")) {
       event.preventDefault();
       openServicePage();
     }
