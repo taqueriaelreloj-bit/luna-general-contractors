@@ -263,7 +263,8 @@ document.querySelectorAll("[data-page-owned-gallery]").forEach((gallery) => {
   const previousButton = gallery.querySelector("[data-page-owned-gallery-previous]");
   const nextButton = gallery.querySelector("[data-page-owned-gallery-next]");
   const status = gallery.querySelector("[data-page-owned-gallery-status]");
-  if (!track || items.length !== 5 || thumbnails.length !== 5 || !previousButton || !nextButton) return;
+  const expectedCount = Number(gallery.getAttribute("data-page-owned-gallery-count") || 5);
+  if (!track || !Number.isInteger(expectedCount) || expectedCount < 2 || items.length !== expectedCount || thumbnails.length !== expectedCount || !previousButton || !nextButton) return;
 
   const galleryIsSpanish = document.documentElement.lang.toLowerCase().startsWith("es");
   let activeIndex = 0;
